@@ -1,0 +1,181 @@
+import { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/style.css";
+import { Users, Fuel, Cog, Tag, ImageOff, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import api from "../api/client";
+import { useCompanyProfile } from "../context/CompanyProfileContext";
+import Spinner from "../components/ui/Spinner";
+import Badge from "../components/ui/Badge";
+import Button from "../components/ui/Button";
+import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
+
+export default function CarDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { profile } = useCompanyProfile();
+  const [mobil, setMobil] = useState(null);
+  const [bookedRanges, setBookedRanges] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeFoto, setActiveFoto] = useState(0);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    setLoading(true);
+    setError("");
+    Promise.all([
+      api.get(`/mobil/${id}`),
+      api.get(`/mobil/${id}/booked-ranges`),
+    ])
+      .then(([mobilRes, rangesRes]) => {
+        setMobil(mobilRes.data);
+        setBookedRanges(
+          rangesRes.data.map((r) => ({ from: new Date(r.tglAmbil), to: new Date(r.tglKembali) }))
+        );
+        setActiveFoto(0);
+      })
+      .catch(() => setError("Mobil tidak ditemukan."))
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) return <Spinner />;
+  if (error || !mobil) {
+    return (
+      <div className="mx-auto max-w-xl px-4 py-24 text-center">
+        <p className="text-slate-600">{error}</p>
+        <Link to="/katalog" className="mt-4 inline-block font-semibold text-blue-600 hover:underline">
+          Kembali ke Katalog
+        </Link>
+      </div>
+    );
+  }
+
+  const fotos = mobil.fotos?.length ? mobil.fotos : [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return (
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <nav className="mb-6 text-sm text-slate-500">
+        <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> / <span className="text-slate-700">{mobil.namaMobil}</span>
+      </nav>
+
+      <div className="grid gap-10 lg:grid-cols-2">
+        {/* Galeri Foto */}
+        <div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
+            {fotos.length > 0 ? (
+              <img src={fotos[activeFoto]?.urlFoto} alt={mobil.namaMobil} className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-slate-300">
+                <ImageOff size={56} />
+              </div>
+            )}
+            {fotos.length > 1 && (
+              <>
+                <button
+                  onClick={() => setActiveFoto((i) => (i === 0 ? fotos.length - 1 : i - 1))}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 shadow-md transition-transform hover:scale-105 hover:bg-white"
+                  aria-label="Foto sebelumnya"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={() => setActiveFoto((i) => (i === fotos.length - 1 ? 0 : i + 1))}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 shadow-md transition-transform hover:scale-105 hover:bg-white"
+                  aria-label="Foto berikutnya"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
+            <Badge className={`absolute right-3 top-3 border ${STATUS_MOBIL_BADGE[mobil.status]}`}>
+              {STATUS_MOBIL_LABEL[mobil.status]}
+            </Badge>
+          </div>
+          {fotos.length > 1 && (
+            <div className="mt-3 grid grid-cols-5 gap-2">
+              {fotos.map((f, i) => (
+                <button
+                  key={f.idFoto}
+                  onClick={() => setActiveFoto(i)}
+                  className={`aspect-square cursor-pointer overflow-hidden rounded-xl border-2 transition-colors ${
+                    i === activeFoto ? "border-blue-600" : "border-transparent hover:border-blue-200"
+                  }`}
+                >
+                  <img src={f.urlFoto} alt="" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Info & Spesifikasi */}
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
+          <h1 className="mt-1 text-3xl font-extrabold text-slate-900">{mobil.namaMobil}</h1>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
+              <Tag size={16} /> {mobil.tipe}
+            </span>
+            <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
+              <Cog size={16} /> {mobil.transmisi}
+            </span>
+            <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
+              <Fuel size={16} /> {mobil.bahanBakar}
+            </span>
+            <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
+              <Users size={16} /> {mobil.kapasitas} orang
+            </span>
+          </div>
+
+          <p className="mt-5 leading-relaxed text-slate-600">{mobil.deskripsi}</p>
+
+          <div className="mt-6">
+            <h3 className="text-base font-bold text-slate-900">Cek Ketersediaan Tanggal</h3>
+            <p className="mt-1 text-sm text-slate-500">Tanggal yang ditandai merah sudah dibooking pelanggan lain.</p>
+            <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-[var(--shadow-soft)]">
+              <DayPicker
+                mode="default"
+                disabled={[{ before: today }, ...bookedRanges]}
+                modifiers={{ booked: bookedRanges }}
+                modifiersClassNames={{ booked: "rdp-booked" }}
+                startMonth={today}
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Button
+              variant="accent"
+              size="lg"
+              className="w-full sm:w-auto"
+              disabled={mobil.status === "maintenance"}
+              onClick={() => navigate(`/booking/${mobil.idMobil}`)}
+            >
+              {mobil.status === "maintenance" ? "Mobil Sedang Maintenance" : "Ajukan Permintaan Booking"}
+            </Button>
+            {profile?.whatsapp && (
+              <a
+                href={`https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(
+                  `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md sm:w-auto"
+              >
+                <MessageCircle size={18} />
+                Pesan via WhatsApp
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        .rdp-booked { background-color: #fee2e2; color: #b91c1c; border-radius: 6px; }
+      `}</style>
+    </div>
+  );
+}

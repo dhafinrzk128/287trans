@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Tabel mobil
+model Mobil {
+  idMobil      Int      @id @default(autoincrement()) @map("id_mobil")
+  namaMobil    String   @map("nama_mobil")
+  tipe         String
+  transmisi    String
+  bahanBakar   String   @default("Bensin") @map("bahan_bakar")
+  kapasitas    Int
+  hargaPerHari Int      @map("harga_per_hari")
+  deskripsi    String
+  status       String   @default("tersedia") // tersedia | disewa | maintenance
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  fotos    FotoMobil[]
+  bookings Booking[]
+
+  @@map("mobil")
+}
+
+// Tabel foto_mobil (one-to-many dari mobil)
+model FotoMobil {
+  idFoto  Int    @id @default(autoincrement()) @map("id_foto")
+  idMobil Int    @map("id_mobil")
+  urlFoto String @map("url_foto")
+  urutan  Int    @default(0)
+
+  mobil Mobil @relation(fields: [idMobil], references: [idMobil], onDelete: Cascade)
+
+  @@map("foto_mobil")
+}
+
+// Tabel booking - permintaan booking dari customer (bukan transaksi final, tindak lanjut via WhatsApp)
+model Booking {
+  idBooking     Int      @id @default(autoincrement()) @map("id_booking")
+  kodeBooking   String   @unique @map("kode_booking")
+  idMobil       Int      @map("id_mobil")
+  namaCustomer  String   @map("nama_customer")
+  noHp          String   @map("no_hp")
+  tglAmbil      DateTime @map("tgl_ambil")
+  tglKembali    DateTime @map("tgl_kembali")
+  estimasiHari  Int      @map("estimasi_hari")
+  denganSopir   Boolean  @default(false) @map("dengan_sopir")
+  catatan       String?
+  statusBooking String   @default("menunggu_konfirmasi") @map("status_booking")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  mobil Mobil @relation(fields: [idMobil], references: [idMobil])
+
+  @@map("booking")
+}
+
+// Tabel admin, berdiri sendiri
+model Admin {
+  idAdmin  Int    @id @default(autoincrement()) @map("id_admin")
+  username String @unique
+  password String
+
+  @@map("admin")
+}
+
+// Tabel tambahan untuk konten halaman "Tentang Kami" yang dikelola admin
+model CompanyProfile {
+  id           Int      @id @default(1)
+  namaPerusahaan String @default("287 Trans") @map("nama_perusahaan")
+  deskripsi    String
+  keunggulan   String // JSON stringified array of {judul, deskripsi}
+  alamat       String
+  mapsEmbedUrl String?  @map("maps_embed_url")
+  telepon      String
+  whatsapp     String
+  email        String
+  fotoUrl      String?  @map("foto_url")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("company_profile")
+}
+
+// Tabel tambahan untuk menyimpan pesan dari form kontak
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  email     String
+  subjek    String?
+  pesan     String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("contact_message")
+}
+
+// Tabel tambahan untuk testimoni pelanggan yang tampil di Home (dikelola admin)
+model Testimoni {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  kota      String
+  pesan     String
+  rating    Int      @default(5)
+  urutan    Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("testimoni")
+}
+
+// Tabel tambahan untuk FAQ yang tampil di Home (dikelola admin)
+model Faq {
+  id         Int      @id @default(autoincrement())
+  pertanyaan String
+  jawaban    String
+  urutan     Int      @default(0)
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("faq")
+}
