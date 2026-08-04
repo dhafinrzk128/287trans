@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Lock } from "lucide-react";
+import { Lock, CheckCircle2 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import FormField from "../../components/ui/FormField";
 import Input from "../../components/ui/Input";
@@ -9,6 +9,11 @@ import Button from "../../components/ui/Button";
 export default function AdminLogin() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [successMessage] = useState(() => {
+    const msg = sessionStorage.getItem("adminAuthMessage");
+    if (msg) sessionStorage.removeItem("adminAuthMessage");
+    return msg;
+  });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -48,6 +53,11 @@ export default function AdminLogin() {
         </div>
 
         <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
+          {successMessage && !error && (
+            <p className="flex items-center gap-2 rounded-lg bg-emerald-50 px-4 py-2.5 text-sm text-emerald-700">
+              <CheckCircle2 size={16} /> {successMessage}
+            </p>
+          )}
           {error && <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">{error}</p>}
           <FormField label="Username" htmlFor="username">
             <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} autoFocus />

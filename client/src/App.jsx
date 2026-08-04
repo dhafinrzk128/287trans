@@ -23,6 +23,7 @@ import AdminBookings from "./pages/admin/AdminBookings";
 import AdminBookingForm from "./pages/admin/AdminBookingForm";
 import AdminBookingDetail from "./pages/admin/AdminBookingDetail";
 import AdminProfile from "./pages/admin/AdminProfile";
+import AdminAccount from "./pages/admin/AdminAccount";
 import AdminTestimoni from "./pages/admin/AdminTestimoni";
 import AdminFaq from "./pages/admin/AdminFaq";
 
@@ -56,6 +57,7 @@ function App() {
                 <Route path="testimoni" element={<AdminTestimoni />} />
                 <Route path="faq" element={<AdminFaq />} />
                 <Route path="profile" element={<AdminProfile />} />
+                <Route path="akun" element={<AdminAccount />} />
               </Route>
             </Route>
           </Routes>
