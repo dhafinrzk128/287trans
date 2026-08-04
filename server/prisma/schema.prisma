@@ -12,6 +12,7 @@ model Mobil {
   idMobil      Int      @id @default(autoincrement()) @map("id_mobil")
   namaMobil    String   @map("nama_mobil")
   tipe         String
+  tahun        Int      @default(2020)
   transmisi    String
   bahanBakar   String   @default("Bensin") @map("bahan_bakar")
   kapasitas    Int
@@ -51,6 +52,7 @@ model Booking {
   denganSopir   Boolean  @default(false) @map("dengan_sopir")
   catatan       String?
   statusBooking String   @default("menunggu_konfirmasi") @map("status_booking")
+  buktiTransferUrl String? @map("bukti_transfer_url")
   createdAt     DateTime @default(now()) @map("created_at")
 
   mobil Mobil @relation(fields: [idMobil], references: [idMobil])
@@ -79,6 +81,7 @@ model CompanyProfile {
   whatsapp     String
   email        String
   fotoUrl      String?  @map("foto_url")
+  heroFotoUrl  String?  @map("hero_foto_url")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
   @@map("company_profile")

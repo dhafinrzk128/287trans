@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Plus, Pencil, Trash2, ImageOff } from "lucide-react";
+import { Plus, Pencil, Trash2, ImageOff, Search } from "lucide-react";
 import api from "../../api/client";
 import AdminTable from "../../components/admin/AdminTable";
 import Select from "../../components/ui/Select";
 import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
+import { inputClassName } from "../../components/ui/FormField";
 import { formatRupiah } from "../../utils/format";
 import { STATUS_MOBIL_LABEL } from "../../utils/validators";
 
@@ -13,6 +14,13 @@ export default function AdminCars() {
   const [mobils, setMobils] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busyId, setBusyId] = useState(null);
+  const [search, setSearch] = useState("");
+
+  const filteredMobils = mobils.filter((m) => {
+    const q = search.trim().toLowerCase();
+    if (!q) return true;
+    return m.namaMobil.toLowerCase().includes(q) || m.tipe.toLowerCase().includes(q);
+  });
 
   function load() {
     setLoading(true);
@@ -65,7 +73,7 @@ export default function AdminCars() {
       render: (row) => (
         <div>
           <p className="font-semibold text-slate-900">{row.namaMobil}</p>
-          <p className="text-xs text-slate-500">{row.tipe} &middot; {row.transmisi} &middot; {row.bahanBakar} &middot; {row.kapasitas} orang</p>
+          <p className="text-xs text-slate-500">{row.tahun} &middot; {row.tipe} &middot; {row.transmisi} &middot; {row.bahanBakar} &middot; {row.kapasitas} orang</p>
         </div>
       ),
     },
@@ -122,8 +130,28 @@ export default function AdminCars() {
         </Link>
       </div>
 
-      <div className="mt-6">
-        {loading ? <Spinner /> : <AdminTable columns={columns} data={mobils} keyField="idMobil" emptyMessage="Belum ada data mobil." />}
+      <div className="relative mt-5">
+        <Search size={18} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Cari nama atau tipe mobil..."
+          className={`${inputClassName(false)} pl-10`}
+        />
+      </div>
+
+      <div className="mt-4">
+        {loading ? (
+          <Spinner />
+        ) : (
+          <AdminTable
+            columns={columns}
+            data={filteredMobils}
+            keyField="idMobil"
+            emptyMessage={search ? "Tidak ada mobil yang cocok dengan pencarian." : "Belum ada data mobil."}
+          />
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,12 @@
+{
+  "name": "287trans",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run prisma:generate --prefix server",
+    "start": "npm run prisma:deploy --prefix server && npm run start --prefix server"
+  }
+}

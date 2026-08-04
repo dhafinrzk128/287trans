@@ -13,6 +13,7 @@ function serializeMobil(mobil) {
     idMobil: mobil.idMobil,
     namaMobil: mobil.namaMobil,
     tipe: mobil.tipe,
+    tahun: mobil.tahun,
     transmisi: mobil.transmisi,
     bahanBakar: mobil.bahanBakar,
     kapasitas: mobil.kapasitas,
@@ -55,6 +56,35 @@ router.get("/meta/tipe-list", async (req, res) => {
   res.json(rows.map((r) => r.tipe));
 });
 
+// GET /api/mobil/populer - mobil dengan booking terbanyak (bukan dibatalkan) dalam 3 bulan terakhir
+router.get("/populer", async (req, res) => {
+  const { status, limit } = req.query;
+  const take = Math.min(Number(limit) || 8, 20);
+
+  const sejak = new Date();
+  sejak.setMonth(sejak.getMonth() - 3);
+
+  const mobils = await prisma.mobil.findMany({
+    where: status ? { status } : undefined,
+    include: {
+      fotos: true,
+      _count: {
+        select: {
+          bookings: {
+            where: { statusBooking: { not: "dibatalkan" }, createdAt: { gte: sejak } },
+          },
+        },
+      },
+    },
+  });
+
+  const sorted = mobils
+    .sort((a, b) => b._count.bookings - a._count.bookings || b.createdAt - a.createdAt)
+    .slice(0, take);
+
+  res.json(sorted.map((m) => ({ ...serializeMobil(m), jumlahBooking: m._count.bookings })));
+});
+
 // GET /api/mobil/:id
 router.get("/:id", async (req, res) => {
   const id = Number(req.params.id);
@@ -87,10 +117,10 @@ router.get("/admin/all", requireAdminAuth, async (req, res) => {
 });
 
 router.post("/admin", requireAdminAuth, uploadMobilFoto.array("fotos", 10), async (req, res) => {
-  const { namaMobil, tipe, transmisi, bahanBakar, kapasitas, hargaPerHari, deskripsi, status } = req.body;
+  const { namaMobil, tipe, tahun, transmisi, bahanBakar, kapasitas, hargaPerHari, deskripsi, status } = req.body;
 
-  if (!namaMobil || !tipe || !transmisi || !kapasitas || !hargaPerHari) {
-    return res.status(400).json({ message: "Field wajib: namaMobil, tipe, transmisi, kapasitas, hargaPerHari." });
+  if (!namaMobil || !tipe || !tahun || !transmisi || !kapasitas || !hargaPerHari) {
+    return res.status(400).json({ message: "Field wajib: namaMobil, tipe, tahun, transmisi, kapasitas, hargaPerHari." });
   }
 
   const files = req.files || [];
@@ -98,6 +128,7 @@ router.post("/admin", requireAdminAuth, uploadMobilFoto.array("fotos", 10), asyn
     data: {
       namaMobil,
       tipe,
+      tahun: Number(tahun),
       transmisi,
       bahanBakar: bahanBakar || "Bensin",
       kapasitas: Number(kapasitas),
@@ -119,7 +150,7 @@ router.put("/admin/:id", requireAdminAuth, uploadMobilFoto.array("fotos", 10), a
   const existing = await prisma.mobil.findUnique({ where: { idMobil: id }, include: { fotos: true } });
   if (!existing) return res.status(404).json({ message: "Mobil tidak ditemukan." });
 
-  const { namaMobil, tipe, transmisi, bahanBakar, kapasitas, hargaPerHari, deskripsi, status } = req.body;
+  const { namaMobil, tipe, tahun, transmisi, bahanBakar, kapasitas, hargaPerHari, deskripsi, status } = req.body;
   const files = req.files || [];
   const maxUrutan = existing.fotos.reduce((m, f) => Math.max(m, f.urutan), -1);
 
@@ -128,6 +159,7 @@ router.put("/admin/:id", requireAdminAuth, uploadMobilFoto.array("fotos", 10), a
     data: {
       ...(namaMobil !== undefined && { namaMobil }),
       ...(tipe !== undefined && { tipe }),
+      ...(tahun !== undefined && { tahun: Number(tahun) }),
       ...(transmisi !== undefined && { transmisi }),
       ...(bahanBakar !== undefined && { bahanBakar }),
       ...(kapasitas !== undefined && { kapasitas: Number(kapasitas) }),

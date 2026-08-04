@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { to: "/", label: "Home", end: true },
   { to: "/tentang-kami", label: "Tentang Kami" },
   { to: "/katalog", label: "Pilihan Armada" },
+  { to: "/status", label: "Cek Booking" },
   { to: "/kontak", label: "Kontak" },
 ];
 
@@ -35,7 +36,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             to="/katalog"
-            className="inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-700 hover:shadow-md"
+            className="btn-glow-accent inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-700"
           >
             Booking Sekarang
           </Link>
@@ -73,7 +74,7 @@ export default function Navbar() {
             <Link
               to="/katalog"
               onClick={() => setOpen(false)}
-              className="mt-2 inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-700"
+              className="btn-glow-accent mt-2 inline-flex items-center justify-center rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-accent-700"
             >
               Booking Sekarang
             </Link>

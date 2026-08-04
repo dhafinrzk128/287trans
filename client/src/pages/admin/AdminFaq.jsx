@@ -90,7 +90,7 @@ export default function AdminFaq() {
       </div>
 
       {showForm && (
-        <form onSubmit={handleSubmit} className="mt-6 max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
+        <form onSubmit={handleSubmit} noValidate className="mt-6 max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
           <div className="flex items-center justify-between">
             <h3 className="text-base font-bold text-slate-900">{editingId ? "Edit FAQ" : "Tambah FAQ"}</h3>
             <button type="button" onClick={() => setShowForm(false)} className="text-slate-400 hover:text-slate-600" aria-label="Tutup form">

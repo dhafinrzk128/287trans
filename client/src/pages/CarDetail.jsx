@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/style.css";
-import { Users, Fuel, Cog, Tag, ImageOff, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { Users, Fuel, Cog, Tag, Calendar, ImageOff, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
 import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
+import { buildWaLink } from "../utils/format";
 
 export default function CarDetail() {
   const { id } = useParams();
@@ -117,6 +118,9 @@ export default function CarDetail() {
 
           <div className="mt-4 flex flex-wrap gap-3">
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
+              <Calendar size={16} /> {mobil.tahun}
+            </span>
+            <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
               <Tag size={16} /> {mobil.tipe}
             </span>
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
@@ -151,19 +155,17 @@ export default function CarDetail() {
               variant="accent"
               size="lg"
               className="w-full sm:w-auto"
-              disabled={mobil.status === "maintenance"}
+              disabled={mobil.status !== "tersedia"}
               onClick={() => navigate(`/booking/${mobil.idMobil}`)}
             >
-              {mobil.status === "maintenance" ? "Mobil Sedang Maintenance" : "Ajukan Permintaan Booking"}
+              {mobil.status !== "tersedia" ? "Tanyakan Jadwal Ketersediaan di Kontak Kami" : "Ajukan Permintaan Booking"}
             </Button>
             {profile?.whatsapp && (
               <a
-                href={`https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(
-                  `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`
-                )}`}
+                href={buildWaLink(profile.whatsapp, `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md sm:w-auto"
+                className="btn-glow-whatsapp inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 sm:w-auto"
               >
                 <MessageCircle size={18} />
                 Pesan via WhatsApp

@@ -34,6 +34,12 @@ export function toDateInputValue(value) {
   return localDate.toISOString().slice(0, 10);
 }
 
+export function buildWaLink(number, text) {
+  const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
+  const query = text ? `?text=${encodeURIComponent(text)}` : "";
+  return `https://wa.me/${digits}${query}`;
+}
+
 export function hitungJumlahHari(tglAmbil, tglKembali) {
   if (!tglAmbil || !tglKembali) return 0;
   const ambil = new Date(tglAmbil);

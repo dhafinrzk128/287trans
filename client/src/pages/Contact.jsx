@@ -2,11 +2,13 @@ import { useState } from "react";
 import { MapPin, Phone, Mail, MessageCircle, CheckCircle2 } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
+import Reveal from "../components/Reveal";
 import FormField from "../components/ui/FormField";
 import Input from "../components/ui/Input";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
 import { isValidEmail } from "../utils/validators";
+import { buildWaLink } from "../utils/format";
 
 const INITIAL = { nama: "", email: "", subjek: "", pesan: "" };
 
@@ -59,7 +61,7 @@ export default function Contact() {
       </section>
 
       <section className="mx-auto max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid lg:grid-cols-5 lg:px-8">
-        <div className="lg:col-span-2">
+        <Reveal className="lg:col-span-2">
           <h2 className="text-xl font-bold text-slate-900">Informasi Kontak</h2>
           <ul className="mt-5 space-y-4 text-slate-700">
             <li className="flex items-start gap-3">
@@ -85,15 +87,15 @@ export default function Contact() {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                   <MessageCircle size={18} />
                 </span>
-                <a href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
+                <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
                   Chat via WhatsApp
                 </a>
               </li>
             )}
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="mt-10 lg:col-span-3 lg:mt-0">
+        <Reveal className="mt-10 lg:col-span-3 lg:mt-0" delay={150}>
           {success ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-50 p-10 text-center">
               <CheckCircle2 className="text-emerald-600" size={48} />
@@ -102,7 +104,7 @@ export default function Contact() {
               <Button className="mt-5" onClick={() => setSuccess(false)}>Kirim Pesan Lain</Button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
+            <form onSubmit={handleSubmit} noValidate className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
               {serverError && <p className="rounded-xl bg-red-50 px-4 py-2.5 text-sm text-red-700">{serverError}</p>}
               <FormField label="Nama Lengkap" htmlFor="nama" required error={errors.nama}>
                 <Input id="nama" value={form.nama} onChange={(e) => update("nama", e.target.value)} error={errors.nama} />
@@ -121,7 +123,7 @@ export default function Contact() {
               </Button>
             </form>
           )}
-        </div>
+        </Reveal>
       </section>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, ImagePlus, Receipt } from "lucide-react";
 import api from "../../api/client";
 import Spinner from "../../components/ui/Spinner";
 import Button from "../../components/ui/Button";
@@ -25,6 +25,8 @@ export default function AdminBookingDetail() {
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const [uploadingBukti, setUploadingBukti] = useState(false);
+  const [buktiError, setBuktiError] = useState("");
 
   function load() {
     setLoading(true);
@@ -42,6 +44,26 @@ export default function AdminBookingDetail() {
       setBooking(data);
     } finally {
       setUpdating(false);
+    }
+  }
+
+  async function handleBuktiUpload(ev) {
+    const file = ev.target.files?.[0];
+    if (!file) return;
+    setBuktiError("");
+    setUploadingBukti(true);
+    const formData = new FormData();
+    formData.append("buktiTransfer", file);
+    try {
+      const { data } = await api.put(`/booking/admin/${id}/bukti-transfer`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setBooking(data);
+    } catch (err) {
+      setBuktiError(err.response?.data?.message || "Gagal mengunggah bukti transfer.");
+    } finally {
+      setUploadingBukti(false);
+      ev.target.value = "";
     }
   }
 
@@ -137,6 +159,43 @@ export default function AdminBookingDetail() {
               <Phone size={18} />
               Telepon
             </a>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)] lg:col-start-3">
+          <h3 className="flex items-center gap-2 text-base font-bold text-slate-900">
+            <Receipt size={18} className="text-blue-600" />
+            Bukti Transfer
+          </h3>
+          <p className="mt-1 text-sm text-slate-500">Unggah bukti transfer pembayaran dari customer.</p>
+
+          <div className="mt-4">
+            {booking.buktiTransferUrl ? (
+              <a href={booking.buktiTransferUrl} target="_blank" rel="noopener noreferrer" className="block overflow-hidden rounded-xl border border-slate-200">
+                <img src={booking.buktiTransferUrl} alt="Bukti transfer" className="h-48 w-full object-cover" />
+              </a>
+            ) : (
+              <div className="flex h-32 items-center justify-center rounded-xl border border-dashed border-slate-300 text-sm text-slate-400">
+                Belum ada bukti transfer
+              </div>
+            )}
+
+            <label
+              htmlFor="buktiTransfer"
+              className={`mt-3 flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50 ${uploadingBukti ? "pointer-events-none opacity-60" : ""}`}
+            >
+              <ImagePlus size={16} />
+              {uploadingBukti ? "Mengunggah..." : booking.buktiTransferUrl ? "Ganti Foto" : "Unggah Foto"}
+              <input
+                id="buktiTransfer"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                disabled={uploadingBukti}
+                onChange={handleBuktiUpload}
+              />
+            </label>
+            {buktiError && <p className="mt-2 text-xs font-medium text-red-600">{buktiError}</p>}
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ const mobilData = [
   {
     namaMobil: "Toyota Avanza",
     tipe: "MPV",
+    tahun: 2023,
     transmisi: "Manual",
     bahanBakar: "Bensin",
     kapasitas: 7,
@@ -24,6 +25,7 @@ const mobilData = [
   {
     namaMobil: "Daihatsu Xenia",
     tipe: "MPV",
+    tahun: 2022,
     transmisi: "Manual",
     bahanBakar: "Bensin",
     kapasitas: 7,
@@ -36,8 +38,9 @@ const mobilData = [
   {
     namaMobil: "Toyota Innova Reborn",
     tipe: "MPV Premium",
+    tahun: 2024,
     transmisi: "Matic",
-    bahanBakar: "Solar",
+    bahanBakar: "Diesel",
     kapasitas: 7,
     hargaPerHari: 550000,
     deskripsi:
@@ -48,6 +51,7 @@ const mobilData = [
   {
     namaMobil: "Honda Brio",
     tipe: "City Car",
+    tahun: 2023,
     transmisi: "Matic",
     bahanBakar: "Bensin",
     kapasitas: 5,
@@ -60,8 +64,9 @@ const mobilData = [
   {
     namaMobil: "Mitsubishi Pajero Sport",
     tipe: "SUV",
+    tahun: 2024,
     transmisi: "Matic",
-    bahanBakar: "Solar",
+    bahanBakar: "Diesel",
     kapasitas: 7,
     hargaPerHari: 850000,
     deskripsi:
@@ -72,6 +77,7 @@ const mobilData = [
   {
     namaMobil: "Toyota Alphard",
     tipe: "Luxury MPV",
+    tahun: 2024,
     transmisi: "Matic",
     bahanBakar: "Bensin",
     kapasitas: 6,
@@ -84,6 +90,7 @@ const mobilData = [
   {
     namaMobil: "Suzuki Ertiga",
     tipe: "MPV",
+    tahun: 2022,
     transmisi: "Manual",
     bahanBakar: "Bensin",
     kapasitas: 7,
@@ -96,8 +103,9 @@ const mobilData = [
   {
     namaMobil: "Toyota Fortuner",
     tipe: "SUV",
+    tahun: 2023,
     transmisi: "Matic",
-    bahanBakar: "Solar",
+    bahanBakar: "Diesel",
     kapasitas: 7,
     hargaPerHari: 900000,
     deskripsi:
@@ -150,18 +158,17 @@ async function main() {
       id: 1,
       namaPerusahaan: "287 Trans",
       deskripsi:
-        "287 Trans adalah perusahaan penyedia jasa rental mobil terpercaya yang telah melayani ribuan pelanggan di seluruh Indonesia. Kami menghadirkan armada lengkap dengan kondisi prima, harga bersaing, dan proses booking yang mudah secara online tanpa perlu membuat akun.",
+        "287 Trans adalah perusahaan penyedia jasa rental mobil premium terpercaya yang telah melayani ribuan pelanggan di seluruh Indonesia. Kami menghadirkan armada unit-unit terbaru dengan kondisi prima, harga bersaing, dan proses booking yang mudah secara online tanpa perlu membuat akun.",
       keunggulan: JSON.stringify([
-        { judul: "Armada Lengkap", deskripsi: "Puluhan unit mobil dari city car hingga SUV dan luxury MPV." },
+        { judul: "Armada Premium", deskripsi: "Unit-unit terbaru dari city car hingga SUV dan luxury MPV kelas premium." },
         { judul: "Harga Bersaing", deskripsi: "Tarif transparan tanpa biaya tersembunyi." },
         { judul: "Proses Mudah", deskripsi: "Booking online 24 jam tanpa perlu registrasi akun." },
         { judul: "Unit Terawat", deskripsi: "Seluruh armada rutin diservis dan dibersihkan sebelum disewakan." },
       ]),
-      alamat: "Jl. Raya Rental No. 287, Jakarta Selatan, DKI Jakarta, Indonesia",
-      mapsEmbedUrl:
-        "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.9!2d106.8!3d-6.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTInMDAuMCJTIDEwNsKwNDgnMDAuMCJF!5e0!3m2!1sid!2sid",
+      alamat: "Jl. Lembang Baru II, RT.003/RW.009, Sudimara Bar., Kec. Ciledug, Kota Tangerang, Banten 15151",
+      mapsEmbedUrl: "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s-6.2364238,106.7043074!6i17",
       telepon: "021-5550287",
-      whatsapp: "6281234567890",
+      whatsapp: "62811144287",
       email: "info@287trans.co.id",
       fotoUrl: placeholderImg("kantor-287trans", 1200, 700),
     },
@@ -172,7 +179,10 @@ async function main() {
     const { fotoSeed, ...mobilFields } = item;
     const existing = await prisma.mobil.findFirst({ where: { namaMobil: item.namaMobil } });
     if (existing) {
-      await prisma.mobil.update({ where: { idMobil: existing.idMobil }, data: { bahanBakar: mobilFields.bahanBakar } });
+      await prisma.mobil.update({
+        where: { idMobil: existing.idMobil },
+        data: { bahanBakar: mobilFields.bahanBakar, tahun: mobilFields.tahun },
+      });
       continue;
     }
     await prisma.mobil.create({

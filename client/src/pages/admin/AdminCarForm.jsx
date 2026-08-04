@@ -13,6 +13,7 @@ import { STATUS_MOBIL_LABEL, BAHAN_BAKAR_OPTIONS } from "../../utils/validators"
 const INITIAL_FORM = {
   namaMobil: "",
   tipe: "",
+  tahun: new Date().getFullYear(),
   transmisi: "Manual",
   bahanBakar: "Bensin",
   kapasitas: "",
@@ -40,6 +41,7 @@ export default function AdminCarForm() {
       setForm({
         namaMobil: data.namaMobil,
         tipe: data.tipe,
+        tahun: data.tahun,
         transmisi: data.transmisi,
         bahanBakar: data.bahanBakar,
         kapasitas: data.kapasitas,
@@ -76,6 +78,10 @@ export default function AdminCarForm() {
     const e = {};
     if (!form.namaMobil.trim()) e.namaMobil = "Nama mobil wajib diisi.";
     if (!form.tipe.trim()) e.tipe = "Tipe mobil wajib diisi.";
+    const tahunNum = Number(form.tahun);
+    if (!form.tahun || tahunNum < 1990 || tahunNum > new Date().getFullYear() + 1) {
+      e.tahun = "Tahun mobil tidak valid.";
+    }
     if (!form.kapasitas || Number(form.kapasitas) <= 0) e.kapasitas = "Kapasitas wajib diisi.";
     if (!form.hargaPerHari || Number(form.hargaPerHari) <= 0) e.hargaPerHari = "Harga per hari wajib diisi.";
     if (!form.deskripsi.trim()) e.deskripsi = "Deskripsi wajib diisi.";
@@ -117,7 +123,7 @@ export default function AdminCarForm() {
       </nav>
       <h1 className="text-2xl font-extrabold text-slate-900">{isEdit ? "Edit Mobil" : "Tambah Mobil Baru"}</h1>
 
-      <form onSubmit={handleSubmit} className="mt-6 max-w-3xl space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
+      <form onSubmit={handleSubmit} noValidate className="mt-6 max-w-3xl space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
         {serverError && <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">{serverError}</p>}
 
         <div className="grid gap-5 sm:grid-cols-2">
@@ -126,6 +132,17 @@ export default function AdminCarForm() {
           </FormField>
           <FormField label="Tipe" htmlFor="tipe" required error={errors.tipe} hint="Contoh: MPV, SUV, City Car">
             <Input id="tipe" value={form.tipe} onChange={(e) => update("tipe", e.target.value)} error={errors.tipe} />
+          </FormField>
+          <FormField label="Tahun" htmlFor="tahun" required error={errors.tahun}>
+            <Input
+              id="tahun"
+              type="number"
+              min="1990"
+              max={new Date().getFullYear() + 1}
+              value={form.tahun}
+              onChange={(e) => update("tahun", e.target.value)}
+              error={errors.tahun}
+            />
           </FormField>
           <FormField label="Transmisi" htmlFor="transmisi" required>
             <Select id="transmisi" value={form.transmisi} onChange={(e) => update("transmisi", e.target.value)}>

@@ -1,8 +1,10 @@
 require("dotenv").config();
+require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+const { UPLOAD_ROOT } = require("./utils/upload");
 const authRoutes = require("./routes/auth.routes");
 const mobilRoutes = require("./routes/mobil.routes");
 const bookingRoutes = require("./routes/booking.routes");
@@ -18,7 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+app.use("/uploads", express.static(UPLOAD_ROOT));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -30,6 +32,14 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/testimoni", testimoniRoutes);
 app.use("/api/faq", faqRoutes);
+
+const clientDist = path.join(__dirname, "..", "..", "client", "dist");
+app.use(express.static(clientDist));
+app.get(/^(?!\/api|\/uploads).*/, (req, res, next) => {
+  res.sendFile(path.join(clientDist, "index.html"), (err) => {
+    if (err) next();
+  });
+});
 
 app.use(errorHandler);
 

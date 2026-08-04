@@ -11,7 +11,7 @@ import Input from "../components/ui/Input";
 import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
-import { formatTanggal } from "../utils/format";
+import { formatTanggal, buildWaLink } from "../utils/format";
 import { isValidHp } from "../utils/validators";
 
 const ESTIMASI_HARI_OPTIONS = [
@@ -98,7 +98,7 @@ export default function BookingForm() {
   today.setHours(0, 0, 0, 0);
 
   const waMessage = `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`;
-  const waLink = profile?.whatsapp ? `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(waMessage)}` : null;
+  const waLink = profile?.whatsapp ? buildWaLink(profile.whatsapp, waMessage) : null;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
@@ -114,7 +114,7 @@ export default function BookingForm() {
       </p>
 
       <div className="mt-8 grid gap-8 lg:grid-cols-3">
-        <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)] lg:col-span-2">
+        <form onSubmit={handleSubmit} noValidate className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)] lg:col-span-2">
           {serverError && <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">{serverError}</p>}
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -221,7 +221,7 @@ export default function BookingForm() {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md"
+                className="btn-glow-whatsapp mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
               >
                 <MessageCircle size={18} />
                 Pesan via WhatsApp

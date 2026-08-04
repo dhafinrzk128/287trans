@@ -54,3 +54,111 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
 }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.btn-glow-accent:not(:disabled):hover,
+.btn-glow-accent:not(:disabled):focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(249, 115, 22, 0.55),
+    0 0 16px 2px rgba(249, 115, 22, 0.55),
+    0 0 36px 8px rgba(249, 115, 22, 0.35);
+}
+
+.btn-glow-brand:not(:disabled):hover,
+.btn-glow-brand:not(:disabled):focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.55),
+    0 0 16px 2px rgba(59, 130, 246, 0.55),
+    0 0 36px 8px rgba(59, 130, 246, 0.35);
+}
+
+.btn-glow-whatsapp:not(:disabled):hover,
+.btn-glow-whatsapp:not(:disabled):focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.55),
+    0 0 16px 2px rgba(16, 185, 129, 0.55),
+    0 0 36px 8px rgba(16, 185, 129, 0.35);
+}
+
+.btn-glow-danger:not(:disabled):hover,
+.btn-glow-danger:not(:disabled):focus-visible {
+  box-shadow:
+    0 0 0 1px rgba(239, 68, 68, 0.55),
+    0 0 16px 2px rgba(239, 68, 68, 0.55),
+    0 0 36px 8px rgba(239, 68, 68, 0.35);
+}
+
+@keyframes wa-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.wa-float {
+  animation: wa-pulse-ring 2.4s ease-out infinite;
+}
+
+.wa-float:hover,
+.wa-float:focus-visible {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float {
+    animation: none;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: page-enter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
+  }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

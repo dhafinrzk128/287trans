@@ -1,12 +1,12 @@
 const VARIANTS = {
   primary:
-    "bg-blue-600 text-white shadow-[var(--shadow-brand)] hover:bg-blue-700 hover:shadow-lg focus-visible:outline-blue-600",
+    "btn-glow-brand bg-blue-600 text-white shadow-[var(--shadow-brand)] hover:bg-blue-700 focus-visible:outline-blue-600",
   accent:
-    "bg-accent-600 text-white shadow-sm hover:bg-accent-700 hover:shadow-lg focus-visible:outline-accent-600",
+    "btn-glow-accent bg-accent-600 text-white shadow-sm hover:bg-accent-700 focus-visible:outline-accent-600",
   secondary:
     "bg-white text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-blue-600",
   dark: "bg-slate-900 text-white hover:bg-slate-800 focus-visible:outline-slate-900",
-  danger: "bg-red-600 text-white hover:bg-red-700 focus-visible:outline-red-600",
+  danger: "btn-glow-danger bg-red-600 text-white hover:bg-red-700 focus-visible:outline-red-600",
   ghost: "text-slate-700 hover:bg-slate-100 focus-visible:outline-slate-400",
 };
 

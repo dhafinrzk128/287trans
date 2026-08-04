@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
+import { buildWaLink } from "../../utils/format";
 
 export default function Footer() {
   const { profile } = useCompanyProfile();
@@ -12,8 +13,8 @@ export default function Footer() {
         <div>
           <img src="/logo.png" alt={profile?.namaPerusahaan || "287 Trans"} className="h-14 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
-            Solusi rental mobil terpercaya dengan armada lengkap, harga bersaing, dan proses booking online yang
-            mudah tanpa perlu membuat akun.
+            Solusi rental mobil premium terpercaya dengan armada unit-unit terbaru, harga bersaing, dan proses
+            booking online yang mudah tanpa perlu membuat akun.
           </p>
         </div>
 
@@ -24,6 +25,7 @@ export default function Footer() {
             <li><Link to="/" className="transition-colors hover:text-white">Home</Link></li>
             <li><Link to="/tentang-kami" className="transition-colors hover:text-white">Tentang Kami</Link></li>
             <li><Link to="/katalog" className="transition-colors hover:text-white">Pilihan Armada</Link></li>
+            <li><Link to="/status" className="transition-colors hover:text-white">Cek Booking</Link></li>
             <li><Link to="/kontak" className="transition-colors hover:text-white">Kontak</Link></li>
           </ul>
         </div>
@@ -55,10 +57,10 @@ export default function Footer() {
           </p>
           {profile?.whatsapp && (
             <a
-              href={`https://wa.me/${profile.whatsapp}`}
+              href={buildWaLink(profile.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 hover:shadow-md"
+              className="btn-glow-whatsapp mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
             >
               <MessageCircle size={16} />
               Chat WhatsApp

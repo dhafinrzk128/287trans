@@ -12,6 +12,7 @@ export default function AdminProfile() {
   const { profile, loading, refresh } = useCompanyProfile();
   const [form, setForm] = useState(null);
   const [fotoFile, setFotoFile] = useState(null);
+  const [heroFotoFile, setHeroFotoFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -56,12 +57,14 @@ export default function AdminProfile() {
     formData.append("email", form.email);
     formData.append("keunggulan", JSON.stringify(form.keunggulan));
     if (fotoFile) formData.append("foto", fotoFile);
+    if (heroFotoFile) formData.append("heroFoto", heroFotoFile);
 
     try {
       await api.put("/profile/admin", formData, { headers: { "Content-Type": "multipart/form-data" } });
       await refresh();
       setSuccess(true);
       setFotoFile(null);
+      setHeroFotoFile(null);
     } catch (err) {
       setError(err.response?.data?.message || "Gagal menyimpan company profile.");
     } finally {
@@ -76,7 +79,7 @@ export default function AdminProfile() {
       <h1 className="text-2xl font-extrabold text-slate-900">Kelola Company Profile</h1>
       <p className="mt-1 text-slate-500">Edit konten yang tampil di halaman Tentang Kami.</p>
 
-      <form onSubmit={handleSubmit} className="mt-6 max-w-3xl space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
+      <form onSubmit={handleSubmit} noValidate className="mt-6 max-w-3xl space-y-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
         {error && <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">{error}</p>}
         {success && (
           <p className="flex items-center gap-2 rounded-lg bg-emerald-50 px-4 py-2.5 text-sm text-emerald-700">
@@ -143,6 +146,26 @@ export default function AdminProfile() {
             <label htmlFor="foto" className="cursor-pointer rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
               Ganti Foto
               <input id="foto" type="file" accept="image/*" className="hidden" onChange={(e) => setFotoFile(e.target.files?.[0] || null)} />
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">Foto Hero (Halaman Utama)</label>
+          <p className="mb-2 text-xs text-slate-500">Foto besar yang tampil di sisi kanan hero section halaman Home.</p>
+          <div className="flex items-center gap-4">
+            <div className="h-24 w-32 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+              {(heroFotoFile || form.heroFotoUrl) && (
+                <img
+                  src={heroFotoFile ? URL.createObjectURL(heroFotoFile) : form.heroFotoUrl}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              )}
+            </div>
+            <label htmlFor="heroFoto" className="cursor-pointer rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
+              Ganti Foto Hero
+              <input id="heroFoto" type="file" accept="image/*" className="hidden" onChange={(e) => setHeroFotoFile(e.target.files?.[0] || null)} />
             </label>
           </div>
         </div>

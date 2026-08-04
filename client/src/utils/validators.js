@@ -9,7 +9,7 @@ export function isValidHp(value) {
   return HP_REGEX.test((value || "").replace(/[\s-]/g, ""));
 }
 
-export const BAHAN_BAKAR_OPTIONS = ["Bensin", "Solar", "Listrik", "Hybrid"];
+export const BAHAN_BAKAR_OPTIONS = ["Bensin", "Diesel", "Listrik", "Hybrid"];
 
 export const STATUS_MOBIL_LABEL = {
   tersedia: "Tersedia",

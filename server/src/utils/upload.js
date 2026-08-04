@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 
-const UPLOAD_ROOT = path.join(__dirname, "..", "..", "uploads");
+const UPLOAD_ROOT = process.env.UPLOAD_DIR || path.join(__dirname, "..", "..", "uploads");
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -42,12 +42,20 @@ const uploadProfileFoto = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
+const uploadBuktiTransfer = multer({
+  storage: makeStorage("bukti-transfer"),
+  fileFilter: imageFileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
+
 function publicUrl(subfolder, filename) {
   return `/uploads/${subfolder}/${filename}`;
 }
 
 module.exports = {
+  UPLOAD_ROOT,
   uploadMobilFoto,
   uploadProfileFoto,
+  uploadBuktiTransfer,
   publicUrl,
 };

@@ -1,6 +1,8 @@
 import { MapPin, Phone, Mail, MessageCircle, CheckCircle2 } from "lucide-react";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
+import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
+import { buildWaLink } from "../utils/format";
 
 export default function About() {
   const { profile, loading } = useCompanyProfile();
@@ -20,33 +22,32 @@ export default function About() {
       </section>
 
       <section className="mx-auto max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid lg:grid-cols-2 lg:items-center lg:px-8">
-        <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-[var(--shadow-soft-lg)]">
+        <Reveal className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-[var(--shadow-soft-lg)]">
           {profile?.fotoUrl && (
             <img src={profile.fotoUrl} alt={profile?.namaPerusahaan} className="h-full w-full object-cover" />
           )}
-        </div>
-        <div className="mt-8 lg:mt-0">
+        </Reveal>
+        <Reveal className="mt-8 lg:mt-0" delay={150}>
           <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">Profil Perusahaan</p>
           <h2 className="mt-1 text-2xl font-bold text-slate-900">{profile?.namaPerusahaan}</h2>
           <p className="mt-4 leading-relaxed text-slate-600">{profile?.deskripsi}</p>
-        </div>
+        </Reveal>
       </section>
 
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-slate-900">Keunggulan Kami</h2>
+          <Reveal as="h2" className="text-center text-2xl font-bold text-slate-900">Keunggulan Kami</Reveal>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {keunggulan.map((item, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-soft-lg)]"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-                  <CheckCircle2 size={20} />
-                </span>
-                <h3 className="mt-4 text-base font-bold text-slate-900">{item.judul}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.deskripsi}</p>
-              </div>
+              <Reveal key={idx} delay={(idx % 4) * 80} className="h-full [&>*]:h-full">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-soft-lg)]">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                    <CheckCircle2 size={20} />
+                  </span>
+                  <h3 className="mt-4 text-base font-bold text-slate-900">{item.judul}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.deskripsi}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -54,7 +55,7 @@ export default function About() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-2">
-          <div>
+          <Reveal>
             <h2 className="text-2xl font-bold text-slate-900">Lokasi Kami</h2>
             {profile?.mapsEmbedUrl ? (
               <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
@@ -71,8 +72,8 @@ export default function About() {
             ) : (
               <p className="mt-4 text-slate-600">Peta lokasi belum tersedia.</p>
             )}
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={150}>
             <h2 className="text-2xl font-bold text-slate-900">Informasi Kontak</h2>
             <ul className="mt-5 space-y-4 text-slate-700">
               <li className="flex items-start gap-3">
@@ -98,13 +99,13 @@ export default function About() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                     <MessageCircle size={18} />
                   </span>
-                  <a href={`https://wa.me/${profile.whatsapp}`} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
+                  <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
                     Chat via WhatsApp
                   </a>
                 </li>
               )}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

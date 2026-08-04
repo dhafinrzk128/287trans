@@ -47,7 +47,7 @@ export default function AdminLogin() {
           <p className="mt-1 text-sm text-slate-500">Masuk untuk mengelola booking dan armada mobil.</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+        <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
           {error && <p className="rounded-lg bg-red-50 px-4 py-2.5 text-sm text-red-700">{error}</p>}
           <FormField label="Username" htmlFor="username">
             <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} autoFocus />

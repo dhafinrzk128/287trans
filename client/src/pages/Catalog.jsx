@@ -1,35 +1,53 @@
 import { useEffect, useState } from "react";
-import { SlidersHorizontal, X } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 import api from "../api/client";
 import CarCard from "../components/CarCard";
+import Reveal from "../components/Reveal";
+import TipeToggle from "../components/TipeToggle";
 import Spinner from "../components/ui/Spinner";
 import Select from "../components/ui/Select";
 import Button from "../components/ui/Button";
+import { inputClassName } from "../components/ui/FormField";
 
 const INITIAL_FILTER = { tipe: "", transmisi: "", kapasitas: "" };
 
+function sortByAvailability(list) {
+  return [...list].sort((a, b) => (a.status === "tersedia" ? 0 : 1) - (b.status === "tersedia" ? 0 : 1));
+}
+
 export default function Catalog() {
   const [mobils, setMobils] = useState([]);
-  const [tipeList, setTipeList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState(INITIAL_FILTER);
   const [showFilter, setShowFilter] = useState(false);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    api.get("/mobil/meta/tipe-list").then(({ data }) => setTipeList(data));
-  }, []);
+  // Tipe pills are derived from cars that match the current transmisi/kapasitas
+  // filters (independent of the tipe filter itself), so a pill only exists
+  // when picking it would actually return results.
+  const availableTipes = [...new Set(mobils.map((m) => m.tipe))].sort();
+
+  const displayedMobils = mobils.filter((m) => {
+    if (filter.tipe && m.tipe !== filter.tipe) return false;
+    return m.namaMobil.toLowerCase().includes(search.trim().toLowerCase());
+  });
 
   useEffect(() => {
     setLoading(true);
     const params = {};
-    Object.entries(filter).forEach(([key, value]) => {
-      if (value) params[key] = value;
-    });
+    if (filter.transmisi) params.transmisi = filter.transmisi;
+    if (filter.kapasitas) params.kapasitas = filter.kapasitas;
     api
       .get("/mobil", { params })
-      .then(({ data }) => setMobils(data))
+      .then(({ data }) => setMobils(sortByAvailability(data)))
       .finally(() => setLoading(false));
-  }, [filter]);
+  }, [filter.transmisi, filter.kapasitas]);
+
+  useEffect(() => {
+    if (filter.tipe && !availableTipes.includes(filter.tipe)) {
+      setFilter((f) => ({ ...f, tipe: "" }));
+    }
+  }, [availableTipes.join("|"), filter.tipe]);
 
   function updateFilter(field, value) {
     setFilter((f) => ({ ...f, [field]: value }));
@@ -37,19 +55,11 @@ export default function Catalog() {
 
   function resetFilter() {
     setFilter(INITIAL_FILTER);
+    setSearch("");
   }
 
   const FilterForm = (
-    <div className="grid gap-4 sm:grid-cols-3">
-      <div>
-        <label className="mb-1.5 block text-sm font-medium text-slate-700">Tipe Mobil</label>
-        <Select value={filter.tipe} onChange={(e) => updateFilter("tipe", e.target.value)}>
-          <option value="">Semua Tipe</option>
-          {tipeList.map((t) => (
-            <option key={t} value={t}>{t}</option>
-          ))}
-        </Select>
-      </div>
+    <div className="grid gap-4 sm:grid-cols-2">
       <div>
         <label className="mb-1.5 block text-sm font-medium text-slate-700">Transmisi</label>
         <Select value={filter.transmisi} onChange={(e) => updateFilter("transmisi", e.target.value)}>
@@ -81,6 +91,22 @@ export default function Catalog() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="relative mb-4">
+          <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari nama mobil..."
+            className={`${inputClassName(false)} py-3 pl-11 text-base`}
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="mb-1.5 block text-sm font-medium text-slate-700">Tipe Mobil</label>
+          <TipeToggle tipeList={availableTipes} value={filter.tipe} onChange={(t) => updateFilter("tipe", t)} />
+        </div>
+
         <div className="hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-[var(--shadow-soft)] lg:block">
           {FilterForm}
         </div>
@@ -108,7 +134,7 @@ export default function Catalog() {
         )}
 
         <div className="mt-4 flex items-center justify-between">
-          <p className="text-sm text-slate-500">{loading ? "Memuat..." : `${mobils.length} mobil ditemukan`}</p>
+          <p className="text-sm text-slate-500">{loading ? "Memuat..." : `${displayedMobils.length} mobil ditemukan`}</p>
           <button onClick={resetFilter} className="cursor-pointer text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 hover:underline">
             Reset Filter
           </button>
@@ -116,14 +142,16 @@ export default function Catalog() {
 
         {loading ? (
           <Spinner />
-        ) : mobils.length === 0 ? (
+        ) : displayedMobils.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-dashed border-slate-300 py-16 text-center text-slate-500">
             Tidak ada mobil yang sesuai dengan filter Anda.
           </div>
         ) : (
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {mobils.map((mobil) => (
-              <CarCard key={mobil.idMobil} mobil={mobil} />
+            {displayedMobils.map((mobil, i) => (
+              <Reveal key={mobil.idMobil} delay={(i % 4) * 80} className="h-full [&>*]:h-full">
+                <CarCard mobil={mobil} />
+              </Reveal>
             ))}
           </div>
         )}
