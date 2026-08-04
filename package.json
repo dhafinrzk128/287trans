@@ -6,7 +6,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run prisma:generate --prefix server",
+    "build": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && DATABASE_URL=\"file:./placeholder-build.db\" npm run prisma:generate --prefix server",
     "start": "npm run prisma:deploy --prefix server && npm run start --prefix server"
   }
 }
