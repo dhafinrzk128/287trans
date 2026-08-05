@@ -2,37 +2,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap");
 
 @theme {
-  /* Primary: tracking blue (matches logo wordmark) */
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-brand-300: #93c5fd;
-  --color-brand-400: #60a5fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb;
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
-  --color-brand-950: #0f1f4d;
+  /* Primary: charcoal/black (matches the new logo's dark wayang/car outlines).
+     Also overrides Tailwind's built-in `blue-*` scale so every existing
+     `blue-*` utility class in the app repaints to this neutral-black tone. */
+  --color-brand-50: #fafafa;
+  --color-brand-100: #f5f5f5;
+  --color-brand-200: #e5e5e5;
+  --color-brand-300: #d4d4d4;
+  --color-brand-400: #a3a3a3;
+  --color-brand-500: #737373;
+  --color-brand-600: #525252;
+  --color-brand-700: #404040;
+  --color-brand-800: #262626;
+  --color-brand-900: #171717;
+  --color-brand-950: #0a0a0a;
 
-  /* Secondary/accent: delivery orange (matches logo gears), used sparingly for highlights */
-  --color-accent-50: #fff7ed;
-  --color-accent-100: #ffedd5;
-  --color-accent-200: #fed7aa;
-  --color-accent-300: #fdba74;
-  --color-accent-400: #fb923c;
-  --color-accent-500: #f97316;
-  --color-accent-600: #ea580c;
-  --color-accent-700: #c2410c;
-  --color-accent-800: #9a3412;
-  --color-accent-900: #7c2d12;
+  --color-blue-50: #fafafa;
+  --color-blue-100: #f5f5f5;
+  --color-blue-200: #e5e5e5;
+  --color-blue-300: #d4d4d4;
+  --color-blue-400: #a3a3a3;
+  --color-blue-500: #737373;
+  --color-blue-600: #525252;
+  --color-blue-700: #404040;
+  --color-blue-800: #262626;
+  --color-blue-900: #171717;
+  --color-blue-950: #0a0a0a;
+
+  /* Secondary/accent: logo gold, used sparingly for highlights, CTAs and glows */
+  --color-accent-50: #fefaec;
+  --color-accent-100: #fdf5d8;
+  --color-accent-200: #fdecb5;
+  --color-accent-300: #fce083;
+  --color-accent-400: #fbd146;
+  --color-accent-500: #fbc513;
+  --color-accent-600: #ecb604;
+  --color-accent-700: #bd9205;
+  --color-accent-800: #917108;
+  --color-accent-900: #6d5509;
+  --color-accent-950: #403307;
 
   --font-heading: "Poppins", system-ui, sans-serif;
   --font-body: "Open Sans", system-ui, sans-serif;
 
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
   --shadow-soft-lg: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.09);
-  --shadow-brand: 0 8px 24px rgba(37, 99, 235, 0.16);
+  --shadow-brand: 0 8px 24px rgba(23, 23, 23, 0.18);
 }
 
 html {
@@ -77,17 +92,17 @@ h1, h2, h3, h4, h5, h6 {
 .btn-glow-accent:not(:disabled):hover,
 .btn-glow-accent:not(:disabled):focus-visible {
   box-shadow:
-    0 0 0 1px rgba(249, 115, 22, 0.55),
-    0 0 16px 2px rgba(249, 115, 22, 0.55),
-    0 0 36px 8px rgba(249, 115, 22, 0.35);
+    0 0 0 1px rgba(236, 182, 4, 0.55),
+    0 0 16px 2px rgba(236, 182, 4, 0.55),
+    0 0 36px 8px rgba(236, 182, 4, 0.35);
 }
 
 .btn-glow-brand:not(:disabled):hover,
 .btn-glow-brand:not(:disabled):focus-visible {
   box-shadow:
-    0 0 0 1px rgba(59, 130, 246, 0.55),
-    0 0 16px 2px rgba(59, 130, 246, 0.55),
-    0 0 36px 8px rgba(59, 130, 246, 0.35);
+    0 0 0 1px rgba(23, 23, 23, 0.4),
+    0 0 16px 2px rgba(23, 23, 23, 0.3),
+    0 0 36px 8px rgba(23, 23, 23, 0.2);
 }
 
 .btn-glow-whatsapp:not(:disabled):hover,

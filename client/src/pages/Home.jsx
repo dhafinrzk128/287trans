@@ -35,9 +35,9 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800 text-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 text-white">
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent-500/20 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-300/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-28">
           <Reveal>
@@ -46,7 +46,7 @@ export default function Home() {
               Rental Mobil Premium Jabodetabek
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
-              Perjalanan Mudah dan Nyaman <span className="text-blue-300">bersama 287Trans</span>
+              Perjalanan Mudah dan Nyaman <span className="text-accent-400">bersama 287Trans</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-blue-100">
               Ajukan permintaan booking mobil rental secara online tanpa perlu membuat akun. Armada premium
@@ -211,7 +211,7 @@ export default function Home() {
       )}
 
       {/* CTA Bawah */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-700 to-blue-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
         <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
         <Reveal className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">Siap Memulai Perjalanan Anda?</h2>

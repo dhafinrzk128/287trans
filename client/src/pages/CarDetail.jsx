@@ -9,7 +9,7 @@ import Spinner from "../components/ui/Spinner";
 import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
-import { buildWaLink } from "../utils/format";
+import { buildWaLink, formatRupiah } from "../utils/format";
 
 export default function CarDetail() {
   const { id } = useParams();
@@ -115,6 +115,11 @@ export default function CarDetail() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
           <h1 className="mt-1 text-3xl font-extrabold text-slate-900">{mobil.namaMobil}</h1>
+
+          <p className="mt-2 text-2xl font-extrabold text-accent-700">
+            {formatRupiah(mobil.hargaPerHari)}
+            <span className="text-base font-medium text-slate-500"> /hari</span>
+          </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">

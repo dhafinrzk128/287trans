@@ -5,7 +5,7 @@ const VARIANTS = {
     "btn-glow-accent bg-accent-600 text-white shadow-sm hover:bg-accent-700 focus-visible:outline-accent-600",
   secondary:
     "bg-white text-blue-700 border border-blue-200 hover:border-blue-300 hover:bg-blue-50 focus-visible:outline-blue-600",
-  dark: "bg-slate-900 text-white hover:bg-slate-800 focus-visible:outline-slate-900",
+  dark: "bg-neutral-900 text-white hover:bg-neutral-800 focus-visible:outline-neutral-900",
   danger: "btn-glow-danger bg-red-600 text-white hover:bg-red-700 focus-visible:outline-red-600",
   ghost: "text-slate-700 hover:bg-slate-100 focus-visible:outline-slate-400",
 };

@@ -42,9 +42,9 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800 px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 px-4">
       <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent-500/15 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent-300/10 blur-3xl" />
       <div className="relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-[var(--shadow-soft-lg)]">
         <div className="flex flex-col items-center text-center">
           <img src="/logo.png" alt="287 Trans" className="h-14 w-auto" />

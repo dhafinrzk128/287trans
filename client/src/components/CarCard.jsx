@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Users, Fuel, Cog, ImageOff, ArrowRight } from "lucide-react";
 import Badge from "./ui/Badge";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
+import { formatRupiah } from "../utils/format";
 
 export default function CarCard({ mobil }) {
   const unavailable = mobil.status !== "tersedia";
@@ -54,6 +55,11 @@ export default function CarCard({ mobil }) {
             {mobil.bahanBakar}
           </span>
         </div>
+
+        <p className="mt-2 text-lg font-extrabold text-accent-700">
+          {formatRupiah(mobil.hargaPerHari)}
+          <span className="text-sm font-medium text-slate-500"> /hari</span>
+        </p>
 
         <div className="mt-auto pt-3">
           <span

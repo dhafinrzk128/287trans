@@ -8,7 +8,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-800 bg-slate-900 text-slate-300">
+    <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <img src="/logo.png" alt={profile?.namaPerusahaan || "287 Trans"} className="h-14 w-auto" />
@@ -67,7 +67,7 @@ export default function Footer() {
           )}
         </div>
       </div>
-      <div className="border-t border-slate-800 py-5 text-center text-xs text-slate-500">
+      <div className="border-t border-neutral-800 py-5 text-center text-xs text-slate-500">
         © {year} {profile?.namaPerusahaan || "287 Trans"}. Seluruh hak cipta dilindungi.{" "}
         <Link to="/admin/login" className="text-slate-600 hover:text-slate-400">
           Admin

@@ -25,7 +25,7 @@ export default function AdminLayout() {
 
   const linkClass = ({ isActive }) =>
     `flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-200 ${
-      isActive ? "bg-blue-600 text-white shadow-[var(--shadow-brand)]" : "text-slate-300 hover:bg-slate-800 hover:text-white"
+      isActive ? "bg-blue-600 text-white shadow-[var(--shadow-brand)]" : "text-slate-300 hover:bg-neutral-800 hover:text-white"
     }`;
 
   const SidebarContent = (
@@ -42,13 +42,13 @@ export default function AdminLayout() {
           </NavLink>
         ))}
       </nav>
-      <div className="mt-6 border-t border-slate-800 pt-4">
+      <div className="mt-6 border-t border-neutral-800 pt-4">
         <p className="px-2 text-xs text-slate-500">Masuk sebagai</p>
         <p className="px-2 text-sm font-semibold text-white">{admin?.username}</p>
         <button
           type="button"
           onClick={handleLogout}
-          className="mt-3 flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-red-400 transition-colors hover:bg-slate-800"
+          className="mt-3 flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-red-400 transition-colors hover:bg-neutral-800"
         >
           <LogOut size={18} />
           Logout
@@ -59,7 +59,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <div className="hidden w-64 shrink-0 flex-col bg-slate-900 p-4 md:fixed md:inset-y-0 md:flex">
+      <div className="hidden w-64 shrink-0 flex-col bg-neutral-900 p-4 md:fixed md:inset-y-0 md:flex">
         {SidebarContent}
       </div>
 
@@ -76,7 +76,7 @@ export default function AdminLayout() {
       </div>
 
       {open && (
-        <div className="flex flex-col bg-slate-900 p-4 md:hidden">{SidebarContent}</div>
+        <div className="flex flex-col bg-neutral-900 p-4 md:hidden">{SidebarContent}</div>
       )}
 
       <div className="md:pl-64">
