@@ -11,7 +11,7 @@ import Input from "../components/ui/Input";
 import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
-import { formatTanggal, buildWaLink } from "../utils/format";
+import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
 import { isValidHp } from "../utils/validators";
 
 const ESTIMASI_HARI_OPTIONS = [
@@ -57,6 +57,7 @@ export default function BookingForm() {
   }
 
   const tglSelesaiEstimasi = tglMulai ? new Date(tglMulai.getTime() + form.estimasiHari * 24 * 60 * 60 * 1000) : null;
+  const estimasiTotal = mobil ? mobil.hargaPerHari * form.estimasiHari : 0;
 
   function validate() {
     const e = {};
@@ -208,8 +209,27 @@ export default function BookingForm() {
                 <p className="text-sm text-slate-500">{mobil.tipe} &middot; {mobil.transmisi}</p>
               </div>
             </div>
+
+            <div className="mt-5 space-y-1.5 border-t border-slate-100 pt-4 text-sm">
+              <div className="flex items-center justify-between text-slate-600">
+                <span>Harga per hari</span>
+                <span className="font-medium text-slate-900">{formatRupiah(mobil.hargaPerHari)}</span>
+              </div>
+              <div className="flex items-center justify-between text-slate-600">
+                <span>Durasi sewa</span>
+                <span className="font-medium text-slate-900">{form.estimasiHari} Hari</span>
+              </div>
+              <div className="mt-2 rounded-xl bg-blue-50 px-3 py-2.5">
+                <span className="font-semibold text-slate-900">Estimasi Total</span>
+                <p className="mt-0.5 text-xl font-extrabold text-blue-700">{formatRupiah(estimasiTotal)}</p>
+              </div>
+              {form.denganSopir && (
+                <p className="pt-1 text-xs text-slate-500">*Belum termasuk biaya sopir, akan diinfokan tim kami saat konfirmasi.</p>
+              )}
+            </div>
+
             <p className="mt-4 text-xs text-slate-500">
-              Ini adalah permintaan booking, bukan transaksi final. Tim kami akan menghubungi Anda untuk konfirmasi ketersediaan dan detail lebih lanjut.
+              Ini adalah permintaan booking, bukan transaksi final. Estimasi harga di atas belum final — tim kami akan menghubungi Anda untuk konfirmasi ketersediaan dan detail lebih lanjut.
             </p>
           </div>
 
