@@ -3,6 +3,7 @@ import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { buildWaLink } from "../utils/format";
+import { trackWhatsAppClick } from "../utils/gtag";
 
 export default function About() {
   const { profile, loading } = useCompanyProfile();
@@ -99,7 +100,7 @@ export default function About() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                     <MessageCircle size={18} />
                   </span>
-                  <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
+                  <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className="font-medium text-blue-600 hover:underline">
                     Chat via WhatsApp
                   </a>
                 </li>

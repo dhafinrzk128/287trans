@@ -9,6 +9,7 @@ import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
 import { isValidEmail } from "../utils/validators";
 import { buildWaLink } from "../utils/format";
+import { trackWhatsAppClick } from "../utils/gtag";
 
 const INITIAL = { nama: "", email: "", subjek: "", pesan: "" };
 
@@ -87,7 +88,7 @@ export default function Contact() {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                   <MessageCircle size={18} />
                 </span>
-                <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" className="font-medium text-blue-600 hover:underline">
+                <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" onClick={trackWhatsAppClick} className="font-medium text-blue-600 hover:underline">
                   Chat via WhatsApp
                 </a>
               </li>

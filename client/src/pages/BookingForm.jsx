@@ -12,6 +12,7 @@ import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
 import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
+import { trackWhatsAppClick } from "../utils/gtag";
 import { isValidHp } from "../utils/validators";
 
 const ESTIMASI_HARI_OPTIONS = [
@@ -241,6 +242,7 @@ export default function BookingForm() {
                 href={waLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={trackWhatsAppClick}
                 className="btn-glow-whatsapp mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
               >
                 <MessageCircle size={18} />

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
+import { trackWhatsAppClick } from "../../utils/gtag";
 
 export default function Footer() {
   const { profile } = useCompanyProfile();
@@ -59,6 +60,7 @@ export default function Footer() {
               href={buildWaLink(profile.whatsapp)}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackWhatsAppClick}
               className="btn-glow-whatsapp mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
             >
               <MessageCircle size={16} />

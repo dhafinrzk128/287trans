@@ -7,6 +7,7 @@ import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import { buildWaLink } from "../utils/format";
+import { trackWhatsAppClick } from "../utils/gtag";
 
 const KEUNGGULAN = [
   { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit terbaru dari city car hingga SUV dan luxury MPV kelas premium, siap untuk berbagai kebutuhan.", accent: false },
@@ -65,6 +66,7 @@ export default function Home() {
                   href={buildWaLink(profile.whatsapp, "Halo, saya ingin bertanya tentang sewa mobil di 287 Trans.")}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={trackWhatsAppClick}
                   className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
                 >
                   <MessageCircle size={18} />
