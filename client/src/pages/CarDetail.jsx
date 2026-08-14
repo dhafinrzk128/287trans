@@ -10,7 +10,7 @@ import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah } from "../utils/format";
-import { trackWhatsAppClick } from "../utils/gtag";
+import { trackWhatsAppClick } from "../utils/tracking";
 
 export default function CarDetail() {
   const { id } = useParams();
@@ -171,7 +171,7 @@ export default function CarDetail() {
                 href={buildWaLink(profile.whatsapp, `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={trackWhatsAppClick}
+                onClick={() => trackWhatsAppClick("car_detail", mobil.namaMobil)}
                 className="btn-glow-whatsapp inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700 sm:w-auto"
               >
                 <MessageCircle size={18} />

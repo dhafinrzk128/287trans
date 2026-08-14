@@ -6,7 +6,7 @@ import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
 import StatusBookingBadge from "../components/StatusBookingBadge";
 import { formatTanggal, formatTanggalWaktu, buildWaLink } from "../utils/format";
-import { trackWhatsAppClick } from "../utils/gtag";
+import { trackWhatsAppClick } from "../utils/tracking";
 
 const STATUS_ICON = {
   menunggu_konfirmasi: Clock,
@@ -130,7 +130,7 @@ export default function BookingStatus() {
             href={waLink}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={trackWhatsAppClick}
+            onClick={() => trackWhatsAppClick("booking_status")}
             className="btn-glow-whatsapp mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
           >
             <MessageCircle size={18} />
