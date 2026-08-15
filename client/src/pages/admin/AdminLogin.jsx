@@ -5,6 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import FormField from "../../components/ui/FormField";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
+import Seo from "../../components/Seo";
 
 export default function AdminLogin() {
   const { login, isAuthenticated } = useAuth();
@@ -43,6 +44,7 @@ export default function AdminLogin() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 px-4">
+      <Seo title="Admin Login" description="Login admin 287 Trans." path="/admin/login" noindex />
       <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent-500/15 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent-300/10 blur-3xl" />
       <div className="relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-[var(--shadow-soft-lg)]">

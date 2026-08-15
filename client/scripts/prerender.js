@@ -46,17 +46,20 @@ async function main() {
   // unaffected since GTM doesn't touch visible markup.
   await page.route("**googletagmanager.com**", (route) => route.abort());
 
+  // Captured HTML is held in memory and only written to disk after every
+  // route has been crawled. `vite preview` falls back to dist/index.html for
+  // any path it doesn't have a static file for yet — writing results to disk
+  // mid-crawl would make an already-rendered route (e.g. "/") leak into the
+  // fallback shell served to routes crawled after it, baking one page's
+  // <title>/<meta>/canonical into another's output.
+  const results = new Map();
   const failures = [];
   for (const route of routes) {
     try {
       const url = new URL(route, base).toString();
       await page.goto(url, { waitUntil: "networkidle", timeout: 30000 });
       await page.waitForTimeout(150); // let React settle just past network-idle
-      const html = await page.content();
-
-      const outDir = outputPathFor(route);
-      await mkdir(outDir, { recursive: true });
-      await writeFile(path.join(outDir, "index.html"), html, "utf-8");
+      results.set(route, await page.content());
       console.log(`[prerender] ok    ${route}`);
     } catch (err) {
       console.error(`[prerender] FAIL  ${route} — ${err.message}`);
@@ -66,6 +69,15 @@ async function main() {
 
   await browser.close();
   await new Promise((resolve) => server.httpServer.close(resolve));
+
+  // Write everything that *did* render, regardless of whether other routes
+  // failed — a single flaky route (e.g. a network blip hitting the live API
+  // proxy) shouldn't cost every other successfully-rendered page its content.
+  for (const [route, html] of results) {
+    const outDir = outputPathFor(route);
+    await mkdir(outDir, { recursive: true });
+    await writeFile(path.join(outDir, "index.html"), html, "utf-8");
+  }
 
   if (failures.length > 0) {
     console.error(`[prerender] ${failures.length} route(s) failed: ${failures.join(", ")}`);

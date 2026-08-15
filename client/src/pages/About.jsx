@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, MessageCircle, CheckCircle2 } from "lucide-react";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { buildWaLink } from "../utils/format";
@@ -14,6 +15,11 @@ export default function About() {
 
   return (
     <div>
+      <Seo
+        title="Tentang 287 Trans - Rental Mobil Terpercaya Tangerang"
+        description="Kenali 287 Trans, penyedia rental mobil Tangerang & Jabodetabek terpercaya. Armada premium terawat, proses booking mudah, tim siap bantu."
+        path="/tentang-kami"
+      />
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 py-14 text-white">
         <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

@@ -7,6 +7,7 @@ import Spinner from "../components/ui/Spinner";
 import StatusBookingBadge from "../components/StatusBookingBadge";
 import { formatTanggal, formatTanggalWaktu, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import Seo from "../components/Seo";
 
 const STATUS_ICON = {
   menunggu_konfirmasi: Clock,
@@ -63,6 +64,12 @@ export default function BookingStatus() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+      <Seo
+        title="Status Booking"
+        description={`Status permintaan booking dengan kode ${booking.kodeBooking}.`}
+        path={`/status/${kodeBooking}`}
+        noindex
+      />
       <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-[var(--shadow-soft)]">
         <span className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${STATUS_ICON_STYLE[booking.statusBooking]}`}>
           <Icon size={32} />

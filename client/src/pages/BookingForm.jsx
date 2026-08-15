@@ -14,6 +14,7 @@ import Button from "../components/ui/Button";
 import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick, trackBookingSubmit } from "../utils/tracking";
 import { isValidHp } from "../utils/validators";
+import Seo from "../components/Seo";
 
 const ESTIMASI_HARI_OPTIONS = [
   { value: 1, label: "1 Hari" },
@@ -105,6 +106,12 @@ export default function BookingForm() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+      <Seo
+        title={`Booking ${mobil.namaMobil}`}
+        description={`Ajukan permintaan booking sewa ${mobil.namaMobil} di 287 Trans.`}
+        path={`/booking/${mobil.idMobil}`}
+        noindex
+      />
       <nav className="mb-6 text-sm text-slate-500">
         <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> /{" "}
         <Link to={`/katalog/${mobil.idMobil}`} className="transition-colors hover:text-blue-600">{mobil.namaMobil}</Link> /{" "}

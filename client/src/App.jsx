@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./context/AuthContext";
 import { CompanyProfileProvider } from "./context/CompanyProfileContext";
 
@@ -29,41 +30,43 @@ import AdminFaq from "./pages/admin/AdminFaq";
 
 function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <CompanyProfileProvider>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="tentang-kami" element={<About />} />
-              <Route path="katalog" element={<Catalog />} />
-              <Route path="katalog/:id" element={<CarDetail />} />
-              <Route path="booking/:idMobil" element={<BookingForm />} />
-              <Route path="status/:kodeBooking" element={<BookingStatus />} />
-              <Route path="kontak" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-
-            <Route path="admin/login" element={<AdminLogin />} />
-            <Route path="admin" element={<ProtectedRoute />}>
-              <Route element={<AdminLayout />}>
-                <Route path="dashboard" element={<AdminDashboard />} />
-                <Route path="mobil" element={<AdminCars />} />
-                <Route path="mobil/baru" element={<AdminCarForm />} />
-                <Route path="mobil/:id/edit" element={<AdminCarForm />} />
-                <Route path="booking" element={<AdminBookings />} />
-                <Route path="booking/baru" element={<AdminBookingForm />} />
-                <Route path="booking/:id" element={<AdminBookingDetail />} />
-                <Route path="testimoni" element={<AdminTestimoni />} />
-                <Route path="faq" element={<AdminFaq />} />
-                <Route path="profile" element={<AdminProfile />} />
-                <Route path="akun" element={<AdminAccount />} />
+    <HelmetProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <CompanyProfileProvider>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route index element={<Home />} />
+                <Route path="tentang-kami" element={<About />} />
+                <Route path="katalog" element={<Catalog />} />
+                <Route path="katalog/:id" element={<CarDetail />} />
+                <Route path="booking/:idMobil" element={<BookingForm />} />
+                <Route path="status/:kodeBooking" element={<BookingStatus />} />
+                <Route path="kontak" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
               </Route>
-            </Route>
-          </Routes>
-        </CompanyProfileProvider>
-      </AuthProvider>
-    </BrowserRouter>
+
+              <Route path="admin/login" element={<AdminLogin />} />
+              <Route path="admin" element={<ProtectedRoute />}>
+                <Route element={<AdminLayout />}>
+                  <Route path="dashboard" element={<AdminDashboard />} />
+                  <Route path="mobil" element={<AdminCars />} />
+                  <Route path="mobil/baru" element={<AdminCarForm />} />
+                  <Route path="mobil/:id/edit" element={<AdminCarForm />} />
+                  <Route path="booking" element={<AdminBookings />} />
+                  <Route path="booking/baru" element={<AdminBookingForm />} />
+                  <Route path="booking/:id" element={<AdminBookingDetail />} />
+                  <Route path="testimoni" element={<AdminTestimoni />} />
+                  <Route path="faq" element={<AdminFaq />} />
+                  <Route path="profile" element={<AdminProfile />} />
+                  <Route path="akun" element={<AdminAccount />} />
+                </Route>
+              </Route>
+            </Routes>
+          </CompanyProfileProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

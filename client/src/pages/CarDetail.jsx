@@ -8,6 +8,7 @@ import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
 import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
+import Seo from "../components/Seo";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
@@ -58,6 +59,11 @@ export default function CarDetail() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <Seo
+        title={`Sewa ${mobil.namaMobil} Tangerang - Rental Harian & Bulanan`}
+        description={`Sewa ${mobil.namaMobil} di Tangerang mulai ${formatRupiah(mobil.hargaPerHari)}/hari. Transmisi ${mobil.transmisi}, kapasitas ${mobil.kapasitas} orang. Booking cepat via WA 0811-144-287.`}
+        path={`/katalog/${id}`}
+      />
       <nav className="mb-6 text-sm text-slate-500">
         <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> / <span className="text-slate-700">{mobil.namaMobil}</span>
       </nav>

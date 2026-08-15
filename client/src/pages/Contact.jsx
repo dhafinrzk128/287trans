@@ -10,6 +10,7 @@ import Button from "../components/ui/Button";
 import { isValidEmail } from "../utils/validators";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import Seo from "../components/Seo";
 
 const INITIAL = { nama: "", email: "", subjek: "", pesan: "" };
 
@@ -53,6 +54,11 @@ export default function Contact() {
 
   return (
     <div>
+      <Seo
+        title="Kontak 287 Trans - Rental Mobil Tangerang"
+        description="Hubungi 287 Trans untuk sewa mobil di Tangerang & Jabodetabek. Chat WhatsApp 0811-144-287 atau kirim pesan lewat form kontak, tim kami siap bantu."
+        path="/kontak"
+      />
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 py-14 text-white">
         <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

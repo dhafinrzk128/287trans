@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { LayoutDashboard, Car, ClipboardList, Building2, MessageSquareQuote, HelpCircle, KeyRound, LogOut, Menu, X } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import Seo from "../Seo";
 
 const NAV_ITEMS = [
   { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -16,6 +17,7 @@ const NAV_ITEMS = [
 export default function AdminLayout() {
   const { admin, logout } = useAuth();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [open, setOpen] = useState(false);
 
   function handleLogout() {
@@ -59,6 +61,7 @@ export default function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <Seo title="Admin Panel" description="Panel admin 287 Trans." path={pathname} noindex />
       <div className="hidden w-64 shrink-0 flex-col bg-neutral-900 p-4 md:fixed md:inset-y-0 md:flex">
         {SidebarContent}
       </div>
