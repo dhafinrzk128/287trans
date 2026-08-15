@@ -1,3 +1,5 @@
+import { buildUtmRefTag } from "./utm";
+
 export function formatRupiah(value) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -36,7 +38,9 @@ export function toDateInputValue(value) {
 
 export function buildWaLink(number, text) {
   const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
-  const query = text ? `?text=${encodeURIComponent(text)}` : "";
+  const refTag = buildUtmRefTag();
+  const fullText = [text, refTag].filter(Boolean).join(" ");
+  const query = fullText ? `?text=${encodeURIComponent(fullText)}` : "";
   return `https://wa.me/${digits}${query}`;
 }
 

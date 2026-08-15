@@ -17,9 +17,15 @@ Fire setiap kali tombol/link WhatsApp di halaman customer-facing diklik.
 {
   event: "whatsapp_click",
   button_location: "hero_button",   // string, wajib
-  car_name: "Toyota Fortuner"       // opsional, cuma ada kalau konteksnya spesifik ke 1 mobil
+  car_name: "Toyota Fortuner",      // opsional, cuma ada kalau konteksnya spesifik ke 1 mobil
+  utm_source: "google",             // opsional, cuma ada kalau user landing dari link ber-UTM
+  utm_medium: "cpc",                // opsional
+  utm_campaign: "sewa_mobil_premium", // opsional
+  gclid: "Cj0KCQjw..."              // opsional, cuma ada kalau landing dari klik iklan Google Ads
 }
 ```
+
+Detail capture UTM/gclid ada di bagian [UTM & gclid capture](#utm--gclid-capture) di bawah.
 
 Titik yang sudah dipasangi tracking (8 tombol, semua customer-facing):
 
@@ -53,6 +59,20 @@ Lokasi: `client/src/components/layout/Layout.jsx`, di `useEffect` yang sama deng
 Belum ada Tag/Trigger di GTM yang "makan" event ini — dia cuma disiapkan di dataLayer, siap dipakai kalau nanti mau pasang GA4 atau remarketing tag.
 
 **Catatan:** `page_title` saat ini selalu sama di semua halaman karena `document.title` memang statis (di-set sekali di `index.html`, tidak ada logic ganti judul per halaman). Ini masalah SEO, di luar scope tracking — lihat bagian "Di luar scope" kalau mau follow-up.
+
+## UTM & gclid capture
+
+Biar bisa lacak lead WhatsApp itu asalnya dari iklan mana. Ditangkap dari `utm_source`, `utm_medium`, `utm_campaign`, `gclid` di URL pas landing.
+
+Lokasi: `client/src/utils/utm.js` — disimpan **in-memory** (variabel level-module, dibaca sekali saat modul pertama di-import), **bukan** `sessionStorage`/`localStorage`, sesuai batasan awal project ini. Konsekuensinya: data ini hilang kalau user hard-refresh sebelum sempat klik WhatsApp — trade-off yang disengaja demi konsistensi sama aturan "no Web Storage untuk tracking".
+
+Dipakai di 2 tempat otomatis (tidak perlu ubah apa pun di 9 titik tombol WhatsApp):
+
+1. **`buildWaLink()`** (`client/src/utils/format.js`) — nempelin tag `[ref: ...]` ke akhir teks pesan WA:
+   - Kalau ada `utm_source`: `[ref: google/cpc/nama_campaign]`
+   - Kalau cuma ada `gclid` (tanpa utm_source — kejadian umum kalau cuma pakai auto-tagging Google Ads tanpa custom UTM): `[ref: gclid-8karakterpertama]` — gclid asli dipotong pendek karena aslinya bisa 80+ karakter, kepanjangan & aneh kalau muncul utuh di pesan yang dibaca customer
+   - Kalau gak ada UTM/gclid sama sekali (visit organik): gak ada tag tambahan, teks pesan normal seperti biasa
+2. **`trackWhatsAppClick()`** (`client/src/utils/tracking.js`) — kirim `utm_source`, `utm_medium`, `utm_campaign`, `gclid` (versi lengkap, gak dipotong) sebagai parameter tambahan di event `whatsapp_click`, kalau ada.
 
 ## Helper: `client/src/utils/tracking.js`
 
