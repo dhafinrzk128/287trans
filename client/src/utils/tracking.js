@@ -18,3 +18,12 @@ export function trackPageView(path, title) {
     page_title: title,
   });
 }
+
+export function trackBookingSubmit(carName) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "booking_submit",
+    ...(carName && { car_name: carName }),
+    ...getUtmParams(),
+  });
+}

@@ -7,7 +7,7 @@ Dokumentasi conversion tracking (Google Tag Manager + Google Ads). Baca ini sebe
 - Tag Manager: **Google Tag Manager**, Container ID `GTM-KJHNLFR2`
 - Container ID di-inject lewat env var `VITE_GTM_ID` (lihat `client/.env.example`), bukan hardcoded di `index.html`
 - Semua event custom dikirim lewat `window.dataLayer.push(...)` — bukan `gtag()` langsung, bukan localStorage/sessionStorage
-- Ada 2 event custom: `whatsapp_click` dan `page_view`
+- Ada 3 event custom: `whatsapp_click`, `page_view`, dan `booking_submit`
 
 ## Event: `whatsapp_click`
 
@@ -60,6 +60,23 @@ Belum ada Tag/Trigger di GTM yang "makan" event ini — dia cuma disiapkan di da
 
 **Catatan:** `page_title` saat ini selalu sama di semua halaman karena `document.title` memang statis (di-set sekali di `index.html`, tidak ada logic ganti judul per halaman). Ini masalah SEO, di luar scope tracking — lihat bagian "Di luar scope" kalau mau follow-up.
 
+## Event: `booking_submit`
+
+Fire setelah `POST /booking` sukses (bukan pas tombol submit diklik — kalau validasi gagal atau API error, event ini tidak fire). Ini konversi paling kuat yang ada, karena customer beneran ngasih nama+HP dan minta disewain mobil, bukan cuma ekspresi minat kayak klik WA.
+
+```js
+{
+  event: "booking_submit",
+  car_name: "Toyota Fortuner",      // opsional, cuma ada kalau ada data mobil
+  utm_source: "google",             // opsional, sama seperti whatsapp_click
+  utm_medium: "cpc",
+  utm_campaign: "sewa_mobil_premium",
+  gclid: "Cj0KCQjw..."
+}
+```
+
+Lokasi: `client/src/pages/BookingForm.jsx`, di `handleSubmit`, tepat setelah `api.post("/booking", ...)` berhasil dan sebelum redirect ke halaman status.
+
 ## UTM & gclid capture
 
 Biar bisa lacak lead WhatsApp itu asalnya dari iklan mana. Ditangkap dari `utm_source`, `utm_medium`, `utm_campaign`, `gclid` di URL pas landing.
@@ -79,6 +96,7 @@ Dipakai di 2 tempat otomatis (tidak perlu ubah apa pun di 9 titik tombol WhatsAp
 ```js
 trackWhatsAppClick(buttonLocation, carName?)
 trackPageView(path, title)
+trackBookingSubmit(carName?)
 ```
 
 Keduanya defensif: selalu `window.dataLayer = window.dataLayer || []` dulu sebelum push, jadi tidak akan error walau GTM gagal load (ad blocker, koneksi lambat, dll).
@@ -118,7 +136,17 @@ Account **287 Trans** → Container **287trans.id** (`GTM-KJHNLFR2`)
   - Label Konversi: `po5DCMv5098cEPi677xE`
   - Nilai Konversi: `1`
   - Trigger: "Custom Event - whatsapp_click" (di atas)
-- Dipublish sebagai **Versi 2** — sudah diverifikasi fire beneran ke `googleadservices.com` dan `googleads.g.doubleclick.net` dengan Conversion ID & Label yang benar.
+  - Conversion action "Klik WhatsApp" di Google Ads: kategori Kontak, status **Utama** (Primary) — sempat Sekunder waktu awal dibikin, diubah belakangan biar bisa jadi goal campaign.
+- **Trigger** "Custom Event - booking_submit": tipe Custom Event, nama peristiwa `booking_submit`.
+- **Tag** "Google Ads - Booking Form Submit": tipe Google Ads Conversion Tracking.
+  - ID Konversi: `18381266296` (sama, satu akun)
+  - Label Konversi: `z2KlCNnP8-EcEPi677xE`
+  - Nilai Konversi: `1`
+  - Trigger: "Custom Event - booking_submit" (di atas)
+  - Conversion action "Ajukan Booking" di Google Ads: kategori Mengirim formulir lead, status Utama dari awal dibikin.
+- Dipublish sebagai **Versi 3** — kedua tag sudah diverifikasi fire beneran ke `googleadservices.com` dan `googleads.g.doubleclick.net` dengan Conversion ID & Label yang benar masing-masing.
+
+**Catatan status "Salah dikonfigurasi":** di halaman Sasaran Google Ads, goal "Mengirim formulir lead" sempat/bisa nampilin badge status "Salah dikonfigurasi" walau sebenarnya udah jalan benar. Ini karena Google Ads coba deteksi otomatis tag di situs (mengharapkan snippet `gtag()` langsung), dan gak bisa "melihat" ke dalam setup GTM kita. Jangan percaya badge ini doang — verifikasi manual pakai cara di bagian "Cara testing" di bawah lebih akurat.
 
 ## Cara testing pakai GTM Preview mode
 
@@ -155,4 +183,4 @@ Kalau baris kedua menghasilkan sesuatu setelah klik tombol WhatsApp, berarti tag
 
 - `document.title` statis di semua halaman (tidak ada logic set-title per halaman) — bikin `page_title` di event `page_view` kurang berguna. ini masalah SEO, bukan tracking, sengaja tidak disentuh sesuai batasan kerja.
 - Link WhatsApp di halaman admin (`AdminBookingDetail.jsx`) sengaja tidak ditracking — lihat bagian event `whatsapp_click` di atas.
-- `VITE_GTM_ID` belum di-set di Railway production — GTM belum jalan di 287trans.id sampai ini di-set manual.
+- Belum ada tag GA4 (base "Tag Google") di GTM — cuma ada conversion tags, jadi belum ada gambaran funnel lengkap (bounce rate, halaman favorit, dll), cuma event yang eksplisit ditrack.

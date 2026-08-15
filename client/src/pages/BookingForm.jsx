@@ -12,7 +12,7 @@ import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
 import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
-import { trackWhatsAppClick } from "../utils/tracking";
+import { trackWhatsAppClick, trackBookingSubmit } from "../utils/tracking";
 import { isValidHp } from "../utils/validators";
 
 const ESTIMASI_HARI_OPTIONS = [
@@ -85,6 +85,7 @@ export default function BookingForm() {
         denganSopir: form.denganSopir,
         catatan: form.catatan,
       });
+      trackBookingSubmit(mobil.namaMobil);
       navigate(`/status/${data.kodeBooking}`);
     } catch (err) {
       setServerError(err.response?.data?.message || "Gagal mengirim permintaan booking. Silakan coba lagi.");
