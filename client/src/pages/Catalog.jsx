@@ -9,6 +9,7 @@ import Select from "../components/ui/Select";
 import Button from "../components/ui/Button";
 import { inputClassName } from "../components/ui/FormField";
 import Seo from "../components/Seo";
+import { breadcrumbSchema } from "../utils/schema";
 
 const INITIAL_FILTER = { tipe: "", transmisi: "", kapasitas: "" };
 
@@ -87,6 +88,10 @@ export default function Catalog() {
         title="Katalog Mobil Rental Tangerang - Semua Armada"
         description="Lihat semua armada rental mobil 287 Trans di Tangerang & Jabodetabek. Beragam tipe, transmisi manual/matic, lepas kunci atau plus driver."
         path="/katalog"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Katalog Mobil", path: "/katalog" },
+        ])}
       />
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 py-14 text-white">
         <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />

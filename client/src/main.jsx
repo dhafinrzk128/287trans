@@ -15,6 +15,7 @@ const SEO_MANAGED_HEAD_SELECTORS = [
   'link[rel="canonical"]',
   'meta[property^="og:"]',
   'meta[name^="twitter:"]',
+  'script[type="application/ld+json"]',
 ]
 document.head.querySelectorAll(SEO_MANAGED_HEAD_SELECTORS.join(',')).forEach((el) => el.remove())
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ShieldCheck, Wallet, Zap, Headset, Star, ArrowRight, ChevronDown, Sparkles, BadgeCheck, MessageCircle } from "lucide-react";
 import api from "../api/client";
 import Seo from "../components/Seo";
+import { AUTORENTAL_SCHEMA, WEBSITE_SCHEMA, faqPageSchema } from "../utils/schema";
 import CarCard from "../components/CarCard";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
@@ -40,6 +41,7 @@ export default function Home() {
         title="Rental Mobil Tangerang - Lepas Kunci & Plus Driver"
         description="Rental mobil Tangerang & Jabodetabek. Armada terawat, lepas kunci atau plus driver, harian sampai bulanan. Booking cepat via WA 0811-144-287."
         path="/"
+        jsonLd={[AUTORENTAL_SCHEMA, WEBSITE_SCHEMA, faqPageSchema(faq)].filter(Boolean)}
       />
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 text-white">

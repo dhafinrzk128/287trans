@@ -11,6 +11,7 @@ import { isValidEmail } from "../utils/validators";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import Seo from "../components/Seo";
+import { breadcrumbSchema } from "../utils/schema";
 
 const INITIAL = { nama: "", email: "", subjek: "", pesan: "" };
 
@@ -58,6 +59,10 @@ export default function Contact() {
         title="Kontak 287 Trans - Rental Mobil Tangerang"
         description="Hubungi 287 Trans untuk sewa mobil di Tangerang & Jabodetabek. Chat WhatsApp 0811-144-287 atau kirim pesan lewat form kontak, tim kami siap bantu."
         path="/kontak"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Kontak", path: "/kontak" },
+        ])}
       />
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 py-14 text-white">
         <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />

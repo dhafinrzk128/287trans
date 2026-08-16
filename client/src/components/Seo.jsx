@@ -1,15 +1,17 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://287trans.id";
-const SITE_NAME = "287 Trans";
+export const SITE_URL = "https://287trans.id";
+export const SITE_NAME = "287 Trans";
 const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
 
 /**
  * Per-page <head> tags: title, description, canonical, robots, OpenGraph,
- * Twitter Card. `path` must start with "/" and is joined to SITE_URL for
- * the canonical + og:url — pass the real route path, not the full URL.
+ * Twitter Card, and optional JSON-LD. `path` must start with "/" and is
+ * joined to SITE_URL for the canonical + og:url — pass the real route path,
+ * not the full URL. `jsonLd`, if given, is one schema object or an array of
+ * them (see src/utils/schema.js), rendered as a single <script> tag.
  */
-export default function Seo({ title, description, path, image = DEFAULT_IMAGE, noindex = false }) {
+export default function Seo({ title, description, path, image = DEFAULT_IMAGE, noindex = false, jsonLd }) {
   const url = `${SITE_URL}${path}`;
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 
@@ -32,6 +34,12 @@ export default function Seo({ title, description, path, image = DEFAULT_IMAGE, n
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+
+      {jsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])}
+        </script>
+      )}
     </Helmet>
   );
 }
