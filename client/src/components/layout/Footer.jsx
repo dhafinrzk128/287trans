@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import SmartImage from "../SmartImage";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
@@ -17,7 +18,7 @@ export default function Footer() {
     <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
-          <img src="/logo.png" alt={profile?.namaPerusahaan || "287 Trans"} className="h-14 w-auto" />
+          <SmartImage src="/logo.png" alt={profile?.namaPerusahaan || "287 Trans"} width="700" height="569" className="h-14 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
             Solusi rental mobil premium terpercaya dengan armada unit-unit terbaru, harga bersaing, dan proses
             booking online yang mudah tanpa perlu membuat akun.

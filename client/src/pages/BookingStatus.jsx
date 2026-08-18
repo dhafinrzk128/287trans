@@ -5,6 +5,7 @@ import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
 import StatusBookingBadge from "../components/StatusBookingBadge";
+import SmartImage from "../components/SmartImage";
 import { formatTanggal, formatTanggalWaktu, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import Seo from "../components/Seo";
@@ -88,7 +89,7 @@ export default function BookingStatus() {
         <h2 className="text-base font-bold text-slate-900">Detail Permintaan</h2>
         <div className="mt-4 flex items-center gap-3">
           {booking.mobil?.fotoUtama && (
-            <img src={booking.mobil.fotoUtama} alt={booking.mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />
+            <SmartImage src={booking.mobil.fotoUtama} alt={booking.mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />
           )}
           <div>
             <p className="font-semibold text-slate-900">{booking.mobil?.namaMobil}</p>

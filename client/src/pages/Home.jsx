@@ -5,6 +5,7 @@ import api from "../api/client";
 import Seo from "../components/Seo";
 import { AUTORENTAL_SCHEMA, WEBSITE_SCHEMA, faqPageSchema } from "../utils/schema";
 import CarCard from "../components/CarCard";
+import SmartImage from "../components/SmartImage";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
@@ -85,10 +86,11 @@ export default function Home() {
           </Reveal>
           <Reveal className="relative hidden lg:block" delay={150}>
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
-              <img
+              <SmartImage
                 src={profile?.heroFotoUrl || "https://picsum.photos/seed/hero-rental/900/700"}
                 alt="Mobil rental 287 Trans di Tangerang"
                 className="h-full w-full object-cover"
+                fetchPriority="high"
               />
             </div>
             <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-5 py-4 text-slate-900 shadow-[var(--shadow-soft-lg)]">

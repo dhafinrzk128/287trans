@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Users, Fuel, Cog, ImageOff, ArrowRight } from "lucide-react";
 import Badge from "./ui/Badge";
+import SmartImage from "./SmartImage";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { formatRupiah } from "../utils/format";
 
-export default function CarCard({ mobil }) {
+export default function CarCard({ mobil, priority = false }) {
   const unavailable = mobil.status !== "tersedia";
 
   return (
@@ -17,13 +18,14 @@ export default function CarCard({ mobil }) {
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
           {mobil.fotoUtama ? (
-            <img
+            <SmartImage
               src={mobil.fotoUtama}
               alt={`${mobil.namaMobil} - unit rental mobil Tangerang`}
               className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                 unavailable ? "grayscale opacity-60" : ""
               }`}
-              loading="lazy"
+              loading={priority ? "eager" : "lazy"}
+              fetchPriority={priority ? "high" : "auto"}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-slate-300">

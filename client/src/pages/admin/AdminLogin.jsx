@@ -6,6 +6,7 @@ import FormField from "../../components/ui/FormField";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import Seo from "../../components/Seo";
+import SmartImage from "../../components/SmartImage";
 
 export default function AdminLogin() {
   const { login, isAuthenticated } = useAuth();
@@ -49,7 +50,7 @@ export default function AdminLogin() {
       <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent-300/10 blur-3xl" />
       <div className="relative w-full max-w-sm rounded-2xl bg-white p-8 shadow-[var(--shadow-soft-lg)]">
         <div className="flex flex-col items-center text-center">
-          <img src="/logo.png" alt="287 Trans" className="h-14 w-auto" />
+          <SmartImage src="/logo.png" alt="287 Trans" width="700" height="569" className="h-14 w-auto" />
           <h1 className="mt-4 text-xl font-extrabold text-slate-900">Admin Panel</h1>
           <p className="mt-1 text-sm text-slate-500">Masuk untuk mengelola booking dan armada mobil.</p>
         </div>

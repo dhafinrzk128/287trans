@@ -161,7 +161,7 @@ export default function Catalog() {
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {displayedMobils.map((mobil, i) => (
               <Reveal key={mobil.idMobil} delay={(i % 4) * 80} className="h-full [&>*]:h-full">
-                <CarCard mobil={mobil} />
+                <CarCard mobil={mobil} priority={i === 0} />
               </Reveal>
             ))}
           </div>

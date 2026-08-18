@@ -7,6 +7,21 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#b4960a" />
+
+    <!--
+      Fonts moved here from an @import in index.css: @import is
+      render-blocking and isn't discovered until the CSS that contains it
+      has already been fetched and parsed, unlike a <link> the browser's
+      preload scanner finds immediately. display=swap in the URL is passed
+      through to the @font-face rules Google Fonts returns.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+    />
     <!--
       No static <title>/<meta name="description"> here on purpose: every
       route renders <Seo> (see src/components/Seo.jsx) via react-helmet-async,

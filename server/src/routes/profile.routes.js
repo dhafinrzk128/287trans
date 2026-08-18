@@ -2,6 +2,7 @@ const express = require("express");
 const prisma = require("../utils/prisma");
 const { requireAdminAuth } = require("../middleware/auth");
 const { uploadProfileFoto, publicUrl } = require("../utils/upload");
+const { generateWebpForFiles } = require("../utils/webp");
 
 const router = express.Router();
 
@@ -50,6 +51,7 @@ router.put(
 
     const fotoFile = req.files?.foto?.[0];
     const heroFotoFile = req.files?.heroFoto?.[0];
+    await generateWebpForFiles([fotoFile, heroFotoFile].filter(Boolean));
 
     const profile = await prisma.companyProfile.update({
       where: { id: 1 },

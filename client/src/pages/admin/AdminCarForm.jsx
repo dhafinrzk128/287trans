@@ -8,6 +8,7 @@ import Select from "../../components/ui/Select";
 import Textarea from "../../components/ui/Textarea";
 import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
+import SmartImage from "../../components/SmartImage";
 import { STATUS_MOBIL_LABEL, BAHAN_BAKAR_OPTIONS } from "../../utils/validators";
 
 const INITIAL_FORM = {
@@ -183,7 +184,7 @@ export default function AdminCarForm() {
             <div className="mb-3 grid grid-cols-3 gap-3 sm:grid-cols-5">
               {existingFotos.map((foto) => (
                 <div key={foto.idFoto} className="group relative aspect-square overflow-hidden rounded-xl border border-slate-200">
-                  <img src={foto.urlFoto} alt="" className="h-full w-full object-cover" />
+                  <SmartImage src={foto.urlFoto} alt="" className="h-full w-full object-cover" />
                   <button
                     type="button"
                     onClick={() => removeExistingFoto(foto.idFoto)}

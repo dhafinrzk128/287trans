@@ -7,6 +7,7 @@ import Input from "../../components/ui/Input";
 import Textarea from "../../components/ui/Textarea";
 import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
+import SmartImage from "../../components/SmartImage";
 
 export default function AdminProfile() {
   const { profile, loading, refresh } = useCompanyProfile();
@@ -141,7 +142,7 @@ export default function AdminProfile() {
           <label className="mb-2 block text-sm font-medium text-slate-700">Foto Perusahaan</label>
           <div className="flex items-center gap-4">
             <div className="h-24 w-32 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
-              <img src={fotoFile ? URL.createObjectURL(fotoFile) : form.fotoUrl} alt="" className="h-full w-full object-cover" />
+              <SmartImage src={fotoFile ? URL.createObjectURL(fotoFile) : form.fotoUrl} alt="" className="h-full w-full object-cover" />
             </div>
             <label htmlFor="foto" className="cursor-pointer rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
               Ganti Foto
@@ -156,7 +157,7 @@ export default function AdminProfile() {
           <div className="flex items-center gap-4">
             <div className="h-24 w-32 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
               {(heroFotoFile || form.heroFotoUrl) && (
-                <img
+                <SmartImage
                   src={heroFotoFile ? URL.createObjectURL(heroFotoFile) : form.heroFotoUrl}
                   alt=""
                   className="h-full w-full object-cover"

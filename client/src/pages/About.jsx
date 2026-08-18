@@ -4,6 +4,7 @@ import Seo from "../components/Seo";
 import { breadcrumbSchema } from "../utils/schema";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
+import SmartImage from "../components/SmartImage";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 
@@ -36,7 +37,7 @@ export default function About() {
       <section className="mx-auto max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid lg:grid-cols-2 lg:items-center lg:px-8">
         <Reveal className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-[var(--shadow-soft-lg)]">
           {profile?.fotoUrl && (
-            <img src={profile.fotoUrl} alt={profile?.namaPerusahaan} className="h-full w-full object-cover" />
+            <SmartImage src={profile.fotoUrl} alt={profile?.namaPerusahaan} className="h-full w-full object-cover" />
           )}
         </Reveal>
         <Reveal className="mt-8 lg:mt-0" delay={150}>

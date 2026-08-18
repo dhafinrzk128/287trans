@@ -4,8 +4,15 @@ const path = require("path");
 const prisma = require("../utils/prisma");
 const { requireAdminAuth } = require("../middleware/auth");
 const { uploadMobilFoto, publicUrl } = require("../utils/upload");
+const { generateWebpForFiles } = require("../utils/webp");
 
 const router = express.Router();
+
+function unlinkWithWebp(urlFoto) {
+  const filePath = path.join(__dirname, "..", "..", urlFoto.replace("/uploads", "uploads"));
+  fs.unlink(filePath, () => {});
+  fs.unlink(filePath.replace(/\.[^.]+$/, ".webp"), () => {});
+}
 
 function serializeMobil(mobil) {
   const fotosSorted = [...(mobil.fotos || [])].sort((a, b) => a.urutan - b.urutan);
@@ -124,6 +131,7 @@ router.post("/admin", requireAdminAuth, uploadMobilFoto.array("fotos", 10), asyn
   }
 
   const files = req.files || [];
+  await generateWebpForFiles(files);
   const mobil = await prisma.mobil.create({
     data: {
       namaMobil,
@@ -152,6 +160,7 @@ router.put("/admin/:id", requireAdminAuth, uploadMobilFoto.array("fotos", 10), a
 
   const { namaMobil, tipe, tahun, transmisi, bahanBakar, kapasitas, hargaPerHari, deskripsi, status } = req.body;
   const files = req.files || [];
+  await generateWebpForFiles(files);
   const maxUrutan = existing.fotos.reduce((m, f) => Math.max(m, f.urutan), -1);
 
   const mobil = await prisma.mobil.update({
@@ -191,8 +200,7 @@ router.delete("/admin/:id", requireAdminAuth, async (req, res) => {
   }
 
   for (const foto of existing.fotos) {
-    const filePath = path.join(__dirname, "..", "..", foto.urlFoto.replace("/uploads", "uploads"));
-    fs.unlink(filePath, () => {});
+    unlinkWithWebp(foto.urlFoto);
   }
 
   await prisma.mobil.delete({ where: { idMobil: id } });
@@ -204,8 +212,7 @@ router.delete("/admin/foto/:idFoto", requireAdminAuth, async (req, res) => {
   const foto = await prisma.fotoMobil.findUnique({ where: { idFoto } });
   if (!foto) return res.status(404).json({ message: "Foto tidak ditemukan." });
 
-  const filePath = path.join(__dirname, "..", "..", foto.urlFoto.replace("/uploads", "uploads"));
-  fs.unlink(filePath, () => {});
+  unlinkWithWebp(foto.urlFoto);
 
   await prisma.fotoMobil.delete({ where: { idFoto } });
   res.json({ message: "Foto berhasil dihapus." });

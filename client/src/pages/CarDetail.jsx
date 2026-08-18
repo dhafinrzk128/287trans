@@ -9,6 +9,7 @@ import Spinner from "../components/ui/Spinner";
 import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import Seo from "../components/Seo";
+import SmartImage from "../components/SmartImage";
 import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah } from "../utils/format";
@@ -82,7 +83,12 @@ export default function CarDetail() {
         <div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
             {fotos.length > 0 ? (
-              <img src={fotos[activeFoto]?.urlFoto} alt={`${mobil.namaMobil} - ${mobil.tipe} rental mobil Tangerang`} className="h-full w-full object-cover" />
+              <SmartImage
+                src={fotos[activeFoto]?.urlFoto}
+                alt={`${mobil.namaMobil} - ${mobil.tipe} rental mobil Tangerang`}
+                className="h-full w-full object-cover"
+                fetchPriority="high"
+              />
             ) : (
               <div className="flex h-full w-full items-center justify-center text-slate-300">
                 <ImageOff size={56} />
@@ -120,7 +126,7 @@ export default function CarDetail() {
                     i === activeFoto ? "border-blue-600" : "border-transparent hover:border-blue-200"
                   }`}
                 >
-                  <img src={f.urlFoto} alt="" className="h-full w-full object-cover" />
+                  <SmartImage src={f.urlFoto} alt="" className="h-full w-full object-cover" loading="lazy" />
                 </button>
               ))}
             </div>

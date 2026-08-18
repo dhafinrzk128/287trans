@@ -44,6 +44,17 @@ export function buildWaLink(number, text) {
   return `https://wa.me/${digits}${query}`;
 }
 
+// Same-name .webp sibling for a local image path (server generates one
+// alongside every mobil/profile upload — see server/src/utils/webp.js —
+// and public/logo.webp is committed alongside logo.png). Only root-relative
+// paths ("/uploads/...", "/logo.png") qualify — external URLs (e.g. the
+// Home hero's picsum.photos fallback) and blob:/data: URLs (unsaved file
+// previews in the admin forms) are returned unchanged.
+export function toWebpUrl(url) {
+  if (!url || !url.startsWith("/")) return url;
+  return url.replace(/\.[^./]+$/, ".webp");
+}
+
 export function hitungJumlahHari(tglAmbil, tglKembali) {
   if (!tglAmbil || !tglKembali) return 0;
   const ambil = new Date(tglAmbil);

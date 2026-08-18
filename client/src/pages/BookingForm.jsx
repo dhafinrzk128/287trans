@@ -11,6 +11,7 @@ import Input from "../components/ui/Input";
 import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
+import SmartImage from "../components/SmartImage";
 import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick, trackBookingSubmit } from "../utils/tracking";
 import { isValidHp } from "../utils/validators";
@@ -212,7 +213,7 @@ export default function BookingForm() {
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
             <h2 className="text-base font-bold text-slate-900">Mobil yang Dipilih</h2>
             <div className="mt-4 flex items-center gap-3">
-              {mobil.fotoUtama && <img src={mobil.fotoUtama} alt={mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />}
+              {mobil.fotoUtama && <SmartImage src={mobil.fotoUtama} alt={mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />}
               <div>
                 <p className="font-semibold text-slate-900">{mobil.namaMobil}</p>
                 <p className="text-sm text-slate-500">{mobil.tipe} &middot; {mobil.transmisi}</p>

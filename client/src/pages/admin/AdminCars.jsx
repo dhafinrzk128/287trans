@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Plus, Pencil, Trash2, ImageOff, Search } from "lucide-react";
 import api from "../../api/client";
 import AdminTable from "../../components/admin/AdminTable";
+import SmartImage from "../../components/SmartImage";
 import Select from "../../components/ui/Select";
 import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
@@ -60,7 +61,7 @@ export default function AdminCars() {
       header: "Foto",
       render: (row) =>
         row.fotoUtama ? (
-          <img src={row.fotoUtama} alt={row.namaMobil} className="h-12 w-16 rounded-xl object-cover" />
+          <SmartImage src={row.fotoUtama} alt={row.namaMobil} className="h-12 w-16 rounded-xl object-cover" />
         ) : (
           <div className="flex h-12 w-16 items-center justify-center rounded-xl bg-slate-100 text-slate-300">
             <ImageOff size={20} />

@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { AuthProvider } from "./context/AuthContext";
@@ -6,35 +7,43 @@ import { CompanyProfileProvider } from "./context/CompanyProfileContext";
 import Layout from "./components/layout/Layout";
 import AdminLayout from "./components/layout/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import Spinner from "./components/ui/Spinner";
 
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Catalog from "./pages/Catalog";
-import CarDetail from "./pages/CarDetail";
-import BookingForm from "./pages/BookingForm";
-import BookingStatus from "./pages/BookingStatus";
-import Contact from "./pages/Contact";
-import Armada from "./pages/Armada";
-import Faq from "./pages/Faq";
-import NotFound from "./pages/NotFound";
+// Route-level code splitting: each page becomes its own chunk instead of
+// all being bundled into one ~550kB file. Layout/AdminLayout/ProtectedRoute
+// stay eager since they're the shell every route needs immediately; each
+// layout has its own <Suspense> around its <Outlet> (see Layout.jsx /
+// AdminLayout.jsx) so the navbar/sidebar don't flash away on every
+// navigation — only AdminLogin needs its own boundary here, since it's
+// the one lazy page that sits outside both layouts.
+const Home = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
+const Catalog = lazy(() => import("./pages/Catalog"));
+const CarDetail = lazy(() => import("./pages/CarDetail"));
+const BookingForm = lazy(() => import("./pages/BookingForm"));
+const BookingStatus = lazy(() => import("./pages/BookingStatus"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Armada = lazy(() => import("./pages/Armada"));
+const Faq = lazy(() => import("./pages/Faq"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
-import RentalMobilTangerang from "./pages/landing/RentalMobilTangerang";
-import SewaMobilLepasKunciTangerang from "./pages/landing/SewaMobilLepasKunciTangerang";
-import RentalMobilPlusDriver from "./pages/landing/RentalMobilPlusDriver";
-import RentalMobilBulananTangerang from "./pages/landing/RentalMobilBulananTangerang";
-import SewaMobilBandaraSoekarnoHatta from "./pages/landing/SewaMobilBandaraSoekarnoHatta";
+const RentalMobilTangerang = lazy(() => import("./pages/landing/RentalMobilTangerang"));
+const SewaMobilLepasKunciTangerang = lazy(() => import("./pages/landing/SewaMobilLepasKunciTangerang"));
+const RentalMobilPlusDriver = lazy(() => import("./pages/landing/RentalMobilPlusDriver"));
+const RentalMobilBulananTangerang = lazy(() => import("./pages/landing/RentalMobilBulananTangerang"));
+const SewaMobilBandaraSoekarnoHatta = lazy(() => import("./pages/landing/SewaMobilBandaraSoekarnoHatta"));
 
-import AdminLogin from "./pages/admin/AdminLogin";
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminCars from "./pages/admin/AdminCars";
-import AdminCarForm from "./pages/admin/AdminCarForm";
-import AdminBookings from "./pages/admin/AdminBookings";
-import AdminBookingForm from "./pages/admin/AdminBookingForm";
-import AdminBookingDetail from "./pages/admin/AdminBookingDetail";
-import AdminProfile from "./pages/admin/AdminProfile";
-import AdminAccount from "./pages/admin/AdminAccount";
-import AdminTestimoni from "./pages/admin/AdminTestimoni";
-import AdminFaq from "./pages/admin/AdminFaq";
+const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+const AdminCars = lazy(() => import("./pages/admin/AdminCars"));
+const AdminCarForm = lazy(() => import("./pages/admin/AdminCarForm"));
+const AdminBookings = lazy(() => import("./pages/admin/AdminBookings"));
+const AdminBookingForm = lazy(() => import("./pages/admin/AdminBookingForm"));
+const AdminBookingDetail = lazy(() => import("./pages/admin/AdminBookingDetail"));
+const AdminProfile = lazy(() => import("./pages/admin/AdminProfile"));
+const AdminAccount = lazy(() => import("./pages/admin/AdminAccount"));
+const AdminTestimoni = lazy(() => import("./pages/admin/AdminTestimoni"));
+const AdminFaq = lazy(() => import("./pages/admin/AdminFaq"));
 
 function App() {
   return (
@@ -61,7 +70,14 @@ function App() {
                 <Route path="*" element={<NotFound />} />
               </Route>
 
-              <Route path="admin/login" element={<AdminLogin />} />
+              <Route
+                path="admin/login"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <AdminLogin />
+                  </Suspense>
+                }
+              />
               <Route path="admin" element={<ProtectedRoute />}>
                 <Route element={<AdminLayout />}>
                   <Route path="dashboard" element={<AdminDashboard />} />
