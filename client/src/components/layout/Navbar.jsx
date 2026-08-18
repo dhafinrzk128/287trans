@@ -6,6 +6,7 @@ const NAV_LINKS = [
   { to: "/", label: "Home", end: true },
   { to: "/tentang-kami", label: "Tentang Kami" },
   { to: "/katalog", label: "Pilihan Armada" },
+  { to: "/faq", label: "FAQ" },
   { to: "/kontak", label: "Kontak" },
 ];
 

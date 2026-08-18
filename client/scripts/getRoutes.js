@@ -6,7 +6,19 @@
 // Railway build step has no direct database access (see the note in
 // prerender.js for why).
 
-export const STATIC_ROUTES = ["/", "/tentang-kami", "/katalog", "/kontak"];
+export const STATIC_ROUTES = [
+  "/",
+  "/tentang-kami",
+  "/katalog",
+  "/kontak",
+  "/armada",
+  "/faq",
+  "/rental-mobil-tangerang",
+  "/sewa-mobil-lepas-kunci-tangerang",
+  "/rental-mobil-plus-driver",
+  "/rental-mobil-bulanan-tangerang",
+  "/sewa-mobil-bandara-soekarno-hatta",
+];
 
 const API_BASE = process.env.PRERENDER_API_BASE || "https://287trans.id";
 

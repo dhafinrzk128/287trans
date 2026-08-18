@@ -14,7 +14,15 @@ import CarDetail from "./pages/CarDetail";
 import BookingForm from "./pages/BookingForm";
 import BookingStatus from "./pages/BookingStatus";
 import Contact from "./pages/Contact";
+import Armada from "./pages/Armada";
+import Faq from "./pages/Faq";
 import NotFound from "./pages/NotFound";
+
+import RentalMobilTangerang from "./pages/landing/RentalMobilTangerang";
+import SewaMobilLepasKunciTangerang from "./pages/landing/SewaMobilLepasKunciTangerang";
+import RentalMobilPlusDriver from "./pages/landing/RentalMobilPlusDriver";
+import RentalMobilBulananTangerang from "./pages/landing/RentalMobilBulananTangerang";
+import SewaMobilBandaraSoekarnoHatta from "./pages/landing/SewaMobilBandaraSoekarnoHatta";
 
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -43,6 +51,13 @@ function App() {
                 <Route path="booking/:idMobil" element={<BookingForm />} />
                 <Route path="status/:kodeBooking" element={<BookingStatus />} />
                 <Route path="kontak" element={<Contact />} />
+                <Route path="armada" element={<Armada />} />
+                <Route path="faq" element={<Faq />} />
+                <Route path="rental-mobil-tangerang" element={<RentalMobilTangerang />} />
+                <Route path="sewa-mobil-lepas-kunci-tangerang" element={<SewaMobilLepasKunciTangerang />} />
+                <Route path="rental-mobil-plus-driver" element={<RentalMobilPlusDriver />} />
+                <Route path="rental-mobil-bulanan-tangerang" element={<RentalMobilBulananTangerang />} />
+                <Route path="sewa-mobil-bandara-soekarno-hatta" element={<SewaMobilBandaraSoekarnoHatta />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
 

@@ -4,13 +4,18 @@ import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
+function telHref(number) {
+  const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
+  return digits ? `tel:+${digits}` : undefined;
+}
+
 export default function Footer() {
   const { profile } = useCompanyProfile();
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
           <img src="/logo.png" alt={profile?.namaPerusahaan || "287 Trans"} className="h-14 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
@@ -26,7 +31,21 @@ export default function Footer() {
             <li><Link to="/" className="transition-colors hover:text-white">Home</Link></li>
             <li><Link to="/tentang-kami" className="transition-colors hover:text-white">Tentang Kami</Link></li>
             <li><Link to="/katalog" className="transition-colors hover:text-white">Pilihan Armada</Link></li>
+            <li><Link to="/faq" className="transition-colors hover:text-white">FAQ</Link></li>
             <li><Link to="/kontak" className="transition-colors hover:text-white">Kontak</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Layanan</h3>
+          <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
+          <ul className="mt-4 space-y-2 text-sm">
+            <li><Link to="/rental-mobil-tangerang" className="transition-colors hover:text-white">Rental Mobil Tangerang</Link></li>
+            <li><Link to="/sewa-mobil-lepas-kunci-tangerang" className="transition-colors hover:text-white">Sewa Lepas Kunci</Link></li>
+            <li><Link to="/rental-mobil-plus-driver" className="transition-colors hover:text-white">Rental Plus Driver</Link></li>
+            <li><Link to="/rental-mobil-bulanan-tangerang" className="transition-colors hover:text-white">Sewa Bulanan</Link></li>
+            <li><Link to="/sewa-mobil-bandara-soekarno-hatta" className="transition-colors hover:text-white">Antar-Jemput Bandara</Link></li>
+            <li><Link to="/armada" className="transition-colors hover:text-white">Daftar Armada</Link></li>
           </ul>
         </div>
 
@@ -40,7 +59,9 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone size={16} className="shrink-0 text-blue-400" />
-              <span>{profile?.telepon || "021-5550287"}</span>
+              <a href={telHref(profile?.telepon)} className="transition-colors hover:text-white">
+                {profile?.telepon || "021-5550287"}
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <Mail size={16} className="shrink-0 text-blue-400" />
@@ -69,6 +90,21 @@ export default function Footer() {
           )}
         </div>
       </div>
+
+      {profile?.mapsEmbedUrl && (
+        <div className="border-t border-neutral-800">
+          <iframe
+            src={profile.mapsEmbedUrl}
+            title={`Lokasi ${profile?.namaPerusahaan || "287 Trans"}`}
+            width="100%"
+            height="220"
+            style={{ border: 0, display: "block" }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+      )}
+
       <div className="border-t border-neutral-800 py-5 text-center text-xs text-slate-500">
         © {year} {profile?.namaPerusahaan || "287 Trans"}. Seluruh hak cipta dilindungi.{" "}
         <Link to="/admin/login" className="text-slate-600 hover:text-slate-400">
