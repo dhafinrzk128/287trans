@@ -1,0 +1,12 @@
+{
+  "name": "287 Trans - Rental Mobil Tangerang",
+  "short_name": "287 Trans",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#b4960a",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

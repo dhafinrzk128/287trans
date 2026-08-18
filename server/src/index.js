@@ -3,6 +3,7 @@ require("express-async-errors");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs/promises");
 
 const { UPLOAD_ROOT } = require("./utils/upload");
 const authRoutes = require("./routes/auth.routes");
@@ -34,9 +35,53 @@ app.use("/api/testimoni", testimoniRoutes);
 app.use("/api/faq", faqRoutes);
 
 const clientDist = path.join(__dirname, "..", "..", "client", "dist");
+
+// Every public route the SPA actually handles (mirrors client/src/App.jsx).
+// Anything that doesn't match one of these gets a real 404 instead of a
+// silent 200 — see the catch-all below.
+const KNOWN_SPA_ROUTES = [
+  /^\/$/,
+  /^\/tentang-kami\/?$/,
+  /^\/katalog\/?$/,
+  /^\/katalog\/[^/]+\/?$/,
+  /^\/booking\/[^/]+\/?$/,
+  /^\/status\/[^/]+\/?$/,
+  /^\/kontak\/?$/,
+  /^\/admin\/login\/?$/,
+  /^\/admin\/dashboard\/?$/,
+  /^\/admin\/mobil\/?$/,
+  /^\/admin\/mobil\/baru\/?$/,
+  /^\/admin\/mobil\/[^/]+\/edit\/?$/,
+  /^\/admin\/booking\/?$/,
+  /^\/admin\/booking\/baru\/?$/,
+  /^\/admin\/booking\/[^/]+\/?$/,
+  /^\/admin\/testimoni\/?$/,
+  /^\/admin\/faq\/?$/,
+  /^\/admin\/profile\/?$/,
+  /^\/admin\/akun\/?$/,
+];
+
+// Prerendered pages live on disk as dist/<route>/index.html (dist/index.html
+// for "/"). Handing a no-trailing-slash request for one of these straight to
+// express.static() below would 301-redirect to the trailing-slash form
+// before serving it — technically fine for crawlers, but it costs every
+// prerendered page an extra round trip for no reason. Serve it directly.
+app.get(/^(?!\/api|\/uploads).*/, async (req, res, next) => {
+  const prerendered = path.join(clientDist, req.path, "index.html");
+  if (!prerendered.startsWith(clientDist)) return next();
+  try {
+    await fs.access(prerendered);
+    res.sendFile(prerendered);
+  } catch {
+    next();
+  }
+});
+
 app.use(express.static(clientDist));
+
 app.get(/^(?!\/api|\/uploads).*/, (req, res, next) => {
-  res.sendFile(path.join(clientDist, "index.html"), (err) => {
+  const status = KNOWN_SPA_ROUTES.some((pattern) => pattern.test(req.path)) ? 200 : 404;
+  res.status(status).sendFile(path.join(clientDist, "index.html"), (err) => {
     if (err) next();
   });
 });
