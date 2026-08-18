@@ -55,7 +55,7 @@ export default function Home() {
               Rental Mobil Premium Jabodetabek
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
-              Perjalanan Mudah dan Nyaman <span className="text-accent-400">bersama 287Trans</span>
+              Rental Mobil Tangerang, <span className="text-accent-400">Perjalanan Mudah dan Nyaman</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg text-blue-100">
               Ajukan permintaan booking mobil rental secara online tanpa perlu membuat akun. Armada premium
@@ -87,7 +87,7 @@ export default function Home() {
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
               <img
                 src={profile?.heroFotoUrl || "https://picsum.photos/seed/hero-rental/900/700"}
-                alt="Mobil rental 287 Trans"
+                alt="Mobil rental 287 Trans di Tangerang"
                 className="h-full w-full object-cover"
               />
             </div>
@@ -108,7 +108,13 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-slate-900">Kenapa Pilih 287 Trans?</h2>
-          <p className="mt-3 text-slate-600">Kami berkomitmen memberikan pengalaman rental mobil terbaik untuk Anda.</p>
+          <p className="mt-3 text-slate-600">
+            Kami berkomitmen memberikan pengalaman{" "}
+            <Link to="/rental-mobil-tangerang" className="font-semibold text-blue-600 hover:underline">
+              rental mobil Tangerang
+            </Link>{" "}
+            terbaik untuk Anda.
+          </p>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {KEUNGGULAN.map((item, i) => (

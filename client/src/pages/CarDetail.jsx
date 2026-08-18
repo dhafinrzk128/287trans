@@ -82,7 +82,7 @@ export default function CarDetail() {
         <div>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
             {fotos.length > 0 ? (
-              <img src={fotos[activeFoto]?.urlFoto} alt={mobil.namaMobil} className="h-full w-full object-cover" />
+              <img src={fotos[activeFoto]?.urlFoto} alt={`${mobil.namaMobil} - ${mobil.tipe} rental mobil Tangerang`} className="h-full w-full object-cover" />
             ) : (
               <div className="flex h-full w-full items-center justify-center text-slate-300">
                 <ImageOff size={56} />
@@ -158,7 +158,7 @@ export default function CarDetail() {
           <p className="mt-5 leading-relaxed text-slate-600">{mobil.deskripsi}</p>
 
           <div className="mt-6">
-            <h3 className="text-base font-bold text-slate-900">Cek Ketersediaan Tanggal</h3>
+            <h2 className="text-base font-bold text-slate-900">Cek Ketersediaan Tanggal</h2>
             <p className="mt-1 text-sm text-slate-500">Tanggal yang ditandai merah sudah dibooking pelanggan lain.</p>
             <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-[var(--shadow-soft)]">
               <DayPicker

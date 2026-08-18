@@ -210,7 +210,7 @@ export default function BookingForm() {
 
         <div className="h-fit space-y-6">
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
-            <h3 className="text-base font-bold text-slate-900">Mobil yang Dipilih</h3>
+            <h2 className="text-base font-bold text-slate-900">Mobil yang Dipilih</h2>
             <div className="mt-4 flex items-center gap-3">
               {mobil.fotoUtama && <img src={mobil.fotoUtama} alt={mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />}
               <div>
@@ -244,7 +244,7 @@ export default function BookingForm() {
 
           {waLink && (
             <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
-              <h3 className="text-base font-bold text-slate-900">Ingin lebih cepat?</h3>
+              <h2 className="text-base font-bold text-slate-900">Ingin lebih cepat?</h2>
               <p className="mt-2 text-sm text-slate-600">Anda juga bisa langsung memesan mobil ini melalui WhatsApp.</p>
               <a
                 href={waLink}

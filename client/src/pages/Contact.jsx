@@ -111,7 +111,7 @@ export default function Contact() {
           {success ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border border-emerald-200 bg-emerald-50 p-10 text-center">
               <CheckCircle2 className="text-emerald-600" size={48} />
-              <h3 className="mt-4 text-lg font-bold text-slate-900">Pesan Terkirim!</h3>
+              <h2 className="mt-4 text-lg font-bold text-slate-900">Pesan Terkirim!</h2>
               <p className="mt-2 text-sm text-slate-600">Terima kasih, tim kami akan segera menghubungi Anda.</p>
               <Button className="mt-5" onClick={() => setSuccess(false)}>Kirim Pesan Lain</Button>
             </div>

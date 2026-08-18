@@ -85,7 +85,7 @@ export default function BookingStatus() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
-        <h3 className="text-base font-bold text-slate-900">Detail Permintaan</h3>
+        <h2 className="text-base font-bold text-slate-900">Detail Permintaan</h2>
         <div className="mt-4 flex items-center gap-3">
           {booking.mobil?.fotoUtama && (
             <img src={booking.mobil.fotoUtama} alt={booking.mobil.namaMobil} className="h-16 w-20 rounded-xl object-cover" />
