@@ -11,6 +11,7 @@ import Spinner from "../components/ui/Spinner";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
 const KEUNGGULAN = [
   { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit terbaru dari city car hingga SUV dan luxury MPV kelas premium, siap untuk berbagai kebutuhan.", accent: false },
@@ -21,19 +22,34 @@ const KEUNGGULAN = [
 
 export default function Home() {
   const { profile } = useCompanyProfile();
-  const [mobils, setMobils] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [testimoni, setTestimoni] = useState([]);
-  const [faq, setFaq] = useState([]);
+  const [mobils, setMobils] = useState(() => getPrerenderedData("home_mobils") ?? []);
+  const [loading, setLoading] = useState(() => getPrerenderedData("home_mobils") === undefined);
+  const [testimoni, setTestimoni] = useState(() => getPrerenderedData("home_testimoni") ?? []);
+  const [faq, setFaq] = useState(() => getPrerenderedData("home_faq") ?? []);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   useEffect(() => {
+    // Silent on the very first run when prerendered data already matches
+    // what's on screen — avoids the loading=true flash that discards and
+    // re-renders the mismatched, already-correct prerendered content (see
+    // src/utils/prerenderData.js).
+    const silent = getPrerenderedData("home_mobils") !== undefined;
+    if (!silent) setLoading(true);
     api
       .get("/mobil/populer", { params: { status: "tersedia", limit: 4 } })
-      .then(({ data }) => setMobils(data))
+      .then(({ data }) => {
+        setMobils(data);
+        setPrerenderedData("home_mobils", data);
+      })
       .finally(() => setLoading(false));
-    api.get("/testimoni").then(({ data }) => setTestimoni(data));
-    api.get("/faq").then(({ data }) => setFaq(data));
+    api.get("/testimoni").then(({ data }) => {
+      setTestimoni(data);
+      setPrerenderedData("home_testimoni", data);
+    });
+    api.get("/faq").then(({ data }) => {
+      setFaq(data);
+      setPrerenderedData("home_faq", data);
+    });
   }, []);
 
   return (
@@ -111,11 +127,11 @@ export default function Home() {
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-slate-900">Kenapa Pilih 287 Trans?</h2>
           <p className="mt-3 text-slate-600">
-            Kami berkomitmen memberikan pengalaman{" "}
+            {"Kami berkomitmen memberikan pengalaman "}
             <Link to="/rental-mobil-tangerang" className="font-semibold text-blue-600 hover:underline">
               rental mobil Tangerang
-            </Link>{" "}
-            terbaik untuk Anda.
+            </Link>
+            {" terbaik untuk Anda."}
           </p>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -180,7 +196,7 @@ export default function Home() {
                       <Star key={i} size={16} fill={i < t.rating ? "currentColor" : "none"} className={i < t.rating ? "" : "text-slate-300"} />
                     ))}
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">&ldquo;{t.pesan}&rdquo;</p>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{`“${t.pesan}”`}</p>
                   <p className="mt-4 text-sm font-bold text-slate-900">{t.nama}</p>
                   <p className="text-xs text-slate-500">{t.kota}</p>
                 </div>

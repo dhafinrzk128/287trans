@@ -66,17 +66,15 @@ export default function RentalMobilBulananTangerang() {
         <Reveal delay={160} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Lepas Kunci atau dengan Sopir untuk Pemakaian Bulanan</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Sama seperti sewa harian, skema bulanan tersedia dalam dua opsi:{" "}
+            {"Sama seperti sewa harian, skema bulanan tersedia dalam dua opsi: "}
             <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
               lepas kunci
-            </Link>{" "}
-            kalau Anda atau tim Anda sendiri yang akan mengemudikan setiap hari, atau{" "}
+            </Link>
+            {" kalau Anda atau tim Anda sendiri yang akan mengemudikan setiap hari, atau "}
             <Link to="/rental-mobil-plus-driver" className="font-semibold text-blue-600 hover:underline">
               plus driver
-            </Link>{" "}
-            kalau kendaraan dipakai bergantian oleh beberapa orang atau dibutuhkan sopir tetap untuk operasional
-            harian. Kedua opsi ini bisa disesuaikan lagi di tengah periode sewa kalau kebutuhan Anda berubah —
-            cukup sampaikan ke tim kami.
+            </Link>
+            {" kalau kendaraan dipakai bergantian oleh beberapa orang atau dibutuhkan sopir tetap untuk operasional harian. Kedua opsi ini bisa disesuaikan lagi di tengah periode sewa kalau kebutuhan Anda berubah — cukup sampaikan ke tim kami."}
           </p>
         </Reveal>
 

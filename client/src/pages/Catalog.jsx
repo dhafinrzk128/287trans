@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import api from "../api/client";
 import CarCard from "../components/CarCard";
@@ -10,16 +10,19 @@ import Button from "../components/ui/Button";
 import { inputClassName } from "../components/ui/FormField";
 import Seo from "../components/Seo";
 import { breadcrumbSchema } from "../utils/schema";
+import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
 const INITIAL_FILTER = { tipe: "", transmisi: "", kapasitas: "" };
+const PRERENDER_KEY = "katalog_mobils";
 
 function sortByAvailability(list) {
   return [...list].sort((a, b) => (a.status === "tersedia" ? 0 : 1) - (b.status === "tersedia" ? 0 : 1));
 }
 
 export default function Catalog() {
-  const [mobils, setMobils] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const isFirstRun = useRef(true);
+  const [mobils, setMobils] = useState(() => getPrerenderedData(PRERENDER_KEY) ?? []);
+  const [loading, setLoading] = useState(() => getPrerenderedData(PRERENDER_KEY) === undefined);
   const [filter, setFilter] = useState(INITIAL_FILTER);
   const [showFilter, setShowFilter] = useState(false);
   const [search, setSearch] = useState("");
@@ -35,13 +38,24 @@ export default function Catalog() {
   });
 
   useEffect(() => {
-    setLoading(true);
+    // Silent only on the very first run, and only when the filters are still
+    // at their default (matching what was actually prerendered) — avoids the
+    // loading=true flash that would discard the already-correct prerendered
+    // content (see src/utils/prerenderData.js).
+    const isDefaultFilter = !filter.transmisi && !filter.kapasitas;
+    const silent = isFirstRun.current && isDefaultFilter && getPrerenderedData(PRERENDER_KEY) !== undefined;
+    isFirstRun.current = false;
+    if (!silent) setLoading(true);
     const params = {};
     if (filter.transmisi) params.transmisi = filter.transmisi;
     if (filter.kapasitas) params.kapasitas = filter.kapasitas;
     api
       .get("/mobil", { params })
-      .then(({ data }) => setMobils(sortByAvailability(data)))
+      .then(({ data }) => {
+        const sorted = sortByAvailability(data);
+        setMobils(sorted);
+        if (isDefaultFilter) setPrerenderedData(PRERENDER_KEY, sorted);
+      })
       .finally(() => setLoading(false));
   }, [filter.transmisi, filter.kapasitas]);
 

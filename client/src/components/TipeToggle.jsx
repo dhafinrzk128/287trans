@@ -7,6 +7,10 @@ export default function TipeToggle({ tipeList, value, onChange }) {
   const options = ["", ...tipeList];
 
   useLayoutEffect(() => {
+    // Skip during prerendering (see scripts/prerender.js) — otherwise the
+    // measured position gets baked into the static HTML, which won't match
+    // the indicator's pre-measurement initial state on real hydration.
+    if (typeof window !== "undefined" && window.__PRERENDERING__) return;
     const btn = btnRefs.current.get(value);
     if (btn) {
       setIndicator({ left: btn.offsetLeft, width: btn.offsetWidth, visible: true });

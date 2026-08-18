@@ -47,6 +47,37 @@ async function main() {
   // unaffected since GTM doesn't touch visible markup.
   await page.route("**googletagmanager.com**", (route) => route.abort());
 
+  // <Reveal> (src/hooks/useReveal.js) starts every element hidden and uses
+  // IntersectionObserver to fade it in once scrolled into view. A real
+  // Chromium viewport during this crawl means anything within the fold
+  // actually intersects and gets captured with the "is-visible" class baked
+  // in — which a fresh client hydration never starts with (useState always
+  // starts at false), causing a hydration mismatch on every page that uses
+  // <Reveal>, which is nearly all of them. Stubbing the observer out keeps
+  // every element captured in its true initial (hidden) state, matching
+  // hydration exactly; real visitors still get the fade-in animation as
+  // they scroll, same as before this existed.
+  await page.addInitScript(() => {
+    window.IntersectionObserver = class {
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    };
+  });
+
+  // General version of the same problem: any effect that measures the real
+  // DOM (offsetLeft/offsetWidth, getBoundingClientRect, etc.) and mutates
+  // state in response — e.g. <TipeToggle>'s sliding pill indicator — also
+  // runs for real during this crawl, baking its post-measurement result
+  // into the captured HTML. A fresh hydration starts from the pre-effect
+  // state, so the two never match. Components with this pattern should
+  // check this flag and skip the measurement during prerendering, staying
+  // in their initial state so the captured HTML matches what hydration
+  // expects; the effect still runs normally for real visitors.
+  await page.addInitScript(() => {
+    window.__PRERENDERING__ = true;
+  });
+
   // Captured HTML is held in memory and only written to disk after every
   // route has been crawled. `vite preview` falls back to dist/index.html for
   // any path it doesn't have a static file for yet — writing results to disk

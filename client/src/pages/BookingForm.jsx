@@ -114,8 +114,10 @@ export default function BookingForm() {
         noindex
       />
       <nav className="mb-6 text-sm text-slate-500">
-        <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> /{" "}
-        <Link to={`/katalog/${mobil.idMobil}`} className="transition-colors hover:text-blue-600">{mobil.namaMobil}</Link> /{" "}
+        <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link>
+        {" / "}
+        <Link to={`/katalog/${mobil.idMobil}`} className="transition-colors hover:text-blue-600">{mobil.namaMobil}</Link>
+        {" / "}
         <span className="text-slate-700">Permintaan Booking</span>
       </nav>
 

@@ -10,6 +10,9 @@ import { breadcrumbSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import { formatRupiah, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
+
+const PRERENDER_KEY = "armada_mobils";
 
 function summarizeByTipe(mobils) {
   const byTipe = new Map();
@@ -29,13 +32,21 @@ function summarizeByTipe(mobils) {
 
 export default function Armada() {
   const { profile } = useCompanyProfile();
-  const [mobils, setMobils] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [mobils, setMobils] = useState(() => getPrerenderedData(PRERENDER_KEY) ?? []);
+  const [loading, setLoading] = useState(() => getPrerenderedData(PRERENDER_KEY) === undefined);
 
   useEffect(() => {
+    // Silent when this was already prerendered — avoids the loading=true
+    // flash that would discard the already-correct prerendered content (see
+    // src/utils/prerenderData.js).
+    const silent = getPrerenderedData(PRERENDER_KEY) !== undefined;
+    if (!silent) setLoading(true);
     api
       .get("/mobil")
-      .then(({ data }) => setMobils(data))
+      .then(({ data }) => {
+        setMobils(data);
+        setPrerenderedData(PRERENDER_KEY, data);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -88,7 +99,7 @@ export default function Armada() {
                   {kategori.map((k) => (
                     <tr key={k.tipe}>
                       <td className="px-4 py-3 font-medium text-slate-900">{k.tipe}</td>
-                      <td className="px-4 py-3 text-slate-600">{k.count} unit</td>
+                      <td className="px-4 py-3 text-slate-600">{`${k.count} unit`}</td>
                       <td className="px-4 py-3 text-slate-600">
                         {k.min === k.max ? formatRupiah(k.min) : `${formatRupiah(k.min)} - ${formatRupiah(k.max)}`}
                       </td>
@@ -119,20 +130,19 @@ export default function Armada() {
         <Reveal delay={160} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Semua Kategori Tersedia Lepas Kunci atau Plus Driver</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Terlepas dari kategori yang Anda pilih, seluruh armada kami bisa disewa dengan skema{" "}
+            {"Terlepas dari kategori yang Anda pilih, seluruh armada kami bisa disewa dengan skema "}
             <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
               lepas kunci
-            </Link>{" "}
-            maupun{" "}
+            </Link>
+            {" maupun "}
             <Link to="/rental-mobil-plus-driver" className="font-semibold text-blue-600 hover:underline">
               plus driver
             </Link>
-            , untuk durasi harian sampai{" "}
+            {", untuk durasi harian sampai "}
             <Link to="/rental-mobil-bulanan-tangerang" className="font-semibold text-blue-600 hover:underline">
               bulanan
             </Link>
-            . Setiap unit diperiksa kondisinya secara rutin sebelum disewakan, dan foto yang ditampilkan di katalog
-            adalah foto unit sebenarnya — bukan foto ilustrasi dari internet.
+            {". Setiap unit diperiksa kondisinya secara rutin sebelum disewakan, dan foto yang ditampilkan di katalog adalah foto unit sebenarnya — bukan foto ilustrasi dari internet."}
           </p>
         </Reveal>
 

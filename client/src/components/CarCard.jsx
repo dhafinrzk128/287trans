@@ -47,7 +47,7 @@ export default function CarCard({ mobil, priority = false }) {
           <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
             <span className="flex items-center gap-1">
               <Users size={16} />
-              {mobil.kapasitas} orang
+              {`${mobil.kapasitas} orang`}
             </span>
             <span className="flex items-center gap-1">
               <Cog size={16} />

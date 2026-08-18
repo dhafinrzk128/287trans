@@ -14,19 +14,31 @@ import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
+
+function toRanges(rawRanges) {
+  return rawRanges.map((r) => ({ from: new Date(r.tglAmbil), to: new Date(r.tglKembali) }));
+}
 
 export default function CarDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { profile } = useCompanyProfile();
-  const [mobil, setMobil] = useState(null);
-  const [bookedRanges, setBookedRanges] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const prerenderKey = `car_detail_${id}`;
+  const initialData = getPrerenderedData(prerenderKey);
+  const [mobil, setMobil] = useState(() => initialData?.mobil ?? null);
+  const [bookedRanges, setBookedRanges] = useState(() => (initialData ? toRanges(initialData.bookedRanges) : []));
+  const [loading, setLoading] = useState(() => initialData === undefined);
   const [activeFoto, setActiveFoto] = useState(0);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setLoading(true);
+    // Silent when this exact car's data was already prerendered — avoids the
+    // loading=true flash that would discard the already-correct prerendered
+    // content (see src/utils/prerenderData.js). A different :id via
+    // client-side navigation finds no matching key and loads normally.
+    const silent = getPrerenderedData(prerenderKey) !== undefined;
+    if (!silent) setLoading(true);
     setError("");
     Promise.all([
       api.get(`/mobil/${id}`),
@@ -34,13 +46,13 @@ export default function CarDetail() {
     ])
       .then(([mobilRes, rangesRes]) => {
         setMobil(mobilRes.data);
-        setBookedRanges(
-          rangesRes.data.map((r) => ({ from: new Date(r.tglAmbil), to: new Date(r.tglKembali) }))
-        );
+        setBookedRanges(toRanges(rangesRes.data));
         setActiveFoto(0);
+        setPrerenderedData(prerenderKey, { mobil: mobilRes.data, bookedRanges: rangesRes.data });
       })
       .catch(() => setError("Mobil tidak ditemukan."))
       .finally(() => setLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   if (loading) return <Spinner />;
@@ -145,19 +157,19 @@ export default function CarDetail() {
 
           <div className="mt-4 flex flex-wrap gap-3">
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
-              <Calendar size={16} /> {mobil.tahun}
+              <Calendar size={16} />{` ${mobil.tahun}`}
             </span>
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
-              <Tag size={16} /> {mobil.tipe}
+              <Tag size={16} />{` ${mobil.tipe}`}
             </span>
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
-              <Cog size={16} /> {mobil.transmisi}
+              <Cog size={16} />{` ${mobil.transmisi}`}
             </span>
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
-              <Fuel size={16} /> {mobil.bahanBakar}
+              <Fuel size={16} />{` ${mobil.bahanBakar}`}
             </span>
             <span className="flex items-center gap-2 rounded-xl bg-blue-50 px-3.5 py-2 text-sm font-medium text-blue-700">
-              <Users size={16} /> {mobil.kapasitas} orang
+              <Users size={16} />{` ${mobil.kapasitas} orang`}
             </span>
           </div>
 

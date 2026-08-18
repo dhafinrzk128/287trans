@@ -48,16 +48,11 @@ export default function SewaMobilLepasKunciTangerang() {
         <Reveal delay={80} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Kapan Sebaiknya Pilih Lepas Kunci?</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Lepas kunci paling cocok kalau Anda sudah familiar dengan rute yang akan dilewati, punya SIM aktif dan
-            terbiasa berkendara di area padat seperti Tangerang dan Jabodetabek, serta ingin mengatur sendiri waktu
-            berhenti — misalnya untuk urusan kerja yang lokasinya berpindah-pindah dalam sehari, jalan-jalan
-            bersama keluarga dengan itinerary sendiri, atau sekadar ingin privasi penuh selama di dalam mobil tanpa
-            ada sopir yang menemani. Kalau Anda justru belum familiar dengan rute atau ingin fokus bekerja selama
-            di perjalanan, opsi{" "}
+            {"Lepas kunci paling cocok kalau Anda sudah familiar dengan rute yang akan dilewati, punya SIM aktif dan terbiasa berkendara di area padat seperti Tangerang dan Jabodetabek, serta ingin mengatur sendiri waktu berhenti — misalnya untuk urusan kerja yang lokasinya berpindah-pindah dalam sehari, jalan-jalan bersama keluarga dengan itinerary sendiri, atau sekadar ingin privasi penuh selama di dalam mobil tanpa ada sopir yang menemani. Kalau Anda justru belum familiar dengan rute atau ingin fokus bekerja selama di perjalanan, opsi "}
             <Link to="/rental-mobil-plus-driver" className="font-semibold text-blue-600 hover:underline">
               rental mobil plus driver
-            </Link>{" "}
-            bisa jadi pilihan yang lebih pas.
+            </Link>
+            {" bisa jadi pilihan yang lebih pas."}
           </p>
         </Reveal>
 
@@ -108,13 +103,13 @@ export default function SewaMobilLepasKunciTangerang() {
         <Reveal delay={200} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Durasi Sewa Fleksibel</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Sewa lepas kunci bisa dimulai dari 1 hari saja hingga hitungan minggu dan bulan, tanpa minimum durasi
-            khusus. Kalau kebutuhan Anda lebih dari sekadar perjalanan singkat, lihat juga opsi{" "}
+            {"Sewa lepas kunci bisa dimulai dari 1 hari saja hingga hitungan minggu dan bulan, tanpa minimum durasi khusus. Kalau kebutuhan Anda lebih dari sekadar perjalanan singkat, lihat juga opsi "}
             <Link to="/rental-mobil-bulanan-tangerang" className="font-semibold text-blue-600 hover:underline">
               sewa bulanan
-            </Link>{" "}
-            yang lebih hemat untuk pemakaian jangka panjang. Untuk pertanyaan umum lainnya, cek halaman{" "}
-            <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link> kami.
+            </Link>
+            {" yang lebih hemat untuk pemakaian jangka panjang. Untuk pertanyaan umum lainnya, cek halaman "}
+            <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link>
+            {" kami."}
           </p>
         </Reveal>
 

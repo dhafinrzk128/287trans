@@ -71,12 +71,11 @@ export default function RentalMobilPlusDriver() {
             lengkap dengan unit yang sudah diperiksa kondisinya.
           </p>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Untuk kebutuhan yang sifatnya rutin — misalnya jemputan kantor setiap hari kerja dalam sebulan — opsi{" "}
+            {"Untuk kebutuhan yang sifatnya rutin — misalnya jemputan kantor setiap hari kerja dalam sebulan — opsi "}
             <Link to="/rental-mobil-bulanan-tangerang" className="font-semibold text-blue-600 hover:underline">
               sewa bulanan plus driver
-            </Link>{" "}
-            biasanya jauh lebih hemat dibanding pemesanan harian yang berulang. Tim kami bisa membantu menghitungkan
-            skema yang paling sesuai dengan pola pemakaian Anda.
+            </Link>
+            {" biasanya jauh lebih hemat dibanding pemesanan harian yang berulang. Tim kami bisa membantu menghitungkan skema yang paling sesuai dengan pola pemakaian Anda."}
           </p>
         </Reveal>
 
@@ -94,12 +93,13 @@ export default function RentalMobilPlusDriver() {
         <Reveal delay={200} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Lepas Kunci atau Plus Driver?</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Kalau Anda masih menimbang antara mengemudi sendiri atau memakai sopir, halaman{" "}
+            {"Kalau Anda masih menimbang antara mengemudi sendiri atau memakai sopir, halaman "}
             <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
               sewa mobil lepas kunci
-            </Link>{" "}
-            kami membahas kapan sebaiknya memilih opsi kemudi sendiri. Untuk pertanyaan umum lainnya seputar syarat
-            dan proses sewa, cek halaman <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link>.
+            </Link>
+            {" kami membahas kapan sebaiknya memilih opsi kemudi sendiri. Untuk pertanyaan umum lainnya seputar syarat dan proses sewa, cek halaman "}
+            <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link>
+            {"."}
           </p>
         </Reveal>
 

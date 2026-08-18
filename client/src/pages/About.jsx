@@ -30,7 +30,7 @@ export default function About() {
         <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-extrabold sm:text-4xl">Tentang Kami</h1>
-          <p className="mt-3 max-w-2xl text-blue-100">Mengenal lebih dekat {profile?.namaPerusahaan || "287 Trans"}.</p>
+          <p className="mt-3 max-w-2xl text-blue-100">{`Mengenal lebih dekat ${profile?.namaPerusahaan || "287 Trans"}.`}</p>
         </div>
       </section>
 

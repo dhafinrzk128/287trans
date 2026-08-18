@@ -9,30 +9,38 @@ import AdminLayout from "./components/layout/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Spinner from "./components/ui/Spinner";
 
-// Route-level code splitting: each page becomes its own chunk instead of
-// all being bundled into one ~550kB file. Layout/AdminLayout/ProtectedRoute
-// stay eager since they're the shell every route needs immediately; each
-// layout has its own <Suspense> around its <Outlet> (see Layout.jsx /
-// AdminLayout.jsx) so the navbar/sidebar don't flash away on every
-// navigation — only AdminLogin needs its own boundary here, since it's
-// the one lazy page that sits outside both layouts.
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Catalog = lazy(() => import("./pages/Catalog"));
-const CarDetail = lazy(() => import("./pages/CarDetail"));
-const BookingForm = lazy(() => import("./pages/BookingForm"));
-const BookingStatus = lazy(() => import("./pages/BookingStatus"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Armada = lazy(() => import("./pages/Armada"));
-const Faq = lazy(() => import("./pages/Faq"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Catalog from "./pages/Catalog";
+import CarDetail from "./pages/CarDetail";
+import BookingForm from "./pages/BookingForm";
+import BookingStatus from "./pages/BookingStatus";
+import Contact from "./pages/Contact";
+import Armada from "./pages/Armada";
+import Faq from "./pages/Faq";
+import NotFound from "./pages/NotFound";
 
-const RentalMobilTangerang = lazy(() => import("./pages/landing/RentalMobilTangerang"));
-const SewaMobilLepasKunciTangerang = lazy(() => import("./pages/landing/SewaMobilLepasKunciTangerang"));
-const RentalMobilPlusDriver = lazy(() => import("./pages/landing/RentalMobilPlusDriver"));
-const RentalMobilBulananTangerang = lazy(() => import("./pages/landing/RentalMobilBulananTangerang"));
-const SewaMobilBandaraSoekarnoHatta = lazy(() => import("./pages/landing/SewaMobilBandaraSoekarnoHatta"));
+import RentalMobilTangerang from "./pages/landing/RentalMobilTangerang";
+import SewaMobilLepasKunciTangerang from "./pages/landing/SewaMobilLepasKunciTangerang";
+import RentalMobilPlusDriver from "./pages/landing/RentalMobilPlusDriver";
+import RentalMobilBulananTangerang from "./pages/landing/RentalMobilBulananTangerang";
+import SewaMobilBandaraSoekarnoHatta from "./pages/landing/SewaMobilBandaraSoekarnoHatta";
 
+// Route-level code splitting only applies to /admin/*: those pages are
+// never prerendered (they're behind auth and noindexed), so there's no
+// static HTML for hydrateRoot to reconcile against — a lazy chunk there is
+// just normal client-side rendering into an empty shell. Public pages
+// above stay eager on purpose: they DO get real prerendered HTML, and
+// React.lazy() always suspends on its very first render (the dynamic
+// import's promise can't resolve synchronously even when the chunk is
+// cached), which briefly commits the <Suspense> fallback during hydration.
+// Real React SSR papers over that by streaming the fallback into the HTML
+// first and patching it later; this app's prerendering just snapshots the
+// final settled DOM with a headless browser, so the static HTML has real
+// content from the start and none of the markers hydration needs to
+// reconcile that gracefully — every public page hydrating through a lazy
+// Suspense boundary was hitting error #418 and silently discarding the
+// prerendered content for a full client re-render.
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminCars = lazy(() => import("./pages/admin/AdminCars"));

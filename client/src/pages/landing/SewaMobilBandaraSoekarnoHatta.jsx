@@ -42,18 +42,15 @@ export default function SewaMobilBandaraSoekarnoHatta() {
         <Reveal delay={80} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Dua Opsi: Antar Sendiri atau Diantar Sopir</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Untuk perjalanan ke bandara, Anda bisa memilih{" "}
+            {"Untuk perjalanan ke bandara, Anda bisa memilih "}
             <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
               sewa lepas kunci
-            </Link>{" "}
-            kalau ingin mengemudikan sendiri dan melanjutkan pemakaian mobil setelah kembali dari perjalanan, atau{" "}
+            </Link>
+            {" kalau ingin mengemudikan sendiri dan melanjutkan pemakaian mobil setelah kembali dari perjalanan, atau "}
             <Link to="/rental-mobil-plus-driver" className="font-semibold text-blue-600 hover:underline">
               plus driver
-            </Link>{" "}
-            supaya Anda tidak perlu memikirkan parkir jangka panjang di area bandara maupun kondisi lalu lintas
-            menjelang jam penerbangan. Opsi plus driver biasanya lebih dipilih untuk keberangkatan pagi buta atau
-            kepulangan larut malam, di mana fokus penuh lebih baik dicurahkan untuk persiapan perjalanan daripada
-            menyetir.
+            </Link>
+            {" supaya Anda tidak perlu memikirkan parkir jangka panjang di area bandara maupun kondisi lalu lintas menjelang jam penerbangan. Opsi plus driver biasanya lebih dipilih untuk keberangkatan pagi buta atau kepulangan larut malam, di mana fokus penuh lebih baik dicurahkan untuk persiapan perjalanan daripada menyetir."}
           </p>
         </Reveal>
 
@@ -81,11 +78,9 @@ export default function SewaMobilBandaraSoekarnoHatta() {
         <Reveal delay={200} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Bukan Hanya untuk Sekali Jalan</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Kalau perjalanan Anda ke bandara adalah bagian dari trip yang lebih panjang — misalnya perjalanan dinas
-            beberapa hari sebelum kembali terbang — unit yang sama bisa dipakai selama masa sewa berlangsung, tidak
-            terbatas hanya untuk rute bandara saja. Lihat{" "}
-            <Link to="/armada" className="font-semibold text-blue-600 hover:underline">daftar armada</Link> kami
-            untuk unit yang sesuai kebutuhan perjalanan Anda selama di Tangerang dan sekitarnya.
+            {"Kalau perjalanan Anda ke bandara adalah bagian dari trip yang lebih panjang — misalnya perjalanan dinas beberapa hari sebelum kembali terbang — unit yang sama bisa dipakai selama masa sewa berlangsung, tidak terbatas hanya untuk rute bandara saja. Lihat "}
+            <Link to="/armada" className="font-semibold text-blue-600 hover:underline">daftar armada</Link>
+            {" kami untuk unit yang sesuai kebutuhan perjalanan Anda selama di Tangerang dan sekitarnya."}
           </p>
         </Reveal>
 

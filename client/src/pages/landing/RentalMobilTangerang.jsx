@@ -138,13 +138,13 @@ export default function RentalMobilTangerang() {
         <Reveal delay={240} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Area Layanan Jabodetabek</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Selain Tangerang, layanan rental mobil kami menjangkau Tangerang Selatan, Jakarta, Bekasi, Depok, dan
-            Bogor. Untuk melihat seluruh unit yang tersedia beserta harga per hari, silakan cek{" "}
-            <Link to="/armada" className="font-semibold text-blue-600 hover:underline">daftar armada</Link> atau
-            langsung jelajahi{" "}
-            <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">katalog mobil</Link> kami.
-            Untuk pertanyaan umum seputar syarat dan proses sewa, kunjungi halaman{" "}
-            <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link> kami.
+            {"Selain Tangerang, layanan rental mobil kami menjangkau Tangerang Selatan, Jakarta, Bekasi, Depok, dan Bogor. Untuk melihat seluruh unit yang tersedia beserta harga per hari, silakan cek "}
+            <Link to="/armada" className="font-semibold text-blue-600 hover:underline">daftar armada</Link>
+            {" atau langsung jelajahi "}
+            <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">katalog mobil</Link>
+            {" kami. Untuk pertanyaan umum seputar syarat dan proses sewa, kunjungi halaman "}
+            <Link to="/faq" className="font-semibold text-blue-600 hover:underline">FAQ</Link>
+            {" kami."}
           </p>
         </Reveal>
 

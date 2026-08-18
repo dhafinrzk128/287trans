@@ -103,9 +103,9 @@ export default function Faq() {
         <Reveal delay={80} className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center sm:p-8">
           <h2 className="text-lg font-bold text-slate-900">Masih Ada Pertanyaan Lain?</h2>
           <p className="mt-2 leading-relaxed text-slate-600">
-            Tim kami siap membantu menjawab langsung via WhatsApp, atau kunjungi{" "}
-            <Link to="/kontak" className="font-semibold text-blue-600 hover:underline">halaman kontak</Link> untuk
-            informasi lengkap.
+            {"Tim kami siap membantu menjawab langsung via WhatsApp, atau kunjungi "}
+            <Link to="/kontak" className="font-semibold text-blue-600 hover:underline">halaman kontak</Link>
+            {" untuk informasi lengkap."}
           </p>
           {profile?.whatsapp && (
             <a
