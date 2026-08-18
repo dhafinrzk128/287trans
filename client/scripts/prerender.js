@@ -36,6 +36,7 @@ async function main() {
 
   const server = await preview({ preview: { port: 4173, host: "127.0.0.1" }, logLevel: "warn" });
   const base = server.resolvedUrls.local[0];
+  const previewOrigin = new URL(base).origin;
 
   const browser = await chromium.launch();
   const page = await browser.newPage();
@@ -59,7 +60,13 @@ async function main() {
       const url = new URL(route, base).toString();
       await page.goto(url, { waitUntil: "networkidle", timeout: 30000 });
       await page.waitForTimeout(150); // let React settle just past network-idle
-      results.set(route, await page.content());
+      // React Router's lazy-route preloading inserts <link rel="modulepreload">
+      // tags with an absolute href computed from the current origin — since
+      // that's this preview server, it bakes http://127.0.0.1:4173/... into
+      // the captured HTML. Strip it back to root-relative so it resolves
+      // correctly against whatever origin actually serves the built site.
+      const html = (await page.content()).split(previewOrigin).join("");
+      results.set(route, html);
       console.log(`[prerender] ok    ${route}`);
     } catch (err) {
       console.error(`[prerender] FAIL  ${route} — ${err.message}`);
