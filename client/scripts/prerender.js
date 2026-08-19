@@ -91,6 +91,22 @@ async function main() {
       const url = new URL(route, base).toString();
       await page.goto(url, { waitUntil: "networkidle", timeout: 30000 });
       await page.waitForTimeout(150); // let React settle just past network-idle
+
+      // index.html carries GTM's standard inline loader, which injects its own
+      // <script src="...gtm.js?id=..."> at runtime. That injected tag is part
+      // of the live DOM by the time we snapshot it, so it gets baked into the
+      // static HTML — and then every real visitor loads GTM twice: once from
+      // the baked tag, once from the inline loader running again. Two
+      // initialisations of the same container risk double-firing tags, which
+      // would inflate conversion counts. Drop the injected tags before
+      // capturing; the inline loader stays untouched, so real visitors still
+      // get GTM exactly once.
+      await page.evaluate(() => {
+        document
+          .querySelectorAll('script[src*="googletagmanager.com"]')
+          .forEach((el) => el.remove());
+      });
+
       // React Router's lazy-route preloading inserts <link rel="modulepreload">
       // tags with an absolute href computed from the current origin — since
       // that's this preview server, it bakes http://127.0.0.1:4173/... into
