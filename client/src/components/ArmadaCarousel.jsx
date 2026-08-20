@@ -77,6 +77,7 @@ export default function ArmadaCarousel() {
               src={foto.urlFoto}
               alt={foto.judul || "Armada rental mobil 287 Trans di Tangerang"}
               className="h-full w-full object-cover"
+              style={{ objectPosition: foto.posisiFokus || "50% 50%" }}
               loading="lazy"
             />
           </div>

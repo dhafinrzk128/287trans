@@ -128,11 +128,19 @@ model Faq {
 // pilihan, atau angle yang lebih "jualan"), sementara foto_mobil harus apa
 // adanya karena dipakai pelanggan untuk menilai unit sebelum booking.
 model GaleriArmada {
-  id        Int      @id @default(autoincrement())
-  urlFoto   String   @map("url_foto")
-  judul     String?
-  urutan    Int      @default(0)
-  aktif     Boolean  @default(true)
+  id      Int     @id @default(autoincrement())
+  urlFoto String  @map("url_foto")
+  judul   String?
+  urutan  Int     @default(0)
+  aktif   Boolean @default(true)
+
+  // Nilai CSS object-position ("50% 50%", "50% 20%", dst). Slider memangkas
+  // foto ke rasio 16:9, dan default tengah sering memotong bagian penting —
+  // mobil yang duduk agak ke bawah frame, misalnya. Admin memilih titik
+  // fokusnya per foto lewat pratinjau; file aslinya tidak diubah sama sekali,
+  // jadi angle bisa diatur ulang kapan saja tanpa upload ulang.
+  posisiFokus String @default("50% 50%") @map("posisi_fokus")
+
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("galeri_armada")

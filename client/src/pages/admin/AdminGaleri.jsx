@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import { Upload, Trash2, Eye, EyeOff, ArrowUp, ArrowDown } from "lucide-react";
+import { Upload, Trash2, Eye, EyeOff, ArrowUp, ArrowDown, Crop } from "lucide-react";
 import api from "../../api/client";
 import Button from "../../components/ui/Button";
 import Spinner from "../../components/ui/Spinner";
 import SmartImage from "../../components/SmartImage";
+import FokusFotoPicker from "../../components/admin/FokusFotoPicker";
 
 export default function AdminGaleri() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
+  const [fokusId, setFokusId] = useState(null);
   const fileInputRef = useRef(null);
 
   function load() {
@@ -49,6 +51,14 @@ export default function AdminGaleri() {
   async function toggleAktif(item) {
     await api.put(`/galeri/admin/${item.id}`, { aktif: !item.aktif });
     load();
+  }
+
+  // Diterapkan ke state lokal lebih dulu supaya pratinjau bergeser seketika
+  // saat tombol angle ditekan; tanpa itu setiap klik harus menunggu jaringan
+  // dan memilih angle jadi terasa lambat.
+  async function setFokus(item, posisiFokus) {
+    setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, posisiFokus } : i)));
+    await api.put(`/galeri/admin/${item.id}`, { posisiFokus });
   }
 
   // Tukar nilai urutan dengan tetangganya, lalu muat ulang. Dua request kecil
@@ -124,11 +134,14 @@ export default function AdminGaleri() {
                   item.aktif ? "border-slate-200" : "border-slate-200 opacity-60"
                 }`}
               >
-                <div className="relative aspect-[4/3] w-full bg-slate-100">
+                {/* Rasio dan object-position disamakan dengan slider di halaman
+                    landing, jadi kartu ini sekaligus jadi pratinjau apa adanya. */}
+                <div className="relative aspect-[16/9] w-full bg-slate-100">
                   <SmartImage
                     src={item.urlFoto}
                     alt={item.judul || "Foto galeri armada"}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition-[object-position] duration-200"
+                    style={{ objectPosition: item.posisiFokus || "50% 50%" }}
                     loading="lazy"
                   />
                   {!item.aktif && (
@@ -158,6 +171,17 @@ export default function AdminGaleri() {
                   </div>
                   <div className="flex gap-1">
                     <button
+                      onClick={() => setFokusId(fokusId === item.id ? null : item.id)}
+                      className={`cursor-pointer rounded-lg p-1.5 transition-colors ${
+                        fokusId === item.id
+                          ? "bg-blue-50 text-blue-600"
+                          : "text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+                      }`}
+                      aria-label="Atur angle foto"
+                    >
+                      <Crop size={15} />
+                    </button>
+                    <button
                       onClick={() => toggleAktif(item)}
                       className="cursor-pointer rounded-lg p-1.5 text-slate-600 transition-colors hover:bg-blue-50 hover:text-blue-600"
                       aria-label={item.aktif ? "Sembunyikan foto" : "Tampilkan foto"}
@@ -173,6 +197,15 @@ export default function AdminGaleri() {
                     </button>
                   </div>
                 </div>
+
+                {fokusId === item.id && (
+                  <FokusFotoPicker
+                    src={item.urlFoto}
+                    value={item.posisiFokus || "50% 50%"}
+                    onChange={(v) => setFokus(item, v)}
+                    onClose={() => setFokusId(null)}
+                  />
+                )}
               </div>
             ))}
           </div>

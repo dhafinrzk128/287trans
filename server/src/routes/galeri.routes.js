@@ -66,13 +66,22 @@ router.put("/admin/:id", requireAdminAuth, async (req, res) => {
   const existing = await prisma.galeriArmada.findUnique({ where: { id } });
   if (!existing) return res.status(404).json({ message: "Foto tidak ditemukan." });
 
-  const { judul, urutan, aktif } = req.body;
+  const { judul, urutan, aktif, posisiFokus } = req.body;
+
+  // posisiFokus masuk langsung ke atribut style di halaman publik, jadi hanya
+  // bentuk "<angka>% <angka>%" yang diterima — apa pun selain itu ditolak
+  // ketimbang diteruskan mentah ke CSS.
+  if (posisiFokus !== undefined && !/^\d{1,3}% \d{1,3}%$/.test(posisiFokus)) {
+    return res.status(400).json({ message: "Format posisi fokus tidak valid." });
+  }
+
   const updated = await prisma.galeriArmada.update({
     where: { id },
     data: {
       ...(judul !== undefined && { judul: judul || null }),
       ...(urutan !== undefined && { urutan: Number(urutan) }),
       ...(aktif !== undefined && { aktif: Boolean(aktif) }),
+      ...(posisiFokus !== undefined && { posisiFokus }),
     },
   });
   res.json(updated);
