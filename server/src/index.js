@@ -68,6 +68,7 @@ const KNOWN_SPA_ROUTES = [
   /^\/admin\/booking\/[^/]+\/?$/,
   /^\/admin\/testimoni\/?$/,
   /^\/admin\/faq\/?$/,
+  /^\/admin\/galeri\/?$/,
   /^\/admin\/profile\/?$/,
   /^\/admin\/akun\/?$/,
 ];
