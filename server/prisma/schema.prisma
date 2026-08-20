@@ -122,3 +122,18 @@ model Faq {
 
   @@map("faq")
 }
+
+// Foto untuk carousel armada di halaman landing iklan. Sengaja terpisah dari
+// foto_mobil: yang ini dikurasi khusus untuk iklan (boleh foto suasana, unit
+// pilihan, atau angle yang lebih "jualan"), sementara foto_mobil harus apa
+// adanya karena dipakai pelanggan untuk menilai unit sebelum booking.
+model GaleriArmada {
+  id        Int      @id @default(autoincrement())
+  urlFoto   String   @map("url_foto")
+  judul     String?
+  urutan    Int      @default(0)
+  aktif     Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("galeri_armada")
+}

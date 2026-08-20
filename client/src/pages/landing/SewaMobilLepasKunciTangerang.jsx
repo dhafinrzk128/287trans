@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
+import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
@@ -10,8 +11,8 @@ import { trackWhatsAppClick } from "../../utils/tracking";
 
 const SYARAT = [
   "KTP yang masih berlaku (sesuai nama pemesan)",
-  "Mengisi form permintaan booking online — tanpa perlu membuat akun",
-  "Nomor HP aktif untuk konfirmasi dari tim kami",
+  "Nomor HP aktif untuk konfirmasi unit dan jadwal",
+  "Cukup hubungi kami via WhatsApp atau telepon — tanpa perlu membuat akun",
 ];
 
 export default function SewaMobilLepasKunciTangerang() {
@@ -45,6 +46,10 @@ export default function SewaMobilLepasKunciTangerang() {
           </p>
         </Reveal>
 
+        <Reveal delay={40}>
+          <ArmadaCarousel />
+        </Reveal>
+
         <Reveal delay={80} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Kapan Sebaiknya Pilih Lepas Kunci?</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
@@ -72,8 +77,9 @@ export default function SewaMobilLepasKunciTangerang() {
           </ul>
           <p className="mt-3 leading-relaxed text-slate-700">
             Tidak ada syarat kartu kredit, tidak perlu jaminan BPKB, dan tidak ada proses verifikasi berlapis yang
-            memperlambat pemesanan. Setelah form booking terkirim, tim kami akan menghubungi Anda untuk konfirmasi
-            unit, tanggal, dan estimasi biaya sebelum serah terima dilakukan.
+            memperlambat pemesanan. Chat WhatsApp atau telepon kami, dan tim langsung mengonfirmasi ketersediaan
+            unit, tanggal, serta estimasi biaya sebelum serah terima. Kalau lebih suka mengatur sendiri, form
+            booking online tetap tersedia di setiap halaman mobil.
           </p>
         </Reveal>
 
