@@ -66,13 +66,15 @@ router.put("/admin/:id", requireAdminAuth, async (req, res) => {
   const existing = await prisma.galeriArmada.findUnique({ where: { id } });
   if (!existing) return res.status(404).json({ message: "Foto tidak ditemukan." });
 
-  const { judul, urutan, aktif, posisiFokus } = req.body;
+  const { judul, urutan, aktif, posisiFokus, zoom } = req.body;
 
-  // posisiFokus masuk langsung ke atribut style di halaman publik, jadi hanya
-  // bentuk "<angka>% <angka>%" yang diterima — apa pun selain itu ditolak
-  // ketimbang diteruskan mentah ke CSS.
-  if (posisiFokus !== undefined && !/^\d{1,3}% \d{1,3}%$/.test(posisiFokus)) {
+  // posisiFokus dan zoom keduanya masuk ke atribut style di halaman publik,
+  // jadi bentuknya divalidasi ketat di sini ketimbang diteruskan mentah ke CSS.
+  if (posisiFokus !== undefined && !/^-?\d{1,3}(\.\d+)?% -?\d{1,3}(\.\d+)?%$/.test(posisiFokus)) {
     return res.status(400).json({ message: "Format posisi fokus tidak valid." });
+  }
+  if (zoom !== undefined && !(Number(zoom) >= 1 && Number(zoom) <= 4)) {
+    return res.status(400).json({ message: "Zoom harus antara 1 dan 4." });
   }
 
   const updated = await prisma.galeriArmada.update({
@@ -82,6 +84,7 @@ router.put("/admin/:id", requireAdminAuth, async (req, res) => {
       ...(urutan !== undefined && { urutan: Number(urutan) }),
       ...(aktif !== undefined && { aktif: Boolean(aktif) }),
       ...(posisiFokus !== undefined && { posisiFokus }),
+      ...(zoom !== undefined && { zoom: Number(zoom) }),
     },
   });
   res.json(updated);

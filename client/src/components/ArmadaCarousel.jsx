@@ -72,12 +72,18 @@ export default function ArmadaCarousel() {
         className="scrollbar-none flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
       >
         {fotos.map((foto) => (
-          <div key={foto.id} className="aspect-[16/9] w-full shrink-0 snap-start bg-slate-100">
+          <div
+            key={foto.id}
+            className="aspect-[16/9] w-full shrink-0 snap-start overflow-hidden bg-slate-100"
+          >
             <SmartImage
               src={foto.urlFoto}
               alt={foto.judul || "Armada rental mobil 287 Trans di Tangerang"}
               className="h-full w-full object-cover"
-              style={{ objectPosition: foto.posisiFokus || "50% 50%" }}
+              style={{
+                objectPosition: foto.posisiFokus || "50% 50%",
+                transform: `scale(${foto.zoom ?? 1})`,
+              }}
               loading="lazy"
             />
           </div>

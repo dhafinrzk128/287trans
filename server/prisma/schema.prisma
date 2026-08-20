@@ -134,12 +134,14 @@ model GaleriArmada {
   urutan  Int     @default(0)
   aktif   Boolean @default(true)
 
-  // Nilai CSS object-position ("50% 50%", "50% 20%", dst). Slider memangkas
-  // foto ke rasio 16:9, dan default tengah sering memotong bagian penting —
-  // mobil yang duduk agak ke bawah frame, misalnya. Admin memilih titik
-  // fokusnya per foto lewat pratinjau; file aslinya tidak diubah sama sekali,
-  // jadi angle bisa diatur ulang kapan saja tanpa upload ulang.
+  // Hasil pengaturan crop admin, disimpan sebagai nilai CSS supaya bisa
+  // dipakai langsung tanpa mengolah ulang gambar: posisiFokus = object-position
+  // (menggeser bagian mana yang tampak), zoom = faktor scale. Keduanya relatif
+  // terhadap ukuran frame, jadi hasilnya sama persis di pratinjau admin maupun
+  // di halaman publik yang lebarnya berbeda. File asli tidak pernah disentuh,
+  // jadi crop bisa diubah berkali-kali tanpa kehilangan kualitas.
   posisiFokus String @default("50% 50%") @map("posisi_fokus")
+  zoom        Float  @default(1)
 
   createdAt DateTime @default(now()) @map("created_at")
 

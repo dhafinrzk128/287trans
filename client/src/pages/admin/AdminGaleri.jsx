@@ -13,6 +13,7 @@ export default function AdminGaleri() {
   const [error, setError] = useState("");
   const [fokusId, setFokusId] = useState(null);
   const fileInputRef = useRef(null);
+  const simpanTimerRef = useRef(null);
 
   function load() {
     setLoading(true);
@@ -53,12 +54,18 @@ export default function AdminGaleri() {
     load();
   }
 
-  // Diterapkan ke state lokal lebih dulu supaya pratinjau bergeser seketika
-  // saat tombol angle ditekan; tanpa itu setiap klik harus menunggu jaringan
-  // dan memilih angle jadi terasa lambat.
-  async function setFokus(item, posisiFokus) {
-    setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, posisiFokus } : i)));
-    await api.put(`/galeri/admin/${item.id}`, { posisiFokus });
+  // Drag menghasilkan puluhan perubahan per detik, jadi state lokal diperbarui
+  // seketika (pratinjau harus mengikuti jari tanpa jeda) sementara penyimpanan
+  // ke server ditunda sampai gerakan berhenti sejenak.
+  function setCrop(item, { posisiFokus, zoom }) {
+    setItems((prev) => prev.map((i) => (i.id === item.id ? { ...i, posisiFokus, zoom } : i)));
+
+    clearTimeout(simpanTimerRef.current);
+    simpanTimerRef.current = setTimeout(() => {
+      api.put(`/galeri/admin/${item.id}`, { posisiFokus, zoom }).catch(() => {
+        setError("Gagal menyimpan pengaturan crop. Coba atur ulang.");
+      });
+    }, 400);
   }
 
   // Tukar nilai urutan dengan tetangganya, lalu muat ulang. Dua request kecil
@@ -136,12 +143,15 @@ export default function AdminGaleri() {
               >
                 {/* Rasio dan object-position disamakan dengan slider di halaman
                     landing, jadi kartu ini sekaligus jadi pratinjau apa adanya. */}
-                <div className="relative aspect-[16/9] w-full bg-slate-100">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
                   <SmartImage
                     src={item.urlFoto}
                     alt={item.judul || "Foto galeri armada"}
-                    className="h-full w-full object-cover transition-[object-position] duration-200"
-                    style={{ objectPosition: item.posisiFokus || "50% 50%" }}
+                    className="h-full w-full object-cover"
+                    style={{
+                      objectPosition: item.posisiFokus || "50% 50%",
+                      transform: `scale(${item.zoom ?? 1})`,
+                    }}
                     loading="lazy"
                   />
                   {!item.aktif && (
@@ -202,7 +212,8 @@ export default function AdminGaleri() {
                   <FokusFotoPicker
                     src={item.urlFoto}
                     value={item.posisiFokus || "50% 50%"}
-                    onChange={(v) => setFokus(item, v)}
+                    zoom={item.zoom ?? 1}
+                    onChange={(crop) => setCrop(item, crop)}
                     onClose={() => setFokusId(null)}
                   />
                 )}
