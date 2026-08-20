@@ -1,5 +1,3 @@
-import { buildUtmRefTag } from "./utm";
-
 export function formatRupiah(value) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -36,11 +34,17 @@ export function toDateInputValue(value) {
   return localDate.toISOString().slice(0, 10);
 }
 
+// The prefilled text lands in the customer's own WhatsApp compose box, so it
+// has to read like something a person would actually send. It deliberately
+// carries no campaign/gclid tag: that used to be appended here, which meant
+// visitors arriving from an ad — the exact traffic we pay for and measure —
+// saw a technical "[ref: gclid-...]" string in their draft and had to decide
+// whether to delete it before sending. Attribution never depended on it
+// anyway; trackWhatsAppClick (src/utils/tracking.js) already sends the UTM
+// and gclid values to GTM, so Google Ads still credits the right campaign.
 export function buildWaLink(number, text) {
   const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
-  const refTag = buildUtmRefTag();
-  const fullText = [text, refTag].filter(Boolean).join(" ");
-  const query = fullText ? `?text=${encodeURIComponent(fullText)}` : "";
+  const query = text ? `?text=${encodeURIComponent(text)}` : "";
   return `https://wa.me/${digits}${query}`;
 }
 
