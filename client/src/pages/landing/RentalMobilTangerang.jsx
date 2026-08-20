@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
+import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
@@ -38,6 +39,8 @@ export default function RentalMobilTangerang() {
             tidak perlu khawatir soal kondisi mesin, kebersihan kabin, maupun kelengkapan surat-surat kendaraan.
           </p>
         </Reveal>
+
+        <ArmadaCarousel />
 
         <Reveal delay={80} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Kenapa Rental Mobil di Tangerang Bersama 287 Trans?</h2>
