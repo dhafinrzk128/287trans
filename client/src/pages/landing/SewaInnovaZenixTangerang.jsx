@@ -1,13 +1,52 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
-import { breadcrumbSchema } from "../../utils/schema";
+import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
+
+// Angka di bawah mengikuti data unit di katalog, bukan spesifikasi pabrikan,
+// supaya halaman ini tidak pernah menjanjikan sesuatu yang tidak kami punya.
+const SPEK = [
+  "Transmisi matic pada seluruh varian",
+  "Kapasitas 7 penumpang dengan tiga baris kursi",
+  "Tersedia mesin bensin maupun hybrid (HEV)",
+  "Seluruh unit keluaran 2024",
+];
+
+const VARIAN = [
+  { nama: "Innova Zenix Type-G", tahun: 2024, bahanBakar: "Bensin", harga: "Rp849.000" },
+  { nama: "Innova Zenix Type-G HEV", tahun: 2024, bahanBakar: "Hybrid", harga: "Rp949.000" },
+  { nama: "Innova Zenix Type-V HEV", tahun: 2024, bahanBakar: "Hybrid", harga: "Rp1.049.000" },
+  { nama: "Innova Zenix Type-Q HEV", tahun: 2024, bahanBakar: "Hybrid", harga: "Rp1.349.000" },
+];
+
+const FAQ_LIST = [
+  {
+    pertanyaan: "Berapa harga sewa Innova Zenix per hari di Tangerang?",
+    jawaban:
+      "Zenix Type-G bermesin bensin tersedia mulai Rp849.000 per hari. Varian hybrid dimulai dari Type-G HEV Rp949.000, Type-V HEV Rp1.049.000, hingga Type-Q HEV Rp1.349.000 per hari. Tarif tersebut untuk sewa lepas kunci; biaya sopir dihitung terpisah.",
+  },
+  {
+    pertanyaan: "Apa keuntungan varian hybrid dibanding bensin biasa?",
+    jawaban:
+      "Pada lalu lintas berhenti-jalan, sistem hybrid membuat mobil dapat bergerak dengan tenaga listrik pada kecepatan rendah sehingga kabin lebih hening dan konsumsi bahan bakar lebih terkendali. Bedanya paling terasa di dalam kota; untuk rute tol jarak jauh, selisihnya tidak sebesar itu.",
+  },
+  {
+    pertanyaan: "Apa bedanya Type-G, Type-V, dan Type-Q HEV?",
+    jawaban:
+      "Ketiganya berbagi sistem hybrid yang sama, jadi karakter mesinnya serupa. Perbedaannya ada pada kelengkapan fitur dan interior, di mana Type-Q merupakan trim tertinggi. Untuk perjalanan biasa, Type-G sudah lebih dari cukup.",
+  },
+  {
+    pertanyaan: "Innova Zenix atau Innova Reborn untuk perjalanan luar kota?",
+    jawaban:
+      "Untuk rute tol jarak jauh dengan kecepatan konstan, mesin diesel pada Innova Reborn terasa lebih pas dan tarif hariannya lebih rendah. Zenix lebih unggul pada kenyamanan kabin dan efisiensi di lalu lintas padat, sehingga sering dipilih untuk penggunaan dalam kota atau menjemput tamu.",
+  },
+];
 
 export default function SewaInnovaZenixTangerang() {
   const { profile } = useCompanyProfile();
@@ -18,10 +57,13 @@ export default function SewaInnovaZenixTangerang() {
         title="Sewa Innova Zenix Tangerang - Hybrid & Bensin, Matic 7 Kursi"
         description="Sewa Toyota Innova Zenix di Tangerang mulai Rp849.000/hari. Varian bensin dan hybrid (HEV) Type-G, V, hingga Q. Semua 2024, matic, 7 penumpang."
         path="/sewa-innova-zenix-tangerang"
-        jsonLd={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Sewa Innova Zenix Tangerang", path: "/sewa-innova-zenix-tangerang" },
-        ])}
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Sewa Innova Zenix Tangerang", path: "/sewa-innova-zenix-tangerang" },
+          ]),
+          faqPageSchema(FAQ_LIST),
+        ]}
       />
 
       <PageHero
@@ -56,6 +98,42 @@ export default function SewaInnovaZenixTangerang() {
             keperluan acara yang menuntut tampilan lebih rapi. Tim kami bisa membantu menentukan varian yang sesuai
             bila Anda ragu.
           </p>
+
+          <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 text-slate-500">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-semibold">Varian</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Tahun</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Bahan Bakar</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Harga per Hari</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {VARIAN.map((v) => (
+                  <tr key={v.nama}>
+                    <td className="px-4 py-3 font-medium text-slate-900">{v.nama}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.tahun}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.bahanBakar}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.harga}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-slate-500">
+            Harga dapat berubah mengikuti ketersediaan unit dan durasi sewa. Tarif di atas berlaku untuk sewa lepas
+            kunci; biaya sopir dihitung terpisah.
+          </p>
+
+          <ul className="mt-6 space-y-2.5">
+            {SPEK.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-slate-700">
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         <Reveal delay={120} className="mt-10">
@@ -105,6 +183,28 @@ export default function SewaInnovaZenixTangerang() {
             <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">katalog mobil</Link>
             {" kami."}
           </p>
+        </Reveal>
+
+        <Reveal delay={220} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">Pertanyaan Seputar Sewa Innova Zenix</h2>
+          <div className="mt-4 space-y-3">
+            {FAQ_LIST.map((item) => (
+              <details
+                key={item.pertanyaan}
+                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-semibold text-slate-900 marker:content-none">
+                  {item.pertanyaan}
+                  <span className="shrink-0 text-blue-600 transition-transform duration-200 group-open:rotate-180">
+                    &#9660;
+                  </span>
+                </summary>
+                <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
+                  {item.jawaban}
+                </p>
+              </details>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal delay={240} className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">

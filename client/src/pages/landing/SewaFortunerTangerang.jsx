@@ -1,13 +1,50 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
-import { breadcrumbSchema } from "../../utils/schema";
+import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
+
+// Angka di bawah mengikuti data unit di katalog, bukan spesifikasi pabrikan,
+// supaya halaman ini tidak pernah menjanjikan sesuatu yang tidak kami punya.
+const SPEK = [
+  "Transmisi matic pada seluruh varian",
+  "Kapasitas 7 penumpang dengan tiga baris kursi",
+  "Mesin diesel, bertenaga di tanjakan dan saat muatan penuh",
+  "Ground clearance tinggi untuk jalan tidak rata dan genangan",
+];
+
+const VARIAN = [
+  { nama: "Fortuner 2.8 GR", tahun: 2023, bahanBakar: "Diesel", harga: "Rp1.399.000" },
+  { nama: "Fortuner Legender", tahun: 2025, bahanBakar: "Diesel", harga: "Rp1.499.000" },
+];
+
+const FAQ_LIST = [
+  {
+    pertanyaan: "Berapa harga sewa Fortuner per hari di Tangerang?",
+    jawaban:
+      "Fortuner 2.8 GR tersedia mulai Rp1.399.000 per hari dan Fortuner Legender mulai Rp1.499.000 per hari. Tarif tersebut untuk sewa lepas kunci; biaya sopir dihitung terpisah dan dikonfirmasi tim kami sebelum pemesanan diproses.",
+  },
+  {
+    pertanyaan: "Apa bedanya Fortuner 2.8 GR dan Legender?",
+    jawaban:
+      "Keduanya bermesin diesel, matic, dan berkapasitas tujuh penumpang. Legender keluaran 2025 dengan desain depan berbeda dan kelengkapan lebih tinggi, sementara 2.8 GR keluaran 2023 dengan sentuhan GR yang membuat tampilannya lebih sporty. Selisih tarifnya tidak besar, jadi pilihan biasanya jatuh pada preferensi tampilan dan ketersediaan tanggal.",
+  },
+  {
+    pertanyaan: "Apakah Fortuner bisa disewa lepas kunci tanpa sopir?",
+    jawaban:
+      "Bisa. Fortuner tersedia untuk sewa lepas kunci maupun plus driver. Untuk lepas kunci, syaratnya cukup KTP yang masih berlaku dan nomor HP aktif untuk konfirmasi unit dan jadwal.",
+  },
+  {
+    pertanyaan: "Berapa lama minimal sewa Fortuner?",
+    jawaban:
+      "Tidak ada minimum durasi khusus, sewa bisa dimulai dari satu hari. Untuk pemakaian jangka panjang seperti operasional perusahaan, tersedia skema sewa bulanan dengan tarif efektif per hari yang lebih rendah.",
+  },
+];
 
 export default function SewaFortunerTangerang() {
   const { profile } = useCompanyProfile();
@@ -18,10 +55,13 @@ export default function SewaFortunerTangerang() {
         title="Sewa Fortuner Tangerang - SUV Diesel 2.8 GR & Legender"
         description="Sewa Toyota Fortuner di Tangerang mulai Rp1.399.000/hari. Varian 2.8 GR dan Legender, diesel matic 7 penumpang. Lepas kunci atau plus driver."
         path="/sewa-fortuner-tangerang"
-        jsonLd={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Sewa Fortuner Tangerang", path: "/sewa-fortuner-tangerang" },
-        ])}
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Sewa Fortuner Tangerang", path: "/sewa-fortuner-tangerang" },
+          ]),
+          faqPageSchema(FAQ_LIST),
+        ]}
       />
 
       <PageHero
@@ -56,6 +96,42 @@ export default function SewaFortunerTangerang() {
             di akhir pekan dan musim liburan, konfirmasi tanggal lebih awal akan memperbesar kemungkinan mendapat
             varian yang diinginkan.
           </p>
+
+          <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 text-slate-500">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-semibold">Varian</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Tahun</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Bahan Bakar</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Harga per Hari</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {VARIAN.map((v) => (
+                  <tr key={v.nama}>
+                    <td className="px-4 py-3 font-medium text-slate-900">{v.nama}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.tahun}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.bahanBakar}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.harga}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-slate-500">
+            Harga dapat berubah mengikuti ketersediaan unit dan durasi sewa. Tarif di atas berlaku untuk sewa lepas
+            kunci; biaya sopir dihitung terpisah.
+          </p>
+
+          <ul className="mt-6 space-y-2.5">
+            {SPEK.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-slate-700">
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         <Reveal delay={120} className="mt-10">
@@ -110,6 +186,28 @@ export default function SewaFortunerTangerang() {
             <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">katalog mobil</Link>
             {" kami."}
           </p>
+        </Reveal>
+
+        <Reveal delay={220} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">Pertanyaan Seputar Sewa Fortuner</h2>
+          <div className="mt-4 space-y-3">
+            {FAQ_LIST.map((item) => (
+              <details
+                key={item.pertanyaan}
+                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-semibold text-slate-900 marker:content-none">
+                  {item.pertanyaan}
+                  <span className="shrink-0 text-blue-600 transition-transform duration-200 group-open:rotate-180">
+                    &#9660;
+                  </span>
+                </summary>
+                <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
+                  {item.jawaban}
+                </p>
+              </details>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal delay={240} className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">

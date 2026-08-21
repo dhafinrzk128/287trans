@@ -1,13 +1,51 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
-import { breadcrumbSchema } from "../../utils/schema";
+import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
+
+// Angka di bawah mengikuti data unit di katalog, bukan spesifikasi pabrikan,
+// supaya halaman ini tidak pernah menjanjikan sesuatu yang tidak kami punya.
+const SPEK = [
+  "Transmisi matic pada seluruh varian",
+  "Kapasitas 7 penumpang dengan tiga baris kursi",
+  "Mesin diesel dengan torsi besar sejak putaran rendah",
+  "Seluruh unit keluaran 2024",
+];
+
+const VARIAN = [
+  { nama: "Innova Reborn Type-G", tahun: 2024, bahanBakar: "Diesel", harga: "Rp799.000" },
+  { nama: "Innova Reborn Type-V", tahun: 2024, bahanBakar: "Diesel", harga: "Rp799.000" },
+  { nama: "Innova Venturer", tahun: 2024, bahanBakar: "Diesel", harga: "Rp999.000" },
+];
+
+const FAQ_LIST = [
+  {
+    pertanyaan: "Berapa harga sewa Innova Reborn per hari di Tangerang?",
+    jawaban:
+      "Innova Reborn Type-G dan Type-V tersedia mulai Rp799.000 per hari, sementara Innova Venturer mulai Rp999.000 per hari. Tarif tersebut untuk sewa lepas kunci; biaya sopir dihitung terpisah dan dikonfirmasi tim kami sebelum pemesanan diproses.",
+  },
+  {
+    pertanyaan: "Apa bedanya Innova Reborn Type-G, Type-V, dan Venturer?",
+    jawaban:
+      "Ketiganya bermesin diesel, matic, berkapasitas tujuh penumpang, dan keluaran 2024. Type-V berada satu tingkat di atas Type-G dari sisi kelengkapan interior, sementara Venturer menawarkan tampilan lebih berkarakter dengan bodykit dan sentuhan eksterior yang lebih tegas.",
+  },
+  {
+    pertanyaan: "Innova Reborn atau Innova Zenix, pilih yang mana?",
+    jawaban:
+      "Reborn bermesin diesel dan terasa paling nyaman pada kecepatan konstan di jalan tol, cocok untuk perjalanan luar kota. Zenix tersedia dalam varian hybrid yang lebih senyap dan efisien di lalu lintas padat dalam kota. Tarif harian Reborn juga lebih rendah dibanding Zenix.",
+  },
+  {
+    pertanyaan: "Apakah Innova Reborn muat untuk tujuh orang beserta koper?",
+    jawaban:
+      "Muat. Konfigurasi tiga baris kursinya menampung tujuh penumpang, dan ruang di belakang baris ketiga masih menyisakan tempat untuk koper. Untuk rombongan dengan bawaan sangat banyak, tim kami bisa membantu menghitung apakah satu unit cukup atau perlu tambahan.",
+  },
+];
 
 export default function SewaInnovaRebornTangerang() {
   const { profile } = useCompanyProfile();
@@ -18,10 +56,13 @@ export default function SewaInnovaRebornTangerang() {
         title="Sewa Innova Reborn Tangerang - Diesel, Matic, 7 Penumpang"
         description="Sewa Toyota Innova Reborn di Tangerang mulai Rp799.000/hari. Tipe G, V, dan Venturer, semua diesel matic 7 penumpang. Lepas kunci atau plus driver."
         path="/sewa-innova-reborn-tangerang"
-        jsonLd={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Sewa Innova Reborn Tangerang", path: "/sewa-innova-reborn-tangerang" },
-        ])}
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Sewa Innova Reborn Tangerang", path: "/sewa-innova-reborn-tangerang" },
+          ]),
+          faqPageSchema(FAQ_LIST),
+        ]}
       />
 
       <PageHero
@@ -57,6 +98,42 @@ export default function SewaInnovaRebornTangerang() {
             Ketersediaan tiap varian berubah mengikuti jadwal sewa, jadi sebaiknya tanggal pemakaian dikonfirmasi
             lebih dulu sebelum memutuskan.
           </p>
+
+          <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 text-slate-500">
+                <tr>
+                  <th scope="col" className="px-4 py-3 font-semibold">Varian</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Tahun</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Bahan Bakar</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Harga per Hari</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {VARIAN.map((v) => (
+                  <tr key={v.nama}>
+                    <td className="px-4 py-3 font-medium text-slate-900">{v.nama}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.tahun}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.bahanBakar}</td>
+                    <td className="px-4 py-3 text-slate-600">{v.harga}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-slate-500">
+            Harga dapat berubah mengikuti ketersediaan unit dan durasi sewa. Tarif di atas berlaku untuk sewa lepas
+            kunci; biaya sopir dihitung terpisah.
+          </p>
+
+          <ul className="mt-6 space-y-2.5">
+            {SPEK.map((item) => (
+              <li key={item} className="flex items-start gap-2.5 text-slate-700">
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-600" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </Reveal>
 
         <Reveal delay={120} className="mt-10">
@@ -111,6 +188,28 @@ export default function SewaInnovaRebornTangerang() {
             <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">katalog mobil</Link>
             {" kami."}
           </p>
+        </Reveal>
+
+        <Reveal delay={220} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">Pertanyaan Seputar Sewa Innova Reborn</h2>
+          <div className="mt-4 space-y-3">
+            {FAQ_LIST.map((item) => (
+              <details
+                key={item.pertanyaan}
+                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 font-semibold text-slate-900 marker:content-none">
+                  {item.pertanyaan}
+                  <span className="shrink-0 text-blue-600 transition-transform duration-200 group-open:rotate-180">
+                    &#9660;
+                  </span>
+                </summary>
+                <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
+                  {item.jawaban}
+                </p>
+              </details>
+            ))}
+          </div>
         </Reveal>
 
         <Reveal delay={240} className="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
