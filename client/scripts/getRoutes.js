@@ -18,6 +18,10 @@ export const STATIC_ROUTES = [
   "/rental-mobil-plus-driver",
   "/rental-mobil-bulanan-tangerang",
   "/sewa-mobil-bandara-soekarno-hatta",
+  "/sewa-innova-reborn-tangerang",
+  "/sewa-innova-zenix-tangerang",
+  "/sewa-fortuner-tangerang",
+  "/sewa-pajero-sport-tangerang",
 ];
 
 const API_BASE = process.env.PRERENDER_API_BASE || "https://287trans.id";
