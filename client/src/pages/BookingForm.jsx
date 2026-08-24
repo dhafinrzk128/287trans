@@ -88,7 +88,11 @@ export default function BookingForm() {
         catatan: form.catatan,
       });
       trackBookingSubmit(mobil.namaMobil);
-      navigate(`/status/${data.kodeBooking}`);
+      // Penanda "baru saja dibuat" dikirim lewat state navigasi, bukan URL,
+      // supaya notifikasi keberhasilan hanya muncul sekali. Kalau penyewa
+      // membuka lagi tautan status yang sama nanti, yang tampil status
+      // biasa — bukan ucapan selamat untuk booking yang sudah lama lewat.
+      navigate(`/status/${data.kodeBooking}`, { state: { baruDibuat: true } });
     } catch (err) {
       setServerError(err.response?.data?.message || "Gagal mengirim permintaan booking. Silakan coba lagi.");
     } finally {

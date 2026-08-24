@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
-import { CheckCircle2, Clock, XCircle, PartyPopper, MessageCircle } from "lucide-react";
+import { useParams, useLocation, Link } from "react-router-dom";
+import { CheckCircle2, Clock, XCircle, PartyPopper, MessageCircle, BookmarkCheck } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
 import StatusBookingBadge from "../components/StatusBookingBadge";
 import SmartImage from "../components/SmartImage";
+import KodeBookingCopy from "../components/KodeBookingCopy";
 import { formatTanggal, formatTanggalWaktu, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import Seo from "../components/Seo";
@@ -33,6 +34,8 @@ const STATUS_DESC = {
 
 export default function BookingStatus() {
   const { kodeBooking } = useParams();
+  const { state } = useLocation();
+  const baruDibuat = state?.baruDibuat === true;
   const { profile } = useCompanyProfile();
   const [booking, setBooking] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -71,6 +74,40 @@ export default function BookingStatus() {
         path={`/status/${kodeBooking}`}
         noindex
       />
+      {baruDibuat && (
+        <div className="mb-6 rounded-2xl border-2 border-emerald-300 bg-emerald-50 p-8 text-center">
+          <span className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+            <CheckCircle2 size={44} />
+          </span>
+          <h2 className="mt-5 text-3xl font-extrabold text-slate-900 sm:text-4xl">
+            Booking Berhasil Dikirim!
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg leading-relaxed text-slate-600">
+            Permintaan Anda sudah masuk ke sistem kami. Tim 287 Trans akan menghubungi Anda melalui
+            nomor HP yang didaftarkan untuk mengonfirmasi ketersediaan unit dan estimasi biaya.
+          </p>
+
+          <div className="mt-6">
+            <p className="text-sm font-semibold text-slate-700">Kode Booking Anda</p>
+            <div className="mt-2 flex justify-center">
+              <KodeBookingCopy kode={booking.kodeBooking} />
+            </div>
+          </div>
+
+          {/* Halaman ini satu-satunya tempat status bisa dilihat, dan hanya
+              bisa dibuka lewat tautannya — tidak ada halaman pencarian kode.
+              Karena itu pesannya menekankan menyimpan tautan, bukan kodenya. */}
+          <div className="mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-xl border border-emerald-200 bg-white p-4 text-left">
+            <BookmarkCheck size={20} className="mt-0.5 shrink-0 text-emerald-600" />
+            <p className="text-sm leading-relaxed text-slate-600">
+              <span className="font-semibold text-slate-900">Simpan halaman ini.</span> Status
+              permintaan booking Anda bisa dicek kapan saja lewat tautan halaman ini — cukup
+              bookmark atau salin alamatnya dari kolom URL browser.
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-[var(--shadow-soft)]">
         <span className={`mx-auto flex h-16 w-16 items-center justify-center rounded-full ${STATUS_ICON_STYLE[booking.statusBooking]}`}>
           <Icon size={32} />
@@ -80,9 +117,12 @@ export default function BookingStatus() {
           <StatusBookingBadge status={booking.statusBooking} className="px-4 py-1.5 text-sm" />
         </div>
         <p className="mt-3 text-sm text-slate-600">{STATUS_DESC[booking.statusBooking]}</p>
-        <p className="mt-4 text-sm text-slate-500">
-          Kode Booking: <span className="font-mono font-bold text-slate-900">{booking.kodeBooking}</span>
-        </p>
+        <div className="mt-5">
+          <p className="text-sm text-slate-500">Kode Booking</p>
+          <div className="mt-2 flex justify-center">
+            <KodeBookingCopy kode={booking.kodeBooking} />
+          </div>
+        </div>
       </div>
 
       <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-[var(--shadow-soft)]">
