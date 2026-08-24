@@ -6,6 +6,7 @@ import SmartImage from "../SmartImage";
 const NAV_LINKS = [
   { to: "/", label: "Home", end: true },
   { to: "/tentang-kami", label: "Tentang Kami" },
+  { to: "/status", label: "Cek Booking" },
   { to: "/katalog", label: "Pilihan Armada" },
   { to: "/faq", label: "FAQ" },
   { to: "/kontak", label: "Kontak" },
@@ -26,7 +27,12 @@ export default function Navbar() {
           <SmartImage src="/logo.png" alt="287 Trans" width="700" height="569" className="h-10 w-auto sm:h-12" />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        {/* Enam menu plus logo dan tombol CTA hanya muat pas di 768px: teks
+            keenam label butuh 389px dari 500px yang tersisa, jadi jarak 32px
+            (5 x 32 = 160px) meluber dan labelnya pecah dua baris. Jarak 16px
+            menyisakan 16px — cukup aman terhadap perbedaan render font. Mulai
+            1024px ruangnya berlimpah, jadi kembali ke jarak semula. */}
+        <div className="hidden items-center gap-4 md:flex lg:gap-8">
           {NAV_LINKS.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.end} className={linkClass}>
               {link.label}

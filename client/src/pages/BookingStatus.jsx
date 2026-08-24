@@ -109,16 +109,21 @@ export default function BookingStatus() {
           {/* Yang perlu disimpan penyewa adalah kodenya, bukan alamat halaman
               ini: lewat halaman Cek Status Booking, kode itu sudah cukup untuk
               membuka status kapan saja tanpa harus mem-bookmark apa pun. */}
-          <div className="mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-xl border border-emerald-200 bg-white p-4 text-left">
-            <BookmarkCheck size={20} className="mt-0.5 shrink-0 text-emerald-600" />
-            <p className="text-sm leading-relaxed text-slate-600">
-              <span className="font-semibold text-slate-900">Simpan kode booking di atas.</span>
-              {" Status permintaan Anda bisa dicek kapan saja lewat halaman "}
-              <Link to="/status" className="font-semibold text-blue-600 hover:underline">
-                Cek Status Booking
-              </Link>
-              {" — cukup masukkan kode tersebut."}
-            </p>
+          <div className="mx-auto mt-6 max-w-lg rounded-xl border border-emerald-200 bg-white p-4 text-left">
+            <div className="flex items-start gap-3">
+              <BookmarkCheck size={20} className="mt-0.5 shrink-0 text-emerald-600" />
+              <p className="text-sm leading-relaxed text-slate-600">
+                <span className="font-semibold text-slate-900">Simpan kode booking di atas.</span>
+                {" Status permintaan Anda bisa dicek kapan saja — cukup masukkan kode tersebut di halaman berikut."}
+              </p>
+            </div>
+            <Link
+              to="/status"
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-5 py-2.5 text-sm font-semibold text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-100"
+            >
+              <Search size={16} />
+              Cek Status Booking
+            </Link>
           </div>
         </div>
       )}
