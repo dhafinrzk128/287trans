@@ -11,7 +11,8 @@
     "prisma:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "seed": "node prisma/seed.js",
-    "webp:backfill": "node src/utils/backfillWebp.js"
+    "webp:backfill": "node src/utils/backfillWebp.js",
+    "uploads:bersihkan": "node src/utils/bersihkanUploads.js"
   },
   "dependencies": {
     "@prisma/client": "^5.20.0",

@@ -8,6 +8,7 @@ const fs = require("fs/promises");
 
 const { UPLOAD_ROOT } = require("./utils/upload");
 const { backfillWebp } = require("./utils/backfillWebp");
+const { bersihkanUploads } = require("./utils/bersihkanUploads");
 const authRoutes = require("./routes/auth.routes");
 const mobilRoutes = require("./routes/mobil.routes");
 const bookingRoutes = require("./routes/booking.routes");
@@ -119,10 +120,20 @@ app.listen(PORT, () => {
   // Kegagalannya juga tidak menjatuhkan server — tanpa .webp, foto tetap
   // tampil lewat berkas aslinya. Aman diulang, jadi boleh jalan tiap boot.
   backfillWebp()
-    .then(({ diperiksa, dibuat, gagal }) => {
-      if (dibuat > 0 || gagal > 0) {
-        console.log(`[webp] ${diperiksa} gambar diperiksa, ${dibuat} dibuat, ${gagal} gagal.`);
+    .then(async ({ diperiksa, dibuat, tidakTerbaca }) => {
+      if (dibuat > 0 || tidakTerbaca.length > 0) {
+        console.log(`[webp] ${diperiksa} gambar diperiksa, ${dibuat} dibuat, ${tidakTerbaca.length} gagal.`);
+      }
+
+      // Berkas yang tadi gagal dibaca ikut disodorkan ke pembersih: kalau
+      // basis data juga tidak merujuknya, ia memang tidak dipakai siapa pun.
+      // Kegagalan di sini tidak boleh menghentikan apa pun — tanpa
+      // pembersihan, yang tersisa hanya sampah yang tidak mengganggu.
+      const { dihapus } = await bersihkanUploads(tidakTerbaca);
+      if (dihapus.length > 0) {
+        dihapus.forEach((b) => console.log(`[bersih] dihapus: ${b}`));
+        console.log(`[bersih] ${dihapus.length} berkas yatim dihapus.`);
       }
     })
-    .catch((err) => console.error("[webp] Backfill dilewati:", err.message));
+    .catch((err) => console.error("[webp] Perapian dilewati:", err.message));
 });

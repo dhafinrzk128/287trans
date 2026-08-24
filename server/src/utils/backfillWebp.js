@@ -29,7 +29,10 @@ async function kumpulkanGambar(dir, hasil = []) {
       if (LEWATI_FOLDER.has(entri.name)) continue;
       await kumpulkanGambar(penuh, hasil);
     } else if (BISA_DIUBAH.has(path.extname(entri.name).toLowerCase())) {
-      hasil.push(penuh);
+      // Berkas nol byte tidak pernah bisa jadi gambar; melewatinya di sini
+      // menghindarkan satu galat sharp yang tidak berguna di log setiap boot.
+      const stat = await fs.stat(penuh).catch(() => null);
+      if (stat && stat.size > 0) hasil.push(penuh);
     }
   }
   return hasil;
@@ -56,28 +59,30 @@ async function backfillWebp() {
   }
 
   if (kurang.length === 0) {
-    return { diperiksa: gambar.length, dibuat: 0, gagal: 0 };
+    return { diperiksa: gambar.length, dibuat: 0, tidakTerbaca: [] };
   }
 
   // Satu per satu, bukan Promise.all: sharp memuat seluruh gambar ke memori,
   // dan mengubah puluhan berkas sekaligus bisa melonjakkan pemakaian memori
   // di kontainer yang jatahnya kecil.
   let dibuat = 0;
+  const tidakTerbaca = [];
   for (const berkas of kurang) {
     await generateWebpSibling(berkas);
     if (await sudahPunyaWebp(berkas)) dibuat += 1;
+    else tidakTerbaca.push(berkas);
   }
 
-  return { diperiksa: gambar.length, dibuat, gagal: kurang.length - dibuat };
+  return { diperiksa: gambar.length, dibuat, tidakTerbaca };
 }
 
 module.exports = { backfillWebp };
 
 if (require.main === module) {
   backfillWebp()
-    .then(({ diperiksa, dibuat, gagal }) => {
-      console.log(`[webp] ${diperiksa} gambar diperiksa, ${dibuat} dibuat, ${gagal} gagal.`);
-      process.exit(gagal > 0 ? 1 : 0);
+    .then(({ diperiksa, dibuat, tidakTerbaca }) => {
+      console.log(`[webp] ${diperiksa} gambar diperiksa, ${dibuat} dibuat, ${tidakTerbaca.length} gagal.`);
+      process.exit(tidakTerbaca.length > 0 ? 1 : 0);
     })
     .catch((err) => {
       console.error("[webp] Backfill gagal:", err.message);
