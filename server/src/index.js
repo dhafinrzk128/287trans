@@ -7,6 +7,7 @@ const path = require("path");
 const fs = require("fs/promises");
 
 const { UPLOAD_ROOT } = require("./utils/upload");
+const { backfillWebp } = require("./utils/backfillWebp");
 const authRoutes = require("./routes/auth.routes");
 const mobilRoutes = require("./routes/mobil.routes");
 const bookingRoutes = require("./routes/booking.routes");
@@ -112,4 +113,16 @@ app.use((req, res) => {
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server rental mobil berjalan di http://localhost:${PORT}`);
+
+  // Dijalankan setelah server siap melayani, bukan sebelumnya: melengkapi
+  // berkas .webp yang tertinggal tidak boleh menunda kesiapan layanan.
+  // Kegagalannya juga tidak menjatuhkan server — tanpa .webp, foto tetap
+  // tampil lewat berkas aslinya. Aman diulang, jadi boleh jalan tiap boot.
+  backfillWebp()
+    .then(({ diperiksa, dibuat, gagal }) => {
+      if (dibuat > 0 || gagal > 0) {
+        console.log(`[webp] ${diperiksa} gambar diperiksa, ${dibuat} dibuat, ${gagal} gagal.`);
+      }
+    })
+    .catch((err) => console.error("[webp] Backfill dilewati:", err.message));
 });
