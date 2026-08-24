@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { to: "/katalog", label: "Pilihan Armada" },
   { to: "/faq", label: "FAQ" },
   { to: "/kontak", label: "Kontak" },
-  { to: "/status", label: "Cek Booking" },
 ];
 
 export default function Navbar() {
