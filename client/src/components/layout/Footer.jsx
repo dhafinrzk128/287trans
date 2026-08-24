@@ -106,11 +106,11 @@ export default function Footer() {
         </div>
       )}
 
+      {/* Tidak ada tautan ke /admin/login di sini: panel admin dibuka dengan
+          mengetik URL-nya langsung. Ini hanya menghilangkan penunjuk yang
+          terlihat pengunjung — halamannya sendiri tetap dijaga oleh login. */}
       <div className="border-t border-neutral-800 py-5 text-center text-xs text-slate-500">
-        {`© ${year} ${profile?.namaPerusahaan || "287 Trans"}. Seluruh hak cipta dilindungi. `}
-        <Link to="/admin/login" className="text-slate-600 hover:text-slate-400">
-          Admin
-        </Link>
+        {`© ${year} ${profile?.namaPerusahaan || "287 Trans"}. Seluruh hak cipta dilindungi.`}
       </div>
     </footer>
   );
