@@ -69,7 +69,7 @@ export default function Home() {
           <Reveal>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-400/30 bg-accent-500/15 px-4 py-1.5 text-sm font-medium text-accent-200">
               <Sparkles size={14} />
-              Rental Mobil Premium Jabodetabek
+              Rental Mobil Premium dan Terpercaya
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
               Rental Mobil Tangerang, <span className="text-accent-400">Perjalanan Mudah dan Nyaman</span>
