@@ -13,6 +13,7 @@ export const STATIC_ROUTES = [
   "/kontak",
   "/armada",
   "/faq",
+  "/status",
   "/rental-mobil-tangerang",
   "/sewa-mobil-lepas-kunci-tangerang",
   "/rental-mobil-plus-driver",

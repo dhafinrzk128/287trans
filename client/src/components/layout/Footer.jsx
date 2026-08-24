@@ -34,6 +34,7 @@ export default function Footer() {
             <li><Link to="/katalog" className="transition-colors hover:text-white">Pilihan Armada</Link></li>
             <li><Link to="/faq" className="transition-colors hover:text-white">FAQ</Link></li>
             <li><Link to="/kontak" className="transition-colors hover:text-white">Kontak</Link></li>
+            <li><Link to="/status" className="transition-colors hover:text-white">Cek Status Booking</Link></li>
           </ul>
         </div>
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
-import { CheckCircle2, Clock, XCircle, PartyPopper, MessageCircle, BookmarkCheck } from "lucide-react";
+import { CheckCircle2, Clock, XCircle, PartyPopper, MessageCircle, BookmarkCheck, Search } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
@@ -54,9 +54,21 @@ export default function BookingStatus() {
     return (
       <div className="mx-auto max-w-xl px-4 py-24 text-center">
         <p className="text-slate-600">{error}</p>
-        <Link to="/katalog" className="mt-4 inline-block font-semibold text-blue-600 hover:underline">
-          Kembali ke Katalog
-        </Link>
+        {/* Salah ketik satu huruf adalah kekeliruan yang paling mungkin terjadi
+            di sini, jadi jalan keluarnya bukan cuma ke katalog: kembalikan ke
+            form pencarian supaya kodenya bisa langsung dicoba ulang. */}
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            to="/status"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-700"
+          >
+            <Search size={18} />
+            Coba Kode Lain
+          </Link>
+          <Link to="/katalog" className="text-sm font-semibold text-blue-600 hover:underline">
+            Kembali ke Katalog
+          </Link>
+        </div>
       </div>
     );
   }
@@ -94,15 +106,18 @@ export default function BookingStatus() {
             </div>
           </div>
 
-          {/* Halaman ini satu-satunya tempat status bisa dilihat, dan hanya
-              bisa dibuka lewat tautannya — tidak ada halaman pencarian kode.
-              Karena itu pesannya menekankan menyimpan tautan, bukan kodenya. */}
+          {/* Yang perlu disimpan penyewa adalah kodenya, bukan alamat halaman
+              ini: lewat halaman Cek Status Booking, kode itu sudah cukup untuk
+              membuka status kapan saja tanpa harus mem-bookmark apa pun. */}
           <div className="mx-auto mt-6 flex max-w-lg items-start gap-3 rounded-xl border border-emerald-200 bg-white p-4 text-left">
             <BookmarkCheck size={20} className="mt-0.5 shrink-0 text-emerald-600" />
             <p className="text-sm leading-relaxed text-slate-600">
-              <span className="font-semibold text-slate-900">Simpan halaman ini.</span> Status
-              permintaan booking Anda bisa dicek kapan saja lewat tautan halaman ini — cukup
-              bookmark atau salin alamatnya dari kolom URL browser.
+              <span className="font-semibold text-slate-900">Simpan kode booking di atas.</span>
+              {" Status permintaan Anda bisa dicek kapan saja lewat halaman "}
+              <Link to="/status" className="font-semibold text-blue-600 hover:underline">
+                Cek Status Booking
+              </Link>
+              {" — cukup masukkan kode tersebut."}
             </p>
           </div>
         </div>

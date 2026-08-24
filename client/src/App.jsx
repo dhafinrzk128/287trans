@@ -14,6 +14,7 @@ import About from "./pages/About";
 import Catalog from "./pages/Catalog";
 import CarDetail from "./pages/CarDetail";
 import BookingForm from "./pages/BookingForm";
+import BookingLookup from "./pages/BookingLookup";
 import BookingStatus from "./pages/BookingStatus";
 import Contact from "./pages/Contact";
 import Armada from "./pages/Armada";
@@ -71,6 +72,7 @@ function App() {
                 <Route path="katalog" element={<Catalog />} />
                 <Route path="katalog/:id" element={<CarDetail />} />
                 <Route path="booking/:idMobil" element={<BookingForm />} />
+                <Route path="status" element={<BookingLookup />} />
                 <Route path="status/:kodeBooking" element={<BookingStatus />} />
                 <Route path="kontak" element={<Contact />} />
                 <Route path="armada" element={<Armada />} />

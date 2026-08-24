@@ -49,6 +49,7 @@ const KNOWN_SPA_ROUTES = [
   /^\/katalog\/?$/,
   /^\/katalog\/[^/]+\/?$/,
   /^\/booking\/[^/]+\/?$/,
+  /^\/status\/?$/,
   /^\/status\/[^/]+\/?$/,
   /^\/kontak\/?$/,
   /^\/armada\/?$/,
