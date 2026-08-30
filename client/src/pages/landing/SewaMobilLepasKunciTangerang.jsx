@@ -6,7 +6,7 @@ import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink } from "../../utils/format";
+import { buildWaLink, pesanSewa } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
 const SYARAT = [
@@ -135,7 +135,7 @@ export default function SewaMobilLepasKunciTangerang() {
             </Link>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, "Halo, saya ingin tanya soal sewa mobil lepas kunci di Tangerang.")}
+                href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil lepas kunci di Tangerang.", ["Tanggal mulai", "Lama sewa", "Mobil yang diminati"]))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("landing_lepas_kunci")}

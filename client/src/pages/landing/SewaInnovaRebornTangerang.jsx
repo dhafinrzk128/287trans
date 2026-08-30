@@ -6,7 +6,7 @@ import ArmadaCarousel from "../../components/ArmadaCarousel";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink } from "../../utils/format";
+import { buildWaLink, pesanSewa } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
 // Angka di bawah mengikuti data unit di katalog, bukan spesifikasi pabrikan,
@@ -228,7 +228,7 @@ export default function SewaInnovaRebornTangerang() {
             </Link>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, "Halo, saya ingin tanya soal sewa Toyota Innova Reborn di Tangerang.")}
+                href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa Toyota Innova Reborn di Tangerang."))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("landing_innova_reborn")}

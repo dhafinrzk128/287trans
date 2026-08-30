@@ -48,6 +48,24 @@ export function buildWaLink(number, text) {
   return `https://wa.me/${digits}${query}`;
 }
 
+const KOLOM_BAKU = ["Tanggal mulai", "Lama sewa", "Dengan supir / lepas kunci"];
+
+// Menyusun pesan siap-kirim untuk calon penyewa.
+//
+// Versi sebelumnya berbunyi "saya ingin tanya-tanya soal ..." — tidak membawa
+// satu pun keterangan yang dibutuhkan untuk menjawabnya. Balasan pertama tim
+// karena itu selalu jadi pertanyaan balik (tanggal? berapa hari? unit apa?),
+// dan setiap putaran tanya-jawab tambahan adalah kesempatan calon penyewa
+// berhenti membalas. Dengan kolomnya sudah disiapkan, balasan pertama bisa
+// langsung berupa harga.
+//
+// Kolomnya dibiarkan kosong, bukan diisi contoh: contoh yang terlanjur
+// terkirim apa adanya akan terbaca sebagai permintaan sungguhan. Mengirim
+// tanpa mengisi pun tetap boleh — hasilnya tidak lebih buruk dari pesan lama.
+export function pesanSewa(pembuka, kolom = KOLOM_BAKU) {
+  return [pembuka, "", ...kolom.map((label) => `${label}: `)].join("\n");
+}
+
 // Same-name .webp sibling for a local image path (server generates one
 // alongside every mobil/profile upload — see server/src/utils/webp.js —
 // and public/logo.webp is committed alongside logo.png). Only root-relative

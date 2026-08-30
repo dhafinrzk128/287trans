@@ -5,7 +5,7 @@ import Reveal from "../../components/Reveal";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink } from "../../utils/format";
+import { buildWaLink, pesanSewa } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
 export default function RentalMobilBulananTangerang() {
@@ -131,7 +131,7 @@ export default function RentalMobilBulananTangerang() {
             </Link>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, "Halo, saya ingin tanya soal sewa mobil bulanan di Tangerang.")}
+                href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil bulanan di Tangerang.", ["Tanggal mulai", "Lama sewa (bulan)", "Mobil yang diminati"]))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("landing_bulanan")}
