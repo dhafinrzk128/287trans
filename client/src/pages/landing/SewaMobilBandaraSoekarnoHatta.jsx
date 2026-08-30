@@ -5,7 +5,7 @@ import Reveal from "../../components/Reveal";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink } from "../../utils/format";
+import { buildWaLink, pesanSewa } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
 export default function SewaMobilBandaraSoekarnoHatta() {
@@ -132,7 +132,7 @@ export default function SewaMobilBandaraSoekarnoHatta() {
             </Link>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, "Halo, saya ingin tanya soal antar-jemput Bandara Soekarno-Hatta.")}
+                href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau pesan antar-jemput Bandara Soekarno-Hatta.", ["Tanggal & jam", "Titik jemput", "Jumlah penumpang"]))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("landing_bandara")}

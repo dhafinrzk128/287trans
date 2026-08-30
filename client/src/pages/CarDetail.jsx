@@ -12,7 +12,7 @@ import Seo from "../components/Seo";
 import SmartImage from "../components/SmartImage";
 import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
-import { buildWaLink, formatRupiah } from "../utils/format";
+import { buildWaLink, formatRupiah, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -201,7 +201,7 @@ export default function CarDetail() {
             </Button>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`)}
+                href={buildWaLink(profile.whatsapp, pesanSewa(`Halo, saya mau sewa ${mobil.namaMobil}.`))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("car_detail", mobil.namaMobil)}

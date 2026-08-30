@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 import Spinner from "../components/ui/Spinner";
 import { breadcrumbSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { formatRupiah, buildWaLink } from "../utils/format";
+import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -185,7 +185,7 @@ export default function Armada() {
             </Link>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, "Halo, saya ingin tanya rekomendasi armada yang sesuai kebutuhan saya.")}
+                href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil. Mohon dibantu rekomendasi unit yang sesuai.", ["Tanggal mulai", "Lama sewa", "Jumlah penumpang"]))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("landing_armada")}

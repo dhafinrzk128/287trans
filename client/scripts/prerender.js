@@ -107,6 +107,20 @@ async function main() {
           .forEach((el) => el.remove());
       });
 
+      // index.html loads the Google Fonts stylesheet with media="print" plus an
+      // onload that flips it to "all" — the standard way to fetch a stylesheet
+      // without letting it gate first paint. By snapshot time that onload has
+      // already run, so the DOM says media="all" and *that* is what gets baked
+      // into the static HTML: every prerendered page then ships a genuinely
+      // render-blocking stylesheet on a third-party origin, which is the exact
+      // cost the attribute existed to avoid. Put it back to its pre-onload
+      // value so the served HTML starts where a fresh load should.
+      await page.evaluate(() => {
+        document.querySelectorAll("link[rel='stylesheet'][onload]").forEach((el) => {
+          if (/this\.media\s*=/.test(el.getAttribute("onload") || "")) el.media = "print";
+        });
+      });
+
       // React Router's lazy-route preloading inserts <link rel="modulepreload">
       // tags with an absolute href computed from the current origin — since
       // that's this preview server, it bakes http://127.0.0.1:4173/... into
