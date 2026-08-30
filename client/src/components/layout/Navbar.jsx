@@ -24,7 +24,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center" onClick={() => setOpen(false)}>
-          <SmartImage src="/logo.png" alt="287 Trans" width="700" height="569" className="h-10 w-auto sm:h-12" />
+          <SmartImage src="/logo-nav.png" alt="287 Trans" width="210" height="171" className="h-10 w-auto sm:h-12" />
         </Link>
 
         {/* Enam menu plus logo dan tombol CTA hanya muat pas di 768px: teks

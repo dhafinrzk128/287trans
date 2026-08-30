@@ -1,45 +1,62 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toWebpUrl } from "../utils/format";
 
 /**
- * <img>, but upgrades to a WebP source for same-origin images (uploaded
- * car/profile photos, logo.png) once one is confirmed to exist.
+ * <img>, tapi menyajikan versi WebP untuk gambar satu-origin (foto mobil,
+ * foto profil, logo) dan tetap kembali ke berkas aslinya kalau WebP-nya
+ * ternyata tidak ada.
  *
- * <picture>'s fallback only kicks in when the browser doesn't support a
- * source's *type* at all — every current browser supports image/webp, so
- * a <source type="image/webp"> pointing at a file that simply doesn't
- * exist (any photo uploaded before webp generation was added) renders as
- * a broken image instead of falling back to the plain <img>. So this
- * always renders the plain, real <img> first and only switches to
- * <picture> after independently probing that the .webp file loads.
+ * Versi sebelumnya memasang <img> berkas asli lebih dulu, lalu mengintip
+ * keberadaan .webp lewat `new Image()`, baru bertukar ke <picture>. Cara itu
+ * memang aman, tapi ongkosnya mahal dan baru terlihat setelah diukur:
+ * browser mengunduh KEDUANYA. Di beranda, logo saja menghabiskan 395 KB
+ * (PNG) + 109 KB (WebP) — pengoptimalan yang justru membuat halaman lebih
+ * berat, bukan lebih ringan.
  *
- * The probe is skipped during prerendering (see window.__PRERENDERING__ in
- * scripts/prerender.js) for the same reason <Reveal> and <TipeToggle> skip
- * their own DOM-dependent effects there: whichever way it resolves would
- * get baked into the static HTML, which a fresh hydration's pre-probe
- * initial render (always the plain <img>) would then mismatch against.
+ * Sekarang <picture> dipasang sejak awal, jadi hanya satu berkas yang
+ * diunduh. Yang dulu jadi alasan mengintip — <picture> tidak punya mekanisme
+ * mundur kalau berkas .webp-nya 404, sebab setiap browser modern mendukung
+ * *format*-nya — ditangani lewat onError pada <img>: kalau sumber terpilih
+ * gagal dimuat, komponen berpindah ke <img> polos. Jalur mundur itu berarti
+ * satu permintaan tambahan, tapi hanya untuk gambar yang memang bermasalah,
+ * bukan untuk semua gambar seperti sebelumnya.
  */
-export default function SmartImage({ src, alt, ...imgProps }) {
+export default function SmartImage({ src, alt, onError, ...imgProps }) {
   const webpSrc = toWebpUrl(src);
-  const [useWebp, setUseWebp] = useState(false);
+  const adaWebp = Boolean(webpSrc) && webpSrc !== src;
+  const [webpGagal, setWebpGagal] = useState(false);
 
+  const ref = useRef(null);
+
+  // Satu komponen bisa dipakai ulang untuk gambar lain (mis. daftar mobil yang
+  // difilter); tanpa ini, kegagalan gambar sebelumnya ikut terbawa.
+  //
+  // Pemeriksaan naturalWidth-nya bukan pengaman berlebih, melainkan jalur yang
+  // justru paling sering terpakai: gambar di halaman prerender mulai dimuat
+  // saat HTML dibaca, jadi kegagalannya sudah lewat sebelum React sempat
+  // memasang onError. Tanpa ini, gambar yang .webp-nya hilang tampil rusak
+  // dan tidak pernah mundur — cara persis foto-foto mobil dulu hilang semua.
   useEffect(() => {
+    setWebpGagal(false);
     if (typeof window !== "undefined" && window.__PRERENDERING__) return;
-    if (!webpSrc || webpSrc === src) return;
-    let cancelled = false;
-    const probe = new Image();
-    probe.onload = () => {
-      if (!cancelled) setUseWebp(true);
-    };
-    probe.src = webpSrc;
-    return () => {
-      cancelled = true;
-    };
-  }, [webpSrc, src]);
+    const el = ref.current;
+    if (el && el.complete && el.naturalWidth === 0) setWebpGagal(true);
+  }, [src]);
 
-  const img = <img src={src} alt={alt} {...imgProps} />;
+  function tanganiGagal(ev) {
+    // Saat prerendering, markup harus tetap sama persis dengan yang dihasilkan
+    // hydration pada render pertamanya (lihat window.__PRERENDERING__ di
+    // scripts/prerender.js). Berpindah ke <img> polos di sini akan terpotret
+    // ke HTML statis, lalu tidak cocok dengan <picture> yang dirender klien —
+    // persis jenis ketidakcocokan yang membuang hasil prerender.
+    if (typeof window !== "undefined" && window.__PRERENDERING__) return;
+    if (adaWebp && !webpGagal) setWebpGagal(true);
+    onError?.(ev);
+  }
 
-  if (!useWebp) return img;
+  const img = <img ref={ref} src={src} alt={alt} onError={tanganiGagal} {...imgProps} />;
+
+  if (!adaWebp || webpGagal) return img;
 
   return (
     <picture>
