@@ -22,11 +22,25 @@ const { errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
 
+// Semua berkas sebelumnya keluar dengan max-age=0, jadi setiap kunjungan
+// ulang memvalidasi ulang tiap berkas — satu perjalanan bolak-balik (~200 ms
+// terukur) untuk berkas yang isinya tidak pernah berubah.
+const DETIK = 1000;
+const SETAHUN = 31536000 * DETIK;
+const SEBULAN = 2592000 * DETIK;
+const SEHARI = 86400 * DETIK;
+
 app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", express.static(UPLOAD_ROOT));
+
+// Foto unggahan: nama berkasnya selalu baru tiap unggahan, jadi satu URL
+// praktis tidak pernah berganti isi. Sengaja TIDAK "immutable" dan tidak
+// setahun: pendamping .webp bisa dibuat ulang di tempat (seperti saat
+// batas ukurannya diberlakukan), dan sebulan menjamin versi barunya tetap
+// sampai ke pengunjung lama tanpa perlu mengganti nama berkas.
+app.use("/uploads", express.static(UPLOAD_ROOT, { maxAge: SEBULAN }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));
 
@@ -80,6 +94,16 @@ const KNOWN_SPA_ROUTES = [
   /^\/admin\/akun\/?$/,
 ];
 
+// Vite menamai berkas di /assets menurut isinya (index-lNDQKLnl.css): isi
+// berubah berarti namanya ikut berubah, jadi URL yang sama tidak akan pernah
+// menunjuk isi yang berbeda. Itu justru syarat "immutable" — browser boleh
+// memakainya tanpa bertanya lagi. Didaftarkan sebelum penangan di bawah
+// supaya permintaan aset tidak ikut menjalani pencarian berkas prerender.
+app.use(
+  "/assets",
+  express.static(path.join(clientDist, "assets"), { maxAge: SETAHUN, immutable: true })
+);
+
 // Prerendered pages live on disk as dist/<route>/index.html (dist/index.html
 // for "/"). Handing a no-trailing-slash request for one of these straight to
 // express.static() below would 301-redirect to the trailing-slash form
@@ -90,16 +114,29 @@ app.get(/^(?!\/api|\/uploads).*/, async (req, res, next) => {
   if (!prerendered.startsWith(clientDist)) return next();
   try {
     await fs.access(prerendered);
+    res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
     res.sendFile(prerendered);
   } catch {
     next();
   }
 });
 
-app.use(express.static(clientDist));
+// Sisanya: logo, favicon, manifest, sitemap — jarang berubah tapi namanya
+// tetap, jadi sehari saja. HTML dikecualikan dan harus selalu divalidasi:
+// berkas itu yang menunjuk ke nama aset terbaru, jadi HTML yang tersimpan
+// lama membuat deploy baru tidak pernah sampai ke pengunjung lama.
+app.use(
+  express.static(clientDist, {
+    maxAge: SEHARI,
+    setHeaders: (res, berkas) => {
+      if (berkas.endsWith(".html")) res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+    },
+  })
+);
 
 app.get(/^(?!\/api|\/uploads).*/, (req, res, next) => {
   const status = KNOWN_SPA_ROUTES.some((pattern) => pattern.test(req.path)) ? 200 : 404;
+  res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
   res.status(status).sendFile(path.join(clientDist, "index.html"), (err) => {
     if (err) next();
   });
