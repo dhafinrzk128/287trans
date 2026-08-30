@@ -1,8 +1,9 @@
 const path = require("path");
 const fs = require("fs/promises");
+const sharp = require("sharp");
 
 const { UPLOAD_ROOT } = require("./upload");
-const { generateWebpSibling } = require("./webp");
+const { generateWebpSibling, SISI_MAKS } = require("./webp");
 
 // Foto yang diunggah sejak generateWebpSibling() dipasang sudah punya
 // pendamping .webp. Yang diunggah sebelum itu tidak, dan klien tetap
@@ -38,24 +39,56 @@ async function kumpulkanGambar(dir, hasil = []) {
   return hasil;
 }
 
+function jalurWebp(berkas) {
+  return berkas.replace(/\.[^.]+$/, ".webp");
+}
+
 async function sudahPunyaWebp(berkas) {
   try {
-    await fs.access(berkas.replace(/\.[^.]+$/, ".webp"));
+    await fs.access(jalurWebp(berkas));
     return true;
   } catch {
     return false;
   }
 }
 
+// Pendamping .webp yang dibuat sebelum batas SISI_MAKS diberlakukan masih
+// seukuran berkas aslinya, jadi tetap mengirim piksel yang tidak terpakai.
+// Membacanya cuma perlu header, bukan seluruh gambar, jadi murah dilakukan
+// tiap boot — dan setelah satu kali putaran semuanya sudah di bawah batas,
+// sehingga putaran berikutnya tidak mengerjakan apa pun.
+async function webpTerlaluBesar(berkas) {
+  try {
+    // Dibaca lewat buffer, bukan lewat jalur berkas: sharp menahan berkas
+    // yang dibukanya, dan penahanan itu membuat penulisan ulang ke berkas
+    // yang sama gagal.
+    const isi = await fs.readFile(jalurWebp(berkas));
+    const m = await sharp(isi).metadata();
+    return Math.max(m.width || 0, m.height || 0) > SISI_MAKS;
+  } catch {
+    return false; // tidak terbaca: bukan urusan pengecilan, biarkan apa adanya
+  }
+}
+
+async function tidakBisaDibacaSebagaiGambar(berkas) {
+  try {
+    await sharp(await fs.readFile(berkas)).metadata();
+    return false;
+  } catch {
+    return true;
+  }
+}
+
 /**
- * Melengkapi pendamping .webp untuk gambar lama yang belum punya.
- * Aman dijalankan berulang kali: yang sudah punya dilewati.
+ * Melengkapi pendamping .webp yang belum ada, dan memperbarui yang dibuat
+ * sebelum batas ukuran diberlakukan. Aman dijalankan berulang kali: yang
+ * sudah ada dan sudah di bawah batas dilewati.
  */
 async function backfillWebp() {
   const gambar = await kumpulkanGambar(UPLOAD_ROOT);
   const kurang = [];
   for (const berkas of gambar) {
-    if (!(await sudahPunyaWebp(berkas))) kurang.push(berkas);
+    if (!(await sudahPunyaWebp(berkas)) || (await webpTerlaluBesar(berkas))) kurang.push(berkas);
   }
 
   if (kurang.length === 0) {
@@ -69,8 +102,18 @@ async function backfillWebp() {
   const tidakTerbaca = [];
   for (const berkas of kurang) {
     await generateWebpSibling(berkas);
-    if (await sudahPunyaWebp(berkas)) dibuat += 1;
-    else tidakTerbaca.push(berkas);
+    // Keberadaan berkas saja tidak cukup sebagai tanda berhasil di sini:
+    // untuk yang sedang diperkecil, versi lamanya sudah ada sejak awal dan
+    // akan tetap ada walau pembuatan ulangnya gagal.
+    const beres = (await sudahPunyaWebp(berkas)) && !(await webpTerlaluBesar(berkas));
+    if (beres) dibuat += 1;
+    // Daftar ini dipakai bersihkanUploads() untuk memutuskan sebuah berkas
+    // sudah mati dan boleh dihapus, jadi isinya harus benar-benar berkas yang
+    // tidak bisa dibaca sebagai gambar. Konversi bisa gagal karena hal yang
+    // tidak ada hubungannya dengan isi berkas — tujuan penulisan terkunci,
+    // disk penuh — dan memasukkan korban keadaan seperti itu ke sini berarti
+    // menghapus foto yang sebenarnya sehat.
+    else if (await tidakBisaDibacaSebagaiGambar(berkas)) tidakTerbaca.push(berkas);
   }
 
   return { diperiksa: gambar.length, dibuat, tidakTerbaca };
