@@ -3,6 +3,7 @@ import { MessageCircle, ArrowRight } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
+import HargaMulai from "../../components/HargaMulai";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
@@ -38,6 +39,17 @@ export default function RentalMobilTangerang() {
             perjalanan bersama keluarga atau rombongan. Setiap unit diperiksa rutin sebelum disewakan, sehingga Anda
             tidak perlu khawatir soal kondisi mesin, kebersihan kabin, maupun kelengkapan surat-surat kendaraan.
           </p>
+        </Reveal>
+
+        {/* Diletakkan setinggi ini dengan sengaja. Armada 287 Trans dimulai di
+            Rp799.000/hari, sementara sebagian besar orang yang mengetik "sewa
+            mobil" membayangkan angka setengahnya — dan selama halaman ini
+            tidak menyebut satu angka pun, satu-satunya cara mereka tahu adalah
+            bertanya lewat WhatsApp, lalu pergi. Menaruh harganya sebelum
+            tombol WhatsApp membuat yang tidak cocok mundur tanpa menghabiskan
+            waktu siapa pun, dan yang tetap menghubungi sudah menerima angkanya. */}
+        <Reveal delay={60} className="mt-8">
+          <HargaMulai />
         </Reveal>
 
         <ArmadaCarousel />
@@ -109,10 +121,8 @@ export default function RentalMobilTangerang() {
             penumpang selalu tercantum jelas di setiap halaman mobil agar Anda tidak salah pilih unit.
           </p>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Rentang harga sewa harian kami cukup luas, disesuaikan dengan kelas dan tahun kendaraan, sehingga baik
-            yang mencari opsi paling ekonomis maupun yang membutuhkan unit kelas atas sama-sama bisa menemukan
-            pilihan yang pas. Detail harga per unit selalu ditampilkan apa adanya di setiap halaman mobil, tanpa
-            biaya tersembunyi yang baru muncul saat konfirmasi.
+            Tarif harian untuk tiap kelas sudah tercantum di bagian atas halaman ini, dan harga per unit ditampilkan
+            apa adanya di katalog — tanpa biaya tersembunyi yang baru muncul saat konfirmasi.
           </p>
         </Reveal>
 
