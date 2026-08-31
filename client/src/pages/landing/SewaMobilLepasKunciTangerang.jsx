@@ -3,6 +3,7 @@ import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
+import HargaMulai from "../../components/HargaMulai";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
@@ -46,7 +47,16 @@ export default function SewaMobilLepasKunciTangerang() {
           </p>
         </Reveal>
 
-        <Reveal delay={40}>
+        {/* Sama seperti di /rental-mobil-tangerang: harganya diletakkan sebelum
+            tombol WhatsApp, bukan di bagian "Harga Transparan" jauh di bawah.
+            Halaman ini tujuan iklan berbayar, dan armada termurah dimulai di
+            Rp799.000/hari — angka yang perlu diketahui calon penyewa sebelum
+            ia membuka percakapan, bukan sesudahnya. */}
+        <Reveal delay={40} className="mt-8">
+          <HargaMulai />
+        </Reveal>
+
+        <Reveal delay={60}>
           <ArmadaCarousel />
         </Reveal>
 
@@ -99,10 +109,10 @@ export default function SewaMobilLepasKunciTangerang() {
           <h2 className="text-2xl font-bold text-slate-900">Harga Transparan Tanpa Kejutan</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
             Salah satu keluhan umum soal sewa mobil lepas kunci adalah biaya tambahan yang baru muncul di akhir.
-            Di 287 Trans, harga per hari yang tertera di halaman setiap mobil adalah harga yang akan Anda bayar —
-            bukan estimasi kasar yang berubah saat konfirmasi. Kalau ada kebutuhan tambahan seperti perpanjangan
-            durasi sewa mendadak, tim kami akan mengonfirmasi biayanya terlebih dahulu sebelum diproses, jadi Anda
-            selalu tahu persis apa yang dibayar.
+            Tarif per kelas sudah tercantum di bagian atas halaman ini, dan harga per hari yang tertera di setiap
+            unit adalah harga yang akan Anda bayar — bukan estimasi kasar yang berubah saat konfirmasi. Kalau ada
+            kebutuhan tambahan seperti perpanjangan durasi sewa mendadak, tim kami akan mengonfirmasi biayanya
+            terlebih dahulu sebelum diproses, jadi Anda selalu tahu persis apa yang dibayar.
           </p>
         </Reveal>
 
