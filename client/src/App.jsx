@@ -57,7 +57,6 @@ const AdminProfile = lazy(() => import("./pages/admin/AdminProfile"));
 const AdminAccount = lazy(() => import("./pages/admin/AdminAccount"));
 const AdminTestimoni = lazy(() => import("./pages/admin/AdminTestimoni"));
 const AdminFaq = lazy(() => import("./pages/admin/AdminFaq"));
-const AdminGaleri = lazy(() => import("./pages/admin/AdminGaleri"));
 
 function App() {
   return (
@@ -108,7 +107,6 @@ function App() {
                   <Route path="booking/:id" element={<AdminBookingDetail />} />
                   <Route path="testimoni" element={<AdminTestimoni />} />
                   <Route path="faq" element={<AdminFaq />} />
-                  <Route path="galeri" element={<AdminGaleri />} />
                   <Route path="profile" element={<AdminProfile />} />
                   <Route path="akun" element={<AdminAccount />} />
                 </Route>

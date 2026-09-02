@@ -1,6 +1,6 @@
 import { Suspense, useState } from "react";
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
-import { LayoutDashboard, Car, ClipboardList, Building2, MessageSquareQuote, HelpCircle, KeyRound, LogOut, Menu, X, Images } from "lucide-react";
+import { LayoutDashboard, Car, ClipboardList, Building2, MessageSquareQuote, HelpCircle, KeyRound, LogOut, Menu, X } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import Seo from "../Seo";
 import Spinner from "../ui/Spinner";
@@ -12,7 +12,6 @@ const NAV_ITEMS = [
   { to: "/admin/booking", label: "Kelola Booking", icon: ClipboardList },
   { to: "/admin/testimoni", label: "Kelola Testimoni", icon: MessageSquareQuote },
   { to: "/admin/faq", label: "Kelola FAQ", icon: HelpCircle },
-  { to: "/admin/galeri", label: "Galeri Armada", icon: Images },
   { to: "/admin/profile", label: "Company Profile", icon: Building2 },
   { to: "/admin/akun", label: "Akun Saya", icon: KeyRound },
 ];

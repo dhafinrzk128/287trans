@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
-import ArmadaCarousel from "../../components/ArmadaCarousel";
 import HargaMulai from "../../components/HargaMulai";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
@@ -81,8 +80,6 @@ export default function SewaInnovaRebornTangerang() {
             Type-G, Type-V, dan Venturer — seluruhnya bertransmisi matic dan berbahan bakar diesel.
           </p>
         </Reveal>
-
-        <ArmadaCarousel />
 
         <Reveal delay={80} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Varian Innova Reborn yang Tersedia</h2>

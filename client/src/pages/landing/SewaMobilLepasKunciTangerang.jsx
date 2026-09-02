@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
-import ArmadaCarousel from "../../components/ArmadaCarousel";
 import HargaMulai from "../../components/HargaMulai";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema } from "../../utils/schema";
@@ -54,10 +53,6 @@ export default function SewaMobilLepasKunciTangerang() {
             ia membuka percakapan, bukan sesudahnya. */}
         <Reveal delay={40} className="mt-8">
           <HargaMulai />
-        </Reveal>
-
-        <Reveal delay={60}>
-          <ArmadaCarousel />
         </Reveal>
 
         <Reveal delay={80} className="mt-10">

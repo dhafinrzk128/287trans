@@ -48,12 +48,6 @@ const uploadBuktiTransfer = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 });
 
-const uploadGaleriFoto = multer({
-  storage: makeStorage("galeri"),
-  fileFilter: imageFileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 },
-});
-
 function publicUrl(subfolder, filename) {
   return `/uploads/${subfolder}/${filename}`;
 }
@@ -63,6 +57,5 @@ module.exports = {
   uploadMobilFoto,
   uploadProfileFoto,
   uploadBuktiTransfer,
-  uploadGaleriFoto,
   publicUrl,
 };

@@ -17,7 +17,6 @@ const contactRoutes = require("./routes/contact.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const testimoniRoutes = require("./routes/testimoni.routes");
 const faqRoutes = require("./routes/faq.routes");
-const galeriRoutes = require("./routes/galeri.routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
@@ -52,7 +51,6 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/testimoni", testimoniRoutes);
 app.use("/api/faq", faqRoutes);
-app.use("/api/galeri", galeriRoutes);
 
 const clientDist = path.join(__dirname, "..", "..", "client", "dist");
 
@@ -89,7 +87,6 @@ const KNOWN_SPA_ROUTES = [
   /^\/admin\/booking\/[^/]+\/?$/,
   /^\/admin\/testimoni\/?$/,
   /^\/admin\/faq\/?$/,
-  /^\/admin\/galeri\/?$/,
   /^\/admin\/profile\/?$/,
   /^\/admin\/akun\/?$/,
 ];
