@@ -163,12 +163,11 @@ export default function SewaInnovaRebornTangerang() {
             padat, karakter ini juga membuat perpindahan gigi terasa lebih halus.
           </p>
           <p className="mt-3 leading-relaxed text-slate-700">
-            Kalau kebutuhan Anda lebih banyak berkutat di dalam kota dengan lalu lintas berhenti-jalan, varian
-            hybrid pada{" "}
+            {"Kalau kebutuhan Anda lebih banyak berkutat di dalam kota dengan lalu lintas berhenti-jalan, varian hybrid pada "}
             <Link to="/sewa-innova-zenix-tangerang" className="font-semibold text-blue-600 hover:underline">
               Innova Zenix
-            </Link>{" "}
-            bisa jadi pertimbangan lain karena karakter konsumsi bahan bakarnya berbeda di kondisi macet.
+            </Link>
+            {" bisa jadi pertimbangan lain karena karakter konsumsi bahan bakarnya berbeda di kondisi macet."}
           </p>
         </Reveal>
 
