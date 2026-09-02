@@ -3,6 +3,7 @@ import { MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 import PageHero from "../../components/PageHero";
 import Reveal from "../../components/Reveal";
 import ArmadaCarousel from "../../components/ArmadaCarousel";
+import HargaMulai from "../../components/HargaMulai";
 import Seo from "../../components/Seo";
 import { breadcrumbSchema, faqPageSchema } from "../../utils/schema";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
@@ -134,6 +135,22 @@ export default function SewaInnovaZenixTangerang() {
               </li>
             ))}
           </ul>
+        </Reveal>
+
+        {/* Halaman ini menjual satu model, jadi pengunjung yang merasa harganya
+            tidak pas tidak punya tujuan lain selain menutup tab. Daftar kelas
+            lain memberinya jalan — ke atas maupun ke bawah — tanpa harus
+            menebaknya lewat WhatsApp lebih dulu. Sorotan harga dimatikan di
+            sini karena tabel varian tepat di atas sudah menyebut angkanya. */}
+        <Reveal delay={100} className="mt-10">
+          <h2 className="text-2xl font-bold text-slate-900">Kelas Lain yang Tersedia</h2>
+          <p className="mt-3 leading-relaxed text-slate-700">
+            Kalau Innova Zenix belum pas dengan kebutuhan atau anggaran Anda, berikut tarif harian untuk
+            kelas lain yang tersedia di armada kami.
+          </p>
+          <div className="mt-5">
+            <HargaMulai tampilkanSorotan={false} />
+          </div>
         </Reveal>
 
         <Reveal delay={120} className="mt-10">

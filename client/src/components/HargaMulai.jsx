@@ -42,7 +42,7 @@ function ringkasPerKelas(mobils) {
  * kekeliruan harga yang baru ketahuan saat chat persis masalah yang tabel ini
  * ada untuk mencegahnya.
  */
-export default function HargaMulai() {
+export default function HargaMulai({ tampilkanSorotan = true }) {
   const [kelas, setKelas] = useState(() => getPrerenderedData(KUNCI) ?? []);
 
   useEffect(() => {
@@ -64,15 +64,21 @@ export default function HargaMulai() {
 
   return (
     <div>
-      <div className="rounded-2xl border border-accent-200 bg-accent-50 px-5 py-4">
-        <p className="text-sm text-slate-600">Sewa harian di 287 Trans dimulai dari</p>
-        <p className="mt-1 text-3xl font-extrabold text-slate-900">
-          {formatRupiah(termurah)}
-          <span className="text-base font-semibold text-slate-500">{" / hari"}</span>
-        </p>
-      </div>
+      {/* Halaman model tertentu (Innova Reborn dsb.) sudah menampilkan harga
+          varian tepat di atas tabel ini, jadi sorotannya dimatikan di sana —
+          mengulang angka yang sama dua kali membuat halamannya terbaca seperti
+          iklan, bukan keterangan. */}
+      {tampilkanSorotan && (
+        <div className="rounded-2xl border border-accent-200 bg-accent-50 px-5 py-4">
+          <p className="text-sm text-slate-600">Sewa harian di 287 Trans dimulai dari</p>
+          <p className="mt-1 text-3xl font-extrabold text-slate-900">
+            {formatRupiah(termurah)}
+            <span className="text-base font-semibold text-slate-500">{" / hari"}</span>
+          </p>
+        </div>
+      )}
 
-      <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
+      <div className={`${tampilkanSorotan ? "mt-5" : ""} overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]`}>
         <table className="w-full text-left text-sm">
           <thead className="bg-slate-50 text-slate-500">
             <tr>
