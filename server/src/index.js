@@ -7,6 +7,7 @@ const path = require("path");
 const fs = require("fs/promises");
 
 const { UPLOAD_ROOT } = require("./utils/upload");
+const { buatVarianKecil, AKHIRAN_KECIL } = require("./utils/webp");
 const { backfillWebp } = require("./utils/backfillWebp");
 const { bersihkanUploads } = require("./utils/bersihkanUploads");
 const authRoutes = require("./routes/auth.routes");
@@ -39,6 +40,37 @@ app.use(express.urlencoded({ extended: true }));
 // setahun: pendamping .webp bisa dibuat ulang di tempat (seperti saat
 // batas ukurannya diberlakukan), dan sebulan menjamin versi barunya tetap
 // sampai ke pengunjung lama tanpa perlu mengganti nama berkas.
+// Varian kecil (<nama>-kecil.webp) dibuat saat pertama kali diminta, bukan
+// disiapkan lebih dulu untuk seluruh arsip.
+//
+// Penangan ini yang membuat srcset di client/src/components/SmartImage.jsx
+// aman dipasang: kandidat srcset yang 404 TIDAK punya jalur mundur di
+// browser — gambarnya rusak begitu saja, tanpa cara memilih kandidat lain.
+// Di sini keadaan itu tidak bisa terjadi. Kalau berkasnya belum ada, dibuat
+// dulu; kalau pembuatannya gagal (sharp bermasalah, sumbernya hilang), yang
+// dikirim adalah berkas ukuran penuh dengan nama yang diminta. Pengunjung
+// selalu dapat gambar.
+app.get(/^\/uploads\/.*-kecil\.webp$/, async (req, res, next) => {
+  const pathKecil = path.join(UPLOAD_ROOT, decodeURIComponent(req.path.replace(/^\/uploads\//, "")));
+  // Nama berkas datang dari URL, jadi ".." harus ditolak sebelum menyentuh disk.
+  if (!pathKecil.startsWith(UPLOAD_ROOT)) return res.sendStatus(400);
+
+  try {
+    await fs.access(pathKecil);
+    return next();
+  } catch {
+    /* belum ada — dibuat di bawah */
+  }
+
+  if (await buatVarianKecil(pathKecil)) return next();
+
+  const penuh = pathKecil.slice(0, -AKHIRAN_KECIL.length) + ".webp";
+  res.setHeader("Cache-Control", `public, max-age=${SEBULAN / 1000}`);
+  return res.sendFile(penuh, (err) => {
+    if (err) next();
+  });
+});
+
 app.use("/uploads", express.static(UPLOAD_ROOT, { maxAge: SEBULAN }));
 
 app.get("/api/health", (req, res) => res.json({ status: "ok" }));

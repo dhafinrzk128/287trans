@@ -77,6 +77,17 @@ export function toWebpUrl(url) {
   return url.replace(/\.[^./]+$/, ".webp");
 }
 
+// Varian 480px dari sebuah foto unggahan, untuk srcset di kartu katalog.
+//
+// Hanya untuk /uploads: berkasnya dibuat sesuai permintaan oleh penangan di
+// server/src/index.js, dan berkas lain (logo, favicon) tidak punya padanan
+// itu. Server menjamin URL ini tidak pernah 404 — kalau variannya gagal
+// dibuat, yang dikirim gambar ukuran penuh dengan nama yang sama.
+export function toWebpKecilUrl(url) {
+  if (!url || !url.startsWith("/uploads/")) return null;
+  return url.replace(/\.[^./]+$/, "-kecil.webp");
+}
+
 export function hitungJumlahHari(tglAmbil, tglKembali) {
   if (!tglAmbil || !tglKembali) return 0;
   const ambil = new Date(tglAmbil);

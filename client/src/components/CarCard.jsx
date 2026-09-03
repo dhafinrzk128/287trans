@@ -26,6 +26,12 @@ export default function CarCard({ mobil, priority = false }) {
               }`}
               loading={priority ? "eager" : "lazy"}
               fetchPriority={priority ? "high" : "auto"}
+              // Lebar tampil kartu ini mengikuti grid katalog: satu kolom di
+              // ponsel, lalu 2 / 3 / 4 kolom dalam wadah max-w-7xl (1280px),
+              // sehingga di layar besar kotaknya justru paling sempit (~300px).
+              // Tanpa ini, tiap kartu menarik berkas 1200px — ~41 KB terukur
+              // untuk kotak selebar 284px, dikali tujuh kartu di halaman MPV.
+              ukuran="(min-width: 1280px) 300px, (min-width: 1024px) 32vw, (min-width: 640px) 48vw, 92vw"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center text-slate-300">

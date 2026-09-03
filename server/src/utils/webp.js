@@ -16,6 +16,16 @@ const fs = require("fs/promises");
 const SISI_MAKS = 1200;
 const KUALITAS = 72;
 
+// Varian kedua, khusus kartu mobil di grid katalog.
+//
+// 1200px adalah ukuran yang benar untuk foto hero: lebarnya tampil ~590px,
+// jadi di layar retina butuh ~1180px nyata. Tapi kartu di grid katalog cuma
+// selebar ~284px di desktop dan ~343px di ponsel. Diukur di produksi, satu
+// kartu mengunduh ~41 KB untuk kotak segitu — dan satu halaman kategori bisa
+// memuat tujuh kartu sekaligus.
+const LEBAR_KECIL = 480;
+const AKHIRAN_KECIL = "-kecil.webp";
+
 // Membuat pendamping .webp bernama sama di sebelah gambar yang diunggah,
 // supaya klien bisa meminta <basename>.webp dan kembali ke berkas aslinya
 // kalau tidak ada (lihat client/src/components/SmartImage.jsx). Sengaja
@@ -45,8 +55,46 @@ async function generateWebpSibling(filePath) {
   }
 }
 
+/**
+ * Membuat varian kecil dari pendamping .webp yang sudah ada.
+ *
+ * Sengaja dibuat saat berkasnya diminta pertama kali (lihat penangan
+ * /uploads di server/src/index.js), bukan lewat pass massal saat server
+ * nyala. Alasannya pengalaman: pekerjaan massal yang menulis ulang berkas
+ * gambar saat boot pernah membuat seluruh foto mobil hilang. Fungsi ini
+ * hanya pernah MENAMBAH berkas — tidak menyentuh, menimpa, atau menghapus
+ * apa pun yang sudah ada — sehingga kegagalan terburuknya cuma "varian
+ * kecilnya tidak jadi", dan pengunjung tetap menerima gambar ukuran penuh.
+ *
+ * Mengembalikan true kalau berkasnya kini ada di disk.
+ */
+async function buatVarianKecil(pathKecil) {
+  if (!pathKecil.endsWith(AKHIRAN_KECIL)) return false;
+  const sumber = pathKecil.slice(0, -AKHIRAN_KECIL.length) + ".webp";
+  const sementara = `${pathKecil}.sedang-dibuat`;
+  try {
+    await fs.access(sumber);
+    await sharp(sumber)
+      .resize({ width: LEBAR_KECIL, height: LEBAR_KECIL, fit: "inside", withoutEnlargement: true })
+      .webp({ quality: KUALITAS })
+      .toFile(sementara);
+    await fs.rename(sementara, pathKecil);
+    return true;
+  } catch {
+    await fs.unlink(sementara).catch(() => {});
+    return false;
+  }
+}
+
 async function generateWebpForFiles(files) {
   await Promise.all(files.map((f) => generateWebpSibling(f.path)));
 }
 
-module.exports = { generateWebpSibling, generateWebpForFiles, SISI_MAKS };
+module.exports = {
+  generateWebpSibling,
+  generateWebpForFiles,
+  buatVarianKecil,
+  SISI_MAKS,
+  LEBAR_KECIL,
+  AKHIRAN_KECIL,
+};

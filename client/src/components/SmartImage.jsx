@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { toWebpUrl } from "../utils/format";
+import { toWebpUrl, toWebpKecilUrl } from "../utils/format";
 
 /**
  * <img>, tapi menyajikan versi WebP untuk gambar satu-origin (foto mobil,
@@ -21,9 +21,14 @@ import { toWebpUrl } from "../utils/format";
  * satu permintaan tambahan, tapi hanya untuk gambar yang memang bermasalah,
  * bukan untuk semua gambar seperti sebelumnya.
  */
-export default function SmartImage({ src, alt, onError, ...imgProps }) {
+export default function SmartImage({ src, alt, onError, ukuran, ...imgProps }) {
   const webpSrc = toWebpUrl(src);
   const adaWebp = Boolean(webpSrc) && webpSrc !== src;
+  // `ukuran` = atribut sizes. Diisi oleh pemanggil yang tahu selebar apa
+  // gambarnya akan tampil (lihat CarCard), bukan ditebak di sini — komponen
+  // ini juga dipakai untuk hero dan logo, yang lebarnya jauh berbeda dan
+  // justru butuh berkas ukuran penuh.
+  const kecilSrc = ukuran ? toWebpKecilUrl(src) : null;
   const [webpGagal, setWebpGagal] = useState(false);
 
   const ref = useRef(null);
@@ -60,7 +65,11 @@ export default function SmartImage({ src, alt, onError, ...imgProps }) {
 
   return (
     <picture>
-      <source srcSet={webpSrc} type="image/webp" />
+      <source
+        srcSet={kecilSrc ? `${kecilSrc} 480w, ${webpSrc} 1200w` : webpSrc}
+        sizes={kecilSrc ? ukuran : undefined}
+        type="image/webp"
+      />
       {img}
     </picture>
   );
