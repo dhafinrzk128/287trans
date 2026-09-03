@@ -130,17 +130,13 @@ export default function Armada() {
         <Reveal delay={160} className="mt-10">
           <h2 className="text-2xl font-bold text-slate-900">Semua Kategori Tersedia Lepas Kunci atau Plus Driver</h2>
           <p className="mt-3 leading-relaxed text-slate-700">
-            {"Terlepas dari kategori yang Anda pilih, seluruh armada kami bisa disewa dengan skema "}
-            <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
-              lepas kunci
+            {"Terlepas dari kategori yang Anda pilih, seluruh armada kami bisa disewa dengan skema lepas kunci maupun plus driver, untuk durasi harian sampai bulanan. Rincian unit dan harga tiap kategori bisa dilihat di halaman kategorinya masing-masing, misalnya "}
+            <Link to="/sewa-mpv-tangerang" className="font-semibold text-blue-600 hover:underline">
+              sewa MPV
             </Link>
-            {" maupun "}
-            <Link to="/rental-mobil-plus-driver" className="font-semibold text-blue-600 hover:underline">
-              plus driver
-            </Link>
-            {", untuk durasi harian sampai "}
-            <Link to="/rental-mobil-bulanan-tangerang" className="font-semibold text-blue-600 hover:underline">
-              bulanan
+            {" dan "}
+            <Link to="/sewa-suv-tangerang" className="font-semibold text-blue-600 hover:underline">
+              sewa SUV
             </Link>
             {". Setiap unit diperiksa kondisinya secara rutin sebelum disewakan, dan foto yang ditampilkan di katalog adalah foto unit sebenarnya — bukan foto ilustrasi dari internet."}
           </p>

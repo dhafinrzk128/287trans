@@ -68,13 +68,18 @@ const KNOWN_SPA_ROUTES = [
   /^\/kontak\/?$/,
   /^\/armada\/?$/,
   /^\/faq\/?$/,
-  /^\/rental-mobil-tangerang\/?$/,
-  /^\/sewa-mobil-lepas-kunci-tangerang\/?$/,
-  /^\/rental-mobil-plus-driver\/?$/,
-  /^\/rental-mobil-bulanan-tangerang\/?$/,
-  /^\/sewa-mobil-bandara-soekarno-hatta\/?$/,
-  /^\/sewa-innova-reborn-tangerang\/?$/,
+  // Halaman kategori & model armada — cerminan src/data/koleksiArmada.js.
+  // Kalau nanti ada entri baru di sana, tambahkan barisnya di sini juga.
+  /^\/sewa-mpv-tangerang\/?$/,
+  /^\/sewa-suv-tangerang\/?$/,
+  /^\/sewa-alphard-tangerang\/?$/,
+  /^\/sewa-mobil-mewah-tangerang\/?$/,
+  /^\/sewa-suv-mewah-tangerang\/?$/,
+  /^\/sewa-mobil-listrik-tangerang\/?$/,
+  /^\/sewa-sedan-tangerang\/?$/,
+  /^\/sewa-hatchback-tangerang\/?$/,
   /^\/sewa-innova-zenix-tangerang\/?$/,
+  /^\/sewa-innova-reborn-tangerang\/?$/,
   /^\/sewa-fortuner-tangerang\/?$/,
   /^\/sewa-pajero-sport-tangerang\/?$/,
   /^\/admin\/login\/?$/,
@@ -90,6 +95,35 @@ const KNOWN_SPA_ROUTES = [
   /^\/admin\/profile\/?$/,
   /^\/admin\/akun\/?$/,
 ];
+
+// Halaman artikel lama yang tujuan iklannya dipindahkan ke halaman utama.
+//
+// Kelimanya membidik kata kunci cara menyewa ("lepas kunci", "plus driver",
+// "bulanan", "bandara") dan kata kunci paling umum — bukan jenis mobil —
+// sehingga tidak punya padanan di halaman kategori armada. Yang menggantikan
+// perannya adalah halaman utama, yang kini menampilkan harga terendah dan
+// seluruh kategori armada di layar pertama.
+//
+// 301, bukan dihapus begitu saja: URL-nya sudah terindeks Google dan pernah
+// dipakai sebagai URL akhir iklan. Menjadikannya 404 berarti membuang
+// peringkat yang sudah terbentuk sekaligus mematikan iklan yang URL-nya
+// belum sempat diperbarui. Didaftarkan sebelum penangan berkas prerender di
+// bawah, supaya sisa halaman statis lama di dist (kalau ada) tidak keburu
+// terlayani lebih dulu.
+const REDIRECT_PERMANEN = {
+  "/rental-mobil-tangerang": "/",
+  "/sewa-mobil-lepas-kunci-tangerang": "/",
+  "/rental-mobil-plus-driver": "/",
+  "/rental-mobil-bulanan-tangerang": "/",
+  "/sewa-mobil-bandara-soekarno-hatta": "/",
+};
+
+app.get(Object.keys(REDIRECT_PERMANEN), (req, res) => {
+  // Express mencocokkan bentuk dengan maupun tanpa garis miring di akhir,
+  // jadi keduanya perlu menemukan kuncinya.
+  const tanpaGarisMiring = req.path.length > 1 && req.path.endsWith("/") ? req.path.slice(0, -1) : req.path;
+  res.redirect(301, REDIRECT_PERMANEN[tanpaGarisMiring] || "/");
+});
 
 // Vite menamai berkas di /assets menurut isinya (index-lNDQKLnl.css): isi
 // berubah berarti namanya ikut berubah, jadi URL yang sama tidak akan pernah

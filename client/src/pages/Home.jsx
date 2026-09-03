@@ -5,11 +5,12 @@ import api from "../api/client";
 import Seo from "../components/Seo";
 import { AUTORENTAL_SCHEMA, WEBSITE_SCHEMA, faqPageSchema } from "../utils/schema";
 import CarCard from "../components/CarCard";
+import KategoriArmadaGrid from "../components/KategoriArmadaGrid";
 import SmartImage from "../components/SmartImage";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { buildWaLink, pesanSewa } from "../utils/format";
+import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -27,6 +28,9 @@ export default function Home() {
   const [testimoni, setTestimoni] = useState(() => getPrerenderedData("home_testimoni") ?? []);
   const [faq, setFaq] = useState(() => getPrerenderedData("home_faq") ?? []);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  // Kuncinya sama dengan yang dipakai KategoriArmadaGrid, karena daftar yang
+  // ditarik memang sama persis dan halaman ini yang mengopernya ke bawah.
+  const [semuaMobil, setSemuaMobil] = useState(() => getPrerenderedData("kategori_ringkas") ?? []);
 
   useEffect(() => {
     // Silent on the very first run when prerendered data already matches
@@ -50,7 +54,21 @@ export default function Home() {
       setFaq(data);
       setPrerenderedData("home_faq", data);
     });
+    api
+      .get("/mobil")
+      .then(({ data }) => {
+        setSemuaMobil(data);
+        setPrerenderedData("kategori_ringkas", data);
+      })
+      .catch(() => {
+        /* harga "mulai dari" dan petak kategori sekadar tidak tampil */
+      });
   }, []);
+
+  // Angka terendah dari katalog, bukan angka yang ditulis mati: harga yang
+  // diubah dari panel admin tapi tidak ikut berubah di hero akan membuat
+  // halaman ini berbohong tepat di tempat yang paling banyak dibaca.
+  const termurah = semuaMobil.length ? Math.min(...semuaMobil.map((m) => m.hargaPerHari)) : null;
 
   return (
     <div>
@@ -78,14 +96,24 @@ export default function Home() {
               Ajukan permintaan booking mobil rental secara online tanpa perlu membuat akun. Armada premium
               dan proses cepat untuk kebutuhan perjalanan Anda.
             </p>
+            {/* Harga diletakkan sebelum tombol, bukan di bagian terpisah jauh
+                di bawah. Halaman ini tujuan iklan berbayar untuk kata kunci
+                umum: angka terendah perlu terbaca calon penyewa sebelum ia
+                memutuskan membuka percakapan, bukan sesudahnya. */}
+            {termurah !== null && (
+              <div className="mt-7 inline-block rounded-2xl border border-white/15 bg-white/10 px-6 py-4 backdrop-blur-sm">
+                <p className="text-sm text-blue-100">Sewa harian mulai dari</p>
+                <p className="mt-0.5 text-3xl font-extrabold">
+                  {formatRupiah(termurah)}
+                  <span className="text-base font-semibold text-blue-200">{" / hari"}</span>
+                </p>
+              </div>
+            )}
+
+            {/* WhatsApp didahulukan dari tombol katalog: mayoritas pemesanan
+                masuk lewat percakapan, dan tombol katalog menambah satu klik
+                sebelum calon penyewa bisa bertanya. */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                to="/katalog"
-                className="btn-glow-accent inline-flex items-center justify-center gap-2 rounded-xl bg-accent-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-accent-900/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-accent-500"
-              >
-                Booking Sekarang
-                <ArrowRight size={18} />
-              </Link>
               {profile?.whatsapp && (
                 <a
                   href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil di 287 Trans."))}
@@ -98,6 +126,13 @@ export default function Home() {
                   Chat via WhatsApp
                 </a>
               )}
+              <Link
+                to="/katalog"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/10 px-7 py-3.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/20"
+              >
+                Lihat Semua Armada
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </Reveal>
           <Reveal className="relative hidden lg:block" delay={150}>
@@ -122,13 +157,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Kategori armada — pintu masuk ke seluruh katalog, ditaruh persis
+          setelah hero karena inilah yang dicari pengunjung dari iklan:
+          mobilnya apa saja dan mulai berapa. */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-900">Pilih Sesuai Kebutuhan</h2>
+            <p className="mt-2 text-slate-600">
+              Seluruh armada kami dikelompokkan per kategori — klik salah satu untuk melihat unit dan harganya.
+            </p>
+          </div>
+          <Link to="/katalog" className="group flex shrink-0 items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">
+            Lihat Katalog Lengkap
+            <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
+        </Reveal>
+        <div className="mt-8">
+          <KategoriArmadaGrid mobils={semuaMobil} />
+        </div>
+      </section>
+
       {/* Keunggulan */}
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-slate-900">Kenapa Pilih 287 Trans?</h2>
           <p className="mt-3 text-slate-600">
             {"Kami berkomitmen memberikan pengalaman "}
-            <Link to="/rental-mobil-tangerang" className="font-semibold text-blue-600 hover:underline">
+            <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">
               rental mobil Tangerang
             </Link>
             {" terbaik untuk Anda."}

@@ -21,15 +21,8 @@ import Armada from "./pages/Armada";
 import Faq from "./pages/Faq";
 import NotFound from "./pages/NotFound";
 
-import RentalMobilTangerang from "./pages/landing/RentalMobilTangerang";
-import SewaMobilLepasKunciTangerang from "./pages/landing/SewaMobilLepasKunciTangerang";
-import RentalMobilPlusDriver from "./pages/landing/RentalMobilPlusDriver";
-import RentalMobilBulananTangerang from "./pages/landing/RentalMobilBulananTangerang";
-import SewaMobilBandaraSoekarnoHatta from "./pages/landing/SewaMobilBandaraSoekarnoHatta";
-import SewaInnovaRebornTangerang from "./pages/landing/SewaInnovaRebornTangerang";
-import SewaInnovaZenixTangerang from "./pages/landing/SewaInnovaZenixTangerang";
-import SewaFortunerTangerang from "./pages/landing/SewaFortunerTangerang";
-import SewaPajeroSportTangerang from "./pages/landing/SewaPajeroSportTangerang";
+import KoleksiArmada from "./pages/KoleksiArmada";
+import { KOLEKSI } from "./data/koleksiArmada";
 
 // Route-level code splitting only applies to /admin/*: those pages are
 // never prerendered (they're behind auth and noindexed), so there's no
@@ -76,15 +69,13 @@ function App() {
                 <Route path="kontak" element={<Contact />} />
                 <Route path="armada" element={<Armada />} />
                 <Route path="faq" element={<Faq />} />
-                <Route path="rental-mobil-tangerang" element={<RentalMobilTangerang />} />
-                <Route path="sewa-mobil-lepas-kunci-tangerang" element={<SewaMobilLepasKunciTangerang />} />
-                <Route path="rental-mobil-plus-driver" element={<RentalMobilPlusDriver />} />
-                <Route path="rental-mobil-bulanan-tangerang" element={<RentalMobilBulananTangerang />} />
-                <Route path="sewa-mobil-bandara-soekarno-hatta" element={<SewaMobilBandaraSoekarnoHatta />} />
-                <Route path="sewa-innova-reborn-tangerang" element={<SewaInnovaRebornTangerang />} />
-                <Route path="sewa-innova-zenix-tangerang" element={<SewaInnovaZenixTangerang />} />
-                <Route path="sewa-fortuner-tangerang" element={<SewaFortunerTangerang />} />
-                <Route path="sewa-pajero-sport-tangerang" element={<SewaPajeroSportTangerang />} />
+                {/* Halaman kategori dan model armada. Digenerate dari satu
+                    daftar (src/data/koleksiArmada.js) supaya route, sitemap,
+                    prerender, dan menu navbar tidak bisa saling ketinggalan
+                    saat ada tujuan iklan baru ditambahkan. */}
+                {KOLEKSI.map((k) => (
+                  <Route key={k.slug} path={k.slug} element={<KoleksiArmada slug={k.slug} />} />
+                ))}
                 <Route path="*" element={<NotFound />} />
               </Route>
 

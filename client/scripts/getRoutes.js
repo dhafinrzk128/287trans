@@ -6,6 +6,12 @@
 // Railway build step has no direct database access (see the note in
 // prerender.js for why).
 
+// Halaman kategori & model armada tidak ditulis di sini: daftarnya dipakai
+// bersama dengan route React dan menu navbar, jadi satu-satunya sumbernya
+// adalah src/data/koleksiArmada.js. Menambah tujuan iklan di sana otomatis
+// membuatnya ikut diprerender dan masuk sitemap.
+import { KOLEKSI_PATHS } from "../src/data/koleksiArmada.js";
+
 export const STATIC_ROUTES = [
   "/",
   "/tentang-kami",
@@ -14,15 +20,7 @@ export const STATIC_ROUTES = [
   "/armada",
   "/faq",
   "/status",
-  "/rental-mobil-tangerang",
-  "/sewa-mobil-lepas-kunci-tangerang",
-  "/rental-mobil-plus-driver",
-  "/rental-mobil-bulanan-tangerang",
-  "/sewa-mobil-bandara-soekarno-hatta",
-  "/sewa-innova-reborn-tangerang",
-  "/sewa-innova-zenix-tangerang",
-  "/sewa-fortuner-tangerang",
-  "/sewa-pajero-sport-tangerang",
+  ...KOLEKSI_PATHS,
 ];
 
 const API_BASE = process.env.PRERENDER_API_BASE || "https://287trans.id";

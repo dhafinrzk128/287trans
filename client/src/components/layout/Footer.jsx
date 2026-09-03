@@ -4,6 +4,7 @@ import SmartImage from "../SmartImage";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
+import { KOLEKSI_KATEGORI } from "../../data/koleksi/kategori";
 
 function telHref(number) {
   const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
@@ -39,15 +40,19 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Layanan</h3>
+          {/* Kolom ini dulu berisi lima halaman artikel yang kini sudah tidak
+              ada; penggantinya adalah kategori armada, digenerate dari daftar
+              yang sama dengan navbar supaya setiap halaman kategori selalu
+              tertaut dari seluruh halaman situs. */}
+          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Kategori Armada</h3>
           <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/rental-mobil-tangerang" className="transition-colors hover:text-white">Rental Mobil Tangerang</Link></li>
-            <li><Link to="/sewa-mobil-lepas-kunci-tangerang" className="transition-colors hover:text-white">Sewa Lepas Kunci</Link></li>
-            <li><Link to="/rental-mobil-plus-driver" className="transition-colors hover:text-white">Rental Plus Driver</Link></li>
-            <li><Link to="/rental-mobil-bulanan-tangerang" className="transition-colors hover:text-white">Sewa Bulanan</Link></li>
-            <li><Link to="/sewa-mobil-bandara-soekarno-hatta" className="transition-colors hover:text-white">Antar-Jemput Bandara</Link></li>
-            <li><Link to="/armada" className="transition-colors hover:text-white">Daftar Armada</Link></li>
+            {KOLEKSI_KATEGORI.map((k) => (
+              <li key={k.slug}>
+                <Link to={`/${k.slug}`} className="transition-colors hover:text-white">{k.label}</Link>
+              </li>
+            ))}
+            <li><Link to="/katalog" className="transition-colors hover:text-white">Katalog Lengkap</Link></li>
           </ul>
         </div>
 
