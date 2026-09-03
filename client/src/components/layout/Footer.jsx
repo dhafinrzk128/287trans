@@ -5,6 +5,7 @@ import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 import { KOLEKSI_KATEGORI } from "../../data/koleksi/kategori";
+import useReveal from "../../hooks/useReveal";
 
 function telHref(number) {
   const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
@@ -14,6 +15,16 @@ function telHref(number) {
 export default function Footer() {
   const { profile } = useCompanyProfile();
   const year = new Date().getFullYear();
+  // Peta baru dipasang ke DOM saat digulir mendekat. `loading="lazy"` saja
+  // tidak cukup: diukur di produksi, iframe-nya tetap ikut terunduh pada
+  // ~1,6 detik dan baru selesai pada ~4,2 detik — dia yang menahan event
+  // load seluruh halaman, di setiap halaman, demi peta yang mayoritas
+  // pengunjung tidak pernah gulir sampai ke sana.
+  //
+  // Aman terhadap hidrasi: nilai awalnya false, sama seperti saat prerender
+  // (IntersectionObserver dimatikan di sana), jadi HTML statis dan render
+  // pertama di klien sama-sama belum memuat iframe-nya.
+  const [refPeta, petaTampak] = useReveal({ rootMargin: "300px 0px" });
 
   return (
     <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
@@ -99,16 +110,18 @@ export default function Footer() {
       </div>
 
       {profile?.mapsEmbedUrl && (
-        <div className="border-t border-neutral-800">
-          <iframe
-            src={profile.mapsEmbedUrl}
-            title={`Lokasi ${profile?.namaPerusahaan || "287 Trans"}`}
-            width="100%"
-            height="220"
-            style={{ border: 0, display: "block" }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+        <div ref={refPeta} className="border-t border-neutral-800" style={{ minHeight: 220 }}>
+          {petaTampak && (
+            <iframe
+              src={profile.mapsEmbedUrl}
+              title={`Lokasi ${profile?.namaPerusahaan || "287 Trans"}`}
+              width="100%"
+              height="220"
+              style={{ border: 0, display: "block" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          )}
         </div>
       )}
 

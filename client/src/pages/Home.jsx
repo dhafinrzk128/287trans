@@ -84,7 +84,9 @@ export default function Home() {
         <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-300/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-28">
-          <Reveal>
+          {/* langsung: lihat catatan yang sama di KoleksiArmada.jsx — hero
+              adalah elemen LCP, menganimasikannya masuk cuma menundanya. */}
+          <Reveal langsung>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-400/30 bg-accent-500/15 px-4 py-1.5 text-sm font-medium text-accent-200">
               <Sparkles size={14} />
               Rental Mobil Premium dan Terpercaya
@@ -135,7 +137,7 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
-          <Reveal className="relative hidden lg:block" delay={150}>
+          <Reveal langsung className="relative hidden lg:block">
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
               <SmartImage
                 src={profile?.heroFotoUrl || "https://picsum.photos/seed/hero-rental/900/700"}

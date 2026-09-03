@@ -63,6 +63,12 @@ export default function KoleksiArmada({ slug }) {
     "Dengan supir / lepas kunci",
   ]);
 
+  // Halaman model membidik satu keluarga mobil, jadi car_name-nya bermakna
+  // dan bisa dipakai membandingkan model mana yang paling banyak memicu chat.
+  // Halaman kategori memuat banyak model sekaligus — diisi di sana, angkanya
+  // justru menyesatkan (lihat TRACKING.md).
+  const namaMobilTracking = koleksi.grup === "model" ? koleksi.label : undefined;
+
   const jsonLd = [
     breadcrumbSchema([
       { name: "Home", path: "/" },
@@ -91,7 +97,10 @@ export default function KoleksiArmada({ slug }) {
         <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-300/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-20">
-          <Reveal>
+          {/* langsung: dua kolom ini ada di layar pertama, dan kolom kanan
+              memuat gambar LCP halaman. Menganimasikannya masuk hanya menunda
+              yang sudah terlihat sejak awal. */}
+          <Reveal langsung>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-400/30 bg-accent-500/15 px-4 py-1.5 text-sm font-medium text-accent-200">
               <CarFront size={14} />
               {units.length > 0 ? `${units.length} unit tersedia di katalog` : "Armada 287 Trans"}
@@ -115,7 +124,7 @@ export default function KoleksiArmada({ slug }) {
                   href={buildWaLink(profile.whatsapp, pesanWa)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}`)}
+                  onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}`, namaMobilTracking)}
                   className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
                 >
                   <MessageCircle size={18} />
@@ -132,7 +141,7 @@ export default function KoleksiArmada({ slug }) {
             </div>
           </Reveal>
 
-          <Reveal className="relative hidden lg:block" delay={150}>
+          <Reveal langsung className="relative hidden lg:block">
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 shadow-2xl">
               {units[0]?.fotoUtama && (
                 <SmartImage
@@ -295,7 +304,7 @@ export default function KoleksiArmada({ slug }) {
                 href={buildWaLink(profile.whatsapp, pesanWa)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}_bawah`)}
+                onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}_bawah`, namaMobilTracking)}
                 className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
               >
                 <MessageCircle size={18} />

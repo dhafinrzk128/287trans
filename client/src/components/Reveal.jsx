@@ -1,7 +1,7 @@
 import useReveal from "../hooks/useReveal";
 
-export default function Reveal({ as: Tag = "div", children, className = "", delay = 0, ...props }) {
-  const [ref, visible] = useReveal();
+export default function Reveal({ as: Tag = "div", children, className = "", delay = 0, langsung = false, ...props }) {
+  const [ref, visible] = useReveal({ langsung });
 
   return (
     <Tag

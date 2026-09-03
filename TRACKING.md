@@ -27,18 +27,39 @@ Fire setiap kali tombol/link WhatsApp di halaman customer-facing diklik.
 
 Detail capture UTM/gclid ada di bagian [UTM & gclid capture](#utm--gclid-capture) di bawah.
 
-Titik yang sudah dipasangi tracking (8 tombol, semua customer-facing):
+Titik yang sudah dipasangi tracking (13 tempat, semua customer-facing):
 
-| `button_location`  | File                                                | `car_name`? |
-|---------------------|------------------------------------------------------|:-----------:|
-| `floating_button`  | `client/src/components/layout/FloatingWhatsApp.jsx`  | –            |
-| `footer`            | `client/src/components/layout/Footer.jsx`            | –            |
-| `hero_button`       | `client/src/pages/Home.jsx`                          | –            |
-| `about_page`        | `client/src/pages/About.jsx`                         | –            |
-| `contact_page`      | `client/src/pages/Contact.jsx`                       | –            |
-| `car_detail`        | `client/src/pages/CarDetail.jsx`                     | ✓            |
-| `booking_form`      | `client/src/pages/BookingForm.jsx`                   | ✓            |
-| `booking_status`    | `client/src/pages/BookingStatus.jsx`                 | –            |
+| `button_location`             | File                                                 | `car_name`? |
+|---------------------------------|------------------------------------------------------|:------------:|
+| `floating_button`             | `client/src/components/layout/FloatingWhatsApp.jsx` | –            |
+| `footer`                      | `client/src/components/layout/Footer.jsx`           | –            |
+| `hero_button`                 | `client/src/pages/Home.jsx`                         | –            |
+| `about_page`                  | `client/src/pages/About.jsx`                        | –            |
+| `contact_page`                | `client/src/pages/Contact.jsx`                      | –            |
+| `faq_page`                    | `client/src/pages/Faq.jsx`                          | –            |
+| `landing_armada`              | `client/src/pages/Armada.jsx`                       | –            |
+| `cek_status_booking`          | `client/src/pages/BookingLookup.jsx`                | –            |
+| `booking_status`              | `client/src/pages/BookingStatus.jsx`                | –            |
+| `car_detail`                  | `client/src/pages/CarDetail.jsx`                    | ✓            |
+| `booking_form`                | `client/src/pages/BookingForm.jsx`                  | ✓            |
+| `koleksi_<slug>`              | `client/src/pages/KoleksiArmada.jsx` (hero)         | ✓ (model)    |
+| `koleksi_<slug>_bawah`        | `client/src/pages/KoleksiArmada.jsx` (CTA bawah)    | ✓ (model)    |
+
+**Dua yang terakhir itu pola, bukan nilai tetap.** `<slug>` diisi slug halaman
+koleksi yang sedang dibuka, jadi nilainya mengikuti daftar di
+`client/src/data/koleksi/{kategori,model}.js` — saat ini 12 halaman, artinya
+24 nilai (`koleksi_sewa_mpv-tangerang`, `koleksi_sewa-fortuner-tangerang_bawah`,
+dan seterusnya). Sengaja tidak didaftarkan satu per satu di sini: menambah
+tujuan iklan baru berarti menambah nilai baru, dan tabel yang harus ikut
+diperbarui setiap kali pasti akan basi. Kalau butuh memfilter di GTM atau
+GA4, pakai awalan `koleksi_`.
+
+`car_name` pada halaman koleksi **hanya diisi untuk halaman model** (Zenix,
+Reborn, Fortuner, Pajero Sport) — di sana satu halaman memang membidik satu
+keluarga mobil, jadi angkanya bisa dipakai membandingkan model mana yang
+paling banyak memicu chat. Halaman kategori (MPV, SUV, dst.) memuat banyak
+model sekaligus; mengisinya di sana akan membuat laporan seolah-olah satu
+model yang bertanggung jawab atas seluruh chat kategori itu.
 
 **Sengaja tidak ditracking:** link WhatsApp di `client/src/pages/admin/AdminBookingDetail.jsx` (staff chat ke customer yang *sudah* booking — bukan sinyal lead baru, dan halamannya di balik login admin).
 
