@@ -103,7 +103,7 @@ export default function KoleksiArmada({ slug }) {
           <Reveal langsung>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-400/30 bg-accent-500/15 px-4 py-1.5 text-sm font-medium text-accent-200">
               <CarFront size={14} />
-              {units.length > 0 ? `${units.length} unit tersedia di katalog` : "Armada 287 Trans"}
+              {units.length > 0 ? `${units.length} tipe tersedia di katalog` : "Armada 287 Trans"}
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">{koleksi.h1}</h1>
             <p className="mt-5 max-w-xl text-lg text-blue-100">{koleksi.subjudul}</p>
@@ -158,7 +158,7 @@ export default function KoleksiArmada({ slug }) {
                   <BadgeCheck size={22} />
                 </span>
                 <div>
-                  <p className="text-sm font-bold leading-tight">{`${tersedia} unit siap disewa`}</p>
+                  <p className="text-sm font-bold leading-tight">{`${tersedia} tipe siap disewa`}</p>
                   <p className="text-xs text-slate-500">Diperiksa rutin sebelum diserahkan</p>
                 </div>
               </div>
@@ -167,12 +167,12 @@ export default function KoleksiArmada({ slug }) {
         </div>
       </section>
 
-      {/* Daftar unit — bagian utama halaman ini, bukan pelengkap. */}
+      {/* Daftar tipe — bagian utama halaman ini, bukan pelengkap. */}
       <section id="unit" className="scroll-mt-20 bg-slate-50 py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">{`Pilihan Unit ${koleksi.label}`}</h2>
+              <h2 className="text-3xl font-bold text-slate-900">{`Pilihan Tipe ${koleksi.label}`}</h2>
               <p className="mt-2 text-slate-600">
                 Harga dan ketersediaan di bawah ini mengikuti katalog, jadi selalu sama dengan yang tim kami sebutkan saat Anda chat.
               </p>
@@ -187,7 +187,7 @@ export default function KoleksiArmada({ slug }) {
             <Spinner />
           ) : units.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white py-14 text-center text-slate-500">
-              Unit di kategori ini sedang tidak tersedia. Hubungi kami via WhatsApp untuk alternatif terdekat.
+              Belum ada tipe di kategori ini. Hubungi kami via WhatsApp untuk alternatif terdekat.
             </div>
           ) : (
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -202,18 +202,18 @@ export default function KoleksiArmada({ slug }) {
       </section>
 
       {/* Tabel perbandingan varian — hanya berguna kalau memang ada yang
-          dibandingkan, jadi disembunyikan untuk koleksi berisi satu unit. */}
+          dibandingkan, jadi disembunyikan untuk koleksi berisi satu tipe. */}
       {units.length > 1 && (
         <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-2xl font-bold text-slate-900">{`Perbandingan Varian ${koleksi.label}`}</h2>
-            <p className="mt-2 text-slate-600">Spesifikasi tiap unit berdampingan, supaya lebih mudah dibandingkan sebelum memilih.</p>
+            <p className="mt-2 text-slate-600">Spesifikasi tiap tipe berdampingan, supaya lebih mudah dibandingkan sebelum memilih.</p>
           </Reveal>
           <Reveal delay={60} className="mt-6 overflow-x-auto rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
             <table className="w-full min-w-[38rem] text-left text-sm">
               <thead className="bg-slate-50 text-slate-500">
                 <tr>
-                  <th scope="col" className="px-4 py-3 font-semibold">Unit</th>
+                  <th scope="col" className="px-4 py-3 font-semibold">Tipe</th>
                   <th scope="col" className="px-4 py-3 font-semibold">Tahun</th>
                   <th scope="col" className="px-4 py-3 font-semibold">Transmisi</th>
                   <th scope="col" className="px-4 py-3 font-semibold">Bahan Bakar</th>
@@ -242,7 +242,7 @@ export default function KoleksiArmada({ slug }) {
         </section>
       )}
 
-      {/* Penjelasan — di bawah daftar unit, bukan menggantikannya. */}
+      {/* Penjelasan — di bawah daftar tipe, bukan menggantikannya. */}
       <section className="mx-auto max-w-3xl px-4 pb-4 sm:px-6 lg:px-8">
         <Reveal>
           <p className="leading-relaxed text-slate-700">{koleksi.intro}</p>

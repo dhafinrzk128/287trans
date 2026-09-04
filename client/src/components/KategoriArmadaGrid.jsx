@@ -13,13 +13,13 @@ const PRERENDER_KEY = "kategori_ringkas";
 /**
  * Petak kategori armada — pintu masuk ke seluruh katalog dari satu layar.
  *
- * Angka jumlah unit dan harga terendahnya ditarik dari katalog, bukan
+ * Angka jumlah tipe dan harga terendahnya ditarik dari katalog, bukan
  * ditulis mati: petak yang menjanjikan "mulai Rp799.000" padahal unit
  * termurahnya sudah naik harga adalah persis kekeliruan yang paling mahal
  * di halaman tujuan iklan — ketahuannya baru saat calon penyewa sudah
  * membuka percakapan.
  *
- * Kategori yang sedang kosong unitnya tidak ditampilkan sama sekali,
+ * Kategori yang sedang kosong tipenya tidak ditampilkan sama sekali,
  * supaya tidak ada tautan menuju halaman tanpa satu pun mobil.
  */
 export default function KategoriArmadaGrid({ mobils: mobilsProp }) {
@@ -61,7 +61,7 @@ export default function KategoriArmadaGrid({ mobils: mobilsProp }) {
             <div className="flex items-start justify-between gap-2">
               <h3 className="text-base font-bold text-slate-900">{k.label}</h3>
               <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
-                {`${k.jumlah} unit`}
+                {`${k.jumlah} tipe`}
               </span>
             </div>
             <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-500">Mulai dari</p>

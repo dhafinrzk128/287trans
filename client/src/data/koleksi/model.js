@@ -34,13 +34,13 @@ export const KOLEKSI_MODEL = [
       },
       {
         judul: "Lepas Kunci atau Plus Sopir",
-        isi: "Semua unit Zenix bisa disewa lepas kunci maupun dengan sopir. Untuk lepas kunci syaratnya cukup KTP yang masih berlaku dan nomor HP aktif — tanpa kartu kredit, tanpa jaminan BPKB, tanpa perlu membuat akun. Kalau Anda memilih plus sopir, biayanya dihitung terpisah dari tarif unit dan akan kami sebutkan di awal, bukan di akhir. Opsi sopir banyak dipilih untuk penjemputan bandara dan agenda kerja yang lokasinya berpindah seharian, karena Anda tidak perlu memikirkan parkir dan rute.",
+        isi: "Semua tipe Zenix bisa disewa lepas kunci maupun dengan sopir. Untuk lepas kunci syaratnya cukup KTP yang masih berlaku dan nomor HP aktif — tanpa kartu kredit, tanpa jaminan BPKB, tanpa perlu membuat akun. Kalau Anda memilih plus sopir, biayanya dihitung terpisah dari tarif unit dan akan kami sebutkan di awal, bukan di akhir. Opsi sopir banyak dipilih untuk penjemputan bandara dan agenda kerja yang lokasinya berpindah seharian, karena Anda tidak perlu memikirkan parkir dan rute.",
       },
     ],
     faq: [
       {
         tanya: "Innova Zenix muat berapa orang dan berapa koper?",
-        jawab: "Seluruh varian Zenix kami berkapasitas 7 penumpang. Dengan baris ketiga terpakai penuh, ruang bagasi cukup untuk sekitar dua koper kabin. Kalau Anda butuh 7 kursi sekaligus bagasi besar, baris ketiga bisa dilipat sebagian atau kami sarankan menambah unit.",
+        jawab: "Seluruh tipe Zenix kami berkapasitas 7 penumpang. Dengan baris ketiga terpakai penuh, ruang bagasi cukup untuk sekitar dua koper kabin. Kalau Anda butuh 7 kursi sekaligus bagasi besar, baris ketiga bisa dilipat sebagian atau kami sarankan menambah unit.",
       },
       {
         tanya: "Bisa sewa Zenix harian saja atau harus mingguan?",
@@ -65,7 +65,7 @@ export const KOLEKSI_MODEL = [
     subjudul:
       "Tarif termurah di seluruh armada kami: Rp799.000 per hari untuk MPV diesel 7 penumpang keluaran 2024.",
     intro:
-      "Innova Reborn adalah generasi Innova bermesin diesel dengan sasis ladder frame, dan sampai sekarang masih jadi pilihan paling banyak dicari untuk perjalanan jarak jauh. Alasannya praktis: mesin dieselnya irit di kecepatan tol yang stabil, dayanya kuat saat mobil terisi penuh penumpang dan barang, dan bengkelnya ada di mana-mana kalau terjadi apa-apa di tengah rute luar kota. Di 287 Trans, Reborn juga jadi titik masuk termurah ke armada kami — dua unit Type-V dan Type-G keluaran 2024, keduanya matic, dipatok di harga yang sama.",
+      "Innova Reborn adalah generasi Innova bermesin diesel dengan sasis ladder frame, dan sampai sekarang masih jadi pilihan paling banyak dicari untuk perjalanan jarak jauh. Alasannya praktis: mesin dieselnya irit di kecepatan tol yang stabil, dayanya kuat saat mobil terisi penuh penumpang dan barang, dan bengkelnya ada di mana-mana kalau terjadi apa-apa di tengah rute luar kota. Di 287 Trans, Reborn juga jadi titik masuk termurah ke armada kami — dua tipe Type-V dan Type-G keluaran 2024, keduanya matic, dipatok di harga yang sama.",
     bagian: [
       {
         judul: "Kenapa Reborn Masih Banyak Dipilih Dibanding Zenix",
@@ -73,7 +73,7 @@ export const KOLEKSI_MODEL = [
       },
       {
         judul: "Type-V dan Type-G: Bedanya Apa",
-        isi: "Kedua unit kami sama-sama diesel, matic, 7 penumpang, dan keluaran 2024 — dan kami patok di harga yang sama persis. Bedanya ada di kelengkapan interior: Type-V berada satu tingkat di atas Type-G dalam hal fitur kenyamanan dan trim kabin. Karena tarifnya sama, biasanya kami tawarkan Type-V lebih dulu selama unitnya kosong di tanggal yang Anda minta. Sebutkan tanggal Anda saat chat dan kami cek ketersediaan keduanya sekaligus.",
+        isi: "Kedua tipe kami sama-sama diesel, matic, 7 penumpang, dan keluaran 2024 — dan kami patok di harga yang sama persis. Bedanya ada di kelengkapan interior: Type-V berada satu tingkat di atas Type-G dalam hal fitur kenyamanan dan trim kabin. Karena tarifnya sama, biasanya kami tawarkan Type-V lebih dulu selama unitnya kosong di tanggal yang Anda minta. Sebutkan tanggal Anda saat chat dan kami cek ketersediaan keduanya sekaligus.",
       },
       {
         judul: "Cocok untuk Perjalanan Seperti Apa",
@@ -162,8 +162,8 @@ export const KOLEKSI_MODEL = [
         isi: "Unit ini bermesin diesel dengan transmisi matic. Torsi besar di putaran rendah membuatnya tidak kewalahan saat kabin terisi tujuh orang dan bagasi penuh, termasuk di tanjakan panjang menuju kawasan pegunungan. Untuk rute tol jarak jauh, konsumsi bahan bakarnya juga lebih bersahabat dibanding SUV bensin di kelas yang sama. Kami sarankan mengisi dengan Dexlite atau setara untuk menjaga performa mesin.",
       },
       {
-        judul: "Ketersediaan Satu Unit",
-        isi: "Pajero Sport Dakar di armada kami saat ini berjumlah satu unit, sehingga tanggal ramai seperti akhir pekan panjang dan musim liburan biasanya terisi lebih awal. Kalau Anda sudah punya tanggal pasti, sebaiknya konfirmasi ketersediaannya lebih dulu lewat WhatsApp sebelum mengunci rencana perjalanan. Kalau unitnya sudah terpakai di tanggal Anda, tim kami akan langsung menawarkan alternatif terdekat dari kelas SUV yang sama.",
+        judul: "Ketersediaan Tipe Ini",
+        isi: "Pajero Sport Dakar di armada kami saat ini hanya tersedia dalam satu tipe, sehingga tanggal ramai seperti akhir pekan panjang dan musim liburan biasanya terisi lebih awal. Kalau Anda sudah punya tanggal pasti, sebaiknya konfirmasi ketersediaannya lebih dulu lewat WhatsApp sebelum mengunci rencana perjalanan. Kalau unitnya sudah terpakai di tanggal Anda, tim kami akan langsung menawarkan alternatif terdekat dari kelas SUV yang sama.",
       },
     ],
     faq: [

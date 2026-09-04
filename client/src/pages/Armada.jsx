@@ -91,7 +91,7 @@ export default function Armada() {
                 <thead className="bg-slate-50 text-slate-500">
                   <tr>
                     <th scope="col" className="px-4 py-3 font-semibold">Kategori</th>
-                    <th scope="col" className="px-4 py-3 font-semibold">Jumlah Unit</th>
+                    <th scope="col" className="px-4 py-3 font-semibold">Jumlah Tipe</th>
                     <th scope="col" className="px-4 py-3 font-semibold">Harga per Hari</th>
                   </tr>
                 </thead>
@@ -99,7 +99,7 @@ export default function Armada() {
                   {kategori.map((k) => (
                     <tr key={k.tipe}>
                       <td className="px-4 py-3 font-medium text-slate-900">{k.tipe}</td>
-                      <td className="px-4 py-3 text-slate-600">{`${k.count} unit`}</td>
+                      <td className="px-4 py-3 text-slate-600">{`${k.count} tipe`}</td>
                       <td className="px-4 py-3 text-slate-600">
                         {k.min === k.max ? formatRupiah(k.min) : `${formatRupiah(k.min)} - ${formatRupiah(k.max)}`}
                       </td>

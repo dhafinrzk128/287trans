@@ -23,9 +23,9 @@ export const KOLEKSI_KATEGORI = [
       "Sewa MPV 7 penumpang di Tangerang mulai Rp799.000/hari. Innova Reborn, Zenix hybrid, dan Venturer. Semua matic, lepas kunci atau plus sopir.",
     h1: "Sewa MPV Tangerang",
     subjudul:
-      "Tujuh unit MPV tujuh penumpang, semuanya matic dan keluaran 2024 — dari Innova Reborn diesel sampai Zenix hybrid varian tertinggi.",
+      "Tujuh tipe MPV tujuh penumpang, semuanya matic dan keluaran 2024 — dari Innova Reborn diesel sampai Zenix hybrid varian tertinggi.",
     intro:
-      "MPV adalah kategori paling banyak disewa di 287 Trans, dan alasannya sederhana: tiga baris kursi menyelesaikan sebagian besar kebutuhan perjalanan di Jabodetabek tanpa harus naik ke kelas yang jauh lebih mahal. Satu unit MPV cukup untuk satu keluarga beserta bagasinya, cukup untuk rombongan kerja yang harus berpindah lokasi seharian, dan cukup untuk penjemputan tamu di Bandara Soekarno-Hatta. Seluruh unit MPV kami keluaran 2024, bertransmisi matic, dan berkapasitas tujuh penumpang — yang membedakan hanya mesin dan tingkat kelengkapannya.",
+      "MPV adalah kategori paling banyak disewa di 287 Trans, dan alasannya sederhana: tiga baris kursi menyelesaikan sebagian besar kebutuhan perjalanan di Jabodetabek tanpa harus naik ke kelas yang jauh lebih mahal. Satu MPV cukup untuk satu keluarga beserta bagasinya, cukup untuk rombongan kerja yang harus berpindah lokasi seharian, dan cukup untuk penjemputan tamu di Bandara Soekarno-Hatta. Seluruh tipe MPV kami keluaran 2024, bertransmisi matic, dan berkapasitas tujuh penumpang — yang membedakan hanya mesin dan tingkat kelengkapannya.",
     bagian: [
       {
         judul: "Tiga Keluarga MPV di Armada Kami",
@@ -37,7 +37,7 @@ export const KOLEKSI_KATEGORI = [
       },
       {
         judul: "Semua Bisa Lepas Kunci atau Plus Sopir",
-        isi: "Seluruh unit MPV tersedia untuk kedua skema. Lepas kunci syaratnya cukup KTP yang masih berlaku dan nomor HP aktif, tanpa kartu kredit dan tanpa jaminan BPKB. Dengan sopir, biayanya dihitung terpisah dari tarif unit dan selalu kami sebutkan di muka. Durasi sewa mulai dari satu hari tanpa minimum, dan tarif per hari turun untuk pemakaian mingguan maupun bulanan — banyak pelanggan perusahaan kami menyewa MPV secara bulanan sebagai kendaraan operasional.",
+        isi: "Seluruh tipe MPV tersedia untuk kedua skema. Lepas kunci syaratnya cukup KTP yang masih berlaku dan nomor HP aktif, tanpa kartu kredit dan tanpa jaminan BPKB. Dengan sopir, biayanya dihitung terpisah dari tarif unit dan selalu kami sebutkan di muka. Durasi sewa mulai dari satu hari tanpa minimum, dan tarif per hari turun untuk pemakaian mingguan maupun bulanan — banyak pelanggan perusahaan kami menyewa MPV secara bulanan sebagai kendaraan operasional.",
       },
     ],
     faq: [
@@ -66,7 +66,7 @@ export const KOLEKSI_KATEGORI = [
       "Sewa SUV di Tangerang mulai Rp1.399.000/hari. Fortuner, Pajero Sport Dakar, Honda CRV Turbo, Destinator, dan Hyundai Palisade. Matic, lepas kunci atau plus sopir.",
     h1: "Sewa SUV Tangerang",
     subjudul:
-      "Enam unit SUV dari lima merek berbeda — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota.",
+      "Enam tipe SUV dari lima merek berbeda — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota.",
     intro:
       "SUV dipilih orang bukan hanya karena tampilannya. Ground clearance yang tinggi membuatnya tenang melewati genangan dan jalan rusak yang memaksa mobil rendah memutar, sementara posisi duduk yang tinggi memberi pandangan jauh lebih lega di jalan padat seperti Tangerang dan Jakarta. Armada SUV kami sengaja diisi merek dan karakter yang berbeda-beda, dari SUV ladder frame bermesin diesel yang kuat menanjak sampai crossover bensin yang halus untuk pemakaian harian, supaya Anda bisa memilih berdasarkan rute, bukan sekadar berdasarkan yang tersedia.",
     bagian: [
@@ -123,7 +123,7 @@ export const KOLEKSI_KATEGORI = [
       },
       {
         judul: "Kapasitas dan Ketersediaan Tanggal",
-        isi: "Seluruh unit Alphard kami berkapasitas enam penumpang dengan konfigurasi kursi kapten di baris kedua — bukan tujuh — karena kenyamanan baris kedua justru datang dari konfigurasi itu. Untuk rombongan lebih besar, biasanya kami sarankan kombinasi Alphard untuk tamu utama dan MPV atau SUV untuk pengiring. Karena jumlah unitnya terbatas dan tanggal pernikahan cenderung menumpuk di akhir pekan tertentu, sebaiknya kunci tanggal Anda jauh hari lewat WhatsApp sebelum menetapkan susunan acara.",
+        isi: "Seluruh tipe Alphard kami berkapasitas enam penumpang dengan konfigurasi kursi kapten di baris kedua — bukan tujuh — karena kenyamanan baris kedua justru datang dari konfigurasi itu. Untuk rombongan lebih besar, biasanya kami sarankan kombinasi Alphard untuk tamu utama dan MPV atau SUV untuk pengiring. Karena jumlah tipenya terbatas dan tanggal pernikahan cenderung menumpuk di akhir pekan tertentu, sebaiknya kunci tanggal Anda jauh hari lewat WhatsApp sebelum menetapkan susunan acara.",
       },
     ],
     faq: [
@@ -154,7 +154,7 @@ export const KOLEKSI_KATEGORI = [
     subjudul:
       "Empat sedan premium Mercedes-Benz dan BMW keluaran 2024 sampai 2025, untuk acara dan agenda yang menuntut kesan berbeda.",
     intro:
-      "Kategori ini berisi sedan Eropa premium, dan penyewanya biasanya datang dengan kebutuhan yang tidak bisa diselesaikan MPV atau SUV mana pun: kesan yang terbangun sejak mobil berhenti di depan pintu. Kami menyediakan Mercedes-Benz C300 dan E300 untuk kebutuhan formal yang elegan, BMW 330i M-Sport Pro untuk karakter berkendara yang lebih sporty, serta BMW M4 Competition Cabriolet sebagai unit paling istimewa di armada kami. Seluruh unit di kategori ini keluaran 2024 ke atas dan foto yang ditampilkan adalah foto unit sebenarnya.",
+      "Kategori ini berisi sedan Eropa premium, dan penyewanya biasanya datang dengan kebutuhan yang tidak bisa diselesaikan MPV atau SUV mana pun: kesan yang terbangun sejak mobil berhenti di depan pintu. Kami menyediakan Mercedes-Benz C300 dan E300 untuk kebutuhan formal yang elegan, BMW 330i M-Sport Pro untuk karakter berkendara yang lebih sporty, serta BMW M4 Competition Cabriolet sebagai unit paling istimewa di armada kami. Seluruh tipe di kategori ini keluaran 2024 ke atas dan foto yang ditampilkan adalah foto unit sebenarnya.",
     bagian: [
       {
         judul: "Mercedes-Benz C300 dan E300",
@@ -209,7 +209,7 @@ export const KOLEKSI_KATEGORI = [
       },
       {
         judul: "Satu Unit, Tanggal Perlu Dikunci Lebih Awal",
-        isi: "Kategori ini hanya berisi satu unit, sehingga tanggal ramai seperti musim pernikahan dan akhir pekan panjang cenderung terisi lebih dulu. Kalau tanggal Anda sudah pasti, konfirmasikan ketersediaan lewat WhatsApp sebelum mengunci susunan acara. Kalau unitnya sudah terpakai, tim kami akan langsung menawarkan alternatif terdekat — biasanya E300 untuk kebutuhan formal, atau Hyundai Palisade kalau yang Anda butuhkan terutama adalah postur SUV dan ruang kabin.",
+        isi: "Kategori ini hanya berisi satu tipe, sehingga tanggal ramai seperti musim pernikahan dan akhir pekan panjang cenderung terisi lebih dulu. Kalau tanggal Anda sudah pasti, konfirmasikan ketersediaan lewat WhatsApp sebelum mengunci susunan acara. Kalau unitnya sudah terpakai, tim kami akan langsung menawarkan alternatif terdekat — biasanya E300 untuk kebutuhan formal, atau Hyundai Palisade kalau yang Anda butuhkan terutama adalah postur SUV dan ruang kabin.",
       },
     ],
     faq: [
@@ -295,7 +295,7 @@ export const KOLEKSI_KATEGORI = [
       },
       {
         judul: "Satu Unit, Sering Dipesan untuk Agenda Kerja",
-        isi: "Kategori sedan di armada kami saat ini berisi satu unit, dan permintaannya paling banyak datang dari kebutuhan kerja: kendaraan operasional untuk beberapa hari kunjungan, penjemputan tamu dari luar kota, dan agenda rapat yang berpindah antar kawasan bisnis. Karena unitnya tunggal, sebaiknya konfirmasi tanggal Anda lebih awal. Untuk pemakaian mingguan dan bulanan, tarif per harinya turun — cukup sebutkan durasi saat chat dan kami hitungkan.",
+        isi: "Kategori sedan di armada kami saat ini berisi satu tipe, dan permintaannya paling banyak datang dari kebutuhan kerja: kendaraan operasional untuk beberapa hari kunjungan, penjemputan tamu dari luar kota, dan agenda rapat yang berpindah antar kawasan bisnis. Karena tipenya tunggal, sebaiknya konfirmasi tanggal Anda lebih awal. Untuk pemakaian mingguan dan bulanan, tarif per harinya turun — cukup sebutkan durasi saat chat dan kami hitungkan.",
       },
     ],
     faq: [
