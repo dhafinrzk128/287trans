@@ -7,7 +7,7 @@ const path = require("path");
 const fs = require("fs/promises");
 
 const { UPLOAD_ROOT } = require("./utils/upload");
-const { buatVarianKecil, AKHIRAN_KECIL } = require("./utils/webp");
+const { buatVarianGambar, sumberVarian } = require("./utils/webp");
 const { backfillWebp } = require("./utils/backfillWebp");
 const { bersihkanUploads } = require("./utils/bersihkanUploads");
 const authRoutes = require("./routes/auth.routes");
@@ -50,23 +50,25 @@ app.use(express.urlencoded({ extended: true }));
 // dulu; kalau pembuatannya gagal (sharp bermasalah, sumbernya hilang), yang
 // dikirim adalah berkas ukuran penuh dengan nama yang diminta. Pengunjung
 // selalu dapat gambar.
-app.get(/^\/uploads\/.*-kecil\.webp$/, async (req, res, next) => {
-  const pathKecil = path.join(UPLOAD_ROOT, decodeURIComponent(req.path.replace(/^\/uploads\//, "")));
+app.get(/^\/uploads\/.*-(kecil|sedang)\.webp$/, async (req, res, next) => {
+  const pathVarian = path.join(UPLOAD_ROOT, decodeURIComponent(req.path.replace(/^\/uploads\//, "")));
   // Nama berkas datang dari URL, jadi ".." harus ditolak sebelum menyentuh disk.
-  if (!pathKecil.startsWith(UPLOAD_ROOT)) return res.sendStatus(400);
+  if (!pathVarian.startsWith(UPLOAD_ROOT)) return res.sendStatus(400);
+
+  const info = sumberVarian(pathVarian);
+  if (!info) return next();
 
   try {
-    await fs.access(pathKecil);
+    await fs.access(pathVarian);
     return next();
   } catch {
     /* belum ada — dibuat di bawah */
   }
 
-  if (await buatVarianKecil(pathKecil)) return next();
+  if (await buatVarianGambar(pathVarian)) return next();
 
-  const penuh = pathKecil.slice(0, -AKHIRAN_KECIL.length) + ".webp";
   res.setHeader("Cache-Control", `public, max-age=${SEBULAN / 1000}`);
-  return res.sendFile(penuh, (err) => {
+  return res.sendFile(info.sumber, (err) => {
     if (err) next();
   });
 });

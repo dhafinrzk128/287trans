@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { toWebpUrl, toWebpKecilUrl } from "../utils/format";
+import { toWebpUrl, varianWebpUrl } from "../utils/format";
 
 /**
  * <img>, tapi menyajikan versi WebP untuk gambar satu-origin (foto mobil,
@@ -28,7 +28,11 @@ export default function SmartImage({ src, alt, onError, ukuran, ...imgProps }) {
   // gambarnya akan tampil (lihat CarCard), bukan ditebak di sini — komponen
   // ini juga dipakai untuk hero dan logo, yang lebarnya jauh berbeda dan
   // justru butuh berkas ukuran penuh.
-  const kecilSrc = ukuran ? toWebpKecilUrl(src) : null;
+  //
+  // Tiga kandidat, bukan dua: kotak 343px pada ponsel berkerapatan 2x butuh
+  // ~690px nyata, jadi tanpa 800w browser melompat dari 480w langsung ke
+  // 1200w — dan penghematannya hilang persis di perangkat yang paling butuh.
+  const varian = ukuran ? varianWebpUrl(src) : null;
   const [webpGagal, setWebpGagal] = useState(false);
 
   const ref = useRef(null);
@@ -66,8 +70,10 @@ export default function SmartImage({ src, alt, onError, ukuran, ...imgProps }) {
   return (
     <picture>
       <source
-        srcSet={kecilSrc ? `${kecilSrc} 480w, ${webpSrc} 1200w` : webpSrc}
-        sizes={kecilSrc ? ukuran : undefined}
+        srcSet={
+          varian ? `${varian.kecil} 480w, ${varian.sedang} 800w, ${webpSrc} 1200w` : webpSrc
+        }
+        sizes={varian ? ukuran : undefined}
         type="image/webp"
       />
       {img}

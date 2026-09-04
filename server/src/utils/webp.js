@@ -16,15 +16,26 @@ const fs = require("fs/promises");
 const SISI_MAKS = 1200;
 const KUALITAS = 72;
 
-// Varian kedua, khusus kartu mobil di grid katalog.
+// Varian tambahan untuk kartu mobil di grid katalog.
 //
 // 1200px adalah ukuran yang benar untuk foto hero: lebarnya tampil ~590px,
 // jadi di layar retina butuh ~1180px nyata. Tapi kartu di grid katalog cuma
-// selebar ~284px di desktop dan ~343px di ponsel. Diukur di produksi, satu
-// kartu mengunduh ~41 KB untuk kotak segitu — dan satu halaman kategori bisa
-// memuat tujuh kartu sekaligus.
-const LEBAR_KECIL = 480;
-const AKHIRAN_KECIL = "-kecil.webp";
+// selebar ~284px di desktop dan ~343px di ponsel.
+//
+// Kenapa dua ukuran dan bukan satu:
+// - 480px melayani desktop dan layar kerapatan rendah (kotak 284-300px).
+// - 800px melayani ponsel retina. Kotak 343px pada kerapatan 2x butuh ~690px
+//   nyata, jadi tanpa ukuran ini browser melompat ke berkas 1200px dan
+//   penghematannya hilang justru di perangkat yang paling butuh — pengguna
+//   ponsel berpaket data.
+//
+// Menambah ukuran baru cukup menambah satu baris di sini; penangan di
+// server/src/index.js dan srcset di SmartImage mengikuti daftar ini.
+const VARIAN = {
+  "-kecil.webp": 480,
+  "-sedang.webp": 800,
+};
+const AKHIRAN_VARIAN = Object.keys(VARIAN);
 
 // Membuat pendamping .webp bernama sama di sebelah gambar yang diunggah,
 // supaya klien bisa meminta <basename>.webp dan kembali ke berkas aslinya
@@ -56,29 +67,41 @@ async function generateWebpSibling(filePath) {
 }
 
 /**
- * Membuat varian kecil dari pendamping .webp yang sudah ada.
+ * Nama berkas .webp ukuran penuh dari sebuah path varian, atau null kalau
+ * path-nya bukan varian yang dikenal.
+ */
+function sumberVarian(pathVarian) {
+  const akhiran = AKHIRAN_VARIAN.find((a) => pathVarian.endsWith(a));
+  if (!akhiran) return null;
+  return { sumber: pathVarian.slice(0, -akhiran.length) + ".webp", lebar: VARIAN[akhiran] };
+}
+
+/**
+ * Membuat satu varian berukuran lebih kecil dari pendamping .webp yang ada.
  *
  * Sengaja dibuat saat berkasnya diminta pertama kali (lihat penangan
  * /uploads di server/src/index.js), bukan lewat pass massal saat server
  * nyala. Alasannya pengalaman: pekerjaan massal yang menulis ulang berkas
  * gambar saat boot pernah membuat seluruh foto mobil hilang. Fungsi ini
  * hanya pernah MENAMBAH berkas — tidak menyentuh, menimpa, atau menghapus
- * apa pun yang sudah ada — sehingga kegagalan terburuknya cuma "varian
- * kecilnya tidak jadi", dan pengunjung tetap menerima gambar ukuran penuh.
+ * apa pun yang sudah ada — sehingga kegagalan terburuknya cuma "variannya
+ * tidak jadi", dan pengunjung tetap menerima gambar ukuran penuh.
  *
  * Mengembalikan true kalau berkasnya kini ada di disk.
  */
-async function buatVarianKecil(pathKecil) {
-  if (!pathKecil.endsWith(AKHIRAN_KECIL)) return false;
-  const sumber = pathKecil.slice(0, -AKHIRAN_KECIL.length) + ".webp";
-  const sementara = `${pathKecil}.sedang-dibuat`;
+async function buatVarianGambar(pathVarian) {
+  const info = sumberVarian(pathVarian);
+  if (!info) return false;
+  // Akhiran temp sengaja bukan "-sedang" apa pun, supaya tidak pernah
+  // tertukar dengan varian "-sedang.webp".
+  const sementara = `${pathVarian}.tmp-dibuat`;
   try {
-    await fs.access(sumber);
-    await sharp(sumber)
-      .resize({ width: LEBAR_KECIL, height: LEBAR_KECIL, fit: "inside", withoutEnlargement: true })
+    await fs.access(info.sumber);
+    await sharp(info.sumber)
+      .resize({ width: info.lebar, height: info.lebar, fit: "inside", withoutEnlargement: true })
       .webp({ quality: KUALITAS })
       .toFile(sementara);
-    await fs.rename(sementara, pathKecil);
+    await fs.rename(sementara, pathVarian);
     return true;
   } catch {
     await fs.unlink(sementara).catch(() => {});
@@ -93,8 +116,9 @@ async function generateWebpForFiles(files) {
 module.exports = {
   generateWebpSibling,
   generateWebpForFiles,
-  buatVarianKecil,
+  buatVarianGambar,
+  sumberVarian,
   SISI_MAKS,
-  LEBAR_KECIL,
-  AKHIRAN_KECIL,
+  VARIAN,
+  AKHIRAN_VARIAN,
 };
