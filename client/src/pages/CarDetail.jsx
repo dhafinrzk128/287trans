@@ -10,6 +10,7 @@ import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import Seo from "../components/Seo";
 import SmartImage from "../components/SmartImage";
+import Reveal from "../components/Reveal";
 import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah, pesanSewa } from "../utils/format";
@@ -92,7 +93,7 @@ export default function CarDetail() {
 
       <div className="grid gap-10 lg:grid-cols-2">
         {/* Galeri Foto */}
-        <div>
+        <Reveal langsung>
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
             {fotos.length > 0 ? (
               <SmartImage
@@ -143,10 +144,10 @@ export default function CarDetail() {
               ))}
             </div>
           )}
-        </div>
+        </Reveal>
 
         {/* Info & Spesifikasi */}
-        <div>
+        <Reveal delay={90}>
           <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
           <h1 className="mt-1 text-3xl font-extrabold text-slate-900">{mobil.namaMobil}</h1>
 
@@ -212,7 +213,7 @@ export default function CarDetail() {
               </a>
             )}
           </div>
-        </div>
+        </Reveal>
       </div>
 
       <style>{`

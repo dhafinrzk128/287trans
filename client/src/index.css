@@ -176,3 +176,22 @@ h1, h2, h3, h4, h5, h6 {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Kayon di hero bergerak sangat pelan — 18 detik satu putaran, geser 14px.
+   Cukup untuk membuat latar tidak terasa mati, tapi terlalu lambat untuk
+   menarik perhatian dari tombol di sebelahnya. Dimatikan sepenuhnya kalau
+   pengunjung meminta pengurangan gerak. */
+@keyframes kayon-melayang {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.kayon-melayang {
+  animation: kayon-melayang 18s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kayon-melayang {
+    animation: none;
+  }
+}

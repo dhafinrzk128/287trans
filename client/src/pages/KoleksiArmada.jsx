@@ -5,6 +5,7 @@ import api from "../api/client";
 import CarCard from "../components/CarCard";
 import SmartImage from "../components/SmartImage";
 import Reveal from "../components/Reveal";
+import KayonWayang from "../components/KayonWayang";
 import Seo from "../components/Seo";
 import Spinner from "../components/ui/Spinner";
 import { breadcrumbSchema, faqPageSchema, productSchema } from "../utils/schema";
@@ -95,6 +96,19 @@ export default function KoleksiArmada({ slug }) {
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-950 via-neutral-800 to-accent-900 text-white">
         <div className="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-accent-500/20 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 rounded-full bg-accent-300/10 blur-3xl" />
+
+        {/* Ornamen kayon dari logo 287 Trans, dipusatkan seperti gunungan
+            berdiri di tengah kelir. Opasitasnya rendah karena teks hero
+            harus tetap terbaca di atasnya. */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="flex h-full items-center justify-center">
+            <KayonWayang
+              prioritas
+              className="kayon-melayang h-[80%] w-auto max-w-none opacity-[0.26] lg:h-[96%]"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/45 to-neutral-950/10" />
+        </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-20">
           {/* langsung: dua kolom ini ada di layar pertama, dan kolom kanan
