@@ -108,9 +108,15 @@ export default function Home() {
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
               Rental Mobil Tangerang, <span className="text-accent-400">Perjalanan Mudah dan Nyaman</span>
             </h1>
+            {/* "seluruhnya" sengaja menempel pada terawat, bukan pada
+                terbaru: 20 dari 24 unit keluaran 2024 ke atas, tapi Alphard
+                Gen 3 keluaran 2022 — jadi "semua unit terbaru" tidak benar.
+                Perawatan rutin berlaku untuk semuanya dan bisa dipertanggung-
+                jawabkan. Ini pelajaran dari iklan lama yang menjanjikan city
+                car padahal armadanya tidak punya. */}
             <p className="mt-5 max-w-xl text-lg text-blue-100">
-              Ajukan permintaan booking mobil rental secara online tanpa perlu membuat akun. Armada premium
-              dan proses cepat untuk kebutuhan perjalanan Anda.
+              Ajukan langsung lewat WhatsApp, tanpa perlu membuat akun. Armada premium hingga luxury
+              dengan unit-unit keluaran terbaru — seluruhnya terawat dan diperiksa sebelum diserahkan.
             </p>
             {/* Harga diletakkan sebelum tombol, bukan di bagian terpisah jauh
                 di bawah. Halaman ini tujuan iklan berbayar untuk kata kunci
