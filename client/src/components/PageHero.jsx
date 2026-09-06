@@ -6,7 +6,7 @@ export default function PageHero({ title, subtitle }) {
       <div className="pointer-events-none absolute -top-16 right-0 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="flex h-full items-center justify-center">
-          <KayonWayang className="h-[190%] w-auto max-w-none opacity-[0.24]" />
+          <KayonWayang varian="kompak" prioritas className="opacity-[0.24]" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/50 to-neutral-950/15" />
       </div>

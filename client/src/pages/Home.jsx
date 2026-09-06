@@ -89,10 +89,7 @@ export default function Home() {
             harus tetap terbaca di atasnya. */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="flex h-full items-center justify-center">
-            <KayonWayang
-              prioritas
-              className="kayon-melayang h-[80%] w-auto max-w-none opacity-[0.26] lg:h-[96%]"
-            />
+            <KayonWayang varian="hero" prioritas className="kayon-melayang opacity-[0.26]" />
           </div>
           <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/45 to-neutral-950/10" />
         </div>
@@ -159,7 +156,13 @@ export default function Home() {
           </Reveal>
           <Reveal langsung className="relative hidden lg:block">
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl">
+              {/* Kolomnya `hidden lg:block`, dan CSS tidak menghentikan
+                  unduhan — diukur di produksi, foto 162 KB ini tetap ditarik
+                  di ponsel dengan prioritas tinggi meski lebar tampilnya nol.
+                  minLebar membuat browser melewatinya sebelum mengambil. */}
               <SmartImage
+                minLebar={1024}
+                ukuran="(min-width: 1280px) 600px, 46vw"
                 src={profile?.heroFotoUrl || "https://picsum.photos/seed/hero-rental/900/700"}
                 alt="Mobil rental 287 Trans di Tangerang"
                 className="h-full w-full object-cover"

@@ -21,7 +21,13 @@ import { toWebpUrl, varianWebpUrl } from "../utils/format";
  * satu permintaan tambahan, tapi hanya untuk gambar yang memang bermasalah,
  * bukan untuk semua gambar seperti sebelumnya.
  */
-export default function SmartImage({ src, alt, onError, ukuran, ...imgProps }) {
+// GIF transparan 1x1. Dipakai sebagai src <img> ketika gambarnya hanya untuk
+// desktop: pada viewport sempit inilah satu-satunya yang diunduh (43 byte),
+// karena <source> di atasnya tidak lolos media query.
+const PIKSEL_KOSONG =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+export default function SmartImage({ src, alt, onError, ukuran, minLebar, ...imgProps }) {
   const webpSrc = toWebpUrl(src);
   const adaWebp = Boolean(webpSrc) && webpSrc !== src;
   // `ukuran` = atribut sizes. Diisi oleh pemanggil yang tahu selebar apa
@@ -67,15 +73,40 @@ export default function SmartImage({ src, alt, onError, ukuran, ...imgProps }) {
 
   if (!adaWebp || webpGagal) return img;
 
+  const srcSet = varian
+    ? `${varian.kecil} 480w, ${varian.sedang} 800w, ${webpSrc} 1200w`
+    : webpSrc;
+
+  // `minLebar` untuk gambar yang wadahnya `hidden lg:block`.
+  //
+  // Menyembunyikan dengan CSS TIDAK menghentikan unduhannya — `display: none`
+  // hanya mengatur tampilan, bukan pengambilan berkas. Diukur di produksi,
+  // foto hero 162 KB tetap terunduh di ponsel dengan fetchPriority tinggi,
+  // padahal lebar tampilnya nol; di jaringan lambat, itu merebut bandwidth
+  // dari CSS tepat pada jendela yang menentukan First Contentful Paint.
+  //
+  // Media query pada <source> dievaluasi SEBELUM pengambilan, jadi di layar
+  // sempit yang diunduh hanya piksel kosong 43 byte. Gating lewat render
+  // React tidak bisa dipakai di sini: keadaan awalnya harus sama dengan hasil
+  // prerender (yang dirender pada lebar desktop), sehingga gambarnya sudah
+  // terlanjur ada di HTML dan sudah mulai diunduh sebelum React sempat jalan.
+  if (minLebar) {
+    return (
+      <picture>
+        <source
+          media={`(min-width: ${minLebar}px)`}
+          srcSet={srcSet}
+          sizes={varian ? ukuran : undefined}
+          type="image/webp"
+        />
+        <img ref={ref} src={PIKSEL_KOSONG} alt={alt} onError={tanganiGagal} {...imgProps} />
+      </picture>
+    );
+  }
+
   return (
     <picture>
-      <source
-        srcSet={
-          varian ? `${varian.kecil} 480w, ${varian.sedang} 800w, ${webpSrc} 1200w` : webpSrc
-        }
-        sizes={varian ? ukuran : undefined}
-        type="image/webp"
-      />
+      <source srcSet={srcSet} sizes={varian ? ukuran : undefined} type="image/webp" />
       {img}
     </picture>
   );
