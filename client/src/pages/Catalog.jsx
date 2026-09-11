@@ -188,6 +188,48 @@ export default function Catalog() {
           </div>
         )}
       </section>
+
+      {/* Halaman ini menampilkan daftar unit tapi tidak pernah menjelaskan cara
+          memilih di antaranya — pengunjung yang belum tahu mau apa hanya
+          melihat dua puluh empat kartu. Panduan singkat ini menjawab
+          pertanyaan yang biasanya ditanyakan lewat chat sebelum memesan. */}
+      <section className="border-t border-slate-200 bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal as="h2" className="text-2xl font-bold text-slate-900">
+            Cara Memilih Unit yang Tepat
+          </Reveal>
+          <div className="mt-6 grid gap-8 lg:grid-cols-3">
+            <Reveal className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Mulai dari jumlah penumpang</h3>
+              <p>
+                Ini penyaring yang paling cepat. Untuk lima orang atau kurang, hatchback dan sedan sudah
+                cukup dan tarifnya paling ringan. Untuk enam sampai tujuh orang, pilihannya ada di MPV
+                dan SUV tiga baris. Kalau baris ketiga akan terisi orang dewasa sepanjang perjalanan
+                jauh, sebutkan saat chat — tidak semua unit tujuh penumpang sama lapangnya.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Lalu sesuaikan dengan rutenya</h3>
+              <p>
+                Rute menentukan mesin. Untuk pemakaian dalam kota Tangerang dan Jakarta yang banyak
+                berhenti-jalan, unit hybrid dan bensin terasa paling nyaman sekaligus hemat. Untuk
+                perjalanan luar kota yang panjang atau muatan penuh, unit diesel punya tenaga di
+                putaran rendah yang membuat bedanya terasa. Kalau jalannya belum mulus, SUV dengan
+                ground clearance tinggi lebih aman.
+              </p>
+            </Reveal>
+            <Reveal delay={200} className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Terakhir, cara pakainya</h3>
+              <p>
+                Seluruh unit di katalog ini bisa disewa lepas kunci maupun plus sopir, mulai dari satu
+                hari sampai skema mingguan dan bulanan untuk kebutuhan jangka panjang. Syarat lepas
+                kunci cukup KTP yang masih berlaku. Klik unit mana pun untuk melihat keterangan
+                lengkap, tarif hariannya, dan tanggal yang masih tersedia.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
