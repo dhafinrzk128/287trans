@@ -11,6 +11,7 @@ const { UPLOAD_ROOT } = require("./utils/upload");
 const { buatVarianGambar, sumberVarian } = require("./utils/webp");
 const { backfillWebp } = require("./utils/backfillWebp");
 const { bersihkanUploads } = require("./utils/bersihkanUploads");
+const { isiDeskripsiKosong } = require("./utils/deskripsiMobil");
 const authRoutes = require("./routes/auth.routes");
 const mobilRoutes = require("./routes/mobil.routes");
 const bookingRoutes = require("./routes/booking.routes");
@@ -270,4 +271,23 @@ app.listen(PORT, () => {
       }
     })
     .catch((err) => console.error("[webp] Perapian dilewati:", err.message));
+
+  // Melengkapi deskripsi unit yang masih kosong. Seperti backfillWebp di
+  // atas: berjalan setelah server siap melayani, aman diulang tiap boot, dan
+  // kegagalannya tidak menjatuhkan server — tanpa ini halaman mobil tetap
+  // tampil, hanya tanpa keterangan unitnya.
+  //
+  // Hanya mengisi yang kosong, tidak pernah menimpa. Jadi begitu Anda
+  // menyunting deskripsi lewat panel admin, tulisan Anda yang berlaku dan
+  // boot berikutnya akan melewatinya.
+  isiDeskripsiKosong()
+    .then(({ diperiksa, diisi, tanpaTeks }) => {
+      if (diisi.length > 0) {
+        console.log(`[deskripsi] ${diisi.length} dari ${diperiksa} unit diisi: ${diisi.join(", ")}`);
+      }
+      if (tanpaTeks.length > 0) {
+        console.log(`[deskripsi] belum ada teks untuk: ${tanpaTeks.join(", ")}`);
+      }
+    })
+    .catch((err) => console.error("[deskripsi] Pengisian dilewati:", err.message));
 });
