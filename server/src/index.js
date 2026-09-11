@@ -6,6 +6,7 @@ const compression = require("compression");
 const path = require("path");
 const fs = require("fs/promises");
 
+const prisma = require("./utils/prisma");
 const { UPLOAD_ROOT } = require("./utils/upload");
 const { buatVarianGambar, sumberVarian } = require("./utils/webp");
 const { backfillWebp } = require("./utils/backfillWebp");
@@ -199,8 +200,39 @@ app.use(
   })
 );
 
-app.get(/^(?!\/api|\/uploads).*/, (req, res, next) => {
-  const status = KNOWN_SPA_ROUTES.some((pattern) => pattern.test(req.path)) ? 200 : 404;
+// Halaman detail mobil yang sampai di sini berarti tidak punya berkas
+// prerender — dan itu bisa berarti dua hal yang bertolak belakang:
+//
+// 1. Mobilnya sudah dihapus dari panel admin. Halamannya harus 404.
+// 2. Mobilnya baru saja ditambahkan, jadi belum ikut build terakhir.
+//    Halamannya harus tetap 200 dan dirender di browser.
+//
+// Keduanya tidak bisa dibedakan dari keberadaan berkas, jadi yang ditanya
+// adalah database. Satu pencarian primary key, hanya untuk permintaan yang
+// sudah gagal menemukan berkas prerender — bukan untuk lalu lintas normal.
+//
+// Sebelum ini, semua id dijawab 200 dengan cangkang kosong yang identik satu
+// sama lain. Google menandai 25 URL /katalog/:id sebagai "duplikat tanpa
+// versi kanonis" karena itu: belasan halaman tanpa isi yang HTML-nya sama
+// persis. Setiap mobil yang dihapus menambah satu lagi.
+const POLA_DETAIL_MOBIL = /^\/katalog\/([^/]+)\/?$/;
+
+async function mobilAda(idMentah) {
+  const id = Number(idMentah);
+  if (!Number.isInteger(id) || id <= 0) return false;
+  const mobil = await prisma.mobil.findUnique({
+    where: { idMobil: id },
+    select: { idMobil: true },
+  });
+  return Boolean(mobil);
+}
+
+app.get(/^(?!\/api|\/uploads).*/, async (req, res, next) => {
+  let status = KNOWN_SPA_ROUTES.some((pattern) => pattern.test(req.path)) ? 200 : 404;
+
+  const detail = req.path.match(POLA_DETAIL_MOBIL);
+  if (status === 200 && detail && !(await mobilAda(detail[1]))) status = 404;
+
   res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
   res.status(status).sendFile(path.join(clientDist, "index.html"), (err) => {
     if (err) next();
