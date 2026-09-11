@@ -139,7 +139,12 @@ export default function CarDetail() {
                     i === activeFoto ? "border-blue-600" : "border-transparent hover:border-blue-200"
                   }`}
                 >
-                  <SmartImage src={f.urlFoto} alt="" className="h-full w-full object-cover" loading="lazy" />
+                  <SmartImage
+                    src={f.urlFoto}
+                    alt={`Foto ${i + 1} ${mobil.namaMobil} — rental mobil ${mobil.tipe} di Tangerang`}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
                 </button>
               ))}
             </div>

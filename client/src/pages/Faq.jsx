@@ -7,44 +7,8 @@ import { breadcrumbSchema, faqPageSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import { FAQ_UMUM } from "../data/faqUmum";
 
-const FAQ_LIST = [
-  {
-    pertanyaan: "Apa saja syarat sewa mobil lepas kunci di 287 Trans?",
-    jawaban:
-      "Anda hanya perlu menyiapkan KTP yang masih berlaku dan mengisi form permintaan booking online. Tidak ada syarat kartu kredit atau jaminan tambahan, dan Anda tidak perlu membuat akun terlebih dahulu.",
-  },
-  {
-    pertanyaan: "Berapa harga rental mobil harian di Tangerang?",
-    jawaban:
-      "Harga bervariasi tergantung kategori unit, mulai dari hatchback yang paling terjangkau hingga kategori premium dan luxury. Rentang harga per kategori bisa dilihat di halaman Armada, atau cek langsung setiap unit di Katalog untuk harga pastinya.",
-  },
-  {
-    pertanyaan: "Apakah bisa sewa mobil dengan supir?",
-    jawaban:
-      "Bisa. Seluruh unit di katalog kami tersedia untuk sewa plus driver selain opsi lepas kunci. Pilih opsi \"Dengan Sopir\" saat mengisi form booking, dan tim kami akan mengonfirmasi ketersediaan sopir untuk tanggal yang Anda butuhkan.",
-  },
-  {
-    pertanyaan: "Area mana saja yang dilayani 287 Trans?",
-    jawaban:
-      "Kami melayani Tangerang, Tangerang Selatan, Jakarta, Bekasi, Depok, dan Bogor (Jabodetabek).",
-  },
-  {
-    pertanyaan: "Bagaimana cara booking mobil di 287 Trans?",
-    jawaban:
-      "Pilih mobil di halaman Katalog, isi form permintaan booking dengan nama, nomor HP, dan tanggal sewa, lalu tim kami akan menghubungi Anda melalui telepon atau WhatsApp untuk konfirmasi ketersediaan dan detail serah terima unit.",
-  },
-  {
-    pertanyaan: "Apakah ada minimum durasi sewa?",
-    jawaban:
-      "Tidak ada minimum durasi khusus — sewa bisa dimulai dari 1 hari. Untuk kebutuhan jangka panjang, tersedia skema bulanan hingga tahunan yang lebih hemat.",
-  },
-  {
-    pertanyaan: "Apakah bensin dan tol sudah termasuk harga sewa?",
-    jawaban:
-      "Untuk unit lepas kunci, harga sewa belum termasuk bahan bakar dan tol — biaya ini ditanggung penyewa selama masa pemakaian. Detail biaya akan diinformasikan tim kami saat konfirmasi booking.",
-  },
-];
 
 export default function Faq() {
   const { profile } = useCompanyProfile();
@@ -60,7 +24,7 @@ export default function Faq() {
             { name: "Home", path: "/" },
             { name: "FAQ", path: "/faq" },
           ]),
-          faqPageSchema(FAQ_LIST),
+          faqPageSchema(FAQ_UMUM),
         ]}
       />
 
@@ -82,7 +46,7 @@ export default function Faq() {
         </Reveal>
 
         <Reveal delay={40} className="mt-8 space-y-3">
-          {FAQ_LIST.map((item) => (
+          {FAQ_UMUM.map((item) => (
             <details
               key={item.pertanyaan}
               className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]"

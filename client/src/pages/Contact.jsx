@@ -144,6 +144,57 @@ export default function Contact() {
           )}
         </Reveal>
       </section>
+
+      {/* Halaman ini sebelumnya hanya 149 kata: alamat, nomor, dan sebuah
+          formulir. Tidak ada satu pun keterangan yang menjawab pertanyaan
+          orang yang sedang bersiap menghubungi. Isi di bawah menjawabnya, dan
+          sengaja berbeda dari seksi Area Layanan di /tentang-kami — dua
+          halaman dengan paragraf kembar saling menggerus. */}
+      <section className="bg-slate-50 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal as="h2" className="text-2xl font-bold text-slate-900">
+            Sebelum Anda Menghubungi Kami
+          </Reveal>
+          <div className="mt-6 grid gap-8 lg:grid-cols-3">
+            <Reveal className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Yang perlu disiapkan</h3>
+              <p>
+                Untuk mempercepat konfirmasi, sebutkan empat hal saat menghubungi kami: unit yang Anda
+                inginkan, tanggal mulai dan selesai sewa, apakah lepas kunci atau plus sopir, dan alamat
+                lengkap kalau unit ingin diantar.
+              </p>
+              <p>
+                Syarat sewa lepas kunci sendiri sederhana — cukup KTP yang masih berlaku. Tidak ada
+                syarat kartu kredit, tanpa jaminan BPKB, dan Anda tidak perlu membuat akun.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Cara tercepat</h3>
+              <p>
+                WhatsApp adalah jalur paling cepat, dan sebagian besar pemesanan memang masuk dari sana.
+                Formulir di halaman ini cocok untuk pertanyaan yang tidak mendesak atau penawaran untuk
+                kebutuhan perusahaan, karena jawabannya kami kirim lewat email.
+              </p>
+              <p>
+                Kalau tanggal Anda jatuh di musim ramai seperti libur panjang atau Lebaran, hubungi kami
+                lebih awal — unit di kategori tertentu jumlahnya terbatas dan tanggalnya cepat terisi.
+              </p>
+            </Reveal>
+            <Reveal delay={200} className="space-y-3 leading-relaxed text-slate-600">
+              <h3 className="text-base font-bold text-slate-900">Ambil sendiri atau diantar</h3>
+              <p>
+                Unit bisa Anda ambil langsung di kantor kami di Ciledug, Kota Tangerang, tanpa biaya
+                tambahan. Kalau ingin diantar, biayanya dihitung berdasarkan jarak ke alamat Anda.
+              </p>
+              <p>
+                Angka biaya antar selalu kami sampaikan di awal, bersamaan dengan konfirmasi
+                ketersediaan unit — jadi Anda sudah tahu totalnya sebelum memutuskan, bukan setelah
+                unit sampai.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

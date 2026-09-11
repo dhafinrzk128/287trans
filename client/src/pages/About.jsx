@@ -73,6 +73,54 @@ export default function About() {
         </div>
       </section>
 
+      {/* Area layanan, ditulis sebagai keterangan yang memang dibutuhkan calon
+          penyewa: dari mana unit berangkat, kawasan mana yang terjangkau, dan
+          apakah diantar atau diambil sendiri. Halaman ini sebelumnya hanya
+          296 kata dan tidak menjawab satu pun dari pertanyaan itu. */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Reveal as="h2" className="text-2xl font-bold text-slate-900">
+          Area Layanan Kami
+        </Reveal>
+        <div className="mt-6 grid gap-8 lg:grid-cols-2">
+          <Reveal className="space-y-4 leading-relaxed text-slate-600">
+            <p>
+              Kantor kami berada di Ciledug, Kota Tangerang, dan posisi itu menentukan bagaimana kami
+              melayani. Kawasan Tangerang dan Tangerang Selatan adalah yang paling cepat kami jangkau,
+              sehingga proses serah terima unit di area ini biasanya bisa diatur dalam waktu singkat
+              selama tanggalnya tersedia.
+            </p>
+            <p>
+              Di Kota Tangerang kami rutin melayani Ciledug, Cipondoh, Karawaci, dan sekitarnya. Di
+              Tangerang Selatan, permintaan paling banyak datang dari BSD City, Gading Serpong, Alam
+              Sutera, Bintaro, dan Pondok Aren — kawasan yang penyewanya banyak mencari unit kategori
+              premium untuk kebutuhan keluarga maupun perusahaan.
+            </p>
+            <p>
+              Layanan kami juga menjangkau Jakarta, termasuk kawasan seperti Kebayoran Baru dan Pondok
+              Indah, serta Bekasi, Depok, dan Bogor. Untuk perjalanan ke luar Jabodetabek, unit kami
+              boleh dibawa keluar kota — cukup sebutkan kota tujuan saat pemesanan supaya kami bisa
+              menyiapkan unit yang paling sesuai.
+            </p>
+          </Reveal>
+          <Reveal delay={150} className="space-y-4 leading-relaxed text-slate-600">
+            <p>
+              Ada dua cara menerima unit. Anda bisa mengambilnya sendiri di kantor kami di Ciledug
+              tanpa biaya tambahan, atau kami antar ke alamat Anda.
+            </p>
+            <p>
+              Antar-jemput unit dikenakan biaya yang dihitung berdasarkan jarak dari kantor kami, jadi
+              angkanya berbeda untuk tiap lokasi. Yang kami pastikan: angka itu selalu kami sebutkan
+              di awal, sebelum pemesanan dikunci — bukan setelah unit sampai. Sebutkan alamat lengkap
+              saat menghubungi kami dan tim akan langsung memberi hitungannya.
+            </p>
+            <p>
+              Seluruh unit tersedia untuk sewa lepas kunci maupun plus sopir, dengan durasi mulai dari
+              satu hari sampai skema bulanan dan tahunan untuk kebutuhan operasional jangka panjang.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-2">
           <Reveal>

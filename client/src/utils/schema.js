@@ -18,10 +18,33 @@ export const AUTORENTAL_SCHEMA = {
     postalCode: "15151",
     addressCountry: "ID",
   },
-  areaServed: ["Tangerang", "Tangerang Selatan", "Jakarta", "Bekasi", "Depok", "Bogor"].map((name) => ({
-    "@type": "City",
-    name,
-  })),
+  // Kota tetap didaftar sebagai City; kawasan yang lebih kecil sebagai Place,
+  // sebab BSD, Bintaro, dan Pondok Indah bukan kota dan menandainya sebagai
+  // City adalah keterangan yang salah.
+  //
+  // Di sinilah nama kawasan seharusnya disebut. Kawasan-kawasan ini memang
+  // kami layani, tapi menaburkan namanya ke dalam kalimat halaman hanya
+  // supaya terbaca mesin pencari akan membuat halamannya lebih buruk untuk
+  // dibaca orang. areaServed menyatakan hal yang sama sebagai data, di tempat
+  // yang memang disediakan untuk itu, tanpa mengubah satu kalimat pun.
+  areaServed: [
+    ...["Tangerang", "Tangerang Selatan", "Jakarta", "Bekasi", "Depok", "Bogor"].map((name) => ({
+      "@type": "City",
+      name,
+    })),
+    ...[
+      "BSD City",
+      "Gading Serpong",
+      "Alam Sutera",
+      "Bintaro",
+      "Pondok Aren",
+      "Karawaci",
+      "Cipondoh",
+      "Ciledug",
+      "Kebayoran Baru",
+      "Pondok Indah",
+    ].map((name) => ({ "@type": "Place", name })),
+  ],
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
