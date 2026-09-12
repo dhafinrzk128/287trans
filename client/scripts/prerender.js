@@ -15,6 +15,29 @@
 // this crawls against the *live* site's API (see vite.config.js `preview.proxy`
 // and getRoutes.js) to get real car data. Override the target with
 // PRERENDER_API_BASE if you ever need to point this at a different environment.
+//
+// KONSEKUENSINYA, DAN INI SUDAH DUA KALI MEMAKAN WAKTU:
+//
+// Karena isinya datang dari API yang hidup, hasil build ini BUKAN fungsi dari
+// kode sumbernya saja. Railway meng-cache langkah `npm run build` berdasarkan
+// pohon sumber, jadi deploy ulang tanpa perubahan berkas sama sekali tidak
+// menjalankan skrip ini — log build-nya kosong dari baris [prerender], dan
+// HTML statis yang lama tetap terpasang.
+//
+// Akibatnya, isi yang berasal dari basis data (deskripsi unit, tanya-jawab
+// halaman depan) butuh DUA deploy: yang pertama mengisi basis data lewat
+// startup server, yang kedua memotret ulang HTML-nya. Dan deploy kedua itu
+// hanya berjalan kalau ada yang berubah di sumber — karena itulah angka di
+// bawah ada.
+//
+// Naikkan REVISI satu angka untuk memaksa build kedua berjalan. Angkanya
+// sendiri tidak dipakai untuk apa pun selain dicatat ke log, supaya terlihat
+// di log build bahwa langkah ini benar-benar dijalankan, bukan diambil dari
+// cache.
+//
+// Pengunjung tidak terpengaruh menunggu ini: halaman tetap mengambil datanya
+// sendiri saat dibuka. Yang tertinggal hanya potret statis untuk perayap.
+const REVISI = 2;
 
 import { preview } from "vite";
 import { chromium } from "playwright";
@@ -32,6 +55,7 @@ function outputPathFor(route) {
 
 async function main() {
   const routes = await getAllRoutes();
+  console.log(`[prerender] revisi ${REVISI} — berjalan, bukan dari cache.`);
   console.log(`[prerender] ${routes.length} route(s) to render: ${routes.join(", ")}`);
 
   const server = await preview({ preview: { port: 4173, host: "127.0.0.1" }, logLevel: "warn" });
