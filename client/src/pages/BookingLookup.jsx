@@ -52,6 +52,16 @@ export default function BookingLookup() {
         title="Cek Status Booking - 287 Trans"
         description="Cek status permintaan booking rental mobil 287 Trans. Masukkan kode booking yang Anda terima setelah mengajukan permintaan untuk melihat status terbaru."
         path="/status"
+        // Halaman ini sebuah kotak isian dan tidak lebih: 172 kata, hampir
+        // seluruhnya navigasi dan footer yang sama dengan halaman lain. Tidak
+        // ada pencarian yang pantas mendarat di sini — orang yang punya kode
+        // booking datang dari tautan miliknya sendiri, bukan dari Google.
+        //
+        // Perlu diketahui: prop ini menghasilkan "noindex, nofollow" sekaligus
+        // (lihat Seo.jsx), jadi tautan di halaman ini tidak ikut ditelusuri.
+        // Di sini itu tidak merugikan — setiap tautannya berasal dari navbar
+        // dan footer, yang ada di seluruh halaman lain yang tetap terindeks.
+        noindex
         jsonLd={breadcrumbSchema([
           { name: "Home", path: "/" },
           { name: "Cek Status Booking", path: "/status" },

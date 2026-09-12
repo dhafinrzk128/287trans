@@ -14,6 +14,7 @@ import Reveal from "../components/Reveal";
 import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah, pesanSewa } from "../utils/format";
+import { koleksiUntukMobil } from "../data/koleksiArmada";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -68,6 +69,7 @@ export default function CarDetail() {
     );
   }
 
+  const koleksiTerkait = koleksiUntukMobil(mobil);
   const fotos = mobil.fotos?.length ? mobil.fotos : [];
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -180,6 +182,28 @@ export default function CarDetail() {
           </div>
 
           <p className="mt-5 leading-relaxed text-slate-600">{mobil.deskripsi}</p>
+
+          {/* Jalan dari unit ini ke halaman koleksi yang memuatnya. Sebelum
+              ini satu-satunya tautan ke halaman koleksi adalah daftar
+              kategori di footer — sama persis di seluruh situs, jadi tidak
+              memberi tahu apa pun tentang unit yang sedang dibuka, dan tidak
+              menolong pengunjung yang ingin membandingkan dengan unit sejenis.
+              Daftarnya dihitung dari aturan pencocokan yang sama dengan
+              halaman koleksinya sendiri, jadi tidak bisa melenceng. */}
+          {koleksiTerkait.length > 0 && (
+            <div className="mt-5 flex flex-wrap items-center gap-2 text-sm">
+              <span className="text-slate-500">Lihat juga:</span>
+              {koleksiTerkait.map((k) => (
+                <Link
+                  key={k.slug}
+                  to={`/${k.slug}`}
+                  className="rounded-xl border border-slate-200 bg-white px-3 py-1.5 font-medium text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-50"
+                >
+                  {k.h1}
+                </Link>
+              ))}
+            </div>
+          )}
 
           <div className="mt-6">
             <h2 className="text-base font-bold text-slate-900">Cek Ketersediaan Tanggal</h2>

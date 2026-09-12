@@ -44,3 +44,21 @@ export async function getAllRoutes() {
   const carRoutes = await getCarRoutes();
   return [...STATIC_ROUTES, ...carRoutes];
 }
+
+// Halaman yang tetap diprerender tapi tidak diundang ke mesin pencari.
+//
+// /status adalah kotak isian kode booking: nyata, dipakai, dan pantas dimuat
+// cepat — jadi tetap diprerender. Tapi ia menyandang <meta robots="noindex">
+// (lihat BookingLookup.jsx), dan mencantumkan URL ber-noindex di sitemap
+// adalah dua perintah yang saling bertentangan: yang satu mengundang, yang
+// lain menolak. Sitemap dipakai untuk yang memang ingin ditemukan.
+const TANPA_SITEMAP = new Set(["/status"]);
+
+/**
+ * Route yang layak masuk sitemap. Sengaja disaring dari daftar yang sama
+ * dengan prerender, bukan ditulis ulang, supaya menambah halaman baru tetap
+ * cukup di satu tempat dan bedanya di sini tetap satu baris yang terlihat.
+ */
+export async function getSitemapRoutes() {
+  return (await getAllRoutes()).filter((r) => !TANPA_SITEMAP.has(r));
+}

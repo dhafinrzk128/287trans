@@ -311,11 +311,28 @@ export default function Home() {
                           className={`shrink-0 text-blue-600 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                         />
                       </button>
-                      {isOpen && (
-                        <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
-                          {item.jawaban}
-                        </p>
-                      )}
+                      {/* Jawaban selalu dirender; yang diciutkan hanya tingginya.
+                          Sebelumnya jawaban baru masuk DOM setelah diklik, jadi tak
+                          satu pun jawaban FAQ di halaman ini pernah ada di HTML yang
+                          dibaca mesin pencari — padahal skema FAQPage di <head> tetap
+                          memuat jawabannya. Dua hal yang seharusnya cocok, dan ini
+                          halaman tujuan iklan berbayar.
+
+                          Pembungkus grid dipakai supaya tingginya bisa dianimasikan
+                          dari 0fr ke 1fr tanpa perlu mengukur tinggi isinya; anak di
+                          dalamnya yang memotong, sehingga garis dan padding paragraf
+                          ikut tersembunyi saat tertutup. */}
+                      <div
+                        className={`grid transition-[grid-template-rows] duration-200 ${
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
+                            {item.jawaban}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </Reveal>
                 );

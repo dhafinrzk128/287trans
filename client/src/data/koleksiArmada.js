@@ -55,6 +55,25 @@ export function unitKoleksi(koleksi, mobils) {
   );
 }
 
+/**
+ * Kebalikan dari unitKoleksi: koleksi mana saja yang memuat satu unit.
+ *
+ * Dipakai halaman detail mobil untuk menautkan unit ke halaman koleksinya —
+ * kategorinya, dan halaman modelnya kalau unit itu termasuk model yang punya
+ * halaman sendiri. Sebelum ini satu-satunya jalan dari halaman mobil ke
+ * halaman koleksi adalah daftar kategori di footer, yang sama persis di
+ * seluruh situs dan karena itu tidak memberi tahu apa pun tentang unit yang
+ * sedang dibuka.
+ *
+ * Aturan pencocokannya sengaja dibaca dari definisi yang sama dengan
+ * unitKoleksi(), bukan ditulis ulang — kalau nanti caranya berubah, kedua
+ * arah ikut berubah bersamaan.
+ */
+export function koleksiUntukMobil(mobil) {
+  if (!mobil) return [];
+  return KOLEKSI.filter((k) => unitKoleksi(k, [mobil]).length > 0);
+}
+
 export function hargaTermurah(units) {
   if (!units.length) return null;
   return Math.min(...units.map((m) => m.hargaPerHari));

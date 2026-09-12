@@ -50,6 +50,16 @@ export const KOLEKSI_MODEL = [
         tanya: "Apakah harga sudah termasuk bensin dan tol?",
         jawab: "Belum. Tarif yang tertera adalah tarif unit per hari. Bahan bakar dan tol selama masa sewa ditanggung penyewa, sehingga Anda bisa menghitung sendiri total perjalanan sesuai rute. Biaya sopir juga dihitung terpisah.",
       },
+      {
+        tanya: "Varian Zenix mana yang kursi baris keduanya terpisah?",
+        jawab:
+          "Type-Q HEV. Varian ini memakai kursi kapten terpisah dengan sandaran yang bisa direbahkan, sementara varian di bawahnya memakai bangku menyatu. Untuk penjemputan tamu penting atau perjalanan luar kota yang panjang, perbedaan itu terasa sepanjang jalan — bukan sekadar tambahan di daftar fitur.",
+      },
+      {
+        tanya: "Zenix bisa dipakai antar-jemput bandara?",
+        jawab:
+          "Bisa, dan ini salah satu pemakaian Zenix yang paling sering. Kabin monokoknya lebih senyap dibanding Innova generasi sebelumnya, jadi penumpang yang baru turun dari penerbangan panjang lebih nyaman. Untuk penjemputan, sebutkan nomor penerbangan dan jam tiba saat memesan supaya jadwalnya bisa disesuaikan kalau pesawat bergeser.",
+      },
     ],
   },
 
@@ -92,6 +102,16 @@ export const KOLEKSI_MODEL = [
       {
         tanya: "Kenapa Reborn lebih murah daripada Zenix?",
         jawab: "Zenix adalah generasi yang lebih baru dengan basis monokok dan pilihan hybrid, sehingga nilai unitnya lebih tinggi. Selisih tarif itu murni mengikuti nilai unit, bukan karena kondisi Reborn kami kurang terawat — seluruh armada melewati pemeriksaan rutin yang sama sebelum disewakan.",
+      },
+      {
+        tanya: "Reborn cocok untuk mudik dan perjalanan Lebaran?",
+        jawab:
+          "Sangat cocok, dan memang itu periode tersibuk unit ini. Mesin diesel dengan sasis ladder frame membuatnya kuat membawa tujuh penumpang beserta bagasi penuh di rute panjang, sementara konsumsi solarnya lebih ekonomis dibanding MPV bensin sekelas. Karena permintaannya menumpuk di tanggal yang sama, kunci tanggal Anda jauh sebelum musimnya tiba.",
+      },
+      {
+        tanya: "Ada berapa varian Reborn yang tersedia?",
+        jawab:
+          "Dua, keduanya keluaran 2024, matic, dan berkapasitas tujuh penumpang. Type-G adalah varian dasar dengan kelengkapan secukupnya. Type-V menambah kualitas pelapis jok, kelengkapan dasbor, dan peredaman kabin yang lebih rapat. Mesin dan sasisnya sama persis, jadi pilihannya murni soal kenyamanan penumpang, bukan kemampuan jalan.",
       },
     ],
   },
@@ -136,6 +156,16 @@ export const KOLEKSI_MODEL = [
         tanya: "Berapa lama minimal sewa Fortuner?",
         jawab: "Satu hari, tanpa minimum durasi khusus. Untuk pemakaian mingguan dan bulanan, tarif per harinya turun — sebutkan lama sewa saat chat supaya kami bisa langsung menghitungnya.",
       },
+      {
+        tanya: "Untuk pemakaian harian di dalam kota, 2.8 GR atau Legender?",
+        jawab:
+          "Legender, karena unit kami bermesin bensin — lebih halus dan lebih senyap saat merayap di kemacetan dibanding varian diesel. Pilih 2.8 GR kalau rute Anda lebih banyak di luar kota atau kerap membawa muatan penuh, karena di situ torsi diesel di putaran rendah yang bekerja.",
+      },
+      {
+        tanya: "Bisa disewa bulanan untuk kebutuhan perusahaan?",
+        jawab:
+          "Bisa, dan sebagian besar permintaan Fortuner yang masuk ke kami memang datang dari kebutuhan kerja: menjemput tamu, kunjungan ke lokasi proyek, dan kendaraan operasional. Tersedia skema mingguan sampai tahunan, lepas kunci maupun plus sopir. Sebutkan lama pemakaian dan jumlah unit saat menghubungi kami.",
+      },
     ],
   },
 
@@ -178,6 +208,16 @@ export const KOLEKSI_MODEL = [
       {
         tanya: "Apakah tarifnya berubah untuk sewa lebih dari seminggu?",
         jawab: "Ya, tarif per hari turun untuk sewa mingguan dan bulanan. Sebutkan tanggal mulai dan lama sewa saat chat supaya kami bisa langsung memberikan angka totalnya.",
+      },
+      {
+        tanya: "Kuat untuk jalan yang permukaannya belum mulus?",
+        jawab:
+          "Kuat. Sasis ladder frame dan jarak ke tanah yang tinggi memang dirancang untuk itu, jadi akses ke lokasi proyek, jalan desa, atau rute daerah yang aspalnya rusak bukan masalah. Peredamannya juga terasa lebih lembut untuk penumpang belakang dibanding sebagian SUV sekelas, yang membuat rute panjang lebih tidak melelahkan.",
+      },
+      {
+        tanya: "Bagaimana memastikan ketersediaan untuk tanggal tertentu?",
+        jawab:
+          "Kalender di halaman unit menandai merah tanggal yang sudah dipesan pelanggan lain, jadi Anda bisa memeriksanya sendiri lebih dulu. Untuk libur panjang dan musim mudik, unit diesel tujuh penumpang seperti ini termasuk yang paling cepat penuh — mengunci tanggal lebih awal jauh lebih aman daripada menunggu.",
       },
     ],
   },

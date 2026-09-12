@@ -53,6 +53,16 @@ export const KOLEKSI_KATEGORI = [
         tanya: "Bisa dibawa keluar kota?",
         jawab: "Bisa, dan itu salah satu penggunaan tersering unit MPV kami. Sebutkan tujuan serta lama perjalanan saat pemesanan supaya kami bisa menyiapkan unit dan menjelaskan ketentuan untuk rute jarak jauh.",
       },
+      {
+        tanya: "Apakah MPV-nya bisa diantar ke BSD, Gading Serpong, atau Alam Sutera?",
+        jawab:
+          "Bisa. Ketiganya berada di Tangerang Selatan dan rutin kami layani dari kantor kami di Ciledug. Antar-jemput unit dikenakan biaya yang dihitung sesuai jarak, dan angkanya kami sebutkan di awal sebelum pemesanan dikunci. Kalau ingin tanpa biaya antar, unit bisa Anda ambil sendiri di kantor kami.",
+      },
+      {
+        tanya: "Ada sewa MPV bulanan untuk kendaraan operasional?",
+        jawab:
+          "Ada, dan MPV adalah kategori yang paling banyak diambil untuk skema ini. Tarif per harinya lebih hemat dibanding sewa harian, tersedia mingguan sampai tahunan, dan bisa lepas kunci maupun plus sopir. Sebutkan varian yang Anda incar beserta lama pemakaiannya saat chat supaya kami bisa langsung memberi angkanya.",
+      },
     ],
   },
 
@@ -95,6 +105,16 @@ export const KOLEKSI_KATEGORI = [
       {
         tanya: "Apakah SUV tersedia lepas kunci?",
         jawab: "Tersedia, seluruhnya. Syaratnya KTP yang masih berlaku dan SIM A aktif selama masa sewa. Opsi dengan sopir juga tersedia dengan biaya yang dihitung terpisah dan disebutkan di awal.",
+      },
+      {
+        tanya: "Untuk rute luar kota yang jauh, sebaiknya SUV diesel atau bensin?",
+        jawab:
+          "Untuk rute panjang dengan muatan penuh, unit diesel seperti Fortuner 2.8 GR dan Pajero Sport Dakar lebih menguntungkan: torsinya besar di putaran rendah sehingga tidak kewalahan di tanjakan, dan konsumsi solarnya lebih ekonomis pada jarak jauh. Untuk pemakaian yang didominasi jalan kota, unit bensin seperti CR-V Turbo dan Fortuner Legender terasa lebih halus dan lebih senyap.",
+      },
+      {
+        tanya: "Melayani penyewa di Bintaro dan Pondok Aren?",
+        jawab:
+          "Melayani. Keduanya relatif dekat dari kantor kami di Ciledug, sehingga proses serah terima unit biasanya bisa diatur cepat selama tanggalnya tersedia. Sebutkan alamat lengkap saat memesan supaya biaya antarnya bisa langsung kami hitung, atau ambil sendiri unitnya di kantor kami tanpa biaya tambahan.",
       },
     ],
   },
@@ -139,6 +159,16 @@ export const KOLEKSI_KATEGORI = [
         tanya: "Apakah ada paket untuk pernikahan?",
         jawab: "Ada, dan biasanya disusun per acara karena durasi serta titik jemputnya berbeda-beda. Sebutkan tanggal, jam mulai, dan titik penjemputan saat chat supaya kami bisa langsung memberikan angka totalnya.",
       },
+      {
+        tanya: "Alphard generasi berapa saja yang tersedia di sini?",
+        jawab:
+          "Tiga pilihan. Generasi ketiga Type-G keluaran 2022 adalah yang tarifnya paling ringan. Generasi keempat Type-G keluaran 2024 membawa peredaman kabin dan material interior yang jelas lebih baik. Generasi keempat versi hybrid adalah yang paling lengkap, dengan perpindahan tenaga paling halus dan kabin paling senyap pada kecepatan rendah.",
+      },
+      {
+        tanya: "Bisa dipakai menjemput tamu di Bandara Soekarno-Hatta?",
+        jawab:
+          "Bisa, dan itu salah satu pemakaian Alphard yang paling sering kami tangani — baik lepas kunci maupun dengan sopir. Untuk penjemputan, sebutkan nomor penerbangan dan jam tiba saat memesan supaya penyesuaian bisa dilakukan kalau jadwalnya bergeser. Biaya sopir dihitung terpisah dan kami sampaikan di awal.",
+      },
     ],
   },
 
@@ -181,6 +211,16 @@ export const KOLEKSI_KATEGORI = [
       {
         tanya: "Bisa disewa untuk sesi foto atau video?",
         jawab: "Bisa, dan itu salah satu permintaan tersering untuk BMW M4 Cabriolet. Sebutkan durasi serta lokasi pengambilan gambar saat chat supaya kami bisa menyesuaikan penawarannya.",
+      },
+      {
+        tanya: "Mobil mewah apa saja yang bisa disewa di sini?",
+        jawab:
+          "Untuk sedan mewah tersedia Mercedes-Benz C300 dan E300, BMW 330i G20 M-Sport Pro, serta BMW M4 Competition Cabriolet yang beratap terbuka. Kalau Anda butuh posisi duduk tinggi, ada Mercedes-Benz GLC300 di kategori SUV mewah. Seluruhnya matic dan berkapasitas lima penumpang, kecuali M4 Cabriolet yang memang bukan untuk membawa rombongan.",
+      },
+      {
+        tanya: "Melayani penyewa di Jakarta Selatan seperti Kebayoran dan Pondok Indah?",
+        jawab:
+          "Melayani, dan permintaan kategori mewah dari kawasan itu memang cukup rutin. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari Ciledug, atau diambil sendiri di kantor kami. Kategori ini punya ketentuan sewa tersendiri yang kami jelaskan lebih dulu, sebelum Anda memutuskan.",
       },
     ],
   },
@@ -225,6 +265,16 @@ export const KOLEKSI_KATEGORI = [
         tanya: "Tersedia dengan sopir?",
         jawab: "Tersedia, dan sebagian besar penyewa di kategori ini memilih opsi tersebut. Biaya sopir dihitung terpisah dari tarif unit dan kami sebutkan di awal, sebelum Anda memutuskan.",
       },
+      {
+        tanya: "Kapan sebaiknya memilih GLC300 dibanding sedan mewah?",
+        jawab:
+          "Ketika rute Anda tidak seluruhnya mulus. Posisi duduk yang tinggi dan jarak ke tanah yang lebih aman membuat GLC300 lebih tenang melewati polisi tidur, jalan perumahan yang sempit, atau rute luar kota yang permukaannya tidak rata. Kalau agenda Anda seluruhnya di kawasan perkantoran dan hotel berakses mulus, C300 atau E300 sudah cukup.",
+      },
+      {
+        tanya: "Hanya ada satu unit — bagaimana memastikan tanggalnya?",
+        jawab:
+          "Kalender ketersediaan di halaman unit menandai tanggal yang sudah dipesan pelanggan lain, jadi Anda bisa mengeceknya sendiri sebelum menghubungi kami. Karena unitnya tunggal, tanggal di musim ramai cepat terisi — kalau agenda Anda sudah pasti, mengunci tanggalnya lebih awal jauh lebih aman daripada menunggu mendekati hari.",
+      },
     ],
   },
 
@@ -267,6 +317,16 @@ export const KOLEKSI_KATEGORI = [
       {
         tanya: "Apakah biaya listriknya ditanggung penyewa?",
         jawab: "Ya, sama seperti bahan bakar pada unit lain. Bedanya, biaya pengisian daya per kilometer jauh lebih rendah dibanding bensin, dan itu yang membuat total biaya perjalanan sering lebih hemat meskipun tarif hariannya tidak paling murah.",
+      },
+      {
+        tanya: "Ioniq 5 boleh dibawa ke luar kota?",
+        jawab:
+          "Boleh, hanya saja perjalanannya perlu direncanakan berbeda dari mobil bensin: titik pengisian di rute Anda sebaiknya dipastikan sebelum berangkat. Untuk rute tol utama di Jawa hal ini sudah jauh lebih mudah dibanding beberapa tahun lalu. Sebutkan kota tujuan saat memesan — kalau rutenya kami nilai menyulitkan, kami akan terus terang menyarankan unit lain.",
+      },
+      {
+        tanya: "Mobil listrik cocok untuk sewa jangka panjang?",
+        jawab:
+          "Cocok, dan justru di situ hitungannya paling masuk akal. Biaya per kilometer mobil listrik jauh lebih rendah daripada mobil bensin, sehingga pada pemakaian bulanan selisihnya menumpuk dan bisa menutup tarif hariannya yang terlihat lebih tinggi. Syaratnya satu: Anda punya akses pengisian yang rutin, entah di rumah atau di stasiun pengisian umum dekat Anda.",
       },
     ],
   },
@@ -311,6 +371,16 @@ export const KOLEKSI_KATEGORI = [
         tanya: "Bisa disewa lepas kunci?",
         jawab: "Bisa. Syaratnya KTP yang masih berlaku dan SIM A aktif selama masa sewa. Opsi dengan sopir juga tersedia dengan biaya yang dihitung terpisah dan disebutkan di awal.",
       },
+      {
+        tanya: "Kenapa sedan sering dipilih untuk kebutuhan kerja?",
+        jawab:
+          "Tiga alasan yang selalu sama. Titik beratnya rendah sehingga paling stabil saat melaju di tol, kabinnya lebih senyap karena bodinya tidak setinggi MPV atau SUV, dan tingginya masuk ke basement gedung yang membatasi tinggi kendaraan — hal terakhir ini sering baru disadari setelah terlanjur membawa SUV.",
+      },
+      {
+        tanya: "Bisa disewa bulanan untuk operasional perusahaan?",
+        jawab:
+          "Bisa. Sedan termasuk yang paling sering diambil dengan skema bulanan untuk kendaraan operasional dan antar-jemput relasi, dengan tarif per hari yang lebih hemat dibanding harian. Untuk kebutuhan beberapa unit sekaligus atau kontrak yang lebih panjang, hubungi tim kami supaya penawarannya bisa disusun sesuai kebutuhan.",
+      },
     ],
   },
 
@@ -353,6 +423,16 @@ export const KOLEKSI_KATEGORI = [
       {
         tanya: "Cocok untuk sewa bulanan?",
         jawab: "Sangat cocok, dan ini salah satu penggunaan tersering unit ini. Kombinasi tarif rendah dan konsumsi bahan bakar yang irit membuat total biaya bulanannya paling ringan di armada kami.",
+      },
+      {
+        tanya: "Ini unit termurah yang Anda punya?",
+        jawab:
+          "Ya, HR-V SE adalah tarif harian paling ringan di armada kami. Konsumsi bahan bakarnya juga yang paling hemat, jadi biaya totalnya — bukan hanya tarif sewanya — memang yang terendah. Kalau kebutuhan Anda lima penumpang atau kurang dan rutenya di dalam kota, tidak ada alasan kuat untuk naik kelas.",
+      },
+      {
+        tanya: "Bisa diantar ke Karawaci atau Cipondoh?",
+        jawab:
+          "Bisa. Keduanya berada di Kota Tangerang dan termasuk area terdekat dari kantor kami di Ciledug, sehingga unit umumnya bisa disiapkan cepat selama tanggalnya kosong. Biaya antar dihitung sesuai jarak dan kami sebutkan di awal — atau ambil sendiri di kantor kami kalau Anda ingin menghematnya.",
       },
     ],
   },

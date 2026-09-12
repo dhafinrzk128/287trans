@@ -5,7 +5,7 @@
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { getAllRoutes, getCarRoutes } from "./getRoutes.js";
+import { getSitemapRoutes, getCarRoutes } from "./getRoutes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = path.resolve(__dirname, "..", "dist");
@@ -27,7 +27,7 @@ function priorityFor(route, carRoutes) {
 
 async function main() {
   const carRoutes = new Set(await getCarRoutes());
-  const routes = await getAllRoutes();
+  const routes = await getSitemapRoutes();
   const lastmod = new Date().toISOString().split("T")[0];
 
   const urls = routes
