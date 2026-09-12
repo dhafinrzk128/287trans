@@ -234,6 +234,60 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Tiga hal yang selalu ditanyakan lewat chat sebelum orang memesan:
+          lepas kunci atau pakai sopir, berapa lama bisa disewa, dan apa saja
+          yang masuk ke dalam tarif. Halaman ini tujuan iklan untuk kata kunci
+          umum — pengunjungnya sering belum pernah menyewa di sini sama sekali,
+          dan sebelumnya tidak ada satu pun jawaban di halaman depan.
+
+          Sengaja tidak mengulang seksi Area Layanan di /tentang-kami maupun
+          persiapan menghubungi di /kontak: halaman yang memuat paragraf sama
+          saling menggerus. */}
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Reveal as="h2" className="text-2xl font-bold text-slate-900">
+          Sebelum Menyewa di Tangerang, Tiga Hal Ini Biasanya Ditanyakan
+        </Reveal>
+        <div className="mt-6 grid gap-8 lg:grid-cols-3">
+          <Reveal className="space-y-3 leading-relaxed text-slate-600">
+            <h3 className="text-base font-bold text-slate-900">Lepas kunci atau plus sopir?</h3>
+            <p>
+              Seluruh unit kami tersedia untuk keduanya. Untuk lepas kunci, syaratnya cukup KTP yang
+              masih berlaku — tanpa kartu kredit, tanpa jaminan BPKB, dan tanpa perlu membuat akun.
+            </p>
+            <p>
+              Sewa dengan sopir banyak dipilih untuk agenda kerja yang berpindah lokasi seharian dan
+              penjemputan tamu, karena Anda tidak perlu memikirkan rute maupun parkir. Biaya sopir
+              dihitung terpisah dari tarif unit dan kami sebutkan di awal.
+            </p>
+          </Reveal>
+          <Reveal delay={100} className="space-y-3 leading-relaxed text-slate-600">
+            <h3 className="text-base font-bold text-slate-900">Berapa lama bisa disewa?</h3>
+            <p>
+              Mulai dari satu hari, tanpa durasi minimum. Satu hari dihitung 24 jam, terhitung dari
+              tanggal pengambilan sampai tanggal pengembalian.
+            </p>
+            <p>
+              Untuk kebutuhan yang lebih panjang tersedia skema mingguan, bulanan, hingga tahunan
+              dengan tarif per hari yang lebih hemat — paling sering diambil untuk kendaraan
+              operasional perusahaan dan pemakaian pribadi jangka panjang.
+            </p>
+          </Reveal>
+          <Reveal delay={200} className="space-y-3 leading-relaxed text-slate-600">
+            <h3 className="text-base font-bold text-slate-900">Apa yang termasuk tarif?</h3>
+            <p>
+              Tarif yang tertera adalah tarif unit per hari. Bahan bakar dan tol selama masa sewa
+              ditanggung penyewa, sehingga Anda bisa menghitung sendiri total perjalanan sesuai rute.
+            </p>
+            <p>
+              Di luar itu hanya ada dua kemungkinan tambahan, dan keduanya kami sebutkan sebelum
+              pemesanan dikunci: biaya sopir kalau Anda memilih opsi itu, dan biaya antar kalau unit
+              ingin diantar ke alamat Anda. Mengambil sendiri unit di kantor kami tidak dikenakan
+              biaya tambahan.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Preview mobil populer */}
       <section className="bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
