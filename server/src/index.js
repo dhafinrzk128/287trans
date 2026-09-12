@@ -12,6 +12,7 @@ const { buatVarianGambar, sumberVarian } = require("./utils/webp");
 const { backfillWebp } = require("./utils/backfillWebp");
 const { bersihkanUploads } = require("./utils/bersihkanUploads");
 const { isiDeskripsiKosong } = require("./utils/deskripsiMobil");
+const { isiFaqBeranda } = require("./utils/faqBeranda");
 const authRoutes = require("./routes/auth.routes");
 const mobilRoutes = require("./routes/mobil.routes");
 const bookingRoutes = require("./routes/booking.routes");
@@ -290,4 +291,13 @@ app.listen(PORT, () => {
       }
     })
     .catch((err) => console.error("[deskripsi] Pengisian dilewati:", err.message));
+
+  // Isi awal tanya-jawab halaman depan. Sekali jalan: begitu pertanyaannya
+  // ada di basis data, ia milik panel admin dan boot berikutnya tidak
+  // menyentuhnya lagi (lihat catatan penjagaan di faqBeranda.js).
+  isiFaqBeranda()
+    .then(({ dilewati, ditambah }) => {
+      if (!dilewati) console.log(`[faq] ${ditambah.length} pertanyaan halaman depan ditambahkan.`);
+    })
+    .catch((err) => console.error("[faq] Pengisian dilewati:", err.message));
 });
