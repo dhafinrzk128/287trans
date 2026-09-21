@@ -8,6 +8,7 @@ import Layout from "./components/layout/Layout";
 import AdminLayout from "./components/layout/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Spinner from "./components/ui/Spinner";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -57,52 +58,54 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <CompanyProfileProvider>
-            <Routes>
-              <Route element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path="tentang-kami" element={<About />} />
-                <Route path="katalog" element={<Catalog />} />
-                <Route path="katalog/:id" element={<CarDetail />} />
-                <Route path="booking/:idMobil" element={<BookingForm />} />
-                <Route path="status" element={<BookingLookup />} />
-                <Route path="status/:kodeBooking" element={<BookingStatus />} />
-                <Route path="kontak" element={<Contact />} />
-                <Route path="armada" element={<Armada />} />
-                <Route path="faq" element={<Faq />} />
-                {/* Halaman kategori dan model armada. Digenerate dari satu
-                    daftar (src/data/koleksiArmada.js) supaya route, sitemap,
-                    prerender, dan menu navbar tidak bisa saling ketinggalan
-                    saat ada tujuan iklan baru ditambahkan. */}
-                {KOLEKSI.map((k) => (
-                  <Route key={k.slug} path={k.slug} element={<KoleksiArmada slug={k.slug} />} />
-                ))}
-                <Route path="*" element={<NotFound />} />
-              </Route>
-
-              <Route
-                path="admin/login"
-                element={
-                  <Suspense fallback={<Spinner />}>
-                    <AdminLogin />
-                  </Suspense>
-                }
-              />
-              <Route path="admin" element={<ProtectedRoute />}>
-                <Route element={<AdminLayout />}>
-                  <Route path="dashboard" element={<AdminDashboard />} />
-                  <Route path="mobil" element={<AdminCars />} />
-                  <Route path="mobil/baru" element={<AdminCarForm />} />
-                  <Route path="mobil/:id/edit" element={<AdminCarForm />} />
-                  <Route path="booking" element={<AdminBookings />} />
-                  <Route path="booking/baru" element={<AdminBookingForm />} />
-                  <Route path="booking/:id" element={<AdminBookingDetail />} />
-                  <Route path="testimoni" element={<AdminTestimoni />} />
-                  <Route path="faq" element={<AdminFaq />} />
-                  <Route path="profile" element={<AdminProfile />} />
-                  <Route path="akun" element={<AdminAccount />} />
+            <ErrorBoundary>
+              <Routes>
+                <Route element={<Layout />}>
+                  <Route index element={<Home />} />
+                  <Route path="tentang-kami" element={<About />} />
+                  <Route path="katalog" element={<Catalog />} />
+                  <Route path="katalog/:id" element={<CarDetail />} />
+                  <Route path="booking/:idMobil" element={<BookingForm />} />
+                  <Route path="status" element={<BookingLookup />} />
+                  <Route path="status/:kodeBooking" element={<BookingStatus />} />
+                  <Route path="kontak" element={<Contact />} />
+                  <Route path="armada" element={<Armada />} />
+                  <Route path="faq" element={<Faq />} />
+                  {/* Halaman kategori dan model armada. Digenerate dari satu
+                      daftar (src/data/koleksiArmada.js) supaya route, sitemap,
+                      prerender, dan menu navbar tidak bisa saling ketinggalan
+                      saat ada tujuan iklan baru ditambahkan. */}
+                  {KOLEKSI.map((k) => (
+                    <Route key={k.slug} path={k.slug} element={<KoleksiArmada slug={k.slug} />} />
+                  ))}
+                  <Route path="*" element={<NotFound />} />
                 </Route>
-              </Route>
-            </Routes>
+
+                <Route
+                  path="admin/login"
+                  element={
+                    <Suspense fallback={<Spinner />}>
+                      <AdminLogin />
+                    </Suspense>
+                  }
+                />
+                <Route path="admin" element={<ProtectedRoute />}>
+                  <Route element={<AdminLayout />}>
+                    <Route path="dashboard" element={<AdminDashboard />} />
+                    <Route path="mobil" element={<AdminCars />} />
+                    <Route path="mobil/baru" element={<AdminCarForm />} />
+                    <Route path="mobil/:id/edit" element={<AdminCarForm />} />
+                    <Route path="booking" element={<AdminBookings />} />
+                    <Route path="booking/baru" element={<AdminBookingForm />} />
+                    <Route path="booking/:id" element={<AdminBookingDetail />} />
+                    <Route path="testimoni" element={<AdminTestimoni />} />
+                    <Route path="faq" element={<AdminFaq />} />
+                    <Route path="profile" element={<AdminProfile />} />
+                    <Route path="akun" element={<AdminAccount />} />
+                  </Route>
+                </Route>
+              </Routes>
+            </ErrorBoundary>
           </CompanyProfileProvider>
         </AuthProvider>
       </BrowserRouter>
