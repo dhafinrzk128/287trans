@@ -15,7 +15,41 @@ function unlinkWithWebp(urlFoto) {
 }
 
 function serializeMobil(mobil) {
-  const fotosSorted = [...(mobil.fotos || [])].sort((a, b) => a.urutan - b.urutan);
+  return {
+    ...serializeMobilRingkas(mobil),
+    deskripsi: mobil.deskripsi,
+    fotos: urutkanFoto(mobil),
+  };
+}
+
+function urutkanFoto(mobil) {
+  return [...(mobil.fotos || [])].sort((a, b) => a.urutan - b.urutan);
+}
+
+// Bentuk ringkas: semua yang dibutuhkan sebuah KARTU mobil, tanpa dua field
+// yang hanya berarti di halaman detail.
+//
+// Kenapa ini ada: respons daftar tidak berhenti di jaringan — Home, Katalog,
+// Armada, dan halaman koleksi menyimpannya kembali ke <script
+// id="__PRERENDER_DATA__"> (lihat client/src/utils/prerenderData.js), jadi
+// setiap byte di sini ikut dipanggang ke dalam HTML statis dan dikirim ulang
+// ke setiap pengunjung pertama.
+//
+// Terukur pada build beranda: `deskripsi` terisi prosa per unit (lihat
+// utils/deskripsiMobil.js) membuat blob `kategori_ringkas` melar dari 9,9 KB
+// jadi 26,0 KB, dan HTML beranda dari 21,4 KB jadi 30,3 KB terkompresi.
+// Karena stylesheet-nya sudah disisipkan ke HTML (client/scripts/inlineCss.js),
+// dokumen itu satu-satunya berkas yang menahan paint — jadi tambahan itu
+// mendarat utuh di First Contentful Paint. Elemen LCP beranda (ornamen kayon)
+// juga mundur dari byte ke-81.277 ke byte ke-106.037, artinya browser baru
+// MENEMUKAN gambarnya setelah membaca 25 KB lebih banyak.
+//
+// Sementara itu tidak ada satu pun tampilan daftar yang membaca keduanya:
+// CarCard hanya memakai `fotoUtama`, dan panel admin pun sama. Yang benar-
+// benar memerlukannya cuma productSchema() di halaman koleksi — dan halaman
+// itu memintanya secara eksplisit lewat ?lengkap=1.
+function serializeMobilRingkas(mobil) {
+  const fotosSorted = urutkanFoto(mobil);
   return {
     idMobil: mobil.idMobil,
     namaMobil: mobil.namaMobil,
@@ -25,17 +59,22 @@ function serializeMobil(mobil) {
     bahanBakar: mobil.bahanBakar,
     kapasitas: mobil.kapasitas,
     hargaPerHari: mobil.hargaPerHari,
-    deskripsi: mobil.deskripsi,
     status: mobil.status,
     fotoUtama: fotosSorted[0]?.urlFoto || null,
-    fotos: fotosSorted,
     jumlahFoto: fotosSorted.length,
   };
 }
 
 // GET /api/mobil - katalog publik dengan filter
+//
+// Ringkas secara baku, lengkap kalau diminta. Arahnya sengaja begini dan
+// bukan sebaliknya: yang memakai daftar ini hampir selalu hanya butuh kartu
+// (harga terendah di hero, hitungan per kategori, petak katalog), sementara
+// yang butuh prosa dan seluruh foto cuma satu halaman. Kalau yang mahal jadi
+// bakunya, pemanggil berikutnya akan ikut membayarnya tanpa pernah tahu —
+// persis yang terjadi pada beranda sampai diukur.
 router.get("/", async (req, res) => {
-  const { tipe, transmisi, kapasitas, minHarga, maxHarga, status } = req.query;
+  const { tipe, transmisi, kapasitas, minHarga, maxHarga, status, lengkap } = req.query;
 
   const where = {};
   if (tipe) where.tipe = tipe;
@@ -54,7 +93,8 @@ router.get("/", async (req, res) => {
     orderBy: { createdAt: "desc" },
   });
 
-  res.json(mobils.map(serializeMobil));
+  const bentuk = lengkap ? serializeMobil : serializeMobilRingkas;
+  res.json(mobils.map(bentuk));
 });
 
 // GET /api/mobil/tipe-list - daftar tipe unik untuk filter dropdown
@@ -89,7 +129,9 @@ router.get("/populer", async (req, res) => {
     .sort((a, b) => b._count.bookings - a._count.bookings || b.createdAt - a.createdAt)
     .slice(0, take);
 
-  res.json(sorted.map((m) => ({ ...serializeMobil(m), jumlahBooking: m._count.bookings })));
+  // Selalu ringkas: satu-satunya pemanggilnya adalah deretan CarCard di
+  // beranda, yang tidak pernah membaca deskripsi maupun daftar fotonya.
+  res.json(sorted.map((m) => ({ ...serializeMobilRingkas(m), jumlahBooking: m._count.bookings })));
 });
 
 // GET /api/mobil/:id

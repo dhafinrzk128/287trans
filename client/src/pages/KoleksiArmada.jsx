@@ -43,7 +43,12 @@ export default function KoleksiArmada({ slug }) {
     const senyap = getPrerenderedData(PRERENDER_KEY) !== undefined;
     if (!senyap) setLoading(true);
     api
-      .get("/mobil")
+      // Satu-satunya halaman yang meminta bentuk lengkap. productSchema() di
+      // bawah menaruh deskripsi unit dan seluruh fotonya ke dalam JSON-LD,
+      // dan itu justru inti halaman ini sebagai tujuan iklan — jadi di sini
+      // byte tambahannya dibelanjakan untuk sesuatu, bukan diangkut percuma
+      // seperti di beranda dan katalog.
+      .get("/mobil", { params: { lengkap: 1 } })
       .then(({ data }) => {
         setMobils(data);
         setPrerenderedData(PRERENDER_KEY, data);
