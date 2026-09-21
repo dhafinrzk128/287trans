@@ -74,6 +74,48 @@ export function koleksiUntukMobil(mobil) {
   return KOLEKSI.filter((k) => unitKoleksi(k, [mobil]).length > 0);
 }
 
+/**
+ * Prosa satu halaman koleksi: pengantar, bagian artikel, dan tanya-jawabnya.
+ *
+ * Teks itu 88% dari seluruh data koleksi (45 KB mentah, ~7 KB terkompresi),
+ * sementara metadata di atas dibutuhkan navbar, footer, dan daftar route di
+ * setiap halaman. Selama keduanya tinggal di berkas yang sama, pembaca
+ * beranda ikut mengunduh dua belas artikel yang tidak akan dibukanya.
+ *
+ * Maka impornya dinamis, dan HARUS tetap dinamis: Vite memisahkan berkas
+ * prosa jadi chunk tersendiri justru karena tidak ada satu pun import statis
+ * yang menyentuhnya. Menambahkan satu saja akan menariknya kembali ke bundel
+ * utama tanpa ada yang gagal — pemisahan ini hilang diam-diam.
+ *
+ * Kenapa ini tidak mengulang kegagalan React.lazy yang dicatat di App.jsx:
+ * yang bermasalah di sana adalah menunda KOMPONEN-nya, karena React.lazy
+ * selalu suspend pada render pertama dan sempat memasang fallback <Suspense>
+ * di tengah hydration. Di sini yang ditunda hanya DATA, dan halaman koleksi
+ * tidak pernah menunggunya saat dimuat dari nol: prosanya sudah ikut
+ * terpanggang ke <script id="__PRERENDER_DATA__"> (lihat utils/prerenderData.js),
+ * jadi render pertama klien sudah memegangnya dan cocok dengan HTML statis.
+ * Unduhan ini hanya terjadi pada perpindahan halaman di dalam situs, yang
+ * memang tidak punya HTML statis untuk dicocokkan.
+ */
+export async function muatProsa(slug) {
+  const koleksi = cariKoleksi(slug);
+  if (!koleksi) return null;
+  const modul =
+    koleksi.grup === "model"
+      ? await import("./koleksi/prosa/model.js")
+      : await import("./koleksi/prosa/kategori.js");
+  return (koleksi.grup === "model" ? modul.PROSA_MODEL : modul.PROSA_KATEGORI)[slug] || null;
+}
+
+// Kunci penyimpanan prosa di __PRERENDER_DATA__. Per slug, bukan satu kunci
+// untuk semua: halaman koleksi hanya boleh memanggang prosanya sendiri ke
+// HTML-nya sendiri — memanggang dua belasnya akan memindahkan berat yang
+// baru saja dikeluarkan dari bundel ke dalam HTML, dan tidak menyelesaikan
+// apa pun.
+export function kunciProsa(slug) {
+  return `koleksi_prosa_${slug}`;
+}
+
 export function hargaTermurah(units) {
   if (!units.length) return null;
   return Math.min(...units.map((m) => m.hargaPerHari));

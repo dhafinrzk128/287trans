@@ -13,7 +13,7 @@ import { useCompanyProfile } from "../context/CompanyProfileContext";
 import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
-import { cariKoleksi, unitKoleksi, hargaTermurah } from "../data/koleksiArmada";
+import { cariKoleksi, unitKoleksi, hargaTermurah, muatProsa, kunciProsa } from "../data/koleksiArmada";
 
 // Semua halaman koleksi menarik daftar mobil yang sama persis, jadi kuncinya
 // dibuat satu. Tiap halaman diprerender terpisah, sehingga tidak ada risiko
@@ -35,6 +35,44 @@ export default function KoleksiArmada({ slug }) {
   const [mobils, setMobils] = useState(() => getPrerenderedData(PRERENDER_KEY) ?? []);
   const [loading, setLoading] = useState(() => getPrerenderedData(PRERENDER_KEY) === undefined);
   const [faqTerbuka, setFaqTerbuka] = useState(null);
+
+  // Prosa halaman ini (pengantar, bagian artikel, tanya-jawab) tidak ikut
+  // bundel utama — lihat muatProsa() di data/koleksiArmada.js untuk alasannya.
+  //
+  // Keadaan awalnya dibaca dari HTML, bukan dari hasil unduhan, dan itulah
+  // yang membuat hydration tetap cocok: kunjungan dari nol selalu mendarat di
+  // halaman prerender yang prosanya sudah terpanggang, jadi render pertama
+  // klien sudah menampilkan teks yang sama persis dengan yang ada di layar.
+  //
+  // Slug ikut disimpan karena React Router memakai ulang komponen ini saat
+  // berpindah antar halaman koleksi: tanpa penanda itu, prosa halaman
+  // sebelumnya akan tertinggal di layar halaman berikutnya.
+  const [prosa, setProsa] = useState(() => ({ slug, isi: getPrerenderedData(kunciProsa(slug)) ?? null }));
+
+  useEffect(() => {
+    if (prosa.slug === slug && prosa.isi) return;
+
+    const dariHtml = getPrerenderedData(kunciProsa(slug));
+    if (dariHtml) {
+      setProsa({ slug, isi: dariHtml });
+      return;
+    }
+
+    // Hanya sampai sini pada perpindahan halaman di dalam situs — dan saat
+    // prerender, yang justru perlu mengunduhnya supaya hasilnya bisa
+    // dipanggang ke HTML untuk pengunjung sungguhan.
+    let hidup = true;
+    muatProsa(slug).then((isi) => {
+      if (!hidup || !isi) return;
+      setProsa({ slug, isi });
+      setPrerenderedData(kunciProsa(slug), isi);
+    });
+    return () => {
+      hidup = false;
+    };
+  }, [slug, prosa]);
+
+  const teks = prosa.slug === slug ? prosa.isi : null;
 
   useEffect(() => {
     // Senyap kalau datanya sudah ikut terprerender — sama seperti di Home dan
@@ -81,7 +119,7 @@ export default function KoleksiArmada({ slug }) {
       { name: "Pilihan Armada", path: "/katalog" },
       { name: koleksi.h1, path: `/${koleksi.slug}` },
     ]),
-    faqPageSchema(koleksi.faq.map((f) => ({ pertanyaan: f.tanya, jawaban: f.jawab }))),
+    faqPageSchema((teks?.faq || []).map((f) => ({ pertanyaan: f.tanya, jawaban: f.jawab }))),
     ...units.map(productSchema),
   ].filter(Boolean);
 
@@ -262,70 +300,79 @@ export default function KoleksiArmada({ slug }) {
         </section>
       )}
 
-      {/* Penjelasan — di bawah daftar tipe, bukan menggantikannya. */}
-      <section className="mx-auto max-w-3xl px-4 pb-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <p className="leading-relaxed text-slate-700">{koleksi.intro}</p>
-        </Reveal>
-        {koleksi.bagian.map((b, i) => (
-          <Reveal key={b.judul} delay={Math.min((i + 1) * 40, 160)} className="mt-9">
-            <h2 className="text-2xl font-bold text-slate-900">{b.judul}</h2>
-            <p className="mt-3 leading-relaxed text-slate-700">{b.isi}</p>
+      {/* Penjelasan — di bawah daftar tipe, bukan menggantikannya.
+          Seluruh blok dilewati selama prosanya belum ada, bukan dirender
+          sebagai kerangka kosong: pengunjung dari nol tidak akan pernah
+          melihat keadaan ini (prosanya sudah ada di HTML statis), dan pada
+          perpindahan halaman di dalam situs sebuah bagian kosong yang
+          melompat isinya lebih mengganggu daripada bagian yang menyusul. */}
+      {teks && (
+        <section className="mx-auto max-w-3xl px-4 pb-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <p className="leading-relaxed text-slate-700">{teks.intro}</p>
           </Reveal>
-        ))}
-      </section>
+          {teks.bagian.map((b, i) => (
+            <Reveal key={b.judul} delay={Math.min((i + 1) * 40, 160)} className="mt-9">
+              <h2 className="text-2xl font-bold text-slate-900">{b.judul}</h2>
+              <p className="mt-3 leading-relaxed text-slate-700">{b.isi}</p>
+            </Reveal>
+          ))}
+        </section>
+      )}
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-        <Reveal as="h2" className="text-2xl font-bold text-slate-900">
-          {`Pertanyaan Seputar Sewa ${koleksi.label}`}
-        </Reveal>
-        <div className="mt-6 space-y-3">
-          {koleksi.faq.map((item, idx) => {
-            const terbuka = faqTerbuka === idx;
-            return (
-              <Reveal key={item.tanya} delay={Math.min(idx * 60, 180)}>
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]">
-                  <button
-                    type="button"
-                    onClick={() => setFaqTerbuka(terbuka ? null : idx)}
-                    className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
-                    aria-expanded={terbuka}
-                  >
-                    <span className="font-semibold text-slate-900">{item.tanya}</span>
-                    <ChevronDown
-                      size={20}
-                      className={`shrink-0 text-blue-600 transition-transform duration-200 ${terbuka ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {/* Jawaban selalu dirender; yang diciutkan hanya tingginya.
-                      Sebelumnya jawaban baru masuk DOM setelah diklik, jadi tak
-                      satu pun jawaban FAQ di halaman ini pernah ada di HTML yang
-                      dibaca mesin pencari — padahal skema FAQPage di <head> tetap
-                      memuat jawabannya. Dua hal yang seharusnya cocok, dan ini
-                      halaman tujuan iklan berbayar.
+      {teks && (
+        <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+          <Reveal as="h2" className="text-2xl font-bold text-slate-900">
+            {`Pertanyaan Seputar Sewa ${koleksi.label}`}
+          </Reveal>
+          <div className="mt-6 space-y-3">
+            {teks.faq.map((item, idx) => {
+              const terbuka = faqTerbuka === idx;
+              return (
+                <Reveal key={item.tanya} delay={Math.min(idx * 60, 180)}>
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-shadow duration-200 hover:shadow-[var(--shadow-soft-lg)]">
+                    <button
+                      type="button"
+                      onClick={() => setFaqTerbuka(terbuka ? null : idx)}
+                      className="flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left"
+                      aria-expanded={terbuka}
+                    >
+                      <span className="font-semibold text-slate-900">{item.tanya}</span>
+                      <ChevronDown
+                        size={20}
+                        className={`shrink-0 text-blue-600 transition-transform duration-200 ${terbuka ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {/* Jawaban selalu dirender; yang diciutkan hanya tingginya.
+                        Sebelumnya jawaban baru masuk DOM setelah diklik, jadi tak
+                        satu pun jawaban FAQ di halaman ini pernah ada di HTML yang
+                        dibaca mesin pencari — padahal skema FAQPage di <head> tetap
+                        memuat jawabannya. Dua hal yang seharusnya cocok, dan ini
+                        halaman tujuan iklan berbayar.
 
-                      Pembungkus grid dipakai supaya tingginya bisa dianimasikan
-                      dari 0fr ke 1fr tanpa perlu mengukur tinggi isinya; anak di
-                      dalamnya yang memotong, sehingga garis dan padding paragraf
-                      ikut tersembunyi saat tertutup. */}
-                  <div
-                    className={`grid transition-[grid-template-rows] duration-200 ${
-                      terbuka ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
-                        {item.jawab}
-                      </p>
+                        Pembungkus grid dipakai supaya tingginya bisa dianimasikan
+                        dari 0fr ke 1fr tanpa perlu mengukur tinggi isinya; anak di
+                        dalamnya yang memotong, sehingga garis dan padding paragraf
+                        ikut tersembunyi saat tertutup. */}
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-200 ${
+                        terbuka ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="border-t border-slate-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-slate-600">
+                          {item.jawab}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* CTA bawah */}
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
