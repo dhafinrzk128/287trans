@@ -189,6 +189,27 @@ app.get(/^(?!\/api|\/uploads).*/, async (req, res, next) => {
   }
 });
 
+// Cangkang SPA untuk halaman yang tidak punya berkas prerender. Dulu yang
+// dikirim dist/index.html — padahal setelah prerender isinya potret beranda,
+// jadi /booking/:id, /status/:kode, /admin/* dan 404 sempat menampilkan isi
+// beranda sampai JS selesai dimuat, lalu React menolaknya (error #418) dan
+// merender ulang. spa-shell.html disalin sebelum prerender menimpa
+// index.html (lihat client/scripts/saveShell.js) dan isinya hanya spinner.
+// Kalau berkasnya tidak ada — build lama — kembali ke perilaku sebelumnya.
+function kirimCangkang(res, status, next) {
+  res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+  res.status(status).sendFile(path.join(clientDist, "spa-shell.html"), (err) => {
+    if (!err) return;
+    res.status(status).sendFile(path.join(clientDist, "index.html"), (err2) => {
+      if (err2) next();
+    });
+  });
+}
+
+// Berkasnya sendiri bukan halaman; jangan biarkan express.static di bawah
+// menyajikannya sebagai URL yang bisa dirayapi.
+app.get("/spa-shell.html", (req, res, next) => kirimCangkang(res, 404, next));
+
 // Sisanya: logo, favicon, manifest, sitemap — jarang berubah tapi namanya
 // tetap, jadi sehari saja. HTML dikecualikan dan harus selalu divalidasi:
 // berkas itu yang menunjuk ke nama aset terbaru, jadi HTML yang tersimpan
@@ -235,10 +256,7 @@ app.get(/^(?!\/api|\/uploads).*/, async (req, res, next) => {
   const detail = req.path.match(POLA_DETAIL_MOBIL);
   if (status === 200 && detail && !(await mobilAda(detail[1]))) status = 404;
 
-  res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
-  res.status(status).sendFile(path.join(clientDist, "index.html"), (err) => {
-    if (err) next();
-  });
+  kirimCangkang(res, status, next);
 });
 
 app.use(errorHandler);

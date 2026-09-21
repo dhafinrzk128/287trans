@@ -58,7 +58,15 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=%VITE_GTM_ID%"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="root"></div>
+    <!--
+      The spinner is the "shell": what a visitor sees on a page that has no
+      prerendered HTML (/booking/:id, /status/:kode, /admin/*, 404s) until
+      the JS arrives. data-shell tells main.jsx to client-render over it
+      instead of hydrating. Prerendered pages never contain it: the crawl
+      client-renders over it too, so the snapshot holds the real page.
+      Same markup as src/components/ui/Spinner.jsx, plus flex-1 to centre it.
+    -->
+    <div id="root"><div data-shell role="status" aria-label="Memuat halaman" class="flex flex-1 items-center justify-center py-16"><span class="h-8 w-8 animate-spin rounded-full border-4 border-blue-100 border-t-blue-600"></span></div></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
