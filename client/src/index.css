@@ -120,29 +120,80 @@ h1, h2, h3, h4, h5, h6 {
     0 0 36px 8px rgba(239, 68, 68, 0.35);
 }
 
+/*
+  Cincin denyut tombol WhatsApp. Dulu dianimasikan lewat box-shadow, yang
+  memaksa browser menggambar ulang setiap frame selamanya. Sekarang cincinnya
+  lingkaran di ::before yang diperbesar lewat transform dan dipudarkan lewat
+  opacity — dua properti yang dikerjakan compositor tanpa paint ulang.
+
+  Hasilnya sama persis dengan versi box-shadow: cincin melebar 16px di tiap
+  sisi dari tombol 56px = skala 88/56, dan warnanya memudar dari alfa 0,55 ke
+  0 di 70% durasi.
+
+  ::after ada karena tombolnya position: fixed, sehingga membentuk stacking
+  context sendiri: pseudo-element ber-z-index negatif tetap tergambar di ATAS
+  background tombol. Tanpa ::after, cincin semi-transparan itu ikut
+  mewarnai tombol. ::after menggambar ulang background tombol (inherit, jadi
+  ikut berubah saat hover) di atas cincin, di bawah ikon.
+
+  box-shadow: none meniru perilaku lama: keyframe box-shadow dulu menimpa
+  shadow-lg selama animasi berjalan, jadi tombol yang sedang berdenyut memang
+  tidak punya bayangan. Saat hover/fokus (animasi berhenti) glow dari
+  .btn-glow-whatsapp yang lebih spesifik tetap menang, dan saat
+  prefers-reduced-motion shadow-lg kembali seperti dulu.
+*/
 @keyframes wa-pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55);
+    transform: scale(1);
+    opacity: 1;
   }
   70% {
-    box-shadow: 0 0 0 16px rgba(16, 185, 129, 0);
+    transform: scale(1.5714);
+    opacity: 0;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
-.wa-float {
+.wa-float::before,
+.wa-float::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.wa-float::before {
+  z-index: -2;
+  background-color: rgba(16, 185, 129, 0.55);
+  opacity: 0;
   animation: wa-pulse-ring 2.4s ease-out infinite;
 }
 
-.wa-float:hover,
-.wa-float:focus-visible {
+.wa-float::after {
+  z-index: -1;
+  /* 1px ke dalam: kalau pas di tepi, tepi anti-alias tombol tergambar dua
+     kali dan lingkarannya jadi tampak sedikit lebih tegas dari aslinya. */
+  inset: 1px;
+  background-color: inherit;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wa-float {
+    box-shadow: none;
+  }
+}
+
+.wa-float:hover::before,
+.wa-float:focus-visible::before {
   animation: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wa-float {
+  .wa-float::before {
     animation: none;
   }
 }
