@@ -41,12 +41,54 @@
   --color-accent-900: #6d5509;
   --color-accent-950: #403307;
 
-  --font-heading: "Poppins", system-ui, sans-serif;
-  --font-body: "Open Sans", system-ui, sans-serif;
+  --font-heading: "Poppins", "Poppins Fallback", system-ui, sans-serif;
+  --font-body: "Open Sans Variable", "Open Sans Fallback", system-ui, sans-serif;
 
   --shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.06);
   --shadow-soft-lg: 0 2px 4px rgba(15, 23, 42, 0.04), 0 12px 32px rgba(15, 23, 42, 0.09);
   --shadow-brand: 0 8px 24px rgba(23, 23, 23, 0.18);
+}
+
+/* Open Sans variable, subset latin saja (berkas dari @fontsource-variable/open-sans, lisensi OFL di folder yang sama). */
+@font-face {
+  font-family: "Open Sans Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 800;
+  src: url("./assets/fonts/open-sans-latin-wght-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Font cadangan yang ukurannya disamakan dengan Poppins / Open Sans.
+ *
+ * Kenapa: setelah FCP turun ke 0,9 detik, halaman sudah tergambar SEBELUM
+ * font web selesai diunduh. Begitu font aslinya datang (font-display: swap),
+ * teks berganti ukuran, tinggi hero ikut berubah, dan semua di bawahnya
+ * bergeser. PageSpeed (Sep 2026) mencatat CLS 0,17 persis dari ini, dengan
+ * ornamen kayon sebagai elemen yang paling jauh bergeser.
+ *
+ * size-adjust / *-override membuat Arial (atau padanannya) mengambil ruang
+ * yang hampir sama dengan font aslinya, jadi pertukarannya nyaris tidak
+ * menggeser apa pun. Angkanya dihitung dari berkas font @fontsource dengan
+ * fontTools terhadap metrik Arial. Kalau font diganti, hitung ulang.
+ * Liberation Sans = padanan metrik Arial di Linux, Roboto = default Android.
+ */
+@font-face {
+  font-family: "Poppins Fallback";
+  src: local("Arial"), local("Liberation Sans"), local("Roboto");
+  size-adjust: 114.55%;
+  ascent-override: 91.67%;
+  descent-override: 30.56%;
+  line-gap-override: 8.73%;
+}
+@font-face {
+  font-family: "Open Sans Fallback";
+  src: local("Arial"), local("Liberation Sans"), local("Roboto");
+  size-adjust: 105.68%;
+  ascent-override: 101.14%;
+  descent-override: 27.72%;
+  line-gap-override: 0%;
 }
 
 html {

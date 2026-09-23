@@ -9,15 +9,6 @@
     <meta name="theme-color" content="#b4960a" />
 
     <!--
-      Fonts moved here from an @import in index.css: @import is
-      render-blocking and isn't discovered until the CSS that contains it
-      has already been fetched and parsed, unlike a <link> the browser's
-      preload scanner finds immediately. display=swap in the URL is passed
-      through to the @font-face rules Google Fonts returns.
-    -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!--
       Logo navbar = elemen LCP di ponsel. Preload supaya unduhannya mulai
       begitu <head> dibaca, tidak menunggu parser sampai ke <header>.
       Yang di-preload versi .webp karena itulah yang dipilih <picture> di
@@ -25,25 +16,10 @@
     -->
     <link rel="preload" as="image" href="/logo-nav.webp" type="image/webp" fetchpriority="high" />
     <!--
-      Loaded non-blocking: media="print" makes the browser fetch it without
-      letting it gate initial render, then onload flips it to "all" once it's
-      actually parsed. display=swap in the URL means text still renders
-      immediately in a fallback font either way — this just removes the ~1s
-      this request was otherwise adding to LCP by sitting in the render-
-      blocking path for no visual benefit. <noscript> covers the no-JS case.
+      Font tidak lagi dari Google Fonts: sekarang di-host sendiri lewat
+      @fontsource (lihat src/main.jsx), jadi tidak ada koneksi tambahan ke
+      fonts.googleapis.com + fonts.gstatic.com di jalur render.
     -->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
-      />
-    </noscript>
     <!--
       No static <title>/<meta name="description"> here on purpose: every
       route renders <Seo> (see src/components/Seo.jsx) via react-helmet-async,
