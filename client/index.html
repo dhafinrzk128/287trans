@@ -16,15 +16,14 @@
     -->
     <link rel="preload" as="image" href="/logo-nav.webp" type="image/webp" fetchpriority="high" />
     <!--
-      Ornamen kayon di hero juga kandidat LCP di ponsel (dipakai di hero
-      Beranda, halaman koleksi, Katalog, Tentang, Kontak). Tanpa preload,
-      unduhannya baru mulai setelah parser sampai ke hero. media= memastikan
-      desktop tidak ikut mengunduh versi kecil yang tidak akan dipakainya.
+      Preload ornamen kayon TIDAK di sini: berkas ini templat semua halaman,
+      termasuk detail mobil, booking, dan admin yang tidak punya kayon.
+      Preload-nya dipasang oleh komponen KayonWayang sendiri, hanya di
+      halaman yang memang merendernya.
     -->
-    <link rel="preload" as="image" href="/kayon-sm.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
     <!--
-      Font tidak lagi dari Google Fonts: sekarang di-host sendiri lewat
-      @fontsource (lihat src/main.jsx), jadi tidak ada koneksi tambahan ke
+      Font tidak lagi dari Google Fonts: di-host sendiri (lihat
+      src/index.css), jadi tidak ada koneksi tambahan ke
       fonts.googleapis.com + fonts.gstatic.com di jalur render.
     -->
     <!--

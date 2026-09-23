@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 /**
  * Ornamen kayon (gunungan) wayang untuk latar hero.
  *
@@ -45,22 +47,32 @@ const UKURAN = {
 
 export default function KayonWayang({ varian = "hero", className = "", prioritas = false }) {
   return (
-    <picture>
-      <source media="(min-width: 1024px)" srcSet="/kayon.webp" />
-      <img
-        src="/kayon-sm.webp"
-        alt=""
-        aria-hidden="true"
-        width="380"
-        height="331"
-        loading={prioritas ? "eager" : "lazy"}
-        // Di ponsel ornamen ini elemen LCP halaman, jadi prioritas rendah
-        // justru menahan metrik yang paling diukur. Berkasnya kecil (28 KB),
-        // sehingga menaikkannya tidak merebut banyak dari yang lain.
-        fetchPriority={prioritas ? "high" : "auto"}
-        decoding="async"
-        className={`${UKURAN[varian]} ${className}`}
-      />
-    </picture>
+    <>
+      {/* Preload dipasang di sini, bukan di index.html (templat semua
+          halaman), supaya hanya halaman yang benar-benar punya kayon yang
+          mengunduhnya. media= mencegah desktop mengunduh versi kecil. */}
+      {prioritas && (
+        <Helmet>
+          <link rel="preload" as="image" href="/kayon-sm.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
+        </Helmet>
+      )}
+      <picture>
+        <source media="(min-width: 1024px)" srcSet="/kayon.webp" />
+        <img
+          src="/kayon-sm.webp"
+          alt=""
+          aria-hidden="true"
+          width="380"
+          height="331"
+          loading={prioritas ? "eager" : "lazy"}
+          // Di ponsel ornamen ini elemen LCP halaman, jadi prioritas rendah
+          // justru menahan metrik yang paling diukur. Berkasnya kecil (28 KB),
+          // sehingga menaikkannya tidak merebut banyak dari yang lain.
+          fetchPriority={prioritas ? "high" : "auto"}
+          decoding="async"
+          className={`${UKURAN[varian]} ${className}`}
+        />
+      </picture>
+    </>
   );
 }
