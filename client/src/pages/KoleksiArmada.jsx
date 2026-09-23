@@ -62,11 +62,22 @@ export default function KoleksiArmada({ slug }) {
     // prerender, yang justru perlu mengunduhnya supaya hasilnya bisa
     // dipanggang ke HTML untuk pengunjung sungguhan.
     let hidup = true;
-    muatProsa(slug).then((isi) => {
-      if (!hidup || !isi) return;
-      setProsa({ slug, isi });
-      setPrerenderedData(kunciProsa(slug), isi);
-    });
+    muatProsa(slug)
+      .then((isi) => {
+        if (!hidup || !isi) return;
+        setProsa({ slug, isi });
+        setPrerenderedData(kunciProsa(slug), isi);
+      })
+      // Chunk-nya bisa hilang kalau situs sudah di-deploy ulang sementara
+      // tab ini tetap terbuka. Penanganan utamanya ada di main.jsx, yang
+      // memuat ulang halaman sekali pada vite:preloadError — dan setelah
+      // muat ulang prosanya datang dari HTML, bukan dari chunk ini lagi.
+      // Yang sampai ke sini hanya kegagalan yang sudah lewat penjaga itu.
+      // Dibiarkan diam, bukan dilempar ke <ErrorBoundary>: seluruh bagian
+      // prosa memang sudah dijaga `teks &&`, jadi halaman tetap menampilkan
+      // daftar unit dan harganya — yang dicari pengunjung iklan — alih-alih
+      // diganti pesan gagal untuk teks yang letaknya jauh di bawah layar.
+      .catch(() => {});
     return () => {
       hidup = false;
     };
