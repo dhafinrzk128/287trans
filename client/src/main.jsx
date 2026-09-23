@@ -1,16 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-// Font di-host sendiri (dulu dari fonts.googleapis.com). Hanya subset latin:
-// seluruh isi situs berbahasa Indonesia, jadi latin-ext/cyrillic/dll tidak
-// pernah terpakai. Diimpor SEBELUM index.css supaya @font-face-nya ikut
-// tersisip ke HTML oleh scripts/inlineCss.js. Open Sans (versi variable,
-// satu berkas untuk semua ketebalan) dideklarasikan langsung di index.css
-// karena paket @fontsource-nya hanya menyediakan CSS berisi SEMUA subset.
-// Lihat catatan CLS di index.css.
-import '@fontsource/poppins/latin-500.css'
-import '@fontsource/poppins/latin-600.css'
-import '@fontsource/poppins/latin-700.css'
-import '@fontsource/poppins/latin-800.css'
+// Font di-host sendiri (dulu dari fonts.googleapis.com). Deklarasi @font-face
+// dan alasannya ada di index.css, bagian atas.
 import './index.css'
 import App from './App.jsx'
 
