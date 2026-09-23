@@ -83,9 +83,9 @@ Fire setiap kali route berubah di React Router, karena SPA tidak reload halaman 
 
 Lokasi: `client/src/components/layout/Layout.jsx`, di `useEffect` yang sama dengan scroll-to-top. Cuma jalan di halaman publik (dibungkus `<Layout>`) — **tidak** jalan di `/admin/*`, itu memang disengaja, konsisten dengan scope tracking yang fokus ke marketing funnel customer.
 
-Belum ada Tag/Trigger di GTM yang "makan" event ini — dia cuma disiapkan di dataLayer, siap dipakai kalau nanti mau pasang GA4 atau remarketing tag.
+Belum ada Tag/Trigger di GTM yang "makan" event ini — dia cuma disiapkan di dataLayer, siap dipakai kalau nanti mau pasang GA4. (Tag Google Ads di GTM mengirim page view-nya sendiri saat halaman dimuat, tapi tidak memakai event ini untuk perpindahan halaman di dalam SPA.)
 
-**Catatan:** `page_title` saat ini selalu sama di semua halaman karena `document.title` memang statis (di-set sekali di `index.html`, tidak ada logic ganti judul per halaman). Ini masalah SEO, di luar scope tracking — lihat bagian "Di luar scope" kalau mau follow-up.
+`page_title` berisi judul halaman yang benar: setiap route memasang judulnya sendiri lewat `client/src/components/Seo.jsx`, dan sudah diverifikasi (Sep 2026) bahwa event ini membawa judul halaman tujuan, bukan halaman sebelumnya, termasuk saat pindah halaman di dalam SPA.
 
 ## Event: `booking_submit`
 
@@ -110,7 +110,9 @@ Biar bisa lacak lead WhatsApp itu asalnya dari iklan mana. Ditangkap dari `utm_s
 
 Lokasi: `client/src/utils/utm.js` — disimpan **in-memory** (variabel level-module, dibaca sekali saat modul pertama di-import), **bukan** `sessionStorage`/`localStorage`, sesuai batasan awal project ini. Konsekuensinya: data ini hilang kalau user hard-refresh sebelum sempat klik WhatsApp — trade-off yang disengaja demi konsistensi sama aturan "no Web Storage untuk tracking".
 
-Dipakai di 2 tempat otomatis (tidak perlu ubah apa pun di 9 titik tombol WhatsApp):
+Terpisah dari ini, tag **Conversion Linker** di GTM menyimpan `gclid` ke cookie first-party `_gcl_aw` (90 hari). Itulah yang dipakai tag konversi Google Ads untuk atribusi, jadi konversi tetap tercatat dari iklan walau pengunjung sudah pindah halaman atau hard-refresh. Data in-memory di atas hanya untuk tag `[ref: ...]` di pesan WA dan parameter event.
+
+Dipakai di 2 tempat otomatis (tidak perlu ubah apa pun di titik-titik tombol WhatsApp):
 
 1. **`buildWaLink()`** (`client/src/utils/format.js`) — nempelin tag `[ref: ...]` ke akhir teks pesan WA:
    - Kalau ada `utm_source`: `[ref: google/cpc/nama_campaign]`
@@ -151,12 +153,14 @@ Keduanya defensif: selalu `window.dataLayer = window.dataLayer || []` dulu sebel
 ## Environment variable `VITE_GTM_ID`
 
 - **Lokal:** `client/.env` (gitignored) → `VITE_GTM_ID=GTM-KJHNLFR2`. Kalau belum ada, copy dari `client/.env.example`.
-- **Production (Railway):** buka service `client` → tab Variables → tambahkan `VITE_GTM_ID=GTM-KJHNLFR2` → redeploy. **Ini belum di-set** — sampai di-set, GTM tidak akan jalan di 287trans.id.
+- **Production (Railway):** service `287trans` → tab Variables → `VITE_GTM_ID=GTM-KJHNLFR2`. **Sudah di-set** (diverifikasi Sep 2026: HTML live memuat `GTM-KJHNLFR2`). Nilainya ditanam saat build, jadi kalau diganti harus redeploy. Kalau suatu saat hilang, HTML live akan berisi teks `%VITE_GTM_ID%` dan GTM tidak jalan sama sekali.
 
 ## Struktur GTM saat ini
 
 Account **287 Trans** → Container **287trans.id** (`GTM-KJHNLFR2`)
 
+- **Tag** "Tag Google AW-18381266296": tipe Tag Google, trigger **Initialization - All Pages**. Tag dasar akun Google Ads (dibuat dari saran Diagnostik Penampung "Tag Google tidak ada"). Dasar untuk enhanced conversions dan consent mode. **Efek sampingnya: remarketing aktif** — setiap kunjungan dikirim ke Google Ads (`rmkt/collect`, `1p-user-list`) untuk daftar audiens.
+- **Tag** "Conversion Linker": tipe Conversion Linker, trigger **All Pages**, opsi default. Menyimpan `gclid` ke cookie `_gcl_aw` supaya konversi di halaman lain tetap teratribusi ke iklan. Diverifikasi: `?gclid=...` → `_gcl_aw` tersimpan dan tetap ada setelah pindah halaman.
 - **Trigger** "Custom Event - whatsapp_click": tipe Custom Event, nama peristiwa `whatsapp_click`, fire di semua event yang cocok (tanpa syarat tambahan).
 - **Tag** "Google Ads - WhatsApp Click Conversion": tipe Google Ads Conversion Tracking.
   - ID Konversi: `18381266296` — **cuma angka, tanpa prefix "AW-"**, walau Google Ads sendiri nampilinnya sebagai `AW-18381266296`. Kalau isi field ini pakai prefix "AW-", GTM akan nolak dengan error "harus berupa bilangan bulat positif atau 0".
@@ -171,7 +175,11 @@ Account **287 Trans** → Container **287trans.id** (`GTM-KJHNLFR2`)
   - Nilai Konversi: `1`
   - Trigger: "Custom Event - booking_submit" (di atas)
   - Conversion action "Ajukan Booking" di Google Ads: kategori Mengirim formulir lead, status Utama dari awal dibikin.
-- Dipublish sebagai **Versi 3** — kedua tag sudah diverifikasi fire beneran ke `googleadservices.com` dan `googleads.g.doubleclick.net` dengan Conversion ID & Label yang benar masing-masing.
+- Histori versi:
+  - **Versi 3**: kedua tag konversi, sudah diverifikasi fire beneran ke `googleadservices.com` dan `googleads.g.doubleclick.net` dengan Conversion ID & Label yang benar masing-masing.
+  - **Versi 4** (23 Sep 2026): + Conversion Linker.
+  - **Versi 5** (23 Sep 2026, versi aktif): + Tag Google AW-18381266296. Kalau perlu dibatalkan, kembalikan versi sebelumnya dari tab Versi di GTM.
+- Diagnostik Penampung tinggal satu saran: tambah administrator kedua ke akun (saat ini hanya admin@287transrentcars.com). Ini keputusan pemilik akun, bukan perubahan tag.
 
 **Catatan status "Salah dikonfigurasi":** di halaman Sasaran Google Ads, goal "Mengirim formulir lead" sempat/bisa nampilin badge status "Salah dikonfigurasi" walau sebenarnya udah jalan benar. Ini karena Google Ads coba deteksi otomatis tag di situs (mengharapkan snippet `gtag()` langsung), dan gak bisa "melihat" ke dalam setup GTM kita. Jangan percaya badge ini doang — verifikasi manual pakai cara di bagian "Cara testing" di bawah lebih akurat.
 
@@ -208,6 +216,6 @@ Kalau baris kedua menghasilkan sesuatu setelah klik tombol WhatsApp, berarti tag
 
 ## Di luar scope (dicatat, belum dikerjain)
 
-- `document.title` statis di semua halaman (tidak ada logic set-title per halaman) — bikin `page_title` di event `page_view` kurang berguna. ini masalah SEO, bukan tracking, sengaja tidak disentuh sesuai batasan kerja.
 - Link WhatsApp di halaman admin (`AdminBookingDetail.jsx`) sengaja tidak ditracking — lihat bagian event `whatsapp_click` di atas.
-- Belum ada tag GA4 (base "Tag Google") di GTM — cuma ada conversion tags, jadi belum ada gambaran funnel lengkap (bounce rate, halaman favorit, dll), cuma event yang eksplisit ditrack.
+- Belum ada GA4. Tag Google yang ada sekarang hanya untuk akun Google Ads, jadi belum ada gambaran funnel lengkap (bounce rate, halaman favorit, dll), cuma event yang eksplisit ditrack.
+- Belum ada banner persetujuan cookie / consent mode. Sejak Tag Google dipasang, remarketing ikut aktif; pertimbangkan consent kalau ada kebutuhan hukum (UU PDP) atau kebijakan iklan yang mensyaratkannya.
