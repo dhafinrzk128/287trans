@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+import KalenderTertunda from "../components/KalenderTertunda";
 import { User, Users, MessageCircle } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
@@ -149,7 +148,7 @@ export default function BookingForm() {
                 Tanggal Mulai Sewa <span className="text-red-600">*</span>
               </label>
               <div className="overflow-x-auto rounded-2xl border border-slate-200 p-3">
-                <DayPicker
+                <KalenderTertunda
                   mode="single"
                   selected={tglMulai}
                   onSelect={setTglMulai}

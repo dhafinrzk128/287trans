@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/style.css";
+import KalenderTertunda from "../components/KalenderTertunda";
 import { Users, Fuel, Cog, Tag, Calendar, ImageOff, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
@@ -209,7 +208,7 @@ export default function CarDetail() {
             <h2 className="text-base font-bold text-slate-900">Cek Ketersediaan Tanggal</h2>
             <p className="mt-1 text-sm text-slate-500">Tanggal yang ditandai merah sudah dibooking pelanggan lain.</p>
             <div className="mt-3 overflow-x-auto rounded-2xl border border-slate-200 bg-white p-3 shadow-[var(--shadow-soft)]">
-              <DayPicker
+              <KalenderTertunda
                 mode="default"
                 disabled={[{ before: today }, ...bookedRanges]}
                 modifiers={{ booked: bookedRanges }}
