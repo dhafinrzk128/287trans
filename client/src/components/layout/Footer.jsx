@@ -27,7 +27,7 @@ export default function Footer() {
   const [refPeta, petaTampak] = useReveal({ rootMargin: "300px 0px" });
 
   return (
-    <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
+    <footer className="render-saat-terlihat border-t border-neutral-800 bg-neutral-900 text-slate-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
           <SmartImage src="/logo-nav.png" alt={profile?.namaPerusahaan || "287 Trans"} width="148" height="120" className="h-14 w-auto" />

@@ -209,6 +209,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /*
+  Section di bawah layar pertama: browser melewati layout & paint-nya sampai
+  mendekati viewport. Di beranda ini memangkas Style & Layout ~36% (Lighthouse,
+  Sep 2026), karena layout seluruh halaman dihitung ulang beberapa kali saat
+  memuat (render awal, font asli datang, hydration).
+
+  Pasang HANYA di section yang isinya tidak keluar dari batasnya: content-
+  visibility memotong apa pun yang meluber (bayangan, dekorasi ber-posisi
+  negatif) dan menjadikan section containing block untuk elemen fixed di
+  dalamnya (modal, drawer). Padding py-16 cukup untuk bayangan kartu dan
+  efek hover -translate-y. "auto" di contain-intrinsic-size membuat browser
+  mengingat tinggi aslinya setelah pernah dirender, jadi scroll tidak lompat.
+*/
+.render-saat-terlihat {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+/*
   Cincin denyut tombol WhatsApp. Dulu dianimasikan lewat box-shadow, yang
   memaksa browser menggambar ulang setiap frame selamanya. Sekarang cincinnya
   lingkaran di ::before yang diperbesar lewat transform dan dipudarkan lewat

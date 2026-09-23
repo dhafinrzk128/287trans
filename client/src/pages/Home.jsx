@@ -191,7 +191,7 @@ export default function Home() {
       {/* Kategori armada — pintu masuk ke seluruh katalog, ditaruh persis
           setelah hero karena inilah yang dicari pengunjung dari iklan:
           mobilnya apa saja dan mulai berapa. */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <h2 className="text-3xl font-bold text-slate-900">Pilih Rental Mobil Sesuai Kebutuhan</h2>
@@ -210,7 +210,7 @@ export default function Home() {
       </section>
 
       {/* Keunggulan */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold text-slate-900">Kenapa Pilih 287 Trans?</h2>
           <p className="mt-3 text-slate-600">
@@ -249,7 +249,7 @@ export default function Home() {
           Sengaja tidak mengulang seksi Area Layanan di /tentang-kami maupun
           persiapan menghubungi di /kontak: halaman yang memuat paragraf sama
           saling menggerus. */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal as="h2" className="text-2xl font-bold text-slate-900">
           Sebelum Menyewa di Tangerang, Tiga Hal Ini Biasanya Ditanyakan
         </Reveal>
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* Preview mobil populer */}
-      <section className="bg-slate-50 py-16">
+      <section className="render-saat-terlihat bg-slate-50 py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -324,7 +324,7 @@ export default function Home() {
 
       {/* Testimoni */}
       {testimoni.length > 0 && (
-        <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <Reveal className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-slate-900">Apa Kata Pelanggan Kami</h2>
           </Reveal>
@@ -349,7 +349,7 @@ export default function Home() {
 
       {/* FAQ */}
       {faq.length > 0 && (
-        <section className="bg-slate-50 py-16">
+        <section className="render-saat-terlihat bg-slate-50 py-16">
           <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <Reveal as="h2" className="text-center text-3xl font-bold text-slate-900">Pertanyaan Seputar Rental</Reveal>
             <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-blue-600" />
@@ -403,7 +403,7 @@ export default function Home() {
       )}
 
       {/* CTA Bawah */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
+      <section className="render-saat-terlihat relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
         <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
         <Reveal className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">Siap Memulai Perjalanan Anda?</h2>
