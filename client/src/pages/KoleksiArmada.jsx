@@ -190,7 +190,7 @@ export default function KoleksiArmada({ slug }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}`, namaMobilTracking)}
-                  className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
+                  className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-800"
                 >
                   <MessageCircle size={18} />
                   Tanya Ketersediaan via WA
@@ -400,7 +400,7 @@ export default function KoleksiArmada({ slug }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}_bawah`, namaMobilTracking)}
-                className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
+                className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-800"
               >
                 <MessageCircle size={18} />
                 Chat via WhatsApp

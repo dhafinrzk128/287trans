@@ -220,6 +220,12 @@ h1, h2, h3, h4, h5, h6 {
   dalamnya (modal, drawer). Padding py-16 cukup untuk bayangan kartu dan
   efek hover -translate-y. "auto" di contain-intrinsic-size membuat browser
   mengingat tinggi aslinya setelah pernah dirender, jadi scroll tidak lompat.
+
+  JANGAN pasang di section berlatar GELAP (footer, CTA bawah). Isi yang
+  dilewati tidak digambar, jadi pemeriksa kontras (axe/Lighthouse) membaca
+  latarnya sebagai putih dan menandai teks terang di atasnya gagal kontras
+  (PageSpeed Sep 2026: skor Aksesibilitas turun ke 95 persis karena ini).
+  Section berlatar putih/terang aman.
 */
 .render-saat-terlihat {
   content-visibility: auto;

@@ -145,7 +145,7 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick("hero_button")}
-                  className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-500"
+                  className="btn-glow-whatsapp inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-800"
                 >
                   <MessageCircle size={18} />
                   Chat via WhatsApp
@@ -403,7 +403,7 @@ export default function Home() {
       )}
 
       {/* CTA Bawah */}
-      <section className="render-saat-terlihat relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
+      <section className="relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
         <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
         <Reveal className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">Siap Memulai Perjalanan Anda?</h2>

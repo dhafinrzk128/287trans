@@ -27,7 +27,7 @@ export default function Footer() {
   const [refPeta, petaTampak] = useReveal({ rootMargin: "300px 0px" });
 
   return (
-    <footer className="render-saat-terlihat border-t border-neutral-800 bg-neutral-900 text-slate-300">
+    <footer className="border-t border-neutral-800 bg-neutral-900 text-slate-300">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div>
           <SmartImage src="/logo-nav.png" alt={profile?.namaPerusahaan || "287 Trans"} width="148" height="120" className="h-14 w-auto" />
@@ -100,7 +100,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("footer")}
-              className="btn-glow-whatsapp mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-700"
+              className="btn-glow-whatsapp mt-4 inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-800"
             >
               <MessageCircle size={16} />
               Chat WhatsApp
