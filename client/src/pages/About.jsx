@@ -132,7 +132,7 @@ export default function About() {
                   title="Lokasi 287 Trans"
                   width="100%"
                   height="320"
-                  style={{ border: 0 }}
+                  className="block border-0"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />

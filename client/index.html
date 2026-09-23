@@ -16,16 +16,27 @@
     -->
     <link rel="preload" as="image" href="/logo-nav.webp" type="image/webp" fetchpriority="high" />
     <!--
+      Ornamen kayon di hero juga kandidat LCP di ponsel (dipakai di hero
+      Beranda, halaman koleksi, Katalog, Tentang, Kontak). Tanpa preload,
+      unduhannya baru mulai setelah parser sampai ke hero. media= memastikan
+      desktop tidak ikut mengunduh versi kecil yang tidak akan dipakainya.
+    -->
+    <link rel="preload" as="image" href="/kayon-sm.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
+    <!--
       Font tidak lagi dari Google Fonts: sekarang di-host sendiri lewat
       @fontsource (lihat src/main.jsx), jadi tidak ada koneksi tambahan ke
       fonts.googleapis.com + fonts.gstatic.com di jalur render.
     -->
     <!--
-      No static <title>/<meta name="description"> here on purpose: every
-      route renders <Seo> (see src/components/Seo.jsx) via react-helmet-async,
-      which inserts its own tags rather than replacing existing ones. A
-      hardcoded default here would ship as a permanent duplicate alongside
-      each page's real title/description in the prerendered HTML.
+      Sengaja TIDAK ada tag title / meta description statis di sini: setiap
+      route merender komponen Seo (src/components/Seo.jsx) via react-helmet-async,
+      yang menyisipkan tag-nya sendiri, bukan mengganti yang sudah ada. Default
+      yang ditulis di sini akan ikut terkirim sebagai duplikat permanen di
+      HTML hasil prerender.
+
+      Jangan tulis nama tag lengkap dengan kurung sudut di komentar ini.
+      Parser SEO yang naif (SEOptimer, Sep 2026) membaca tag di dalam komentar
+      sebagai title asli dan melaporkan teks komentar ini sebagai judul situs.
     -->
     <!--
       Google Tag Manager, DITUNDA.

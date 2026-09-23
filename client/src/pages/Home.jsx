@@ -16,7 +16,7 @@ import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
 const KEUNGGULAN = [
-  { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit terbaru dari city car hingga SUV dan luxury MPV kelas premium, siap untuk berbagai kebutuhan.", accent: false },
+  { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit terbaru dari MPV, SUV, hingga sedan dan luxury MPV kelas premium, siap untuk berbagai kebutuhan.", accent: false },
   { icon: Wallet, title: "Harga Bersaing", desc: "Tarif transparan dan kompetitif tanpa biaya tersembunyi.", accent: false },
   { icon: Zap, title: "Proses Mudah", desc: "Booking online 24 jam, tanpa perlu membuat akun. Cukup isi form dan konfirmasi.", accent: true },
   { icon: Headset, title: "Layanan Responsif", desc: "Tim customer service siap membantu Anda via telepon maupun WhatsApp.", accent: false },
@@ -74,7 +74,7 @@ export default function Home() {
   return (
     <div>
       <Seo
-        title="Rental Mobil Tangerang - Lepas Kunci & Plus Driver"
+        title="Rental Mobil Tangerang - Lepas Kunci & Driver"
         description="Rental mobil Tangerang & Jabodetabek. Armada terawat, lepas kunci atau plus driver, harian sampai bulanan. Booking cepat via WA 0811-144-287."
         path="/"
         // Tanpa FAQPage, walau tanya-jawabnya tampil di bawah. Skema itu
@@ -194,7 +194,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <h2 className="text-3xl font-bold text-slate-900">Pilih Sesuai Kebutuhan</h2>
+            <h2 className="text-3xl font-bold text-slate-900">Pilih Rental Mobil Sesuai Kebutuhan</h2>
             <p className="mt-2 text-slate-600">
               Seluruh armada kami dikelompokkan per kategori — klik salah satu untuk melihat unit dan harganya.
             </p>
@@ -299,7 +299,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">Mobil Populer</h2>
+              <h2 className="text-3xl font-bold text-slate-900">Mobil Populer di Tangerang</h2>
               <p className="mt-2 text-slate-600">Pilihan armada terbaik yang paling banyak disewa pelanggan kami.</p>
             </div>
             <Link to="/katalog" className="group flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">

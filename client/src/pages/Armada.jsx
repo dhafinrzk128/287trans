@@ -55,7 +55,7 @@ export default function Armada() {
   return (
     <div>
       <Seo
-        title="Daftar Armada Rental Mobil Tangerang - Harga per Kategori"
+        title="Armada Rental Mobil Tangerang - Harga per Kategori"
         description="Daftar lengkap armada rental mobil 287 Trans di Tangerang: hatchback, MPV, SUV, hingga luxury. Cek harga per kategori dan pilih unit sesuai kebutuhan."
         path="/armada"
         jsonLd={breadcrumbSchema([
@@ -66,7 +66,7 @@ export default function Armada() {
 
       <PageHero
         title="Daftar Armada 287 Trans"
-        subtitle="Dari city car untuk mobilitas harian sampai unit luxury untuk acara khusus — semua armada kami terawat rutin dan siap pakai."
+        subtitle="Dari MPV keluarga sampai unit luxury untuk acara khusus — semua armada kami terawat rutin dan siap pakai."
       />
 
       <section className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8">

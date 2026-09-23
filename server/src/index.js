@@ -33,6 +33,19 @@ const SETAHUN = 31536000 * DETIK;
 const SEBULAN = 2592000 * DETIK;
 const SEHARI = 86400 * DETIK;
 
+// HSTS: setelah kunjungan pertama, browser langsung memakai https:// tanpa
+// lewat redirect http -> https di edge Railway lagi (PageSpeed menandai
+// redirect itu ~0,6 detik di ponsel). Sengaja tanpa includeSubDomains dan
+// tanpa preload: subdomain lain (www) belum dipastikan semuanya HTTPS, dan
+// preload sulit dibatalkan. Hanya dikirim kalau request aslinya HTTPS
+// (Railway meneruskannya lewat x-forwarded-proto), jadi dev lokal di
+// http://localhost tidak ikut "terkunci" ke https.
+app.use((req, res, next) => {
+  if (req.get("x-forwarded-proto") === "https") {
+    res.setHeader("Strict-Transport-Security", "max-age=31536000");
+  }
+  next();
+});
 app.use(compression());
 app.use(cors());
 app.use(express.json());

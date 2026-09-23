@@ -110,14 +110,14 @@ export default function Footer() {
       </div>
 
       {profile?.mapsEmbedUrl && (
-        <div ref={refPeta} className="border-t border-neutral-800" style={{ minHeight: 220 }}>
+        <div ref={refPeta} className="min-h-[220px] border-t border-neutral-800">
           {petaTampak && (
             <iframe
               src={profile.mapsEmbedUrl}
               title={`Lokasi ${profile?.namaPerusahaan || "287 Trans"}`}
               width="100%"
               height="220"
-              style={{ border: 0, display: "block" }}
+              className="block border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
