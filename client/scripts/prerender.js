@@ -37,7 +37,7 @@
 //
 // Pengunjung tidak terpengaruh menunggu ini: halaman tetap mengambil datanya
 // sendiri saat dibuka. Yang tertinggal hanya potret statis untuk perayap.
-const REVISI = 2;
+const REVISI = 3;
 
 import { preview } from "vite";
 import { chromium } from "playwright";
