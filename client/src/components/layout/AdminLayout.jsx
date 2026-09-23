@@ -35,7 +35,7 @@ export default function AdminLayout() {
   const SidebarContent = (
     <>
       <div className="px-2 pb-6">
-        <SmartImage src="/logo-nav.png" alt="287 Trans" width="210" height="171" className="h-10 w-auto" />
+        <SmartImage src="/logo-nav.png" alt="287 Trans" width="148" height="120" className="h-10 w-auto" />
         <p className="mt-2 text-xs text-slate-400">Admin Panel</p>
       </div>
       <nav className="flex flex-1 flex-col gap-1">
@@ -69,7 +69,7 @@ export default function AdminLayout() {
       </div>
 
       <div className="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 md:hidden">
-        <SmartImage src="/logo-nav.png" alt="287 Trans" width="210" height="171" className="h-9 w-auto" />
+        <SmartImage src="/logo-nav.png" alt="287 Trans" width="148" height="120" className="h-9 w-auto" />
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}

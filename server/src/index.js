@@ -214,11 +214,21 @@ app.get("/spa-shell.html", (req, res, next) => kirimCangkang(res, 404, next));
 // tetap, jadi sehari saja. HTML dikecualikan dan harus selalu divalidasi:
 // berkas itu yang menunjuk ke nama aset terbaru, jadi HTML yang tersimpan
 // lama membuat deploy baru tidak pernah sampai ke pengunjung lama.
+//
+// Pengecualian: GAMBAR (logo, kayon, ikon) disimpan setahun. PageSpeed
+// menandai cache sehari untuk logo-nav.webp dan kayon-sm.webp sebagai
+// boros, dan gambar-gambar ini memang hampir tidak pernah berganti.
+// Konsekuensinya: KALAU GAMBAR DI client/public DIGANTI, GANTI JUGA NAMA
+// BERKASNYA (mis. logo-nav-2.webp) lalu perbarui rujukannya. Menimpa
+// berkas dengan nama yang sama berarti pengunjung lama tetap melihat
+// gambar lama sampai setahun.
+const EKSTENSI_GAMBAR = /\.(webp|png|jpe?g|svg|ico|avif)$/i;
 app.use(
   express.static(clientDist, {
     maxAge: SEHARI,
     setHeaders: (res, berkas) => {
       if (berkas.endsWith(".html")) res.setHeader("Cache-Control", "public, max-age=0, must-revalidate");
+      else if (EKSTENSI_GAMBAR.test(berkas)) res.setHeader("Cache-Control", `public, max-age=${SETAHUN / 1000}`);
     },
   })
 );

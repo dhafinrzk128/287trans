@@ -17,7 +17,13 @@
     -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!--
+      Logo navbar = elemen LCP di ponsel. Preload supaya unduhannya mulai
+      begitu <head> dibaca, tidak menunggu parser sampai ke <header>.
+      Yang di-preload versi .webp karena itulah yang dipilih <picture> di
+      SmartImage untuk semua browser modern.
+    -->
+    <link rel="preload" as="image" href="/logo-nav.webp" type="image/webp" fetchpriority="high" />
     <!--
       Loaded non-blocking: media="print" makes the browser fetch it without
       letting it gate initial render, then onload flips it to "all" once it's
@@ -45,13 +51,49 @@
       hardcoded default here would ship as a permanent duplicate alongside
       each page's real title/description in the prerendered HTML.
     -->
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','%VITE_GTM_ID%');</script>
-    <!-- End Google Tag Manager -->
+    <!--
+      Google Tag Manager, DITUNDA.
+
+      gtm.js 139 KiB dan ~92 KiB-nya tidak terpakai saat halaman pertama
+      dibuka (PageSpeed, Sep 2026). Dimuat langsung di <head>, ia ikut
+      berebut bandwidth dan main thread tepat di jendela FCP/LCP.
+
+      Sekarang GTM dimuat pada yang PERTAMA terjadi dari:
+        1. interaksi pertama pengunjung (sentuh, klik, scroll, ketik), atau
+        2. 4 detik setelah halaman selesai load, atau
+        3. LANGSUNG, kalau URL membawa gclid / gbraid / wbraid / utm_*.
+
+      Poin 3 penting: pengunjung dari iklan Google Ads harus dapat GTM
+      secepatnya, supaya Conversion Linker sempat membaca gclid dari URL
+      sebelum pengunjung pindah halaman di dalam SPA (URL-nya berubah dan
+      gclid hilang). Jadi atribusi konversi iklan tidak dikorbankan.
+
+      Event yang di-push ke dataLayer sebelum GTM termuat (page_view,
+      whatsapp_click, booking_submit) TIDAK hilang: GTM memproses antrean
+      dataLayer yang sudah ada begitu ia jalan. Tombol WhatsApp membuka tab
+      baru (target=_blank), jadi halaman ini tetap hidup sampai GTM selesai
+      mengirim konversinya.
+    -->
+    <script>
+      (function (w, d, id) {
+        w.dataLayer = w.dataLayer || [];
+        var dimuat = false;
+        var EVENT = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+        function muat() {
+          if (dimuat) return;
+          dimuat = true;
+          EVENT.forEach(function (e) { w.removeEventListener(e, muat, true); });
+          w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var j = d.createElement('script');
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+          d.head.appendChild(j);
+        }
+        if (/[?&](gclid|gbraid|wbraid|utm_[a-z]+)=/.test(w.location.search)) return muat();
+        EVENT.forEach(function (e) { w.addEventListener(e, muat, { capture: true, passive: true }); });
+        w.addEventListener('load', function () { setTimeout(muat, 4000); });
+      })(window, document, '%VITE_GTM_ID%');
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

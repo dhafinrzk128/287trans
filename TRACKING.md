@@ -5,6 +5,7 @@ Dokumentasi conversion tracking (Google Tag Manager + Google Ads). Baca ini sebe
 ## Ringkasan
 
 - Tag Manager: **Google Tag Manager**, Container ID `GTM-KJHNLFR2`
+- **GTM dimuat tertunda** (lihat komentar di `client/index.html`): baru dimuat pada interaksi pertama, 4 detik setelah `load`, atau LANGSUNG kalau URL membawa `gclid`/`gbraid`/`wbraid`/`utm_*`. Event yang di-push sebelum GTM termuat tetap diproses, jadi jangan ganti ke pola yang mengandalkan GTM sudah ada saat halaman dibuka
 - Container ID di-inject lewat env var `VITE_GTM_ID` (lihat `client/.env.example`), bukan hardcoded di `index.html`
 - Semua event custom dikirim lewat `window.dataLayer.push(...)` — bukan `gtag()` langsung, bukan localStorage/sessionStorage
 - Ada 3 event custom: `whatsapp_click`, `page_view`, dan `booking_submit`

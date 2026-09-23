@@ -14,9 +14,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Catalog from "./pages/Catalog";
 import CarDetail from "./pages/CarDetail";
-import BookingForm from "./pages/BookingForm";
 import BookingLookup from "./pages/BookingLookup";
-import BookingStatus from "./pages/BookingStatus";
 import Contact from "./pages/Contact";
 import Armada from "./pages/Armada";
 import Faq from "./pages/Faq";
@@ -40,6 +38,15 @@ import { KOLEKSI } from "./data/koleksiArmada";
 // reconcile that gracefully — every public page hydrating through a lazy
 // Suspense boundary was hitting error #418 and silently discarding the
 // prerendered content for a full client re-render.
+// Pengecualian dari aturan "halaman publik eager" di atas: /booking/:idMobil
+// dan /status/:kodeBooking TIDAK pernah diprerender (lihat
+// scripts/getRoutes.js), jadi pengunjung selalu mendapat spa-shell.html dan
+// main.jsx memakai createRoot, bukan hydrateRoot. Tidak ada HTML statis yang
+// bisa tidak cocok, jadi aman di-lazy seperti /admin/*. Hasilnya kode kedua
+// halaman ini keluar dari bundel utama yang diunduh setiap pengunjung beranda.
+const BookingForm = lazy(() => import("./pages/BookingForm"));
+const BookingStatus = lazy(() => import("./pages/BookingStatus"));
+
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 const AdminCars = lazy(() => import("./pages/admin/AdminCars"));
@@ -65,9 +72,23 @@ function App() {
                   <Route path="tentang-kami" element={<About />} />
                   <Route path="katalog" element={<Catalog />} />
                   <Route path="katalog/:id" element={<CarDetail />} />
-                  <Route path="booking/:idMobil" element={<BookingForm />} />
+                  <Route
+                    path="booking/:idMobil"
+                    element={
+                      <Suspense fallback={<Spinner />}>
+                        <BookingForm />
+                      </Suspense>
+                    }
+                  />
                   <Route path="status" element={<BookingLookup />} />
-                  <Route path="status/:kodeBooking" element={<BookingStatus />} />
+                  <Route
+                    path="status/:kodeBooking"
+                    element={
+                      <Suspense fallback={<Spinner />}>
+                        <BookingStatus />
+                      </Suspense>
+                    }
+                  />
                   <Route path="kontak" element={<Contact />} />
                   <Route path="armada" element={<Armada />} />
                   <Route path="faq" element={<Faq />} />
