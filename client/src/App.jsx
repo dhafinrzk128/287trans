@@ -22,6 +22,9 @@ import NotFound from "./pages/NotFound";
 
 import KoleksiArmada from "./pages/KoleksiArmada";
 import { KOLEKSI } from "./data/koleksiArmada";
+import Artikel from "./pages/Artikel";
+import ArtikelDetail from "./pages/ArtikelDetail";
+import { ARTIKEL } from "./data/artikel";
 
 // Route-level code splitting only applies to /admin/*: those pages are
 // never prerendered (they're behind auth and noindexed), so there's no
@@ -92,6 +95,12 @@ function App() {
                   <Route path="kontak" element={<Contact />} />
                   <Route path="armada" element={<Armada />} />
                   <Route path="faq" element={<Faq />} />
+                  {/* Artikel panduan, digenerate dari src/data/artikel.js
+                      dengan pola yang sama seperti halaman koleksi. */}
+                  <Route path="artikel" element={<Artikel />} />
+                  {ARTIKEL.map((a) => (
+                    <Route key={a.slug} path={`artikel/${a.slug}`} element={<ArtikelDetail slug={a.slug} />} />
+                  ))}
                   {/* Halaman kategori dan model armada. Digenerate dari satu
                       daftar (src/data/koleksiArmada.js) supaya route, sitemap,
                       prerender, dan menu navbar tidak bisa saling ketinggalan

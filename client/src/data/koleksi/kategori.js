@@ -18,7 +18,7 @@ export const KOLEKSI_KATEGORI = [
     grup: "kategori",
     label: "MPV",
     tipe: "MPV",
-    judul: "Sewa MPV Tangerang - Innova Reborn, Zenix & Venturer",
+    judul: "Sewa MPV Tangerang - Reborn, Zenix, Venturer",
     deskripsi: "Sewa MPV 7 penumpang di Tangerang mulai Rp799.000/hari. Innova Reborn, Zenix hybrid, dan Venturer. Semua matic, lepas kunci atau plus sopir.",
     h1: "Sewa MPV Tangerang",
     subjudul: "Tujuh tipe MPV tujuh penumpang, semuanya matic dan keluaran 2024 — dari Innova Reborn diesel sampai Zenix hybrid varian tertinggi."
@@ -28,7 +28,7 @@ export const KOLEKSI_KATEGORI = [
     grup: "kategori",
     label: "SUV",
     tipe: "SUV",
-    judul: "Sewa SUV Tangerang - Fortuner, Pajero, CRV & Palisade",
+    judul: "Sewa SUV Tangerang - Fortuner, Pajero, CRV",
     deskripsi: "Sewa SUV di Tangerang mulai Rp1.399.000/hari. Fortuner, Pajero Sport Dakar, Honda CRV Turbo, Destinator, dan Hyundai Palisade. Matic, lepas kunci atau plus sopir.",
     h1: "Sewa SUV Tangerang",
     subjudul: "Enam tipe SUV dari lima merek berbeda — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota."
@@ -88,7 +88,7 @@ export const KOLEKSI_KATEGORI = [
     grup: "kategori",
     label: "Hatchback",
     tipe: "Hatchback",
-    judul: "Sewa Hatchback Tangerang - Honda HR-V SE, Termurah Kedua",
+    judul: "Sewa Hatchback Tangerang - Honda HR-V SE",
     deskripsi: "Sewa Honda HR-V SE di Tangerang Rp899.000/hari. Matic, 5 penumpang, irit dan mudah diparkir. Pilihan hemat untuk pemakaian harian dalam kota.",
     h1: "Sewa Hatchback Tangerang",
     subjudul: "Honda HR-V SE keluaran 2023 — dimensi ringkas untuk kota padat, dengan bagasi hatchback yang jauh lebih fleksibel dari sedan."

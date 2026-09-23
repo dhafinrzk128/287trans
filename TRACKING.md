@@ -28,7 +28,7 @@ Fire setiap kali tombol/link WhatsApp di halaman customer-facing diklik.
 
 Detail capture UTM/gclid ada di bagian [UTM & gclid capture](#utm--gclid-capture) di bawah.
 
-Titik yang sudah dipasangi tracking (13 tempat, semua customer-facing):
+Titik yang sudah dipasangi tracking (14 tempat, semua customer-facing):
 
 | `button_location`             | File                                                 | `car_name`? |
 |---------------------------------|------------------------------------------------------|:------------:|
@@ -45,6 +45,11 @@ Titik yang sudah dipasangi tracking (13 tempat, semua customer-facing):
 | `booking_form`                | `client/src/pages/BookingForm.jsx`                  | ✓            |
 | `koleksi_<slug>`              | `client/src/pages/KoleksiArmada.jsx` (hero)         | ✓ (model)    |
 | `koleksi_<slug>_bawah`        | `client/src/pages/KoleksiArmada.jsx` (CTA bawah)    | ✓ (model)    |
+| `artikel_<slug>`              | `client/src/pages/ArtikelDetail.jsx` (CTA artikel)  | –            |
+
+`artikel_<slug>` juga pola: `<slug>` diisi slug artikel dari
+`client/src/data/artikel.js`. Filter dengan awalan `artikel_` di GTM/GA4 untuk
+melihat berapa chat yang datang dari artikel panduan (trafik organik).
 
 **Dua yang terakhir itu pola, bukan nilai tetap.** `<slug>` diisi slug halaman
 koleksi yang sedang dibuka, jadi nilainya mengikuti daftar di

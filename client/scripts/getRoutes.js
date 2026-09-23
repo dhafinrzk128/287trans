@@ -11,6 +11,8 @@
 // adalah src/data/koleksiArmada.js. Menambah tujuan iklan di sana otomatis
 // membuatnya ikut diprerender dan masuk sitemap.
 import { KOLEKSI_PATHS } from "../src/data/koleksiArmada.js";
+// Sama untuk artikel panduan: sumbernya src/data/artikel.js.
+import { ARTIKEL_PATHS } from "../src/data/artikel.js";
 
 export const STATIC_ROUTES = [
   "/",
@@ -21,6 +23,7 @@ export const STATIC_ROUTES = [
   "/faq",
   "/status",
   ...KOLEKSI_PATHS,
+  ...ARTIKEL_PATHS,
 ];
 
 const API_BASE = process.env.PRERENDER_API_BASE || "https://287trans.id";

@@ -98,6 +98,27 @@ export function productSchema(mobil) {
   };
 }
 
+// Artikel panduan (lihat data/artikel.js). Penulisnya organisasi, bukan
+// orang: artikelnya tidak ditandatangani siapa pun, dan menuliskan nama
+// penulis yang tidak tercantum di halaman adalah keterangan yang salah.
+export function articleSchema(artikel) {
+  const url = `${SITE_URL}/artikel/${artikel.slug}`;
+  const penerbit = { "@type": "Organization", name: SITE_NAME, url: SITE_URL, logo: `${SITE_URL}/logo.png` };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: artikel.h1,
+    description: artikel.deskripsi,
+    datePublished: artikel.terbit,
+    dateModified: artikel.diperbarui || artikel.terbit,
+    inLanguage: "id-ID",
+    mainEntityOfPage: url,
+    image: `${SITE_URL}/logo.png`,
+    author: penerbit,
+    publisher: penerbit,
+  };
+}
+
 export function breadcrumbSchema(items) {
   return {
     "@context": "https://schema.org",

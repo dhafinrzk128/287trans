@@ -69,7 +69,9 @@ export default function Faq() {
           <p className="mt-2 leading-relaxed text-slate-600">
             {"Tim kami siap membantu menjawab langsung via WhatsApp, atau kunjungi "}
             <Link to="/kontak" className="font-semibold text-blue-600 hover:underline">halaman kontak</Link>
-            {" untuk informasi lengkap."}
+            {" untuk informasi lengkap. Butuh penjelasan yang lebih panjang? Baca "}
+            <Link to="/artikel" className="font-semibold text-blue-600 hover:underline">panduan sewa mobil</Link>
+            {" kami."}
           </p>
           {profile?.whatsapp && (
             <a
