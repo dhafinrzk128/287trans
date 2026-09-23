@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Navigasi</h3>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-white">Navigasi</h2>
           <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
           <ul className="mt-4 space-y-2 text-sm">
             <li><Link to="/" className="transition-colors hover:text-white">Home</Link></li>
@@ -55,7 +55,7 @@ export default function Footer() {
               ada; penggantinya adalah kategori armada, digenerate dari daftar
               yang sama dengan navbar supaya setiap halaman kategori selalu
               tertaut dari seluruh halaman situs. */}
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Kategori Armada</h3>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-white">Kategori Armada</h2>
           <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
           <ul className="mt-4 space-y-2 text-sm">
             {KOLEKSI_KATEGORI.map((k) => (
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Kontak Kami</h3>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-white">Kontak Kami</h2>
           <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
           <ul className="mt-4 space-y-3 text-sm">
             <li className="flex items-start gap-2">
@@ -89,7 +89,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wide text-white">Hubungi via WhatsApp</h3>
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-white">Hubungi via WhatsApp</h2>
           <span className="mt-2 block h-0.5 w-6 rounded-full bg-accent-500" />
           <p className="mt-4 text-sm text-slate-400">
             Butuh bantuan cepat? Tim kami siap membantu Anda melalui WhatsApp setiap hari.

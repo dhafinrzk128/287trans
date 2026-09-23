@@ -165,6 +165,9 @@ export default function Catalog() {
           </div>
         )}
 
+        {/* Tak terlihat, hanya untuk pembaca layar: nama mobil di kartu memakai
+            h3, dan tanpa h2 di antaranya urutan heading lompat dari h1. */}
+        <h2 className="sr-only">Daftar Mobil</h2>
         <div className="mt-4 flex items-center justify-between">
           <p className="text-sm text-slate-500">{loading ? "Memuat..." : `${displayedMobils.length} mobil ditemukan`}</p>
           <button onClick={resetFilter} className="cursor-pointer text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 hover:underline">
