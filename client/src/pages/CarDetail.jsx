@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import KalenderTertunda from "../components/KalenderTertunda";
-import { Users, Fuel, Cog, Tag, Calendar, ImageOff, ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
+import { Users, Fuel, Cog, Tag, Calendar, ImageOff, ChevronLeft, ChevronRight, MessageCircle, CheckCircle2, Info } from "lucide-react";
 import api from "../api/client";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
 import Spinner from "../components/ui/Spinner";
@@ -19,6 +19,80 @@ import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
 function toRanges(rawRanges) {
   return rawRanges.map((r) => ({ from: new Date(r.tglAmbil), to: new Date(r.tglKembali) }));
+}
+
+// Konten tambahan per unit (src/data/detailMobil.js). Dimuat dinamis supaya
+// data 24 unit tidak ikut bundel utama yang diunduh di setiap halaman. Saat
+// prerender, isi untuk unit ini disimpan ke __PRERENDER_DATA__ lewat
+// setPrerenderedData, jadi kunjungan langsung membacanya dari HTML tanpa
+// mengunduh modulnya dan render pertama tetap cocok dengan HTML statis.
+// Hanya perpindahan halaman di dalam situs yang mengunduh modulnya; bagian
+// ini ada di bawah layar pertama, jadi jedanya tidak terasa. Unit tanpa
+// entri disimpan sebagai null dan bagian ini tidak ditampilkan.
+function InfoUnit({ id, namaMobil }) {
+  const kunci = `detail_mobil_${id}`;
+  const [info, setInfo] = useState(() => getPrerenderedData(kunci));
+
+  useEffect(() => {
+    if (getPrerenderedData(kunci) !== undefined) return;
+    let batal = false;
+    import("../data/detailMobil")
+      .then(({ DETAIL_MOBIL }) => {
+        if (batal) return;
+        const isi = DETAIL_MOBIL[id] ?? null;
+        setInfo(isi);
+        setPrerenderedData(kunci, isi);
+      })
+      .catch(() => {
+        /* bagian tambahan sekadar tidak tampil */
+      });
+    return () => {
+      batal = true;
+    };
+  }, [kunci, id]);
+
+  if (!info) return null;
+
+  return (
+    <section className="mt-14 border-t border-slate-200 pt-10" aria-labelledby="info-unit">
+      <h2 id="info-unit" className="text-2xl font-bold text-slate-900">{`Tentang ${namaMobil.trim()}`}</h2>
+      <div className="mt-6 grid gap-10 lg:grid-cols-3">
+        <div>
+          <h3 className="text-base font-bold text-slate-900">Cocok untuk</h3>
+          <ul className="mt-3 space-y-3 text-slate-600">
+            {info.cocokUntuk.map((teks) => (
+              <li key={teks} className="flex gap-2.5 leading-relaxed">
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-700" aria-hidden="true" />
+                <span>{teks}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-base font-bold text-slate-900">Perlu diketahui sebelum sewa</h3>
+          <ul className="mt-3 space-y-3 text-slate-600">
+            {info.perluDiketahui.map((teks) => (
+              <li key={teks} className="flex gap-2.5 leading-relaxed">
+                <Info size={18} className="mt-0.5 shrink-0 text-blue-600" aria-hidden="true" />
+                <span>{teks}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-base font-bold text-slate-900">Pertanyaan seputar unit ini</h3>
+          <dl className="mt-3 space-y-4">
+            {info.faq.map(({ q, a }) => (
+              <div key={q}>
+                <dt className="font-semibold text-slate-900">{q}</dt>
+                <dd className="mt-1 leading-relaxed text-slate-600">{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function CarDetail() {
@@ -243,6 +317,8 @@ export default function CarDetail() {
           </div>
         </Reveal>
       </div>
+
+      <InfoUnit id={mobil.idMobil} namaMobil={mobil.namaMobil} />
 
       <style>{`
         .rdp-booked { background-color: #fee2e2; color: #b91c1c; border-radius: 6px; }

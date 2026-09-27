@@ -8,6 +8,33 @@ import Spinner from "../components/ui/Spinner";
 import SmartImage from "../components/SmartImage";
 import { buildWaLink } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
+import useReveal from "../hooks/useReveal";
+
+// Peta baru dipasang ke DOM saat digulir mendekat, sama seperti di Footer.
+// `loading="lazy"` saja tidak cukup: diukur dengan Lighthouse (Sep 2026),
+// halaman ini tetap mengunduh ±460 KB Google Maps walau pengunjung tidak
+// pernah menggulir sampai ke bagian lokasi. Komponen terpisah supaya
+// observer baru terpasang setelah elemennya benar-benar ada (About sendiri
+// bisa merender Spinner lebih dulu). Aman terhadap hidrasi: nilai awalnya
+// false, sama seperti saat prerender (IntersectionObserver dimatikan di sana).
+function PetaLokasi({ src }) {
+  const [ref, tampak] = useReveal({ rootMargin: "300px 0px" });
+  return (
+    <div ref={ref} className="mt-5 h-[322px] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-[var(--shadow-soft)]">
+      {tampak && (
+        <iframe
+          src={src}
+          title="Lokasi 287 Trans"
+          width="100%"
+          height="320"
+          className="block border-0"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      )}
+    </div>
+  );
+}
 
 export default function About() {
   const { profile, loading } = useCompanyProfile();
@@ -126,17 +153,7 @@ export default function About() {
           <Reveal>
             <h2 className="text-2xl font-bold text-slate-900">Lokasi Kami</h2>
             {profile?.mapsEmbedUrl ? (
-              <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
-                <iframe
-                  src={profile.mapsEmbedUrl}
-                  title="Lokasi 287 Trans"
-                  width="100%"
-                  height="320"
-                  className="block border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+              <PetaLokasi src={profile.mapsEmbedUrl} />
             ) : (
               <p className="mt-4 text-slate-600">Peta lokasi belum tersedia.</p>
             )}
