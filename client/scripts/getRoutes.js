@@ -19,7 +19,6 @@ export const STATIC_ROUTES = [
   "/tentang-kami",
   "/katalog",
   "/kontak",
-  "/armada",
   "/faq",
   "/status",
   ...KOLEKSI_PATHS,

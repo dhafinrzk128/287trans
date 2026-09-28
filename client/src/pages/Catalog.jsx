@@ -11,6 +11,7 @@ import { inputClassName } from "../components/ui/FormField";
 import Seo from "../components/Seo";
 import KayonWayang from "../components/KayonWayang";
 import { breadcrumbSchema } from "../utils/schema";
+import { formatRupiah } from "../utils/format";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
 const INITIAL_FILTER = { tipe: "", transmisi: "", kapasitas: "" };
@@ -20,9 +21,31 @@ function sortByAvailability(list) {
   return [...list].sort((a, b) => (a.status === "tersedia" ? 0 : 1) - (b.status === "tersedia" ? 0 : 1));
 }
 
+// Tabel rentang harga per kategori, pindahan dari halaman /armada yang kini
+// di-301 ke sini. Satu baris per `tipe`, diurutkan dari termurah.
+function summarizeByTipe(mobils) {
+  const byTipe = new Map();
+  for (const m of mobils) {
+    if (!byTipe.has(m.tipe)) byTipe.set(m.tipe, []);
+    byTipe.get(m.tipe).push(m.hargaPerHari);
+  }
+  return [...byTipe.entries()]
+    .map(([tipe, prices]) => ({
+      tipe,
+      count: prices.length,
+      min: Math.min(...prices),
+      max: Math.max(...prices),
+    }))
+    .sort((a, b) => a.min - b.min);
+}
+
 export default function Catalog() {
   const isFirstRun = useRef(true);
   const [mobils, setMobils] = useState(() => getPrerenderedData(PRERENDER_KEY) ?? []);
+  // Daftar tanpa filter transmisi/kapasitas, khusus untuk tabel rentang
+  // harga: tabel itu ringkasan seluruh armada, jadi tidak boleh ikut
+  // menyusut saat pengunjung memfilter daftar kartu di atasnya.
+  const [semuaMobil, setSemuaMobil] = useState(() => getPrerenderedData(PRERENDER_KEY) ?? []);
   const [loading, setLoading] = useState(() => getPrerenderedData(PRERENDER_KEY) === undefined);
   const [filter, setFilter] = useState(INITIAL_FILTER);
   const [showFilter, setShowFilter] = useState(false);
@@ -55,7 +78,10 @@ export default function Catalog() {
       .then(({ data }) => {
         const sorted = sortByAvailability(data);
         setMobils(sorted);
-        if (isDefaultFilter) setPrerenderedData(PRERENDER_KEY, sorted);
+        if (isDefaultFilter) {
+          setPrerenderedData(PRERENDER_KEY, sorted);
+          setSemuaMobil(sorted);
+        }
       })
       .finally(() => setLoading(false));
   }, [filter.transmisi, filter.kapasitas]);
@@ -65,6 +91,8 @@ export default function Catalog() {
       setFilter((f) => ({ ...f, tipe: "" }));
     }
   }, [availableTipes.join("|"), filter.tipe]);
+
+  const kategori = summarizeByTipe(semuaMobil);
 
   function updateFilter(field, value) {
     setFilter((f) => ({ ...f, [field]: value }));
@@ -191,6 +219,40 @@ export default function Catalog() {
           </div>
         )}
       </section>
+
+      {kategori.length > 0 && (
+        <section className="mx-auto max-w-4xl px-4 pb-16 sm:px-6 lg:px-8">
+          <Reveal>
+            <h2 className="text-2xl font-bold text-slate-900">Kategori &amp; Rentang Harga per Hari</h2>
+            <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 shadow-[var(--shadow-soft)]">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-500">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-semibold">Kategori</th>
+                    <th scope="col" className="px-4 py-3 font-semibold">Jumlah Tipe</th>
+                    <th scope="col" className="px-4 py-3 font-semibold">Harga per Hari</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {kategori.map((k) => (
+                    <tr key={k.tipe}>
+                      <td className="px-4 py-3 font-medium text-slate-900">{k.tipe}</td>
+                      <td className="px-4 py-3 text-slate-600">{`${k.count} tipe`}</td>
+                      <td className="px-4 py-3 text-slate-600">
+                        {k.min === k.max ? formatRupiah(k.min) : `${formatRupiah(k.min)} - ${formatRupiah(k.max)}`}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-slate-500">
+              Harga dapat berubah sewaktu-waktu mengikuti unit yang tersedia. Untuk detail per unit dan foto
+              kendaraan, buka kartu unitnya di daftar di atas.
+            </p>
+          </Reveal>
+        </section>
+      )}
 
       {/* Halaman ini menampilkan daftar unit tapi tidak pernah menjelaskan cara
           memilih di antaranya — pengunjung yang belum tahu mau apa hanya

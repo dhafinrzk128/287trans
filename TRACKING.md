@@ -28,7 +28,7 @@ Fire setiap kali tombol/link WhatsApp di halaman customer-facing diklik.
 
 Detail capture UTM/gclid ada di bagian [UTM & gclid capture](#utm--gclid-capture) di bawah.
 
-Titik yang sudah dipasangi tracking (14 tempat, semua customer-facing):
+Titik yang sudah dipasangi tracking (13 tempat, semua customer-facing):
 
 | `button_location`             | File                                                 | `car_name`? |
 |---------------------------------|------------------------------------------------------|:------------:|
@@ -38,7 +38,6 @@ Titik yang sudah dipasangi tracking (14 tempat, semua customer-facing):
 | `about_page`                  | `client/src/pages/About.jsx`                        | –            |
 | `contact_page`                | `client/src/pages/Contact.jsx`                      | –            |
 | `faq_page`                    | `client/src/pages/Faq.jsx`                          | –            |
-| `landing_armada`              | `client/src/pages/Armada.jsx`                       | –            |
 | `cek_status_booking`          | `client/src/pages/BookingLookup.jsx`                | –            |
 | `booking_status`              | `client/src/pages/BookingStatus.jsx`                | –            |
 | `car_detail`                  | `client/src/pages/CarDetail.jsx`                    | ✓            |

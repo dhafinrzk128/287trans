@@ -14,6 +14,7 @@ import { productSchema, breadcrumbSchema } from "../utils/schema";
 import { STATUS_MOBIL_LABEL, STATUS_MOBIL_BADGE } from "../utils/validators";
 import { buildWaLink, formatRupiah, pesanSewa } from "../utils/format";
 import { koleksiUntukMobil } from "../data/koleksiArmada";
+import { namaUnit, judulMobil, deskripsiMobil } from "../utils/metaMobil";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -142,6 +143,7 @@ export default function CarDetail() {
     );
   }
 
+  const nama = namaUnit(mobil);
   const koleksiTerkait = koleksiUntukMobil(mobil);
   const fotos = mobil.fotos?.length ? mobil.fotos : [];
   const today = new Date();
@@ -150,20 +152,20 @@ export default function CarDetail() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <Seo
-        title={`Sewa ${mobil.namaMobil} Tangerang - Rental Harian & Bulanan`}
-        description={`Sewa ${mobil.namaMobil} di Tangerang mulai ${formatRupiah(mobil.hargaPerHari)}/hari. Transmisi ${mobil.transmisi}, kapasitas ${mobil.kapasitas} orang. Booking cepat via WA 0811-144-287.`}
+        title={judulMobil(mobil)}
+        description={deskripsiMobil(mobil)}
         path={`/katalog/${id}`}
         jsonLd={[
           productSchema(mobil),
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Katalog Mobil", path: "/katalog" },
-            { name: mobil.namaMobil, path: `/katalog/${id}` },
+            { name: nama, path: `/katalog/${id}` },
           ]),
         ]}
       />
       <nav className="mb-6 text-sm text-slate-500">
-        <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> / <span className="text-slate-700">{mobil.namaMobil}</span>
+        <Link to="/katalog" className="transition-colors hover:text-blue-600">Katalog Mobil</Link> / <span className="text-slate-700">{nama}</span>
       </nav>
 
       <div className="grid gap-10 lg:grid-cols-2">
@@ -173,7 +175,7 @@ export default function CarDetail() {
             {fotos.length > 0 ? (
               <SmartImage
                 src={fotos[activeFoto]?.urlFoto}
-                alt={`${mobil.namaMobil} - ${mobil.tipe} rental mobil Tangerang`}
+                alt={`${nama} - ${mobil.tipe} rental mobil Tangerang`}
                 className="h-full w-full object-cover"
                 fetchPriority="high"
               />
@@ -216,7 +218,7 @@ export default function CarDetail() {
                 >
                   <SmartImage
                     src={f.urlFoto}
-                    alt={`Foto ${i + 1} ${mobil.namaMobil} — rental mobil ${mobil.tipe} di Tangerang`}
+                    alt={`Foto ${i + 1} ${nama} — rental mobil ${mobil.tipe} di Tangerang`}
                     className="h-full w-full object-cover"
                     loading="lazy"
                   />
@@ -229,7 +231,7 @@ export default function CarDetail() {
         {/* Info & Spesifikasi */}
         <Reveal delay={90}>
           <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
-          <h1 className="mt-1 text-3xl font-extrabold text-slate-900">{mobil.namaMobil}</h1>
+          <h1 className="mt-1 text-3xl font-extrabold text-slate-900">{nama}</h1>
 
           <p className="mt-2 text-2xl font-extrabold text-accent-700">
             {formatRupiah(mobil.hargaPerHari)}
@@ -304,7 +306,7 @@ export default function CarDetail() {
             </Button>
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, pesanSewa(`Halo, saya mau sewa ${mobil.namaMobil}.`))}
+                href={buildWaLink(profile.whatsapp, pesanSewa(`Halo, saya mau sewa ${nama}.`))}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick("car_detail", mobil.namaMobil)}

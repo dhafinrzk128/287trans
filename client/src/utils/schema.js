@@ -85,7 +85,7 @@ export function productSchema(mobil) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: mobil.namaMobil,
+    name: mobil.namaMobil.trim(),
     ...(images && { image: images }),
     description: mobil.deskripsi,
     offers: {

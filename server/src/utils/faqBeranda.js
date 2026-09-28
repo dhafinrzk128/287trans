@@ -17,7 +17,7 @@ const prisma = require("./prisma");
 //
 // TIDAK ada angka yang bisa basi di jawaban-jawaban ini: jumlah unit, jumlah
 // kategori, dan tahun keluaran berubah mengikuti armada. Angka hidup sudah
-// tampil sendiri di /armada dan /katalog, ditarik dari basis data. Yang
+// tampil sendiri di /katalog dan halaman koleksi, ditarik dari basis data. Yang
 // ditulis di sini hanya sifat yang bertahan.
 
 const FAQ_BERANDA = [

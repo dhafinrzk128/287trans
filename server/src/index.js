@@ -116,7 +116,6 @@ const KNOWN_SPA_ROUTES = [
   /^\/status\/?$/,
   /^\/status\/[^/]+\/?$/,
   /^\/kontak\/?$/,
-  /^\/armada\/?$/,
   /^\/faq\/?$/,
   // Halaman kategori & model armada — cerminan src/data/koleksiArmada.js.
   // Kalau nanti ada entri baru di sana, tambahkan barisnya di sini juga.
@@ -166,6 +165,10 @@ const REDIRECT_PERMANEN = {
   "/rental-mobil-plus-driver": "/",
   "/rental-mobil-bulanan-tangerang": "/",
   "/sewa-mobil-bandara-soekarno-hatta": "/",
+  // Ringkasan armada per kategori. Isinya tumpang tindih dengan /katalog dan
+  // tidak ditaut dari halaman mana pun; tabel rentang harganya kini ada di
+  // /katalog, jadi ke sanalah URL lamanya diarahkan.
+  "/armada": "/katalog",
 };
 
 app.get(Object.keys(REDIRECT_PERMANEN), (req, res) => {

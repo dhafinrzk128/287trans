@@ -97,36 +97,44 @@ export default function Navbar() {
               <ChevronDown size={15} className={`transition-transform duration-200 ${armadaOpen ? "rotate-180" : ""}`} />
             </button>
 
-            {armadaOpen && (
-              <div className="absolute left-1/2 top-full z-50 mt-4 w-[34rem] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-5 shadow-[var(--shadow-soft-lg)]">
-                <div className="grid grid-cols-2 gap-x-6 gap-y-1">
-                  {MENU_ARMADA.map((grup) => (
-                    <div key={grup.judul}>
-                      <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wide text-slate-400">{grup.judul}</p>
-                      {grup.items.map((k) => (
-                        <NavLink
-                          key={k.slug}
-                          to={`/${k.slug}`}
-                          className={({ isActive }) =>
-                            `block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-                              isActive ? "bg-blue-50 text-blue-600" : "text-slate-700 hover:bg-slate-50 hover:text-blue-600"
-                            }`
-                          }
-                        >
-                          {k.label}
-                        </NavLink>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  to="/katalog"
-                  className="mt-3 block rounded-xl bg-slate-50 px-3 py-2.5 text-center text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50"
-                >
-                  Lihat Semua Armada
-                </Link>
+            {/* Panel ini selalu ada di DOM dan hanya disembunyikan dengan
+                `hidden` saat tertutup — BUKAN dirender bersyarat. Dengan render
+                bersyarat, dua belas tautan kategori dan model tidak pernah ada
+                di HTML hasil prerender, jadi halaman model (tujuan iklan) nyaris
+                tidak tertaut dari mana pun di mata perayap. `display: none`
+                tetap menyembunyikannya dari pembaca layar saat tertutup. */}
+            <div
+              className={`absolute left-1/2 top-full z-50 mt-4 w-[34rem] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-5 shadow-[var(--shadow-soft-lg)] ${
+                armadaOpen ? "" : "hidden"
+              }`}
+            >
+              <div className="grid grid-cols-2 gap-x-6 gap-y-1">
+                {MENU_ARMADA.map((grup) => (
+                  <div key={grup.judul}>
+                    <p className="px-3 pb-1 text-xs font-bold uppercase tracking-wide text-slate-400">{grup.judul}</p>
+                    {grup.items.map((k) => (
+                      <NavLink
+                        key={k.slug}
+                        to={`/${k.slug}`}
+                        className={({ isActive }) =>
+                          `block rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                            isActive ? "bg-blue-50 text-blue-600" : "text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                          }`
+                        }
+                      >
+                        {k.label}
+                      </NavLink>
+                    ))}
+                  </div>
+                ))}
               </div>
-            )}
+              <Link
+                to="/katalog"
+                className="mt-3 block rounded-xl bg-slate-50 px-3 py-2.5 text-center text-sm font-semibold text-blue-600 transition-colors hover:bg-blue-50"
+              >
+                Lihat Semua Armada
+              </Link>
+            </div>
           </div>
 
           {NAV_KANAN.map((link) => (

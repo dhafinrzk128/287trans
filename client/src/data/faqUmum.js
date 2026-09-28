@@ -44,7 +44,7 @@ export const FAQ_UMUM = [
   {
     pertanyaan: "Berapa harga rental mobil harian di Tangerang?",
     jawaban:
-      "Harga bervariasi tergantung kategori unit, mulai dari hatchback yang paling terjangkau hingga kategori premium dan luxury. Rentang harga per kategori bisa dilihat di halaman Armada, atau cek langsung setiap unit di Katalog untuk harga pastinya.",
+      "Harga bervariasi tergantung kategori unit, mulai dari hatchback yang paling terjangkau hingga kategori premium dan luxury. Rentang harga per kategori bisa dilihat di halaman kategori armada atau di Katalog.",
   },
   {
     pertanyaan: "Apakah bensin dan tol sudah termasuk harga sewa?",

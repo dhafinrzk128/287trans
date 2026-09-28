@@ -5,6 +5,7 @@ import { useCompanyProfile } from "../../context/CompanyProfileContext";
 import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 import { KOLEKSI_KATEGORI } from "../../data/koleksi/kategori";
+import { KOLEKSI_MODEL } from "../../data/koleksi/model";
 import useReveal from "../../hooks/useReveal";
 
 function telHref(number) {
@@ -65,6 +66,21 @@ export default function Footer() {
               </li>
             ))}
             <li><Link to="/katalog" className="transition-colors hover:text-white">Katalog Lengkap</Link></li>
+          </ul>
+
+          {/* Halaman model adalah tujuan iklan, tapi sebelumnya hanya tertaut
+              dari menu navbar (yang dulu tidak ada di HTML) dan dari halaman
+              unitnya sendiri. Ditumpuk di kolom yang sama dengan kategori,
+              bukan kolom keenam: di 1024px enam kolom terlalu sempit untuk
+              alamat dan label kategori yang panjang. */}
+          <h2 className="mt-8 text-sm font-semibold uppercase tracking-wide text-white">Model Populer</h2>
+          <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
+          <ul className="mt-4 space-y-2 text-sm">
+            {KOLEKSI_MODEL.map((k) => (
+              <li key={k.slug}>
+                <Link to={`/${k.slug}`} className="transition-colors hover:text-white">{k.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

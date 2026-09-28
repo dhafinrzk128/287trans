@@ -14,8 +14,7 @@ Informasi bisnis:
 ## Halaman utama
 
 - [Beranda](https://287trans.id/): ringkasan layanan, harga mulai, mobil populer, testimoni
-- [Katalog](https://287trans.id/katalog): semua unit beserta harga sewa per hari
-- [Armada per kategori](https://287trans.id/armada): daftar armada dan harga per kategori
+- [Katalog](https://287trans.id/katalog): semua unit beserta harga sewa per hari, dan rentang harga per kategori
 - [FAQ](https://287trans.id/faq): syarat sewa, lepas kunci, biaya antar, area layanan
 - [Kontak](https://287trans.id/kontak): alamat, peta, dan kontak WhatsApp
 - [Tentang Kami](https://287trans.id/tentang-kami): profil 287 Trans

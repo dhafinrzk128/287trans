@@ -16,7 +16,6 @@ import Catalog from "./pages/Catalog";
 import CarDetail from "./pages/CarDetail";
 import BookingLookup from "./pages/BookingLookup";
 import Contact from "./pages/Contact";
-import Armada from "./pages/Armada";
 import Faq from "./pages/Faq";
 import NotFound from "./pages/NotFound";
 
@@ -93,7 +92,6 @@ function App() {
                     }
                   />
                   <Route path="kontak" element={<Contact />} />
-                  <Route path="armada" element={<Armada />} />
                   <Route path="faq" element={<Faq />} />
                   {/* Artikel panduan, digenerate dari src/data/artikel.js
                       dengan pola yang sama seperti halaman koleksi. */}
