@@ -178,7 +178,12 @@ app.get(Object.keys(REDIRECT_PERMANEN), (req, res) => {
   // Express mencocokkan bentuk dengan maupun tanpa garis miring di akhir,
   // jadi keduanya perlu menemukan kuncinya.
   const tanpaGarisMiring = req.path.length > 1 && req.path.endsWith("/") ? req.path.slice(0, -1) : req.path;
-  res.redirect(301, REDIRECT_PERMANEN[tanpaGarisMiring] || "/");
+  // Query string ikut dibawa: iklan lama yang URL akhirnya masih menunjuk
+  // halaman ini datang dengan ?gclid=...&utm_*=..., dan kalau itu dibuang di
+  // redirect, klik iklannya kehilangan atribusi (konversi Google Ads maupun
+  // kode referensi di pesan WA).
+  const query = req.originalUrl.includes("?") ? req.originalUrl.slice(req.originalUrl.indexOf("?")) : "";
+  res.redirect(301, (REDIRECT_PERMANEN[tanpaGarisMiring] || "/") + query);
 });
 
 // Vite menamai berkas di /assets menurut isinya (index-lNDQKLnl.css): isi
