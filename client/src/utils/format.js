@@ -42,6 +42,11 @@ export function toDateInputValue(value) {
 // whether to delete it before sending. Attribution never depended on it
 // anyway; trackWhatsAppClick (src/utils/tracking.js) already sends the UTM
 // and gclid values to GTM, so Google Ads still credits the right campaign.
+//
+// Ad visitors now do get one short, human-readable line ("Kode: 287-XXXXXX")
+// so a chat can be matched back to its ad click for offline conversion
+// import. That line is added at click time by src/utils/kodeRefWa.js, not
+// here — see the note there on why it can't happen during render.
 export function buildWaLink(number, text) {
   const digits = (number || "").replace(/\D/g, "").replace(/^0/, "62");
   const query = text ? `?text=${encodeURIComponent(text)}` : "";

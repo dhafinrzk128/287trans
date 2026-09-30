@@ -9,6 +9,7 @@ Dokumentasi conversion tracking (Google Tag Manager + Google Ads). Baca ini sebe
 - Container ID di-inject lewat env var `VITE_GTM_ID` (lihat `client/.env.example`), bukan hardcoded di `index.html`
 - Semua event custom dikirim lewat `window.dataLayer.push(...)` — bukan `gtag()` langsung, bukan localStorage/sessionStorage
 - Ada 3 event custom: `whatsapp_click`, `page_view`, dan `booking_submit`
+- Konversi offline (Lead Qualified, Booking Closing) diunggah manual dari panel admin, lihat [Lead WA & konversi offline](#lead-wa--konversi-offline)
 
 ## Event: `whatsapp_click`
 
@@ -22,7 +23,8 @@ Fire setiap kali tombol/link WhatsApp di halaman customer-facing diklik.
   utm_source: "google",             // opsional, cuma ada kalau user landing dari link ber-UTM
   utm_medium: "cpc",                // opsional
   utm_campaign: "sewa_mobil_premium", // opsional
-  gclid: "Cj0KCQjw..."              // opsional, cuma ada kalau landing dari klik iklan Google Ads
+  gclid: "Cj0KCQjw...",             // opsional, cuma ada kalau landing dari klik iklan Google Ads
+  kode_ref: "K7M3QX"                // opsional, kode referensi yang ikut di pesan WA (pengunjung iklan saja)
 }
 ```
 
@@ -111,13 +113,32 @@ Lokasi: `client/src/utils/utm.js` — disimpan **in-memory** (variabel level-mod
 
 Terpisah dari ini, tag **Conversion Linker** di GTM menyimpan `gclid` ke cookie first-party `_gcl_aw` (90 hari). Itulah yang dipakai tag konversi Google Ads untuk atribusi, jadi konversi tetap tercatat dari iklan walau pengunjung sudah pindah halaman atau hard-refresh. Data in-memory di atas hanya untuk tag `[ref: ...]` di pesan WA dan parameter event.
 
-Dipakai di 2 tempat otomatis (tidak perlu ubah apa pun di titik-titik tombol WhatsApp):
+Dipakai di tempat-tempat berikut (tidak perlu ubah apa pun di titik-titik tombol WhatsApp):
 
-1. **`buildWaLink()`** (`client/src/utils/format.js`) — nempelin tag `[ref: ...]` ke akhir teks pesan WA:
-   - Kalau ada `utm_source`: `[ref: google/cpc/nama_campaign]`
-   - Kalau cuma ada `gclid` (tanpa utm_source — kejadian umum kalau cuma pakai auto-tagging Google Ads tanpa custom UTM): `[ref: gclid-8karakterpertama]` — gclid asli dipotong pendek karena aslinya bisa 80+ karakter, kepanjangan & aneh kalau muncul utuh di pesan yang dibaca customer
-   - Kalau gak ada UTM/gclid sama sekali (visit organik): gak ada tag tambahan, teks pesan normal seperti biasa
-2. **`trackWhatsAppClick()`** (`client/src/utils/tracking.js`) — kirim `utm_source`, `utm_medium`, `utm_campaign`, `gclid` (versi lengkap, gak dipotong) sebagai parameter tambahan di event `whatsapp_click`, kalau ada.
+1. **`trackWhatsAppClick()`** (`client/src/utils/tracking.js`) mengirim `utm_*`, `gclid`, `gbraid`, `wbraid` (versi lengkap) dan `kode_ref` sebagai parameter event `whatsapp_click`, kalau ada.
+2. **Kode referensi di pesan WA** (`client/src/utils/kodeRefWa.js`), lihat bagian [Lead WA & konversi offline](#lead-wa--konversi-offline). Tag lama `[ref: gclid-xxxx]` di `buildWaLink()` sudah dibuang (terlihat teknis di kolom chat pelanggan); penggantinya satu baris `Kode: 287-XXXXXX` yang hanya muncul untuk pengunjung iklan.
+3. **Form booking** (`client/src/pages/BookingForm.jsx`) ikut mengirim `gclid`/`gbraid`/`wbraid`/`utm_campaign` ke `POST /api/booking`, disimpan di tabel `booking`.
+
+Cadangan gclid: kalau URL sudah tidak membawa `gclid` (hard-refresh, reload), `getUtmParams()` membaca cookie `_gcl_aw` dari Conversion Linker. Ini cookie, bukan Web Storage, jadi tetap sesuai aturan di atas.
+
+## Lead WA & konversi offline
+
+Tujuannya: Google Ads belajar dari penyewa sungguhan, bukan dari semua orang yang klik WA. Alurnya:
+
+1. Pengunjung datang dari iklan (URL/cookie punya `gclid`/`gbraid`/`wbraid`). `getKodeRef()` (`client/src/utils/utm.js`) membuat satu kode 6 karakter untuk kunjungan itu.
+2. Saat tombol WA diklik, `kodeRefWa.js` (listener `click` fase capture di `document`, dipasang dari `main.jsx`) menambahkan baris `Kode: 287-XXXXXX` ke teks pesan. Sengaja **tidak** di `buildWaLink`: halaman publik di-prerender tanpa gclid, dan React tidak menambal `href` saat hydration. Tidak jalan di `/admin/*`, tidak jalan untuk pengunjung organik.
+3. Pada klik yang sama, `trackWhatsAppClick()` mengirim `sendBeacon` ke `POST /api/lead-wa` (kode + gclid + lokasi tombol + mobil). Disimpan di tabel `lead_wa`. Endpoint mengabaikan kiriman tanpa id klik iklan dan selalu menjawab 204.
+4. Chat masuk membawa kode itu. Admin buka **Panel Admin > Lead WA Iklan** (`/admin/lead`), cari kodenya, set tahap:
+   - `qualified`: sudah sebut tanggal + unit, atau kirim KTP/SIM
+   - `closing`: bayar DP / deal (isi nilai deal)
+   - `tidak_jadi`
+5. Seminggu sekali, tombol **CSV Lead Qualified** / **CSV Closing** di halaman itu menghasilkan file siap unggah (Google Ads > Sasaran > Konversi > Unggahan). CSV Closing juga memuat booking form dari iklan yang sudah dikonfirmasi (`booking.closing_at`, nilai = harga/hari x lama sewa).
+
+Aturan di `server/src/utils/konversiOffline.js`:
+- Nama konversi harus sama persis dengan di Google Ads: `Lead Qualified` dan `Booking Closing (Offline Import)`.
+- Hanya baris dengan `gclid`; klik lebih dari 90 hari atau kurang dari 24 jam dilewati (yang kurang dari 24 jam ikut di unduhan berikutnya).
+- Waktu konversi (`qualified_at`, `closing_at`) diisi sekali dan tidak bergeser walau status diubah ulang, jadi mengunggah ulang file yang sama aman (Google mengenali duplikat dari gclid + nama + waktu).
+- `gbraid`/`wbraid` (iPhone/Safari) disimpan tapi belum ikut CSV, karena format unggah file ini berbasis gclid.
 
 ## Helper: `client/src/utils/tracking.js`
 

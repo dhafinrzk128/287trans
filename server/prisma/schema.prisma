@@ -55,6 +55,17 @@ model Booking {
   buktiTransferUrl String? @map("bukti_transfer_url")
   createdAt     DateTime @default(now()) @map("created_at")
 
+  // Asal klik iklan (kalau booking datang dari iklan Google Ads). Dipakai
+  // untuk impor konversi offline "Booking Closing" — lihat
+  // server/src/utils/konversiOffline.js. closingAt diisi sekali, saat
+  // booking pertama kali dikonfirmasi admin, dan tidak berubah lagi supaya
+  // unggahan ulang ke Google Ads tetap terdeteksi sebagai duplikat.
+  gclid       String?
+  gbraid      String?
+  wbraid      String?
+  utmCampaign String?   @map("utm_campaign")
+  closingAt   DateTime? @map("closing_at")
+
   mobil Mobil @relation(fields: [idMobil], references: [idMobil])
 
   @@map("booking")
@@ -146,4 +157,36 @@ model GaleriArmada {
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("galeri_armada")
+}
+
+// Lead WhatsApp dari pengunjung iklan. Setiap pengunjung yang datang dari
+// klik iklan (ada gclid/gbraid/wbraid) dapat satu kode referensi pendek yang
+// ikut tertulis di pesan WA-nya. Saat chat masuk, admin mencari kode itu di
+// panel dan menandai tahapnya (qualified / closing). Tahap itulah yang
+// diunggah balik ke Google Ads sebagai konversi offline, supaya iklan belajar
+// dari penyewa sungguhan, bukan dari semua orang yang sekadar klik WA.
+model LeadWa {
+  id           Int       @id @default(autoincrement())
+  kodeRef      String    @unique @map("kode_ref")
+  gclid        String?
+  gbraid       String?
+  wbraid       String?
+  utmSource    String?   @map("utm_source")
+  utmMedium    String?   @map("utm_medium")
+  utmCampaign  String?   @map("utm_campaign")
+  lokasiTombol String?   @map("lokasi_tombol")
+  namaMobil    String?   @map("nama_mobil")
+  halaman      String?
+  jumlahKlik   Int       @default(1) @map("jumlah_klik")
+  status       String    @default("baru") // baru | qualified | closing | tidak_jadi
+  qualifiedAt  DateTime? @map("qualified_at")
+  closingAt    DateTime? @map("closing_at")
+  nilaiClosing Int?      @map("nilai_closing")
+  catatan      String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@index([createdAt])
+  @@index([status])
+  @@map("lead_wa")
 }

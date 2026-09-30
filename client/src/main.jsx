@@ -4,6 +4,7 @@ import { createRoot, hydrateRoot } from 'react-dom/client'
 // dan alasannya ada di index.css, bagian atas.
 import './index.css'
 import App from './App.jsx'
+import { pasangKodeRefWa } from './utils/kodeRefWa'
 
 // react-helmet-async manages <head> tags imperatively (outside React's
 // reconciliation), so it has no way to recognize tags already sitting in the
@@ -42,6 +43,10 @@ window.addEventListener('vite:preloadError', (event) => {
   event.preventDefault()
   window.location.reload()
 })
+
+// Kode referensi di pesan WA untuk pengunjung iklan. Dipasang di document,
+// di luar React, supaya tidak mengubah hasil render (lihat kodeRefWa.js).
+pasangKodeRefWa()
 
 // Hydrate only real prerendered HTML. Pages without a prerendered file are
 // served the build's spa-shell.html (see scripts/saveShell.js), whose #root

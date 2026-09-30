@@ -21,6 +21,7 @@ const contactRoutes = require("./routes/contact.routes");
 const dashboardRoutes = require("./routes/dashboard.routes");
 const testimoniRoutes = require("./routes/testimoni.routes");
 const faqRoutes = require("./routes/faq.routes");
+const leadWaRoutes = require("./routes/leadWa.routes");
 const { errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
@@ -101,6 +102,7 @@ app.use("/api/contact", contactRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/testimoni", testimoniRoutes);
 app.use("/api/faq", faqRoutes);
+app.use("/api/lead-wa", leadWaRoutes);
 
 const clientDist = path.join(__dirname, "..", "..", "client", "dist");
 
@@ -139,6 +141,7 @@ const KNOWN_SPA_ROUTES = [
   /^\/admin\/booking\/?$/,
   /^\/admin\/booking\/baru\/?$/,
   /^\/admin\/booking\/[^/]+\/?$/,
+  /^\/admin\/lead\/?$/,
   /^\/admin\/testimoni\/?$/,
   /^\/admin\/faq\/?$/,
   /^\/admin\/profile\/?$/,

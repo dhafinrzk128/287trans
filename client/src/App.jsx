@@ -60,6 +60,7 @@ const AdminProfile = lazy(() => import("./pages/admin/AdminProfile"));
 const AdminAccount = lazy(() => import("./pages/admin/AdminAccount"));
 const AdminTestimoni = lazy(() => import("./pages/admin/AdminTestimoni"));
 const AdminFaq = lazy(() => import("./pages/admin/AdminFaq"));
+const AdminLeadWa = lazy(() => import("./pages/admin/AdminLeadWa"));
 
 function App() {
   return (
@@ -126,6 +127,7 @@ function App() {
                     <Route path="booking" element={<AdminBookings />} />
                     <Route path="booking/baru" element={<AdminBookingForm />} />
                     <Route path="booking/:id" element={<AdminBookingDetail />} />
+                    <Route path="lead" element={<AdminLeadWa />} />
                     <Route path="testimoni" element={<AdminTestimoni />} />
                     <Route path="faq" element={<AdminFaq />} />
                     <Route path="profile" element={<AdminProfile />} />

@@ -4,6 +4,7 @@ const { requireAdminAuth } = require("../middleware/auth");
 const { generateKodeBooking } = require("../utils/kodeBooking");
 const { publicWriteLimiter } = require("../middleware/rateLimiters");
 const { uploadBuktiTransfer, publicUrl } = require("../utils/upload");
+const { bersihkanIdKlik, bersihkanTeks } = require("../utils/konversiOffline");
 
 const router = express.Router();
 
@@ -52,6 +53,15 @@ async function isRangeOverlapping(idMobil, tglAmbil, tglKembali, excludeBookingI
 // POST /api/booking - kirim permintaan booking (guest, tanpa pembayaran)
 router.post("/", publicWriteLimiter, async (req, res) => {
   const { idMobil, namaCustomer, noHp, tglAmbil, estimasiHari, denganSopir, catatan } = req.body;
+  // Asal klik iklan, dikirim form booking kalau pengunjungnya datang dari
+  // Google Ads. Nilai yang tidak valid dibuang diam-diam: booking-nya tetap
+  // harus jalan walau data atribusinya rusak.
+  const atribusi = {
+    gclid: bersihkanIdKlik(req.body.gclid),
+    gbraid: bersihkanIdKlik(req.body.gbraid),
+    wbraid: bersihkanIdKlik(req.body.wbraid),
+    utmCampaign: bersihkanTeks(req.body.utm_campaign, 150),
+  };
 
   if (
     !idMobil ||
@@ -125,6 +135,7 @@ router.post("/", publicWriteLimiter, async (req, res) => {
           denganSopir: denganSopir === true || denganSopir === "true",
           catatan: trimmedCatatan || null,
           statusBooking: "menunggu_konfirmasi",
+          ...atribusi,
         },
         include: { mobil: { include: { fotos: true } } },
       });
@@ -280,9 +291,15 @@ router.patch("/admin/:id/status", requireAdminAuth, async (req, res) => {
   const existing = await prisma.booking.findUnique({ where: { idBooking: Number(req.params.id) } });
   if (!existing) return res.status(404).json({ message: "Booking tidak ditemukan." });
 
+  // closingAt dicatat sekali, saat booking pertama kali dikonfirmasi (atau
+  // langsung ditandai selesai), lalu dibiarkan: waktu itulah yang diunggah
+  // ke Google Ads sebagai konversi "Booking Closing", dan waktu yang tetap
+  // membuat unggahan ulang terdeteksi sebagai duplikat, bukan closing baru.
+  const jadiClosing = (status === "dikonfirmasi" || status === "selesai") && !existing.closingAt;
+
   const updated = await prisma.booking.update({
     where: { idBooking: Number(req.params.id) },
-    data: { statusBooking: status },
+    data: { statusBooking: status, ...(jadiClosing && { closingAt: new Date() }) },
     include: { mobil: { include: { fotos: true } } },
   });
   res.json(serializeBooking(updated));

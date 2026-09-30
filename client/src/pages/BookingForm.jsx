@@ -13,6 +13,7 @@ import Button from "../components/ui/Button";
 import SmartImage from "../components/SmartImage";
 import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
 import { trackWhatsAppClick, trackBookingSubmit } from "../utils/tracking";
+import { getUtmParams } from "../utils/utm";
 import { isValidHp } from "../utils/validators";
 import Seo from "../components/Seo";
 
@@ -77,7 +78,14 @@ export default function BookingForm() {
     if (!validate()) return;
     setSubmitting(true);
     try {
+      // Asal klik iklan ikut disimpan di booking, supaya booking yang nanti
+      // dikonfirmasi admin bisa diunggah ke Google Ads sebagai closing.
+      const { gclid, gbraid, wbraid, utm_campaign } = getUtmParams();
       const { data } = await api.post("/booking", {
+        gclid,
+        gbraid,
+        wbraid,
+        utm_campaign,
         idMobil: mobil.idMobil,
         namaCustomer: form.namaCustomer,
         noHp: form.noHp,
