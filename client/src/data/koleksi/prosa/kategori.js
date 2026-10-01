@@ -108,11 +108,13 @@ export const PROSA_KATEGORI = {
       },
       {
         judul: "Paling Sering Disewa untuk Apa",
-        isi: "Tiga keperluan mendominasi permintaan Alphard di kami: penjemputan tamu perusahaan dari bandara atau hotel, kendaraan pengantin dan rombongan keluarga inti di hari pernikahan, dan agenda kunjungan pejabat atau klien yang menuntut kesan formal. Untuk keperluan seperti ini, sebagian besar penyewa memilih paket dengan sopir agar penumpang tidak perlu memikirkan parkir dan rute. Biaya sopir dihitung terpisah dari tarif unit dan selalu kami sebutkan di awal, termasuk ketentuan untuk agenda yang berlangsung sampai larut malam."
+        isi: "Tiga keperluan mendominasi permintaan Alphard di kami: penjemputan tamu perusahaan dari bandara atau hotel, kendaraan pengantin dan rombongan keluarga inti di hari pernikahan, dan agenda kunjungan pejabat atau klien yang menuntut kesan formal. Untuk keperluan seperti ini, sebagian besar penyewa memilih paket dengan sopir agar penumpang tidak perlu memikirkan parkir dan rute. Biaya sopir dihitung terpisah dari tarif unit dan selalu kami sebutkan di awal, termasuk ketentuan untuk agenda yang berlangsung sampai larut malam.",
+        tautan: { to: "/artikel/sewa-mobil-antar-jemput-bandara-soekarno-hatta", label: "Panduan sewa mobil antar jemput Bandara Soekarno-Hatta" },
       },
       {
         judul: "Kapasitas dan Ketersediaan Tanggal",
-        isi: "Seluruh tipe Alphard kami berkapasitas enam penumpang dengan konfigurasi kursi kapten di baris kedua — bukan tujuh — karena kenyamanan baris kedua justru datang dari konfigurasi itu. Untuk rombongan lebih besar, biasanya kami sarankan kombinasi Alphard untuk tamu utama dan MPV atau SUV untuk pengiring. Karena jumlah tipenya terbatas dan tanggal pernikahan cenderung menumpuk di akhir pekan tertentu, sebaiknya kunci tanggal Anda jauh hari lewat WhatsApp sebelum menetapkan susunan acara."
+        isi: "Seluruh tipe Alphard kami berkapasitas enam penumpang dengan konfigurasi kursi kapten di baris kedua — bukan tujuh — karena kenyamanan baris kedua justru datang dari konfigurasi itu. Untuk rombongan lebih besar, biasanya kami sarankan kombinasi Alphard untuk tamu utama dan MPV atau SUV untuk pengiring. Karena jumlah tipenya terbatas dan tanggal pernikahan cenderung menumpuk di akhir pekan tertentu, sebaiknya kunci tanggal Anda jauh hari lewat WhatsApp sebelum menetapkan susunan acara.",
+        tautan: { to: "/artikel/sewa-mobil-pengantin-tangerang", label: "Panduan memilih mobil pengantin di Tangerang" },
       }
     ],
     faq: [

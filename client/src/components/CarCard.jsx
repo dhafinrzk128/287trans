@@ -7,83 +7,101 @@ import { formatRupiah } from "../utils/format";
 
 export default function CarCard({ mobil, priority = false }) {
   const unavailable = mobil.status !== "tersedia";
+  const href = `/katalog/${mobil.idMobil}`;
 
+  // Kartu tetap bisa diklik penuh, tapi lewat "stretched link": tautan utama
+  // hanya membungkus nama unit, dan ::after-nya direntangkan menutupi seluruh
+  // <article>. Sebelumnya satu <a> membungkus seluruh kartu, sehingga anchor
+  // text yang dibaca mesin pencari adalah gabungan semua isinya ("2024
+  // TersediaLuxury SedanBMW M4..."). Sekarang anchor-nya "Sewa {nama unit}".
+  //
+  // Syaratnya: <article> satu-satunya leluhur ber-position, dan tidak ada
+  // elemen ber-position di antara tautan itu dan <article>.
   return (
-    <article className="h-full">
-      <Link
-        to={`/katalog/${mobil.idMobil}`}
-        className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-soft-lg)] ${
-          unavailable ? "hover:border-slate-300" : "hover:border-blue-200"
-        }`}
-      >
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
-          {mobil.fotoUtama ? (
-            <SmartImage
-              src={mobil.fotoUtama}
-              alt={`${mobil.namaMobil} - unit rental mobil Tangerang`}
-              className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${
-                unavailable ? "grayscale opacity-60" : ""
-              }`}
-              loading={priority ? "eager" : "lazy"}
-              fetchPriority={priority ? "high" : "auto"}
-              // Lebar tampil kartu ini mengikuti grid katalog: satu kolom di
-              // ponsel, lalu 2 / 3 / 4 kolom dalam wadah max-w-7xl (1280px),
-              // sehingga di layar besar kotaknya justru paling sempit (~300px).
-              // Tanpa ini, tiap kartu menarik berkas 1200px — ~41 KB terukur
-              // untuk kotak selebar 284px, dikali tujuh kartu di halaman MPV.
-              ukuran="(min-width: 1280px) 300px, (min-width: 1024px) 32vw, (min-width: 640px) 48vw, 92vw"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-slate-300">
-              <ImageOff size={40} />
-            </div>
-          )}
-          <Badge className="absolute left-3 top-3 border border-white/50 bg-white/90 text-slate-900 shadow-sm backdrop-blur-sm">
-            {mobil.tahun}
-          </Badge>
-          <Badge className={`absolute right-3 top-3 border shadow-sm ${STATUS_MOBIL_BADGE[mobil.status]}`}>
-            {STATUS_MOBIL_LABEL[mobil.status]}
-          </Badge>
+    <article
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-soft-lg)] has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-blue-500 ${
+        unavailable ? "hover:border-slate-300" : "hover:border-blue-200"
+      }`}
+    >
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+        {mobil.fotoUtama ? (
+          <SmartImage
+            src={mobil.fotoUtama}
+            alt={`${mobil.namaMobil} - unit rental mobil Tangerang`}
+            className={`h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 ${
+              unavailable ? "grayscale opacity-60" : ""
+            }`}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : "auto"}
+            // Lebar tampil kartu ini mengikuti grid katalog: satu kolom di
+            // ponsel, lalu 2 / 3 / 4 kolom dalam wadah max-w-7xl (1280px),
+            // sehingga di layar besar kotaknya justru paling sempit (~300px).
+            // Tanpa ini, tiap kartu menarik berkas 1200px — ~41 KB terukur
+            // untuk kotak selebar 284px, dikali tujuh kartu di halaman MPV.
+            ukuran="(min-width: 1280px) 300px, (min-width: 1024px) 32vw, (min-width: 640px) 48vw, 92vw"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-slate-300">
+            <ImageOff size={40} />
+          </div>
+        )}
+        <Badge className="absolute left-3 top-3 border border-white/50 bg-white/90 text-slate-900 shadow-sm backdrop-blur-sm">
+          {mobil.tahun}
+        </Badge>
+        <Badge className={`absolute right-3 top-3 border shadow-sm ${STATUS_MOBIL_BADGE[mobil.status]}`}>
+          {STATUS_MOBIL_LABEL[mobil.status]}
+        </Badge>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
+        <h3 className="text-lg font-bold text-slate-900">
+          <Link to={href} className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-none">
+            <span className="font-semibold text-slate-500">Sewa </span>
+            {mobil.namaMobil}
+          </Link>
+        </h3>
+
+        <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
+          <span className="flex items-center gap-1">
+            <Users size={16} />
+            {`${mobil.kapasitas} orang`}
+          </span>
+          <span className="flex items-center gap-1">
+            <Cog size={16} />
+            {mobil.transmisi}
+          </span>
+          <span className="flex items-center gap-1">
+            <Fuel size={16} />
+            {mobil.bahanBakar}
+          </span>
         </div>
 
-        <div className="flex flex-1 flex-col gap-2 p-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">{mobil.tipe}</p>
-          <h3 className="text-lg font-bold text-slate-900">{mobil.namaMobil}</h3>
+        <p className="mt-2 text-lg font-extrabold text-accent-700">
+          {formatRupiah(mobil.hargaPerHari)}
+          <span className="text-sm font-medium text-slate-500"> /hari</span>
+        </p>
 
-          <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
-            <span className="flex items-center gap-1">
-              <Users size={16} />
-              {`${mobil.kapasitas} orang`}
-            </span>
-            <span className="flex items-center gap-1">
-              <Cog size={16} />
-              {mobil.transmisi}
-            </span>
-            <span className="flex items-center gap-1">
-              <Fuel size={16} />
-              {mobil.bahanBakar}
-            </span>
-          </div>
-
-          <p className="mt-2 text-lg font-extrabold text-accent-700">
-            {formatRupiah(mobil.hargaPerHari)}
-            <span className="text-sm font-medium text-slate-500"> /hari</span>
-          </p>
-
-          <div className="mt-auto pt-3">
-            <span
-              className={`flex w-full items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors duration-200 ${
-                unavailable
-                  ? "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
-                  : "bg-accent-50 text-accent-700 group-hover:bg-accent-600 group-hover:text-white"
-              }`}
-            >
-              Lihat Detail & Ketersediaan
-              <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-            </span>
-          </div>
+        <div className="mt-auto pt-3">
+          {/* Tombol ini tujuannya sama dengan tautan nama, jadi dikeluarkan
+              dari urutan tab dan pembaca layar — satu kartu cukup satu
+              pemberhentian. Klik mouse tetap jalan; z-10 menaruhnya di atas
+              ::after tautan nama. */}
+          <Link
+            to={href}
+            tabIndex={-1}
+            aria-hidden="true"
+            className={`relative z-10 flex w-full items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors duration-200 ${
+              unavailable
+                ? "bg-slate-100 text-slate-500 group-hover:bg-slate-200"
+                : "bg-accent-50 text-accent-700 group-hover:bg-accent-600 group-hover:text-white"
+            }`}
+          >
+            Lihat Detail
+            <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </Link>
         </div>
-      </Link>
+      </div>
     </article>
   );
 }

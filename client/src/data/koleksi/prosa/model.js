@@ -30,7 +30,8 @@ export const PROSA_MODEL = {
       },
       {
         judul: "Hybrid: Kapan Selisih Harganya Terbayar",
-        isi: "Varian hybrid dipatok sedikit lebih tinggi per harinya dibanding versi bensin, dan itu wajar ditanyakan. Patokan sederhananya begini: kalau perjalanan Anda didominasi macet dan rute dalam kota, sistem hybrid bekerja paling sering dan selisih harga sewanya biasanya tertutup oleh hemat bahan bakar dalam beberapa hari pemakaian. Kalau rutenya tol jarak jauh dengan kecepatan stabil, bedanya jadi lebih tipis dan varian bensin sudah cukup. Kalau ragu, sebutkan saja rencana rute Anda saat chat — tim kami biasa membantu hitungan kasarnya sebelum Anda memutuskan."
+        isi: "Varian hybrid dipatok sedikit lebih tinggi per harinya dibanding versi bensin, dan itu wajar ditanyakan. Patokan sederhananya begini: kalau perjalanan Anda didominasi macet dan rute dalam kota, sistem hybrid bekerja paling sering dan selisih harga sewanya biasanya tertutup oleh hemat bahan bakar dalam beberapa hari pemakaian. Kalau rutenya tol jarak jauh dengan kecepatan stabil, bedanya jadi lebih tipis dan varian bensin sudah cukup. Kalau ragu, sebutkan saja rencana rute Anda saat chat — tim kami biasa membantu hitungan kasarnya sebelum Anda memutuskan.",
+        tautan: { to: "/artikel/sewa-mobil-mudik-dari-tangerang", label: "Panduan sewa mobil untuk mudik dari Tangerang" },
       },
       {
         judul: "Lepas Kunci atau Plus Sopir",
@@ -73,7 +74,8 @@ export const PROSA_MODEL = {
       },
       {
         judul: "Cocok untuk Perjalanan Seperti Apa",
-        isi: "Reborn paling sering disewa untuk mudik dan perjalanan antarkota, liburan keluarga besar, serta antar-jemput rombongan ke Bandara Soekarno-Hatta. Untuk keperluan kerja harian di dalam kota Tangerang, Reborn juga masuk akal kalau Anda mengutamakan biaya operasional yang rendah dan tidak keberatan dengan karakter mesin diesel yang sedikit lebih terdengar dibanding mesin bensin. Kalau prioritas Anda adalah kabin sesenyap mungkin untuk menjamu tamu, Zenix hybrid atau kelas di atasnya lebih pas."
+        isi: "Reborn paling sering disewa untuk mudik dan perjalanan antarkota, liburan keluarga besar, serta antar-jemput rombongan ke Bandara Soekarno-Hatta. Untuk keperluan kerja harian di dalam kota Tangerang, Reborn juga masuk akal kalau Anda mengutamakan biaya operasional yang rendah dan tidak keberatan dengan karakter mesin diesel yang sedikit lebih terdengar dibanding mesin bensin. Kalau prioritas Anda adalah kabin sesenyap mungkin untuk menjamu tamu, Zenix hybrid atau kelas di atasnya lebih pas.",
+        tautan: { to: "/artikel/sewa-mobil-mudik-dari-tangerang", label: "Panduan sewa mobil untuk mudik dari Tangerang" },
       }
     ],
     faq: [
@@ -104,7 +106,8 @@ export const PROSA_MODEL = {
     bagian: [
       {
         judul: "2.8 GR atau Legender: Mana yang Sesuai",
-        isi: "Fortuner 2.8 GR kami bermesin diesel dengan tampilan bergaya GR Sport yang lebih sporty dan agresif. Karakter dieselnya membuat unit ini terasa paling bertenaga saat membawa beban penuh dan menghadapi tanjakan panjang, dan lebih hemat untuk rute tol jarak jauh. Fortuner Legender adalah keluaran 2025 dengan tampilan depan yang lebih mewah dan halus, pilihan yang lebih pas kalau unit dipakai untuk menjemput tamu atau menghadiri acara resmi. Selisih tarif keduanya tipis, jadi biasanya keputusannya jatuh ke selera tampilan dan jenis rute."
+        isi: "Fortuner 2.8 GR kami bermesin diesel dengan tampilan bergaya GR Sport yang lebih sporty dan agresif. Karakter dieselnya membuat unit ini terasa paling bertenaga saat membawa beban penuh dan menghadapi tanjakan panjang, dan lebih hemat untuk rute tol jarak jauh. Fortuner Legender adalah keluaran 2025 dengan tampilan depan yang lebih mewah dan halus, pilihan yang lebih pas kalau unit dipakai untuk menjemput tamu atau menghadiri acara resmi. Selisih tarif keduanya tipis, jadi biasanya keputusannya jatuh ke selera tampilan dan jenis rute.",
+        tautan: { to: "/artikel/sewa-mobil-mudik-dari-tangerang", label: "Panduan sewa mobil untuk mudik dari Tangerang" },
       },
       {
         judul: "Fortuner untuk Keperluan Perusahaan",
@@ -147,7 +150,8 @@ export const PROSA_MODEL = {
       },
       {
         judul: "Mesin Diesel untuk Rute Jauh",
-        isi: "Unit ini bermesin diesel dengan transmisi matic. Torsi besar di putaran rendah membuatnya tidak kewalahan saat kabin terisi tujuh orang dan bagasi penuh, termasuk di tanjakan panjang menuju kawasan pegunungan. Untuk rute tol jarak jauh, konsumsi bahan bakarnya juga lebih bersahabat dibanding SUV bensin di kelas yang sama. Kami sarankan mengisi dengan Dexlite atau setara untuk menjaga performa mesin."
+        isi: "Unit ini bermesin diesel dengan transmisi matic. Torsi besar di putaran rendah membuatnya tidak kewalahan saat kabin terisi tujuh orang dan bagasi penuh, termasuk di tanjakan panjang menuju kawasan pegunungan. Untuk rute tol jarak jauh, konsumsi bahan bakarnya juga lebih bersahabat dibanding SUV bensin di kelas yang sama. Kami sarankan mengisi dengan Dexlite atau setara untuk menjaga performa mesin.",
+        tautan: { to: "/artikel/sewa-mobil-mudik-dari-tangerang", label: "Panduan sewa mobil untuk mudik dari Tangerang" },
       },
       {
         judul: "Ketersediaan Tipe Ini",

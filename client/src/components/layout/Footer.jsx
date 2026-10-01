@@ -34,8 +34,8 @@ export default function Footer() {
         <div>
           <SmartImage src="/logo-nav.png" alt={profile?.namaPerusahaan || "287 Trans"} width="148" height="120" className="h-14 w-auto" />
           <p className="mt-4 text-sm leading-relaxed text-slate-400">
-            Solusi rental mobil premium terpercaya dengan armada unit-unit terbaru, harga bersaing, dan proses
-            booking online yang mudah tanpa perlu membuat akun.
+            Rental mobil premium di Ciledug, Tangerang: unit-unit keluaran terbaru yang terawat, layanan
+            personal, dan booking online yang mudah tanpa perlu membuat akun.
           </p>
         </div>
 

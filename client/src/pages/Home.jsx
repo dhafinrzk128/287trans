@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShieldCheck, Wallet, Zap, Headset, Star, ArrowRight, ChevronDown, Sparkles, BadgeCheck, MessageCircle } from "lucide-react";
+import { ShieldCheck, Zap, Headset, Star, ArrowRight, ChevronDown, Sparkles, BadgeCheck, MessageCircle } from "lucide-react";
 import api from "../api/client";
 import Seo from "../components/Seo";
 import { AUTORENTAL_SCHEMA, WEBSITE_SCHEMA } from "../utils/schema";
@@ -15,11 +15,16 @@ import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
+// Bahasa premium, bukan bahasa harga: 287 Trans tidak bersaing di tarif
+// termurah (lihat jawaban FAQ beranda soal tarif), jadi kata seperti
+// "terjangkau" atau "harga bersaing" mengirim sinyal yang bertentangan dengan
+// posisinya. Keterbukaan biaya tetap dijelaskan di bagian "Apa yang termasuk
+// tarif?" di bawah.
 const KEUNGGULAN = [
-  { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit terbaru dari MPV, SUV, hingga sedan dan luxury MPV kelas premium, siap untuk berbagai kebutuhan.", accent: false },
-  { icon: Wallet, title: "Harga Bersaing", desc: "Tarif transparan dan kompetitif tanpa biaya tersembunyi.", accent: false },
+  { icon: ShieldCheck, title: "Armada Premium", desc: "Unit-unit keluaran terbaru dari MPV, SUV, hingga sedan dan luxury MPV, seluruhnya bertransmisi matic.", accent: false },
+  { icon: BadgeCheck, title: "Terawat & Siap Pakai", desc: "Setiap unit dirawat rutin, dibersihkan, dan diperiksa sebelum diserahkan kepada Anda.", accent: false },
   { icon: Zap, title: "Proses Mudah", desc: "Booking online 24 jam, tanpa perlu membuat akun. Cukup isi form dan konfirmasi.", accent: true },
-  { icon: Headset, title: "Layanan Responsif", desc: "Tim customer service siap membantu Anda via telepon maupun WhatsApp.", accent: false },
+  { icon: Headset, title: "Layanan Personal", desc: "Respon cepat via WhatsApp maupun telepon, dan dibantu memilih unit sesuai rute serta jumlah penumpang.", accent: false },
 ];
 
 export default function Home() {
@@ -213,13 +218,18 @@ export default function Home() {
       {/* Keunggulan */}
       <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-slate-900">Kenapa Pilih 287 Trans?</h2>
+          {/* H2 membidik "sewa mobil premium tangerang"; pertanyaan lamanya
+              tetap ada sebagai pengantar kecil di atasnya. Anchor ke /katalog
+              sengaja bukan "rental mobil Tangerang": keyword itu milik halaman
+              ini sendiri, bukan katalog. */}
+          <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">Kenapa Pilih 287 Trans?</p>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">Sewa Mobil Premium Tangerang</h2>
           <p className="mt-3 text-slate-600">
-            {"Kami berkomitmen memberikan pengalaman "}
+            {"Unit keluaran terbaru yang terawat, layanan yang personal, dan respon cepat dari tim kami. Lihat seluruh pilihannya di "}
             <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">
-              rental mobil Tangerang
+              katalog armada
             </Link>
-            {" terbaik untuk Anda."}
+            {" kami."}
           </p>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
