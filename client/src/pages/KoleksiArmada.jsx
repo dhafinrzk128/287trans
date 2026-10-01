@@ -277,6 +277,40 @@ export default function KoleksiArmada({ slug }) {
             <div className="mt-8">
               <KategoriArmadaGrid mobils={mobils} />
             </div>
+          ) : koleksi.tampilanUnit === "tabel" ? (
+            // Seluruh armada dalam satu tabel ringkas: untuk halaman cara sewa,
+            // pertanyaannya "unit apa saja dan berapa", dan 24 kartu bergambar
+            // akan jauh lebih berat untuk menjawab hal yang sama. Di ponsel
+            // hanya nama dan harga yang tampil, supaya kolom harga tidak
+            // terdorong keluar layar oleh kolom pelengkap.
+            <Reveal className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)]">
+              <table className="w-full text-left text-sm">
+                <thead className="bg-slate-50 text-slate-500">
+                  <tr>
+                    <th scope="col" className="px-4 py-3 font-semibold">Unit</th>
+                    <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell">Kategori</th>
+                    <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell">Kapasitas</th>
+                    <th scope="col" className="px-4 py-3 text-right font-semibold">Harga / Hari</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {units.map((m) => (
+                    <tr key={m.idMobil}>
+                      <td className="px-4 py-3 font-medium text-slate-900">
+                        <Link to={`/katalog/${m.idMobil}`} className="hover:text-blue-600 hover:underline">
+                          {m.namaMobil}
+                        </Link>
+                      </td>
+                      <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">{m.tipe}</td>
+                      <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">{`${m.kapasitas} orang`}</td>
+                      <td className="whitespace-nowrap px-4 py-3 text-right font-semibold text-slate-900">
+                        {formatRupiah(m.hargaPerHari)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Reveal>
           ) : units.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white py-14 text-center text-slate-500">
               Belum ada tipe di kategori ini. Hubungi kami via WhatsApp untuk alternatif terdekat.

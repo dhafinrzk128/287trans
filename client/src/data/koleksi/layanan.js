@@ -39,4 +39,23 @@ export const KOLEKSI_LAYANAN = [
     judulCta: "Cek Unit Kosong untuk Tanggal Anda",
     sapaanWa: "Halo, saya mau sewa mobil di Ciledug.",
   },
+  {
+    slug: "sewa-mobil-lepas-kunci-tangerang",
+    grup: "layanan",
+    label: "Sewa Lepas Kunci",
+    semua: true,
+    tampilanUnit: "tabel",
+    judul: "Sewa Mobil Lepas Kunci Tangerang",
+    deskripsi: (harga) =>
+      `Sewa mobil lepas kunci Tangerang${harga ? ` mulai ${harga}/hari` : ""}, syarat cukup KTP tanpa kartu kredit. Unit premium matic terawat, harian sampai bulanan.`,
+    h1: "Sewa Mobil Lepas Kunci Tangerang",
+    subjudul:
+      "Sewa mobil lepas kunci Tangerang dengan unit premium keluaran terbaru: Anda yang menyetir, Anda yang mengatur jadwal, dan syaratnya cukup KTP.",
+    judulUnit: "Daftar Unit Sewa Mobil Lepas Kunci Tangerang",
+    pengantarUnit:
+      "Seluruh unit di katalog bisa disewa lepas kunci. Harga di bawah ini tarif unit per hari, mengikuti katalog.",
+    judulFaq: "Pertanyaan Seputar Sewa Lepas Kunci",
+    judulCta: "Cek Unit Lepas Kunci untuk Tanggal Anda",
+    sapaanWa: "Halo, saya mau sewa mobil lepas kunci.",
+  },
 ];

@@ -67,4 +67,67 @@ export const PROSA_LAYANAN = {
       },
     ],
   },
+
+  // Sengaja tidak mengulang artikel syarat sewa lepas kunci: syaratnya cukup
+  // diringkas di sini lalu ditautkan ke sana. Halaman ini menjawab "unitnya
+  // apa, berapa, dan bagaimana memesannya"; artikel menjawab rinciannya.
+  "sewa-mobil-lepas-kunci-tangerang": {
+    intro:
+      "Sewa mobil lepas kunci Tangerang cocok untuk Anda yang lebih nyaman menyetir sendiri: tidak ada sopir yang perlu dijemput, tidak ada jam kerja sopir yang membatasi agenda, dan kabin sepenuhnya milik Anda dan keluarga selama masa sewa. Di 287 Trans, seluruh unit di katalog — dari MPV tujuh penumpang sampai Alphard dan sedan Mercedes-Benz — bisa disewa lepas kunci. Semuanya bertransmisi matic, dirawat rutin, dan diperiksa sebelum diserahkan kepada Anda.",
+    bagian: [
+      {
+        judul: "Kapan Lepas Kunci Lebih Masuk Akal",
+        isi: "Lepas kunci paling terasa manfaatnya untuk perjalanan beberapa hari, liburan keluarga, dan pemakaian harian yang jadwalnya berubah-ubah. Anda bisa berangkat subuh, berhenti di mana saja, dan pulang larut tanpa memikirkan waktu istirahat sopir. Kalau agenda Anda justru padat dengan rapat di beberapa lokasi, atau rutenya belum Anda kenal, opsi plus sopir biasanya lebih menenangkan — dan bisa dipilih untuk unit yang sama.",
+      },
+      {
+        judul: "Syarat Singkat",
+        isi: "Siapkan KTP yang masih berlaku dan SIM aktif yang sesuai golongan kendaraan. Tidak ada syarat kartu kredit, tidak ada jaminan BPKB, dan Anda tidak perlu mendaftar akun untuk memesan. Rincian dokumen, cara menghitung hari sewa, dan biaya di luar tarif kami jelaskan di panduan terpisah.",
+        tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca panduan syarat sewa lepas kunci" },
+      },
+      {
+        judul: "Yang Termasuk dan Tidak Termasuk Tarif",
+        isi: "Angka di tabel adalah tarif unit untuk satu hari atau 24 jam. Bahan bakar dan tol selama pemakaian ditanggung penyewa, jadi biayanya mengikuti rute Anda sendiri. Unit bisa diambil di kantor kami di Ciledug tanpa biaya tambahan; kalau ingin diantar, biaya antar dihitung sesuai jarak dan disebutkan sebelum pemesanan dikunci. Untuk pemakaian mingguan atau bulanan, tanyakan skema jangka panjang saat chat.",
+      },
+      {
+        judul: "Memilih Unit untuk Disetir Sendiri",
+        isi: "Kalau Anda jarang menyetir mobil besar, MPV seperti Innova Reborn dan Innova Zenix paling mudah dikendalikan sekaligus muat tujuh penumpang. SUV seperti Fortuner dan Pajero Sport memberi posisi duduk lebih tinggi untuk rute luar kota. Untuk dalam kota, unit lima penumpang yang lebih ringkas lebih mudah diparkir. Alphard dan sedan premium juga tersedia lepas kunci untuk acara yang ingin Anda kendarai sendiri.",
+      },
+      {
+        judul: "Serah Terima dan Pengembalian",
+        isi: "Saat serah terima, periksa kondisi unit bersama tim kami sebelum berangkat. Unit dikembalikan pada tanggal yang disepakati di awal. Kalau rencana Anda berubah dan ingin memperpanjang, kabari kami sebelum tanggal pengembalian supaya ketersediaan unitnya bisa dicek lebih dulu.",
+      },
+      {
+        judul: "Cara Booking Lepas Kunci",
+        isi: "Pemesanan bisa lewat website maupun WhatsApp, tanpa membuat akun.",
+        poin: [
+          "Pilih unit dari tabel di atas, lalu buka halamannya untuk melihat kalender ketersediaan.",
+          "Isi form permintaan booking dan pilih opsi lepas kunci, atau chat WhatsApp dengan menyebutkan unit, tanggal mulai, dan lama sewa.",
+          "Tentukan apakah unit diambil di kantor Ciledug atau diantar ke alamat Anda.",
+          "Tim kami mengonfirmasi ketersediaan dan total biayanya sebelum tanggal Anda dikunci.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        tanya: "Apa saja syarat sewa mobil lepas kunci?",
+        jawab: "KTP yang masih berlaku, ditambah SIM aktif karena Anda sendiri yang mengemudi. Tidak ada syarat kartu kredit, jaminan BPKB, maupun pendaftaran akun.",
+      },
+      {
+        tanya: "Apakah semua unit bisa disewa lepas kunci?",
+        jawab: "Bisa. Seluruh unit di katalog tersedia untuk lepas kunci maupun plus sopir, termasuk Alphard dan sedan Mercedes-Benz atau BMW.",
+      },
+      {
+        tanya: "Apakah bensin dan tol sudah termasuk?",
+        jawab: "Belum. Untuk sewa lepas kunci, bahan bakar dan tol selama pemakaian ditanggung penyewa. Tarif yang tertera adalah tarif unit per hari.",
+      },
+      {
+        tanya: "Bisa sewa lepas kunci hanya satu hari?",
+        jawab: "Bisa. Tidak ada minimum durasi khusus; satu hari dihitung 24 jam dari waktu pengambilan. Untuk kebutuhan lebih panjang tersedia skema mingguan, bulanan, sampai tahunan.",
+      },
+      {
+        tanya: "Unit lepas kunci boleh dibawa ke luar kota?",
+        jawab: "Boleh. Sebutkan kota tujuan dan lama perjalanan saat memesan, supaya kami bisa menyiapkan unit yang paling sesuai dan menjelaskan ketentuannya lebih dulu.",
+      },
+    ],
+  },
 };

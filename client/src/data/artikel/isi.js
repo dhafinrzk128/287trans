@@ -53,6 +53,7 @@ export const ISI_ARTIKEL = {
         paragraf: [
           "Lepas kunci cocok kalau Anda terbiasa menyetir dan ingin jadwal yang sepenuhnya bebas. Plus sopir lebih masuk akal untuk agenda yang padat, rute yang belum Anda kenal, atau saat Anda perlu fokus pada tamu dan pekerjaan. Seluruh unit di katalog kami tersedia untuk kedua opsi.",
         ],
+        tautan: { to: "/sewa-mobil-lepas-kunci-tangerang", label: "Lihat unit dan harga sewa mobil lepas kunci di Tangerang" },
       },
     ],
     terkait: [
