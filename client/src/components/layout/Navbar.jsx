@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import SmartImage from "../SmartImage";
-import { MENU_ARMADA, KOLEKSI_PATHS } from "../../data/koleksiArmada";
+import { MENU_ARMADA, KOLEKSI_ARMADA_PATHS } from "../../data/koleksiArmada";
 
 // "Pilihan Armada" tidak ada di daftar ini karena dia bukan tautan tunggal
 // lagi, melainkan menu yang membuka daftar kategori dan model — lihat
@@ -34,7 +34,7 @@ export default function Navbar() {
   // Menu armada dianggap aktif di /katalog maupun di halaman kategori/model,
   // supaya penanda posisi tetap benar untuk pengunjung yang mendarat langsung
   // dari iklan ke salah satu halaman koleksi.
-  const armadaAktif = pathname === "/katalog" || KOLEKSI_PATHS.includes(pathname);
+  const armadaAktif = pathname === "/katalog" || KOLEKSI_ARMADA_PATHS.includes(pathname);
 
   // Tutup semua menu setiap kali pindah halaman — tanpa ini, panel dropdown
   // tetap menggantung menutupi konten halaman tujuan.
