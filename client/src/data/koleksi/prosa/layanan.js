@@ -130,4 +130,45 @@ export const PROSA_LAYANAN = {
       },
     ],
   },
+
+  // Halaman harga: tabelnya yang utama. Prosa di sini hanya menjelaskan cara
+  // membaca angkanya — tidak ada satu pun angka harga yang ditulis di teks.
+  "harga-sewa-mobil-tangerang": {
+    intro:
+      "Harga sewa mobil di Tangerang sangat bergantung pada kelas unitnya, jadi kami menampilkan seluruhnya apa adanya: setiap unit, setiap kategori, dengan tarif harian yang sama persis dengan katalog dan dengan yang disebutkan tim kami saat Anda chat. Kalau ada perubahan tarif, tabel ini ikut berubah dengan sendirinya.",
+    bagian: [
+      {
+        judul: "Cara Membaca Tarif di Tabel",
+        isi: "Angka di setiap baris adalah tarif unit untuk satu hari, dihitung 24 jam sejak waktu pengambilan. Total sewa adalah tarif harian dikalikan jumlah hari. Tarif yang sama berlaku untuk sewa lepas kunci; kalau Anda memilih plus sopir, biaya sopir ditambahkan terpisah dan disebutkan sejak awal.",
+      },
+      {
+        judul: "Biaya di Luar Tarif Unit",
+        isi: "Ada tiga kemungkinan tambahan, dan semuanya kami sebutkan sebelum pemesanan dikunci: bahan bakar dan tol selama pemakaian, biaya sopir bila memilih opsi itu, dan biaya antar bila unit diminta datang ke alamat Anda. Mengambil unit sendiri di kantor kami di Ciledug tidak dikenakan biaya.",
+        tautan: { to: "/sewa-mobil-lepas-kunci-tangerang", label: "Lihat ketentuan sewa mobil lepas kunci" },
+      },
+      {
+        judul: "Sewa Mingguan, Bulanan, dan Tahunan",
+        isi: "Untuk pemakaian panjang, tarif per harinya lebih rendah dibanding sewa harian, dan selisihnya makin terasa seiring lamanya masa sewa. Skema ini banyak dipakai untuk kendaraan operasional perusahaan dan pemakaian pribadi jangka panjang. Angkanya disusun sesuai unit dan durasi, jadi sebutkan keduanya saat chat.",
+        tautan: { to: "/artikel/sewa-mobil-bulanan-tangerang", label: "Panduan sewa mobil bulanan di Tangerang" },
+      },
+    ],
+    faq: [
+      {
+        tanya: "Apakah harga di tabel sudah termasuk sopir?",
+        jawab: "Belum. Tarif di tabel adalah tarif unit. Kalau Anda memilih plus sopir, biayanya dihitung terpisah dan kami sebutkan di awal, sebelum pemesanan dikunci.",
+      },
+      {
+        tanya: "Apakah harga sudah termasuk bensin dan tol?",
+        jawab: "Belum. Bahan bakar dan tol selama pemakaian ditanggung penyewa, sehingga totalnya mengikuti rute Anda sendiri.",
+      },
+      {
+        tanya: "Apakah ada biaya tersembunyi?",
+        jawab: "Tidak. Di luar tarif unit hanya ada bahan bakar dan tol, biaya sopir bila dipilih, dan biaya antar bila unit diminta diantar. Semuanya disebutkan sebelum booking dikunci.",
+      },
+      {
+        tanya: "Apakah harga bisa berubah?",
+        jawab: "Tarif bisa disesuaikan dari waktu ke waktu, dan tabel di halaman ini selalu mengikuti katalog terbaru. Angka yang dikonfirmasi tim kami saat pemesanan adalah angka yang berlaku untuk tanggal Anda.",
+      },
+    ],
+  },
 };

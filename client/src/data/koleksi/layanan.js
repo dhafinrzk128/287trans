@@ -58,4 +58,24 @@ export const KOLEKSI_LAYANAN = [
     judulCta: "Cek Unit Lepas Kunci untuk Tanggal Anda",
     sapaanWa: "Halo, saya mau sewa mobil lepas kunci.",
   },
+  {
+    // Tahun di judul dan H1 perlu diganti setiap pergantian tahun — angka
+    // harganya sendiri selalu ikut katalog.
+    slug: "harga-sewa-mobil-tangerang",
+    grup: "layanan",
+    label: "Harga Sewa",
+    semua: true,
+    tampilanUnit: "harga",
+    judul: "Harga Sewa Mobil Tangerang 2026",
+    deskripsi: (harga) =>
+      `Daftar harga sewa mobil Tangerang 2026 per unit: MPV, SUV, Alphard, sedan mewah, mobil listrik${harga ? `. Mulai ${harga}/hari` : ""}, lepas kunci atau plus sopir.`,
+    h1: "Harga Sewa Mobil Tangerang 2026",
+    subjudul:
+      "Tarif harian seluruh unit 287 Trans dalam satu halaman, dikelompokkan per kategori dan diambil langsung dari katalog — jadi angkanya selalu sama dengan yang disebutkan tim kami.",
+    judulUnit: "Daftar Harga per Kategori",
+    pengantarUnit: "Tarif unit per hari (24 jam). Klik nama unit untuk melihat foto, spesifikasi, dan kalender ketersediaannya.",
+    judulFaq: "Pertanyaan Seputar Harga Sewa",
+    judulCta: "Minta Total Biaya untuk Tanggal Anda",
+    sapaanWa: "Halo, saya mau tanya harga sewa mobil.",
+  },
 ];

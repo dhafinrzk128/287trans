@@ -26,7 +26,7 @@ export const KOLEKSI_MODEL = [
     label: "Innova Reborn",
     namaCocok: "reborn",
     judul: "Sewa Innova Reborn Tangerang - Diesel 7 Kursi",
-    deskripsi: "Sewa Toyota Innova Reborn di Tangerang mulai Rp799.000/hari. Diesel, matic, 7 penumpang, unit 2024. Tarif termurah di armada kami, lepas kunci atau plus sopir.",
+    deskripsi: "Sewa Innova Reborn Tangerang mulai Rp799.000/hari. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir, syarat cukup KTP.",
     h1: "Sewa Innova Reborn Tangerang",
     subjudul: "Tarif termurah di seluruh armada kami: Rp799.000 per hari untuk MPV diesel 7 penumpang keluaran 2024."
   },
@@ -36,7 +36,7 @@ export const KOLEKSI_MODEL = [
     label: "Toyota Fortuner",
     namaCocok: "fortuner",
     judul: "Sewa Fortuner Tangerang - 2.8 GR & Legender",
-    deskripsi: "Sewa Toyota Fortuner di Tangerang mulai Rp1.399.000/hari. Pilihan 2.8 GR diesel dan Legender, matic, 7 penumpang. Lepas kunci atau dengan sopir, unit terawat.",
+    deskripsi: "Sewa Fortuner Tangerang mulai Rp1.399.000/hari. Pilihan 2.8 GR diesel dan Legender, matic, 7 penumpang. Lepas kunci atau dengan sopir, unit terawat.",
     h1: "Sewa Fortuner Tangerang",
     subjudul: "Dua pilihan Fortuner — 2.8 GR bermesin diesel dan Legender — sama-sama matic, 7 penumpang, dan siap untuk rute kota maupun luar kota."
   },

@@ -15,11 +15,29 @@ import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 import { cariKoleksi, unitKoleksi, hargaTermurah, muatProsa, kunciProsa } from "../data/koleksiArmada";
+import { KOLEKSI_KATEGORI } from "../data/koleksi/kategori";
 
 // Semua halaman koleksi menarik daftar mobil yang sama persis, jadi kuncinya
 // dibuat satu. Tiap halaman diprerender terpisah, sehingga tidak ada risiko
 // satu halaman membaca daftar milik halaman lain.
 const PRERENDER_KEY = "koleksi_mobils";
+
+/**
+ * Unit dikelompokkan per kategori untuk halaman harga, dengan urutan dan
+ * pencocokan yang sama dengan halaman kategori (unitKoleksi). Unit bertipe
+ * baru yang belum punya halaman kategori tetap tampil di "Lainnya", supaya
+ * tabel harga tidak pernah diam-diam lebih pendek dari katalog.
+ */
+function kelompokHarga(mobils) {
+  const urutHarga = (a, b) => a.hargaPerHari - b.hargaPerHari;
+  const grup = KOLEKSI_KATEGORI.map((k) => ({ koleksi: k, units: unitKoleksi(k, mobils).sort(urutHarga) })).filter(
+    (g) => g.units.length > 0
+  );
+  const tercakup = new Set(grup.flatMap((g) => g.units.map((m) => m.idMobil)));
+  const sisa = mobils.filter((m) => !tercakup.has(m.idMobil)).sort(urutHarga);
+  if (sisa.length) grup.push({ koleksi: null, units: sisa });
+  return grup;
+}
 
 /**
  * Satu template untuk seluruh halaman kategori dan model armada.
@@ -311,6 +329,51 @@ export default function KoleksiArmada({ slug }) {
                 </tbody>
               </table>
             </Reveal>
+          ) : koleksi.tampilanUnit === "harga" ? (
+            <div className="mt-8 space-y-10">
+              {kelompokHarga(units).map(({ koleksi: k, units: isi }) => (
+                <Reveal key={k?.slug ?? "lainnya"}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                    <h3 className="text-xl font-bold text-slate-900">{k ? `Harga Sewa ${k.label}` : "Kategori Lainnya"}</h3>
+                    {k && (
+                      <Link to={`/${k.slug}`} className="text-sm font-semibold text-blue-600 hover:underline">
+                        {k.h1}
+                      </Link>
+                    )}
+                  </div>
+                  <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[var(--shadow-soft)]">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-slate-50 text-slate-500">
+                        <tr>
+                          <th scope="col" className="px-4 py-3 font-semibold">Unit</th>
+                          <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell">Tipe</th>
+                          <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell">Kapasitas</th>
+                          <th scope="col" className="hidden px-4 py-3 font-semibold sm:table-cell">Transmisi</th>
+                          <th scope="col" className="px-4 py-3 text-right font-semibold">Harga / Hari</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {isi.map((m) => (
+                          <tr key={m.idMobil}>
+                            <td className="px-4 py-3 font-medium text-slate-900">
+                              <Link to={`/katalog/${m.idMobil}`} className="hover:text-blue-600 hover:underline">
+                                {m.namaMobil}
+                              </Link>
+                            </td>
+                            <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">{m.tipe}</td>
+                            <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">{`${m.kapasitas} orang`}</td>
+                            <td className="hidden px-4 py-3 text-slate-600 sm:table-cell">{m.transmisi}</td>
+                            <td className="whitespace-nowrap px-4 py-3 text-right font-semibold text-slate-900">
+                              {formatRupiah(m.hargaPerHari)}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           ) : units.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white py-14 text-center text-slate-500">
               Belum ada tipe di kategori ini. Hubungi kami via WhatsApp untuk alternatif terdekat.

@@ -29,7 +29,7 @@ export const KOLEKSI_KATEGORI = [
     label: "SUV",
     tipe: "SUV",
     judul: "Sewa SUV Tangerang - Fortuner, Pajero, CRV",
-    deskripsi: "Sewa SUV di Tangerang mulai Rp1.399.000/hari. Fortuner, Pajero Sport Dakar, Honda CRV Turbo, Destinator, dan Hyundai Palisade. Matic, lepas kunci atau plus sopir.",
+    deskripsi: "Sewa SUV Tangerang mulai Rp1.399.000/hari: Fortuner, Pajero Sport Dakar, Honda CRV Turbo, Destinator, Hyundai Palisade. Matic, lepas kunci atau plus sopir.",
     h1: "Sewa SUV Tangerang",
     subjudul: "Enam tipe SUV dari lima merek berbeda — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota."
   },
@@ -39,7 +39,7 @@ export const KOLEKSI_KATEGORI = [
     label: "Luxury MPV (Alphard)",
     tipe: "Luxury MPV",
     judul: "Sewa Alphard Tangerang - Gen 3, Gen 4 & Hybrid",
-    deskripsi: "Sewa Toyota Alphard di Tangerang mulai Rp2.799.000/hari. Pilihan Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, 6 penumpang, dengan atau tanpa sopir.",
+    deskripsi: "Sewa Alphard Tangerang mulai Rp2.799.000/hari. Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, 6 penumpang, dengan atau tanpa sopir.",
     h1: "Sewa Alphard Tangerang",
     subjudul: "Tiga generasi Alphard dalam satu armada — pilihan standar untuk penjemputan tamu penting, pernikahan, dan agenda perusahaan."
   },
@@ -49,7 +49,7 @@ export const KOLEKSI_KATEGORI = [
     label: "Luxury Sedan",
     tipe: "Luxury Sedan",
     judul: "Sewa Mobil Mewah Tangerang - Mercedes-Benz & BMW",
-    deskripsi: "Sewa mobil mewah di Tangerang mulai Rp3.499.000/hari. Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Unit terawat, dengan atau tanpa sopir.",
+    deskripsi: "Sewa mobil mewah Tangerang mulai Rp3.499.000/hari: Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Dengan atau tanpa sopir.",
     h1: "Sewa Mobil Mewah Tangerang",
     subjudul: "Empat sedan premium Mercedes-Benz dan BMW keluaran 2024 sampai 2025, untuk acara dan agenda yang menuntut kesan berbeda."
   },

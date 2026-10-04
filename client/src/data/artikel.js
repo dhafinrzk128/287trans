@@ -36,7 +36,7 @@ export const ARTIKEL = [
     judul: "Sewa Mobil Pengantin di Tangerang: Pilihan Unit",
     h1: "Sewa Mobil Pengantin di Tangerang: Memilih Unit untuk Hari H",
     deskripsi:
-      "Panduan sewa mobil pengantin di Tangerang: Alphard, Mercedes-Benz, BMW, sampai M4 Cabriolet untuk sesi foto. Kapan harus booking dan apa yang perlu disiapkan.",
+      "Sewa mobil pengantin di Tangerang: Alphard, Mercedes-Benz, BMW, sampai M4 Cabriolet untuk sesi foto. Kapan harus booking dan apa yang perlu disiapkan.",
     ringkasan:
       "Unit yang paling sering dipilih untuk pengantin dan tamu keluarga, kapan sebaiknya booking, dan hal yang perlu disepakati sebelum hari H.",
     terbit: "2026-09-23",
