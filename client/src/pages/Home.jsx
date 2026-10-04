@@ -119,7 +119,8 @@ export default function Home() {
                 car padahal armadanya tidak punya. */}
             <p className="mt-5 max-w-xl text-lg text-blue-100">
               Ajukan langsung lewat WhatsApp, tanpa perlu membuat akun. Armada premium hingga luxury
-              dengan unit-unit keluaran terbaru — seluruhnya terawat dan diperiksa sebelum diserahkan.
+              dengan unit-unit keluaran terbaru — seluruhnya terawat dan diperiksa sebelum diserahkan,
+              berangkat dari kantor kami di Ciledug ke seluruh Tangerang dan Jabodetabek.
             </p>
             {/* Harga diletakkan sebelum tombol, bukan di bagian terpisah jauh
                 di bawah. Halaman ini tujuan iklan berbayar untuk kata kunci

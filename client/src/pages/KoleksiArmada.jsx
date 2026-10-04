@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ArrowRight, ChevronDown, BadgeCheck, CarFront } from "lucide-react";
 import api from "../api/client";
 import CarCard from "../components/CarCard";
+import KategoriArmadaGrid from "../components/KategoriArmadaGrid";
 import SmartImage from "../components/SmartImage";
 import Reveal from "../components/Reveal";
 import KayonWayang from "../components/KayonWayang";
@@ -111,7 +112,16 @@ export default function KoleksiArmada({ slug }) {
 
   if (!koleksi) return null;
 
-  const pesanWa = pesanSewa(`Halo, saya mau sewa ${koleksi.label} di Tangerang.`, [
+  // Halaman layanan (lokasi / cara sewa, lihat data/koleksi/layanan.js) memuat
+  // seluruh armada, jadi beberapa bagian yang di halaman kategori dibentuk
+  // dari label ditulis sendiri oleh datanya.
+  const layanan = koleksi.grup === "layanan";
+  const deskripsi =
+    typeof koleksi.deskripsi === "function"
+      ? koleksi.deskripsi(termurah !== null ? formatRupiah(termurah).replace(/\s/g, "") : null)
+      : koleksi.deskripsi;
+
+  const pesanWa = pesanSewa(koleksi.sapaanWa ?? `Halo, saya mau sewa ${koleksi.label} di Tangerang.`, [
     "Tanggal mulai",
     "Lama sewa",
     "Unit yang diminati",
@@ -127,18 +137,22 @@ export default function KoleksiArmada({ slug }) {
   const jsonLd = [
     breadcrumbSchema([
       { name: "Home", path: "/" },
-      { name: "Pilihan Armada", path: "/katalog" },
+      ...(layanan ? [] : [{ name: "Pilihan Armada", path: "/katalog" }]),
       { name: koleksi.h1, path: `/${koleksi.slug}` },
     ]),
     faqPageSchema((teks?.faq || []).map((f) => ({ pertanyaan: f.tanya, jawaban: f.jawab }))),
-    ...units.map(productSchema),
+    // Product per unit hanya di halaman kategori/model. Halaman layanan memuat
+    // seluruh armada, dan dua puluhan skema Product lengkap dengan deskripsi
+    // dan fotonya akan membengkakkan <head> tanpa menambah apa pun — setiap
+    // unit sudah menyandang skemanya sendiri di halaman detailnya.
+    ...(layanan ? [] : units.map(productSchema)),
   ].filter(Boolean);
 
   return (
     <div>
       <Seo
         title={koleksi.judul}
-        description={koleksi.deskripsi}
+        description={deskripsi}
         path={`/${koleksi.slug}`}
         jsonLd={jsonLd}
       />
@@ -241,9 +255,10 @@ export default function KoleksiArmada({ slug }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">{`Pilihan Tipe ${koleksi.label}`}</h2>
+              <h2 className="text-3xl font-bold text-slate-900">{koleksi.judulUnit ?? `Pilihan Tipe ${koleksi.label}`}</h2>
               <p className="mt-2 text-slate-600">
-                Harga dan ketersediaan di bawah ini mengikuti katalog, jadi selalu sama dengan yang tim kami sebutkan saat Anda chat.
+                {koleksi.pengantarUnit ??
+                  "Harga dan ketersediaan di bawah ini mengikuti katalog, jadi selalu sama dengan yang tim kami sebutkan saat Anda chat."}
               </p>
             </div>
             <Link to="/katalog" className="group flex shrink-0 items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">
@@ -254,6 +269,14 @@ export default function KoleksiArmada({ slug }) {
 
           {loading ? (
             <Spinner />
+          ) : koleksi.tampilanUnit === "kategori" ? (
+            // Petak kategori, bukan dua puluhan kartu: halaman lokasi tidak
+            // perlu mengulang /katalog, cukup jadi pintu masuk ke tiap kelas
+            // beserta harga terendahnya. Daftar mobilnya dioper supaya tidak
+            // ada permintaan /mobil kedua.
+            <div className="mt-8">
+              <KategoriArmadaGrid mobils={mobils} />
+            </div>
           ) : units.length === 0 ? (
             <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white py-14 text-center text-slate-500">
               Belum ada tipe di kategori ini. Hubungi kami via WhatsApp untuk alternatif terdekat.
@@ -272,7 +295,7 @@ export default function KoleksiArmada({ slug }) {
 
       {/* Tabel perbandingan varian — hanya berguna kalau memang ada yang
           dibandingkan, jadi disembunyikan untuk koleksi berisi satu tipe. */}
-      {units.length > 1 && (
+      {units.length > 1 && !layanan && (
         <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 lg:px-8">
           <Reveal>
             <h2 className="text-2xl font-bold text-slate-900">{`Perbandingan Varian ${koleksi.label}`}</h2>
@@ -326,6 +349,22 @@ export default function KoleksiArmada({ slug }) {
             <Reveal key={b.judul} delay={Math.min((i + 1) * 40, 160)} className="mt-9">
               <h2 className="text-2xl font-bold text-slate-900">{b.judul}</h2>
               <p className="mt-3 leading-relaxed text-slate-700">{b.isi}</p>
+              {b.poin && (
+                <ol className="mt-3 list-decimal space-y-2 pl-5 leading-relaxed text-slate-700">
+                  {b.poin.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ol>
+              )}
+              {b.tautan && (
+                <Link
+                  to={b.tautan.to}
+                  className="group mt-3 inline-flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-700"
+                >
+                  {b.tautan.label}
+                  <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              )}
             </Reveal>
           ))}
         </section>
@@ -335,7 +374,7 @@ export default function KoleksiArmada({ slug }) {
       {teks && (
         <section className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
           <Reveal as="h2" className="text-2xl font-bold text-slate-900">
-            {`Pertanyaan Seputar Sewa ${koleksi.label}`}
+            {koleksi.judulFaq ?? `Pertanyaan Seputar Sewa ${koleksi.label}`}
           </Reveal>
           <div className="mt-6 space-y-3">
             {teks.faq.map((item, idx) => {
@@ -389,7 +428,7 @@ export default function KoleksiArmada({ slug }) {
       <section className="relative overflow-hidden bg-gradient-to-br from-neutral-800 to-neutral-950">
         <div className="pointer-events-none absolute -bottom-16 -right-16 h-64 w-64 rounded-full bg-accent-500/10 blur-3xl" />
         <Reveal className="relative mx-auto max-w-7xl px-4 py-14 text-center sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-white sm:text-3xl">{`Cek Ketersediaan ${koleksi.label} untuk Tanggal Anda`}</h2>
+          <h2 className="text-2xl font-bold text-white sm:text-3xl">{koleksi.judulCta ?? `Cek Ketersediaan ${koleksi.label} untuk Tanggal Anda`}</h2>
           <p className="mt-3 text-blue-100">
             Sebutkan tanggal dan lama sewa, tim kami langsung mengonfirmasi unit yang kosong beserta total biayanya.
           </p>

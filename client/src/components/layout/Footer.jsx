@@ -6,6 +6,7 @@ import { buildWaLink } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 import { KOLEKSI_KATEGORI } from "../../data/koleksi/kategori";
 import { KOLEKSI_MODEL } from "../../data/koleksi/model";
+import { KOLEKSI_LAYANAN } from "../../data/koleksi/layanan";
 import useReveal from "../../hooks/useReveal";
 
 function telHref(number) {
@@ -49,6 +50,19 @@ export default function Footer() {
             <li><Link to="/artikel" className="transition-colors hover:text-white">Panduan Sewa</Link></li>
             <li><Link to="/kontak" className="transition-colors hover:text-white">Kontak</Link></li>
             <li><Link to="/status" className="transition-colors hover:text-white">Cek Status Booking</Link></li>
+          </ul>
+
+          {/* Halaman layanan (lokasi dan cara sewa) tidak ada di menu navbar,
+              jadi di sinilah satu-satunya tautan sitewide-nya. Ditumpuk di
+              bawah Navigasi dengan alasan yang sama seperti Model Populer. */}
+          <h2 className="mt-8 text-sm font-semibold uppercase tracking-wide text-white">Layanan</h2>
+          <span className="mt-2 block h-0.5 w-6 rounded-full bg-blue-500" />
+          <ul className="mt-4 space-y-2 text-sm">
+            {KOLEKSI_LAYANAN.map((k) => (
+              <li key={k.slug}>
+                <Link to={`/${k.slug}`} className="transition-colors hover:text-white">{k.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

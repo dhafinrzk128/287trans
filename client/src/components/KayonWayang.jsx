@@ -53,7 +53,7 @@ export default function KayonWayang({ varian = "hero", className = "", prioritas
           mengunduhnya. media= mencegah desktop mengunduh versi kecil. */}
       {prioritas && (
         <Helmet>
-          <link rel="preload" as="image" href="/kayon-sm.webp" type="image/webp" media="(max-width: 1023px)" fetchpriority="high" />
+          <link rel="preload" as="image" href="/kayon-sm.webp" type="image/webp" media="(max-width: 1023px)" fetchPriority="high" />
         </Helmet>
       )}
       <picture>

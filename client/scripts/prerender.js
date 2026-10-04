@@ -145,6 +145,25 @@ async function main() {
         });
       });
 
+      // Atribut style yang dipotret adalah hasil serialisasi browser
+      // ("transition-delay: 40ms;"), bukan bentuk yang ditulis React di
+      // server ("transition-delay:40ms"). Build produksi React tidak
+      // membandingkan style saat hidrasi, jadi pengunjung tidak terdampak —
+      // tapi build development menandai setiap <Reveal delay> sebagai
+      // mismatch, dan peringatan palsu itu menenggelamkan mismatch sungguhan
+      // saat memeriksa hidrasi. Tulis ulang ke bentuk React; nilainya sama.
+      await page.evaluate(() => {
+        document.querySelectorAll("#root [style]").forEach((el) => {
+          const deklarasi = [];
+          for (let i = 0; i < el.style.length; i++) {
+            const nama = el.style[i];
+            const penting = el.style.getPropertyPriority(nama) ? " !important" : "";
+            deklarasi.push(`${nama}:${el.style.getPropertyValue(nama)}${penting}`);
+          }
+          if (deklarasi.length) el.setAttribute("style", deklarasi.join(";"));
+        });
+      });
+
       // React Router's lazy-route preloading inserts <link rel="modulepreload">
       // tags with an absolute href computed from the current origin — since
       // that's this preview server, it bakes http://127.0.0.1:4173/... into

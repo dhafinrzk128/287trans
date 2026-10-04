@@ -16,10 +16,21 @@
 
 import { KOLEKSI_MODEL } from "./koleksi/model.js";
 import { KOLEKSI_KATEGORI } from "./koleksi/kategori.js";
+import { KOLEKSI_LAYANAN } from "./koleksi/layanan.js";
 
-export const KOLEKSI = [...KOLEKSI_KATEGORI, ...KOLEKSI_MODEL];
+// Kategori dan model: halaman yang memuat sebagian armada. Inilah yang tampil
+// di menu "Pilihan Armada" dan yang ditautkan dari halaman detail mobil.
+export const KOLEKSI_ARMADA = [...KOLEKSI_KATEGORI, ...KOLEKSI_MODEL];
+
+// Seluruh halaman bertemplate KoleksiArmada, termasuk halaman layanan
+// (lokasi dan cara sewa) — sumber route, prerender, dan sitemap.
+export const KOLEKSI = [...KOLEKSI_ARMADA, ...KOLEKSI_LAYANAN];
 
 export const KOLEKSI_PATHS = KOLEKSI.map((k) => `/${k.slug}`);
+
+// Hanya untuk menyorot menu "Pilihan Armada" di navbar: halaman layanan
+// bukan bagian dari menu itu.
+export const KOLEKSI_ARMADA_PATHS = KOLEKSI_ARMADA.map((k) => `/${k.slug}`);
 
 export function cariKoleksi(slug) {
   return KOLEKSI.find((k) => k.slug === slug) || null;
@@ -44,6 +55,7 @@ export function cariKoleksi(slug) {
 export function unitKoleksi(koleksi, mobils) {
   if (!koleksi) return [];
   const cocok = mobils.filter((m) => {
+    if (koleksi.semua) return true;
     if (koleksi.tipe) return m.tipe === koleksi.tipe;
     if (koleksi.namaCocok) return m.namaMobil.toLowerCase().includes(koleksi.namaCocok.toLowerCase());
     return false;
@@ -71,7 +83,9 @@ export function unitKoleksi(koleksi, mobils) {
  */
 export function koleksiUntukMobil(mobil) {
   if (!mobil) return [];
-  return KOLEKSI.filter((k) => unitKoleksi(k, [mobil]).length > 0);
+  // KOLEKSI_ARMADA, bukan KOLEKSI: halaman layanan memuat semua unit, jadi
+  // menautkannya dari tiap unit sebagai "koleksinya" tidak memberi tahu apa pun.
+  return KOLEKSI_ARMADA.filter((k) => unitKoleksi(k, [mobil]).length > 0);
 }
 
 /**
@@ -100,11 +114,9 @@ export function koleksiUntukMobil(mobil) {
 export async function muatProsa(slug) {
   const koleksi = cariKoleksi(slug);
   if (!koleksi) return null;
-  const modul =
-    koleksi.grup === "model"
-      ? await import("./koleksi/prosa/model.js")
-      : await import("./koleksi/prosa/kategori.js");
-  return (koleksi.grup === "model" ? modul.PROSA_MODEL : modul.PROSA_KATEGORI)[slug] || null;
+  if (koleksi.grup === "model") return (await import("./koleksi/prosa/model.js")).PROSA_MODEL[slug] || null;
+  if (koleksi.grup === "layanan") return (await import("./koleksi/prosa/layanan.js")).PROSA_LAYANAN[slug] || null;
+  return (await import("./koleksi/prosa/kategori.js")).PROSA_KATEGORI[slug] || null;
 }
 
 // Kunci penyimpanan prosa di __PRERENDER_DATA__. Per slug, bukan satu kunci
