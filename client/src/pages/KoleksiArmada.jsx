@@ -134,10 +134,16 @@ export default function KoleksiArmada({ slug }) {
   // seluruh armada, jadi beberapa bagian yang di halaman kategori dibentuk
   // dari label ditulis sendiri oleh datanya.
   const layanan = koleksi.grup === "layanan";
-  const deskripsi =
-    typeof koleksi.deskripsi === "function"
-      ? koleksi.deskripsi(termurah !== null ? formatRupiah(termurah).replace(/\s/g, "") : null)
-      : koleksi.deskripsi;
+  // Frasa harga untuk meta description, dari katalog: "mulai Rp799.000/hari"
+  // kalau koleksinya memuat lebih dari satu unit, "Rp1.499.000/hari" kalau
+  // hanya satu. null selama katalog belum termuat (perpindahan halaman di
+  // dalam situs) — setiap deskripsi harus tetap utuh tanpa frasa ini.
+  // Halaman prerender selalu sudah memegang datanya.
+  const frasaHarga =
+    termurah !== null
+      ? `${units.length > 1 ? "mulai " : ""}${formatRupiah(termurah).replace(/\s/g, "")}/hari`
+      : null;
+  const deskripsi = koleksi.deskripsi(frasaHarga);
 
   const pesanWa = pesanSewa(koleksi.sapaanWa ?? `Halo, saya mau sewa ${koleksi.label} di Tangerang.`, [
     "Tanggal mulai",

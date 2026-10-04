@@ -19,7 +19,8 @@ export const KOLEKSI_KATEGORI = [
     label: "MPV",
     tipe: "MPV",
     judul: "Sewa MPV Tangerang - Reborn, Zenix, Venturer",
-    deskripsi: "Sewa MPV 7 penumpang di Tangerang mulai Rp799.000/hari. Innova Reborn, Zenix hybrid, dan Venturer. Semua matic, lepas kunci atau plus sopir.",
+    deskripsi: (frasa) =>
+      `Sewa MPV 7 penumpang di Tangerang${frasa ? ` ${frasa}` : ""}. Innova Reborn, Zenix hybrid, dan Venturer. Semua matic, lepas kunci atau plus sopir.`,
     h1: "Sewa MPV Tangerang",
     subjudul: "Tujuh tipe MPV tujuh penumpang, semuanya matic dan keluaran 2024 — dari Innova Reborn diesel sampai Zenix hybrid varian tertinggi."
   },
@@ -34,8 +35,8 @@ export const KOLEKSI_KATEGORI = [
     // dari daftar ini — tanpa menghapusnya pun tidak ada yang rusak.
     tipe: ["SUV", "Hatchback"],
     judul: "Sewa SUV Tangerang - Fortuner, Pajero, CRV",
-    deskripsi: (harga) =>
-      `Sewa SUV Tangerang${harga ? ` mulai ${harga}/hari` : ""}: Fortuner, Pajero Sport, CRV Turbo, Palisade, sampai HR-V untuk dalam kota. Matic, lepas kunci atau plus sopir.`,
+    deskripsi: (frasa) =>
+      `Sewa SUV Tangerang${frasa ? ` ${frasa}` : ""}: Fortuner, Pajero Sport, CRV Turbo, Palisade, sampai HR-V untuk dalam kota. Matic, lepas kunci atau plus sopir.`,
     h1: "Sewa SUV Tangerang",
     subjudul: "Dari crossover ringkas untuk dalam kota sampai SUV diesel tujuh penumpang — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota."
   },
@@ -45,7 +46,8 @@ export const KOLEKSI_KATEGORI = [
     label: "Luxury MPV (Alphard)",
     tipe: "Luxury MPV",
     judul: "Sewa Alphard Tangerang - Gen 3, Gen 4 & Hybrid",
-    deskripsi: "Sewa Alphard Tangerang mulai Rp2.799.000/hari. Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, 6 penumpang, dengan atau tanpa sopir.",
+    deskripsi: (frasa) =>
+      `Sewa Alphard Tangerang${frasa ? ` ${frasa}` : ""}. Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, 6 penumpang, dengan atau tanpa sopir.`,
     h1: "Sewa Alphard Tangerang",
     subjudul: "Tiga generasi Alphard dalam satu armada — pilihan standar untuk penjemputan tamu penting, pernikahan, dan agenda perusahaan."
   },
@@ -55,7 +57,8 @@ export const KOLEKSI_KATEGORI = [
     label: "Luxury Sedan",
     tipe: "Luxury Sedan",
     judul: "Sewa Mobil Mewah Tangerang - Mercedes-Benz & BMW",
-    deskripsi: "Sewa mobil mewah Tangerang mulai Rp3.499.000/hari: Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Dengan atau tanpa sopir.",
+    deskripsi: (frasa) =>
+      `Sewa mobil mewah Tangerang${frasa ? ` ${frasa}` : ""}: Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Dengan atau tanpa sopir.`,
     h1: "Sewa Mobil Mewah Tangerang",
     subjudul: "Empat sedan premium Mercedes-Benz dan BMW keluaran 2024 sampai 2025, untuk acara dan agenda yang menuntut kesan berbeda."
   },
@@ -65,7 +68,8 @@ export const KOLEKSI_KATEGORI = [
     label: "Luxury SUV",
     tipe: "Luxury SUV",
     judul: "Sewa SUV Mewah Tangerang - Mercedes-Benz GLC300",
-    deskripsi: "Sewa Mercedes-Benz GLC300 di Tangerang Rp3.499.000/hari. SUV premium keluaran 2025, matic, 5 penumpang. Untuk acara formal dan agenda perusahaan.",
+    deskripsi: (frasa) =>
+      `Sewa Mercedes-Benz GLC300 di Tangerang${frasa ? ` ${frasa}` : ""}. SUV premium keluaran 2025, matic, 5 penumpang. Untuk acara formal dan agenda perusahaan.`,
     h1: "Sewa SUV Mewah Tangerang",
     subjudul: "Mercedes-Benz GLC300 keluaran 2025 — perpaduan postur SUV dengan kabin dan material sekelas sedan premium."
   },
@@ -75,7 +79,8 @@ export const KOLEKSI_KATEGORI = [
     label: "Mobil Listrik",
     tipe: "Electric",
     judul: "Sewa Mobil Listrik Tangerang - Hyundai Ioniq 5",
-    deskripsi: "Sewa Hyundai Ioniq 5 di Tangerang Rp1.999.000/hari. Mobil listrik matic 5 penumpang keluaran 2024, tanpa biaya bensin. Lepas kunci atau dengan sopir.",
+    deskripsi: (frasa) =>
+      `Sewa Hyundai Ioniq 5 di Tangerang${frasa ? ` ${frasa}` : ""}. Mobil listrik matic 5 penumpang keluaran 2024, tanpa biaya bensin. Lepas kunci atau dengan sopir.`,
     h1: "Sewa Mobil Listrik Tangerang",
     subjudul: "Hyundai Ioniq 5 keluaran 2024 — kabin senyap total, akselerasi halus, dan tanpa satu rupiah pun biaya bensin selama masa sewa."
   },
@@ -85,7 +90,8 @@ export const KOLEKSI_KATEGORI = [
     label: "Sedan",
     tipe: "Sedan",
     judul: "Sewa Sedan Tangerang - Honda Accord Turbo 2025",
-    deskripsi: "Sewa Honda Accord Turbo di Tangerang Rp1.499.000/hari. Sedan matic 5 penumpang keluaran 2025, nyaman untuk agenda kerja dan penjemputan tamu.",
+    deskripsi: (frasa) =>
+      `Sewa Honda Accord Turbo di Tangerang${frasa ? ` ${frasa}` : ""}. Sedan matic 5 penumpang keluaran 2025, nyaman untuk agenda kerja dan penjemputan tamu.`,
     h1: "Sewa Sedan Tangerang",
     subjudul: "Honda Accord Turbo keluaran 2025 — sedan eksekutif dengan kabin lega dan bantingan halus, di tarif jauh di bawah sedan Eropa."
   }

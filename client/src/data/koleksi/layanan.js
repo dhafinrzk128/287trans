@@ -13,11 +13,14 @@
 //   ditulis sendiri di sini, karena "Pilihan Tipe Rental Mobil Ciledug"
 //   bukan kalimat.
 //
-// `deskripsi` berupa fungsi harga termurah supaya angka "mulai dari" di meta
-// description ikut katalog, bukan ditulis mati. Saat datanya belum ada
-// (perpindahan halaman di dalam situs sebelum katalog termuat), fungsi ini
-// dipanggil dengan null dan harus tetap menghasilkan kalimat yang utuh.
-// Batas 155 karakter berlaku untuk versi berharga.
+// `deskripsi` berupa fungsi frasa harga (lihat KoleksiArmada.jsx), sama
+// seperti halaman kategori dan model.
+
+// Tahun saat build, disuntikkan Vite (lihat vite.config.js) supaya title dan
+// H1 halaman harga tidak perlu disunting tiap pergantian tahun. Berkas ini
+// juga diimpor skrip Node (getRoutes.js) yang tidak melewati Vite, jadi ada
+// cadangan tahun berjalan; di sana tahunnya tidak dipakai untuk apa pun.
+const TAHUN = typeof __TAHUN_BUILD__ !== "undefined" ? __TAHUN_BUILD__ : new Date().getFullYear();
 
 export const KOLEKSI_LAYANAN = [
   {
@@ -27,8 +30,8 @@ export const KOLEKSI_LAYANAN = [
     semua: true,
     tampilanUnit: "kategori",
     judul: "Rental Mobil Ciledug - Lepas Kunci & Premium",
-    deskripsi: (harga) =>
-      `Rental mobil Ciledug lepas kunci atau plus sopir${harga ? `, mulai ${harga}/hari` : ""}. Armada premium terawat, ambil di kantor kami atau diantar ke Larangan & Cipondoh.`,
+    deskripsi: (frasa) =>
+      `Rental mobil Ciledug lepas kunci atau plus sopir${frasa ? `, ${frasa}` : ""}. Armada premium terawat, ambil di kantor kami atau diantar ke Larangan & Cipondoh.`,
     h1: "Rental Mobil Ciledug",
     subjudul:
       "287 Trans adalah rental mobil Ciledug dengan unit premium keluaran terbaru — lepas kunci atau plus sopir, diambil langsung di kantor kami atau diantar ke alamat Anda.",
@@ -46,8 +49,8 @@ export const KOLEKSI_LAYANAN = [
     semua: true,
     tampilanUnit: "tabel",
     judul: "Sewa Mobil Lepas Kunci Tangerang",
-    deskripsi: (harga) =>
-      `Sewa mobil lepas kunci Tangerang${harga ? ` mulai ${harga}/hari` : ""}, syarat cukup KTP tanpa kartu kredit. Unit premium matic terawat, harian sampai bulanan.`,
+    deskripsi: (frasa) =>
+      `Sewa mobil lepas kunci Tangerang${frasa ? ` ${frasa}` : ""}, syarat cukup KTP tanpa kartu kredit. Unit premium matic terawat, harian sampai bulanan.`,
     h1: "Sewa Mobil Lepas Kunci Tangerang",
     subjudul:
       "Sewa mobil lepas kunci Tangerang dengan unit premium keluaran terbaru: Anda yang menyetir, Anda yang mengatur jadwal, dan syaratnya cukup KTP.",
@@ -59,17 +62,15 @@ export const KOLEKSI_LAYANAN = [
     sapaanWa: "Halo, saya mau sewa mobil lepas kunci.",
   },
   {
-    // Tahun di judul dan H1 perlu diganti setiap pergantian tahun — angka
-    // harganya sendiri selalu ikut katalog.
     slug: "harga-sewa-mobil-tangerang",
     grup: "layanan",
     label: "Harga Sewa",
     semua: true,
     tampilanUnit: "harga",
-    judul: "Harga Sewa Mobil Tangerang 2026",
-    deskripsi: (harga) =>
-      `Daftar harga sewa mobil Tangerang 2026 per unit: MPV, SUV, Alphard, sedan mewah, mobil listrik${harga ? `. Mulai ${harga}/hari` : ""}, lepas kunci atau plus sopir.`,
-    h1: "Harga Sewa Mobil Tangerang 2026",
+    judul: `Harga Sewa Mobil Tangerang ${TAHUN}`,
+    deskripsi: (frasa) =>
+      `Daftar harga sewa mobil Tangerang ${TAHUN} per unit: MPV, SUV, Alphard, sedan mewah, mobil listrik${frasa ? `. Harga ${frasa}` : ""}, lepas kunci atau plus sopir.`,
+    h1: `Harga Sewa Mobil Tangerang ${TAHUN}`,
     subjudul:
       "Tarif harian seluruh unit 287 Trans dalam satu halaman, dikelompokkan per kategori dan diambil langsung dari katalog — jadi angkanya selalu sama dengan yang disebutkan tim kami.",
     judulUnit: "Daftar Harga per Kategori",

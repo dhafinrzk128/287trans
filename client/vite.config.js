@@ -70,6 +70,12 @@ function previewSepertiProduksi() {
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), jsPrioritasRendah(), previewSepertiProduksi()],
+  // Tahun build untuk title/H1 halaman harga (src/data/koleksi/layanan.js).
+  // Konstanta build, bukan new Date() di browser: HTML prerender dan render
+  // pertama klien dijamin sama tahunnya, termasuk di malam pergantian tahun.
+  define: {
+    __TAHUN_BUILD__: JSON.stringify(new Date().getFullYear()),
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:4000',

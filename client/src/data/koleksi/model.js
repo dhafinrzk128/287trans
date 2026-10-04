@@ -16,7 +16,8 @@ export const KOLEKSI_MODEL = [
     label: "Innova Zenix",
     namaCocok: "zenix",
     judul: "Sewa Innova Zenix Tangerang - Hybrid 7 Kursi",
-    deskripsi: "Sewa Toyota Innova Zenix di Tangerang mulai Rp849.000/hari. Empat varian termasuk hybrid, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir.",
+    deskripsi: (frasa) =>
+      `Sewa Toyota Innova Zenix di Tangerang${frasa ? ` ${frasa}` : ""}. Empat varian termasuk hybrid, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir.`,
     h1: "Sewa Innova Zenix Tangerang",
     subjudul: "Empat varian Zenix keluaran 2024, semuanya matic dan berkapasitas 7 penumpang — tinggal pilih yang sesuai bujet dan kebutuhan perjalanan Anda."
   },
@@ -26,7 +27,8 @@ export const KOLEKSI_MODEL = [
     label: "Innova Reborn",
     namaCocok: "reborn",
     judul: "Sewa Innova Reborn Tangerang - Diesel 7 Kursi",
-    deskripsi: "Sewa Innova Reborn Tangerang mulai Rp799.000/hari. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir, syarat cukup KTP.",
+    deskripsi: (frasa) =>
+      `Sewa Innova Reborn Tangerang${frasa ? ` ${frasa}` : ""}. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir, syarat cukup KTP.`,
     h1: "Sewa Innova Reborn Tangerang",
     subjudul: "Titik awal armada kami: MPV diesel 7 penumpang keluaran 2024, matic, tangguh untuk rute luar kota maupun pemakaian harian."
   },
@@ -36,7 +38,8 @@ export const KOLEKSI_MODEL = [
     label: "Toyota Fortuner",
     namaCocok: "fortuner",
     judul: "Sewa Fortuner Tangerang - 2.8 GR & Legender",
-    deskripsi: "Sewa Fortuner Tangerang mulai Rp1.399.000/hari. Pilihan 2.8 GR diesel dan Legender, matic, 7 penumpang. Lepas kunci atau dengan sopir, unit terawat.",
+    deskripsi: (frasa) =>
+      `Sewa Fortuner Tangerang${frasa ? ` ${frasa}` : ""}. Pilihan 2.8 GR diesel dan Legender, matic, 7 penumpang. Lepas kunci atau dengan sopir, unit terawat.`,
     h1: "Sewa Fortuner Tangerang",
     subjudul: "Dua pilihan Fortuner — 2.8 GR bermesin diesel dan Legender — sama-sama matic, 7 penumpang, dan siap untuk rute kota maupun luar kota."
   },
@@ -46,7 +49,8 @@ export const KOLEKSI_MODEL = [
     label: "Pajero Sport",
     namaCocok: "pajero",
     judul: "Sewa Pajero Sport Tangerang - Dakar Diesel",
-    deskripsi: "Sewa Mitsubishi Pajero Sport Dakar di Tangerang Rp1.399.000/hari. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau dengan sopir, syarat cukup KTP.",
+    deskripsi: (frasa) =>
+      `Sewa Mitsubishi Pajero Sport Dakar di Tangerang${frasa ? ` ${frasa}` : ""}. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau dengan sopir, syarat cukup KTP.`,
     h1: "Sewa Pajero Sport Tangerang",
     subjudul: "Mitsubishi Pajero Sport Dakar keluaran 2024 — SUV diesel bertubuh besar dengan kabin senyap dan bantingan yang lebih lembut dari rata-rata kelasnya."
   }
