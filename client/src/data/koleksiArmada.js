@@ -42,7 +42,8 @@ export function cariKoleksi(slug) {
  * Dua cara mencocokkan, sengaja dibedakan:
  * - `tipe` — kategori seperti MPV/SUV, dicocokkan persis dengan kolom `tipe`
  *   di database. Halaman kategori ikut berubah begitu admin memindahkan
- *   sebuah unit ke tipe lain.
+ *   sebuah unit ke tipe lain. Boleh berupa daftar kalau satu halaman
+ *   menampung lebih dari satu nilai tipe (lihat SUV di koleksi/kategori.js).
  * - `namaCocok` — keluarga model seperti Zenix/Fortuner, dicocokkan sebagai
  *   substring nama unit. Dipakai untuk halaman iklan yang membidik nama
  *   mobil, yang di database tersebar di beberapa varian dengan satu tipe
@@ -56,7 +57,7 @@ export function unitKoleksi(koleksi, mobils) {
   if (!koleksi) return [];
   const cocok = mobils.filter((m) => {
     if (koleksi.semua) return true;
-    if (koleksi.tipe) return m.tipe === koleksi.tipe;
+    if (koleksi.tipe) return [].concat(koleksi.tipe).includes(m.tipe);
     if (koleksi.namaCocok) return m.namaMobil.toLowerCase().includes(koleksi.namaCocok.toLowerCase());
     return false;
   });

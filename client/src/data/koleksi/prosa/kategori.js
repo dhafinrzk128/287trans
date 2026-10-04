@@ -65,11 +65,11 @@ export const PROSA_KATEGORI = {
     bagian: [
       {
         judul: "Ladder Frame atau Crossover",
-        isi: "Toyota Fortuner dan Mitsubishi Pajero Sport Dakar dibangun di atas sasis ladder frame — konstruksi yang sama dengan kendaraan niaga ringan. Keduanya paling kuat saat kabin terisi penuh, paling percaya diri di jalan rusak, dan tersedia dengan mesin diesel bertorsi besar. Honda CRV Turbo dan Mitsubishi Destinator memakai konstruksi monokok, sehingga terasa lebih halus dan lebih mudah dikendalikan untuk pemakaian harian di dalam kota, dengan konsumsi bahan bakar yang lebih ringan. Hyundai Palisade Signature berada di kelas tersendiri: SUV besar bermesin diesel dengan kabin paling lapang di armada kami."
+        isi: "Toyota Fortuner dan Mitsubishi Pajero Sport Dakar dibangun di atas sasis ladder frame — konstruksi yang sama dengan kendaraan niaga ringan. Keduanya paling kuat saat kabin terisi penuh, paling percaya diri di jalan rusak, dan tersedia dengan mesin diesel bertorsi besar. Honda CRV Turbo dan Mitsubishi Destinator memakai konstruksi monokok, sehingga terasa lebih halus dan lebih mudah dikendalikan untuk pemakaian harian di dalam kota, dengan konsumsi bahan bakar yang lebih ringan. Hyundai Palisade Signature berada di kelas tersendiri: SUV besar bermesin diesel dengan kabin paling lapang di armada kami. Di ujung lainnya ada Honda HR-V SE, crossover paling ringkas di kategori ini — bodinya pendek sehingga mudah diselipkan ke parkiran sempit, posisi duduknya tetap tinggi, dan mesin bensinnya irit untuk rute berhenti-jalan di dalam kota."
       },
       {
         judul: "Kapasitas Penumpang Tidak Sama",
-        isi: "Ini yang paling sering keliru diasumsikan. Fortuner, Pajero Sport, Destinator, dan Palisade berkapasitas tujuh penumpang, sedangkan Honda CRV Turbo berkapasitas lima. Kalau rombongan Anda lebih dari lima orang, pastikan memilih unit tujuh kursi sejak awal supaya tidak perlu mengubah rencana di hari keberangkatan. Untuk tujuh orang beserta koper besar, ruang bagasi paling lapang ada di Hyundai Palisade — dan kalau bagasinya masih kurang, kami akan menyarankan penambahan unit alih-alih memaksakan satu mobil."
+        isi: "Ini yang paling sering keliru diasumsikan. Fortuner, Pajero Sport, Destinator, dan Palisade berkapasitas tujuh penumpang, sedangkan Honda CRV Turbo dan Honda HR-V SE berkapasitas lima. Kalau rombongan Anda lebih dari lima orang, pastikan memilih unit tujuh kursi sejak awal supaya tidak perlu mengubah rencana di hari keberangkatan. Untuk tujuh orang beserta koper besar, ruang bagasi paling lapang ada di Hyundai Palisade — dan kalau bagasinya masih kurang, kami akan menyarankan penambahan unit alih-alih memaksakan satu mobil."
       },
       {
         judul: "Untuk Kerja, Keluarga, atau Acara",
@@ -79,11 +79,15 @@ export const PROSA_KATEGORI = {
     faq: [
       {
         tanya: "SUV mana yang tarifnya paling rendah?",
-        jawab: "Mitsubishi Destinator, Pajero Sport Dakar, dan Toyota Fortuner 2.8 GR sama-sama Rp1.399.000 per hari. Ketiganya matic dan berkapasitas tujuh penumpang."
+        jawab: "Honda HR-V SE, crossover lima penumpang yang paling pas untuk dalam kota. Di antara SUV tujuh penumpang, tarif awalnya ada di Mitsubishi Destinator, Pajero Sport Dakar, dan Toyota Fortuner 2.8 GR yang dipatok sama. Angka per harinya tertera di tabel perbandingan di atas dan selalu mengikuti katalog."
       },
       {
         tanya: "Semua SUV muat 7 orang?",
-        jawab: "Tidak semua. Honda CRV Turbo berkapasitas lima penumpang. Fortuner, Pajero Sport, Destinator, dan Palisade berkapasitas tujuh. Kapasitas tiap unit tercantum di kartunya masing-masing di halaman ini."
+        jawab: "Tidak semua. Honda CRV Turbo dan Honda HR-V SE berkapasitas lima penumpang. Fortuner, Pajero Sport, Destinator, dan Palisade berkapasitas tujuh. Kapasitas tiap unit tercantum di kartunya masing-masing di halaman ini."
+      },
+      {
+        tanya: "Honda HR-V termasuk SUV atau hatchback?",
+        jawab: "HR-V adalah SUV kompak (crossover): posisi duduk dan ground clearance-nya lebih tinggi dari hatchback, dengan pintu bagasi yang menyatu dengan kabin. Karena itu kami menempatkannya di kategori SUV, sebagai pilihan paling ringkas untuk pemakaian dalam kota."
       },
       {
         tanya: "Apakah SUV tersedia lepas kunci?",
@@ -293,45 +297,6 @@ export const PROSA_KATEGORI = {
       {
         tanya: "Bisa disewa bulanan untuk operasional perusahaan?",
         jawab: "Bisa. Sedan termasuk yang paling sering diambil dengan skema bulanan untuk kendaraan operasional dan antar-jemput relasi, dengan tarif per hari yang lebih hemat dibanding harian. Untuk kebutuhan beberapa unit sekaligus atau kontrak yang lebih panjang, hubungi tim kami supaya penawarannya bisa disusun sesuai kebutuhan."
-      }
-    ]
-  },
-  "sewa-hatchback-tangerang": {
-    intro: "Kalau kebutuhan Anda adalah mobil untuk berpindah-pindah di dalam kota Tangerang dan Jakarta tanpa membawa rombongan besar, kategori ini yang paling masuk akal secara biaya. Honda HR-V SE adalah crossover kompak dengan bentuk bodi hatchback: bagasi belakangnya menyatu dengan kabin sehingga bisa diperluas dengan melipat kursi, sementara dimensinya tetap ringkas sehingga jauh lebih mudah diselipkan ke celah parkir yang sempit.",
-    bagian: [
-      {
-        judul: "Ringkas di Luar, Fleksibel di Dalam",
-        isi: "Keunggulan bentuk hatchback ada pada bagasinya yang tidak terpisah dari kabin. Dengan kursi baris kedua terlipat, ruang muatnya berubah jadi jauh lebih besar daripada yang bisa ditampung sedan berukuran sama — berguna kalau Anda perlu mengangkut barang berukuran tidak biasa. Sementara itu dimensinya tetap pendek, sehingga radius putarnya kecil dan Anda tidak perlu berhitung panjang saat parkir paralel di kawasan padat. Posisi duduknya juga lebih tinggi dari hatchback biasa, jadi pandangan ke depan tetap lega di jalan yang penuh."
-      },
-      {
-        judul: "Paling Hemat untuk Pemakaian Panjang",
-        isi: "Dua hal membuat unit ini paling efisien dioperasikan di armada kami. Pertama, tarif hariannya termasuk yang terendah. Kedua, mesin bensinnya berkapasitas kecil sehingga konsumsi bahan bakarnya jauh lebih ringan daripada MPV dan SUV. Untuk sewa bulanan sebagai kendaraan operasional harian atau kendaraan pengganti selama mobil pribadi Anda di bengkel, selisih total biayanya dibanding menyewa MPV bisa cukup besar dalam sebulan. Sebutkan durasi saat chat supaya kami bisa memberi tarif bulanannya langsung."
-      },
-      {
-        judul: "Kapan Sebaiknya Naik Kelas",
-        isi: "Kami akan terus terang: unit ini berkapasitas lima penumpang, dan untuk lima orang dewasa beserta koper masing-masing, ruangnya akan terasa sempit. Kalau rombongan Anda lebih dari empat orang untuk perjalanan luar kota, sebaiknya langsung ke kategori MPV — selisih tarifnya tidak sebesar ketidaknyamanan yang akan Anda rasakan sepanjang jalan. Untuk perjalanan berdua atau bertiga di dalam kota, HR-V justru pilihan yang paling tepat dan paling hemat."
-      }
-    ],
-    faq: [
-      {
-        tanya: "Honda HR-V ini hatchback atau SUV?",
-        jawab: "Secara bentuk bodi, HR-V adalah crossover kompak dengan pintu bagasi menyatu seperti hatchback. Di katalog kami unit ini masuk kategori Hatchback karena dimensi dan cara pakainya lebih dekat ke sana daripada ke SUV."
-      },
-      {
-        tanya: "Muat berapa orang?",
-        jawab: "Lima penumpang. Untuk kenyamanan perjalanan jauh dengan bagasi, kami sarankan maksimal empat orang. Lebih dari itu, kategori MPV akan jauh lebih nyaman."
-      },
-      {
-        tanya: "Cocok untuk sewa bulanan?",
-        jawab: "Sangat cocok, dan ini salah satu penggunaan tersering unit ini. Kombinasi tarif rendah dan konsumsi bahan bakar yang irit membuat total biaya bulanannya termasuk yang paling ringan di armada kami."
-      },
-      {
-        tanya: "Apa bedanya HR-V dengan Innova Reborn untuk dalam kota?",
-        jawab: "Innova Reborn tarif hariannya sedikit di bawah HR-V, tapi ia MPV diesel tujuh penumpang yang bodinya jauh lebih besar. HR-V lebih ringkas, lebih mudah diparkir, dan mesin bensinnya irit untuk rute berhenti-jalan. Kalau penumpangnya lima orang atau kurang dan rutenya di dalam kota, HR-V biasanya lebih praktis; kalau lebih dari itu atau ke luar kota, Reborn lebih nyaman."
-      },
-      {
-        tanya: "Bisa diantar ke Karawaci atau Cipondoh?",
-        jawab: "Bisa. Keduanya berada di Kota Tangerang dan termasuk area terdekat dari kantor kami di Ciledug, sehingga unit umumnya bisa disiapkan cepat selama tanggalnya kosong. Biaya antar dihitung sesuai jarak dan kami sebutkan di awal — atau ambil sendiri di kantor kami kalau Anda ingin menghematnya."
       }
     ]
   }

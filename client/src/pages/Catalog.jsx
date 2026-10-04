@@ -267,8 +267,8 @@ export default function Catalog() {
             <Reveal className="space-y-3 leading-relaxed text-slate-600">
               <h3 className="text-base font-bold text-slate-900">Mulai dari jumlah penumpang</h3>
               <p>
-                Ini penyaring yang paling cepat. Untuk lima orang atau kurang, hatchback dan sedan sudah
-                cukup dan tarifnya paling ringan. Untuk enam sampai tujuh orang, pilihannya ada di MPV
+                Ini penyaring yang paling cepat. Untuk lima orang atau kurang, crossover ringkas seperti HR-V
+                dan sedan sudah cukup, dan lebih mudah diparkir. Untuk enam sampai tujuh orang, pilihannya ada di MPV
                 dan SUV tiga baris. Kalau baris ketiga akan terisi orang dewasa sepanjang perjalanan
                 jauh, sebutkan saat chat — tidak semua unit tujuh penumpang sama lapangnya.
               </p>

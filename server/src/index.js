@@ -128,7 +128,6 @@ const KNOWN_SPA_ROUTES = [
   /^\/sewa-suv-mewah-tangerang\/?$/,
   /^\/sewa-mobil-listrik-tangerang\/?$/,
   /^\/sewa-sedan-tangerang\/?$/,
-  /^\/sewa-hatchback-tangerang\/?$/,
   /^\/sewa-innova-zenix-tangerang\/?$/,
   /^\/sewa-innova-reborn-tangerang\/?$/,
   /^\/sewa-fortuner-tangerang\/?$/,
@@ -181,6 +180,10 @@ const REDIRECT_PERMANEN = {
   // tidak ditaut dari halaman mana pun; tabel rentang harganya kini ada di
   // /katalog, jadi ke sanalah URL lamanya diarahkan.
   "/armada": "/katalog",
+  // Isinya hanya Honda HR-V, yang umumnya dianggap SUV kompak — orang yang
+  // mencari "sewa hatchback" mengharapkan mobil kecil yang tidak kami punya.
+  // Unitnya kini tampil di halaman SUV (lihat client/src/data/koleksi/kategori.js).
+  "/sewa-hatchback-tangerang": "/sewa-suv-tangerang",
 };
 
 app.get(Object.keys(REDIRECT_PERMANEN), (req, res) => {

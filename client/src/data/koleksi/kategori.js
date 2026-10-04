@@ -27,11 +27,17 @@ export const KOLEKSI_KATEGORI = [
     slug: "sewa-suv-tangerang",
     grup: "kategori",
     label: "SUV",
-    tipe: "SUV",
+    // "Hatchback" ikut dicocokkan karena Honda HR-V (SUV kompak) di database
+    // masih bertipe Hatchback sampai diganti lewat panel admin. Halaman
+    // /sewa-hatchback-tangerang sudah dilebur ke sini dan URL-nya di-301 di
+    // server. Setelah tipe HR-V diganti jadi SUV, "Hatchback" boleh dihapus
+    // dari daftar ini — tanpa menghapusnya pun tidak ada yang rusak.
+    tipe: ["SUV", "Hatchback"],
     judul: "Sewa SUV Tangerang - Fortuner, Pajero, CRV",
-    deskripsi: "Sewa SUV Tangerang mulai Rp1.399.000/hari: Fortuner, Pajero Sport Dakar, Honda CRV Turbo, Destinator, Hyundai Palisade. Matic, lepas kunci atau plus sopir.",
+    deskripsi: (harga) =>
+      `Sewa SUV Tangerang${harga ? ` mulai ${harga}/hari` : ""}: Fortuner, Pajero Sport, CRV Turbo, Palisade, sampai HR-V untuk dalam kota. Matic, lepas kunci atau plus sopir.`,
     h1: "Sewa SUV Tangerang",
-    subjudul: "Enam tipe SUV dari lima merek berbeda — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota."
+    subjudul: "Dari crossover ringkas untuk dalam kota sampai SUV diesel tujuh penumpang — postur tinggi, kabin lega, dan pilihan mesin diesel maupun bensin untuk rute kota sampai luar kota."
   },
   {
     slug: "sewa-alphard-tangerang",
@@ -82,15 +88,5 @@ export const KOLEKSI_KATEGORI = [
     deskripsi: "Sewa Honda Accord Turbo di Tangerang Rp1.499.000/hari. Sedan matic 5 penumpang keluaran 2025, nyaman untuk agenda kerja dan penjemputan tamu.",
     h1: "Sewa Sedan Tangerang",
     subjudul: "Honda Accord Turbo keluaran 2025 — sedan eksekutif dengan kabin lega dan bantingan halus, di tarif jauh di bawah sedan Eropa."
-  },
-  {
-    slug: "sewa-hatchback-tangerang",
-    grup: "kategori",
-    label: "Hatchback",
-    tipe: "Hatchback",
-    judul: "Sewa Hatchback Tangerang - Honda HR-V SE",
-    deskripsi: "Sewa Honda HR-V SE di Tangerang Rp899.000/hari. Matic, 5 penumpang, irit dan mudah diparkir. Pilihan hemat untuk pemakaian harian dalam kota.",
-    h1: "Sewa Hatchback Tangerang",
-    subjudul: "Honda HR-V SE keluaran 2023 — dimensi ringkas untuk kota padat, dengan bagasi hatchback yang jauh lebih fleksibel dari sedan."
   }
 ];
