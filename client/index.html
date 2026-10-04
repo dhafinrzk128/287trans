@@ -75,7 +75,7 @@
           j.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
           d.head.appendChild(j);
         }
-        if (/[?&](gclid|gbraid|wbraid|utm_[a-z]+)=/.test(w.location.search)) return muat();
+        if (/[?&](gclid|gbraid|wbraid|utm_[a-z]+|gtm_debug)=/.test(w.location.search)) return muat();
         EVENT.forEach(function (e) { w.addEventListener(e, muat, { capture: true, passive: true }); });
         w.addEventListener('load', function () { setTimeout(muat, 4000); });
       })(window, document, '%VITE_GTM_ID%');
