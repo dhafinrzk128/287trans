@@ -133,6 +133,10 @@ const KNOWN_SPA_ROUTES = [
   /^\/sewa-innova-reborn-tangerang\/?$/,
   /^\/sewa-fortuner-tangerang\/?$/,
   /^\/sewa-pajero-sport-tangerang\/?$/,
+  // Halaman layanan (lokasi & cara sewa) — client/src/data/koleksi/layanan.js.
+  /^\/rental-mobil-ciledug\/?$/,
+  /^\/sewa-mobil-lepas-kunci-tangerang\/?$/,
+  /^\/harga-sewa-mobil-tangerang\/?$/,
   /^\/admin\/login\/?$/,
   /^\/admin\/dashboard\/?$/,
   /^\/admin\/mobil\/?$/,
@@ -162,9 +166,14 @@ const KNOWN_SPA_ROUTES = [
 // belum sempat diperbarui. Didaftarkan sebelum penangan berkas prerender di
 // bawah, supaya sisa halaman statis lama di dist (kalau ada) tidak keburu
 // terlayani lebih dulu.
+//
+// /sewa-mobil-lepas-kunci-tangerang dulu ada di sini (artikel lama -> "/").
+// Dikeluarkan karena URL itu kini halaman layanan sungguhan
+// (client/src/data/koleksi/layanan.js): redirect di sini didaftarkan sebelum
+// penangan prerender, jadi selama barisnya ada halaman itu tidak akan pernah
+// tersaji. Jangan didaftarkan lagi.
 const REDIRECT_PERMANEN = {
   "/rental-mobil-tangerang": "/",
-  "/sewa-mobil-lepas-kunci-tangerang": "/",
   "/rental-mobil-plus-driver": "/",
   "/rental-mobil-bulanan-tangerang": "/",
   "/sewa-mobil-bandara-soekarno-hatta": "/",
