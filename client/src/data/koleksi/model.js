@@ -28,7 +28,7 @@ export const KOLEKSI_MODEL = [
     judul: "Sewa Innova Reborn Tangerang - Diesel 7 Kursi",
     deskripsi: "Sewa Innova Reborn Tangerang mulai Rp799.000/hari. Diesel, matic, 7 penumpang, unit 2024. Lepas kunci atau plus sopir, syarat cukup KTP.",
     h1: "Sewa Innova Reborn Tangerang",
-    subjudul: "Tarif termurah di seluruh armada kami: Rp799.000 per hari untuk MPV diesel 7 penumpang keluaran 2024."
+    subjudul: "Titik awal armada kami: MPV diesel 7 penumpang keluaran 2024, matic, tangguh untuk rute luar kota maupun pemakaian harian."
   },
   {
     slug: "sewa-fortuner-tangerang",

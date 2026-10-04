@@ -135,7 +135,7 @@ export const DETAIL_MOBIL = {
   },
   30: {
     cocokUntuk: [
-      "Keluarga yang ingin SUV 7 penumpang terbaru dengan tarif terjangkau",
+      "Keluarga yang ingin SUV 7 penumpang keluaran terbaru",
       "Perjalanan dalam kota dan wisata akhir pekan",
       "Pengguna yang penasaran mencoba model yang baru keluar",
     ],
@@ -195,7 +195,7 @@ export const DETAIL_MOBIL = {
   },
   25: {
     cocokUntuk: [
-      "Mobilitas harian di dalam kota dengan salah satu tarif paling terjangkau di armada kami",
+      "Mobilitas harian di dalam kota dengan unit paling ringkas dan lincah di armada kami",
       "Pasangan atau keluarga kecil",
       "Pengguna yang sering parkir di mal, perumahan, atau jalan sempit",
     ],
@@ -235,7 +235,7 @@ export const DETAIL_MOBIL = {
       "Termasuk kelas mewah dengan ketentuan sewa tersendiri.",
     ],
     faq: [
-      { q: "Pilih Alphard Gen 4 atau Gen 3?", a: "Gen 4 menawarkan desain dan kabin generasi terbaru. Gen 3 tetap nyaman dengan tarif lebih terjangkau, pas bila yang dicari adalah kenyamanan Alphard tanpa harus unit terbaru." },
+      { q: "Pilih Alphard Gen 4 atau Gen 3?", a: "Gen 4 menawarkan desain dan kabin generasi terbaru. Gen 3 tetap nyaman dengan tarif di bawah Gen 4, pas bila yang dicari adalah kenyamanan Alphard tanpa harus unit terbaru." },
       { q: "Muat berapa orang dengan koper?", a: "6 penumpang. Kalau semua kursi terisi dan membawa koper besar, sebutkan jumlah barang saat memesan supaya tim bisa memberi saran." },
     ],
   },
@@ -286,7 +286,7 @@ export const DETAIL_MOBIL = {
   },
   19: {
     cocokUntuk: [
-      "Keluarga yang ingin MPV hybrid irit dengan tarif paling terjangkau di antara Zenix hybrid",
+      "Keluarga yang ingin MPV hybrid irit dengan tarif awal di antara Zenix hybrid",
       "Penggunaan harian di kota yang sering macet",
       "Sewa bulanan untuk operasional dengan biaya bahan bakar lebih rendah",
     ],
@@ -361,7 +361,7 @@ export const DETAIL_MOBIL = {
   },
   6: {
     cocokUntuk: [
-      "Merasakan kenyamanan Alphard dengan tarif paling terjangkau di kelas MPV mewah kami",
+      "Pintu masuk ke kelas MPV mewah kami dengan kenyamanan khas Alphard",
       "Pernikahan dan acara keluarga",
       "Penjemputan tamu dalam kota",
     ],
@@ -371,7 +371,7 @@ export const DETAIL_MOBIL = {
     ],
     faq: [
       { q: "Alphard Gen 3 masih nyaman?", a: "Masih. Kursi kapten dan kabin lega yang membuat Alphard dicari tetap ada; bedanya pada desain dan fitur generasi terbaru." },
-      { q: "Kenapa lebih murah dari Gen 4?", a: "Karena generasinya lebih lama. Untuk acara yang terpenting kenyamanan penumpang, Gen 3 sering jadi pilihan paling hemat." },
+      { q: "Kenapa tarifnya di bawah Gen 4?", a: "Karena generasinya lebih lama. Untuk acara yang terpenting kenyamanan penumpang, Gen 3 sering jadi pilihan paling hemat." },
     ],
   },
   3: {

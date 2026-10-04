@@ -26,7 +26,7 @@ export const PROSA_MODEL = {
     bagian: [
       {
         judul: "Beda Varian Zenix: Type-G, Type-V, dan Type-Q",
-        isi: "Type-G adalah pintu masuk paling terjangkau dan tersedia dalam dua pilihan: bensin biasa dan hybrid. Keduanya sudah matic dengan kapasitas 7 penumpang, bedanya ada di konsumsi bahan bakar — versi hybrid jauh lebih irit kalau rute Anda banyak berhenti-jalan di dalam kota. Type-V HEV menambah kelengkapan interior dan fitur berkendara, cocok kalau penumpang belakang adalah tamu yang perlu dijamu. Type-Q HEV adalah varian tertinggi dengan kursi kapten di baris kedua, pilihan yang paling sering diambil untuk penjemputan tamu penting atau perjalanan luar kota yang panjang."
+        isi: "Type-G adalah varian awal dan tersedia dalam dua pilihan: bensin biasa dan hybrid. Keduanya sudah matic dengan kapasitas 7 penumpang, bedanya ada di konsumsi bahan bakar — versi hybrid jauh lebih irit kalau rute Anda banyak berhenti-jalan di dalam kota. Type-V HEV menambah kelengkapan interior dan fitur berkendara, cocok kalau penumpang belakang adalah tamu yang perlu dijamu. Type-Q HEV adalah varian tertinggi dengan kursi kapten di baris kedua, pilihan yang paling sering diambil untuk penjemputan tamu penting atau perjalanan luar kota yang panjang."
       },
       {
         judul: "Hybrid: Kapan Selisih Harganya Terbayar",
@@ -62,7 +62,7 @@ export const PROSA_MODEL = {
     ]
   },
   "sewa-innova-reborn-tangerang": {
-    intro: "Innova Reborn adalah generasi Innova bermesin diesel dengan sasis ladder frame, dan sampai sekarang masih jadi pilihan paling banyak dicari untuk perjalanan jarak jauh. Alasannya praktis: mesin dieselnya irit di kecepatan tol yang stabil, dayanya kuat saat mobil terisi penuh penumpang dan barang, dan bengkelnya ada di mana-mana kalau terjadi apa-apa di tengah rute luar kota. Di 287 Trans, Reborn juga jadi titik masuk termurah ke armada kami — dua tipe Type-V dan Type-G keluaran 2024, keduanya matic, dipatok di harga yang sama.",
+    intro: "Innova Reborn adalah generasi Innova bermesin diesel dengan sasis ladder frame, dan sampai sekarang masih jadi pilihan paling banyak dicari untuk perjalanan jarak jauh. Alasannya praktis: mesin dieselnya irit di kecepatan tol yang stabil, dayanya kuat saat mobil terisi penuh penumpang dan barang, dan bengkelnya ada di mana-mana kalau terjadi apa-apa di tengah rute luar kota. Di 287 Trans, Reborn juga jadi titik masuk ke armada kami — dua tipe Type-V dan Type-G keluaran 2024, keduanya matic, dipatok di harga yang sama.",
     bagian: [
       {
         judul: "Kenapa Reborn Masih Banyak Dipilih Dibanding Zenix",
@@ -88,7 +88,7 @@ export const PROSA_MODEL = {
         jawab: "Boleh. Perjalanan luar kota justru salah satu kekuatan unit ini. Sebutkan tujuan dan lama perjalanan saat pemesanan supaya kami bisa menyiapkan unit dan menginformasikan ketentuan yang berlaku untuk rute jarak jauh."
       },
       {
-        tanya: "Kenapa Reborn lebih murah daripada Zenix?",
+        tanya: "Kenapa tarif Reborn di bawah Zenix?",
         jawab: "Zenix adalah generasi yang lebih baru dengan basis monokok dan pilihan hybrid, sehingga nilai unitnya lebih tinggi. Selisih tarif itu murni mengikuti nilai unit, bukan karena kondisi Reborn kami kurang terawat — seluruh armada melewati pemeriksaan rutin yang sama sebelum disewakan."
       },
       {

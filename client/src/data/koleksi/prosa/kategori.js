@@ -26,7 +26,7 @@ export const PROSA_KATEGORI = {
     bagian: [
       {
         judul: "Tiga Keluarga MPV di Armada Kami",
-        isi: "Innova Reborn bermesin diesel dengan sasis ladder frame, jadi pilihan paling terjangkau sekaligus paling kuat saat membawa beban penuh di rute luar kota. Innova Zenix adalah generasi terbarunya dengan basis monokok, kabinnya lebih senyap dan bantingannya lebih halus di jalan kota, tersedia dalam versi bensin maupun hybrid. Innova Venturer berada di antara keduanya: masih bermesin diesel seperti Reborn, tapi dengan trim eksterior dan interior yang lebih berkelas. Ketiganya sama-sama tujuh penumpang, jadi keputusannya lebih ke karakter mesin dan bujet, bukan kapasitas."
+        isi: "Innova Reborn bermesin diesel dengan sasis ladder frame, jadi tarif awal di kategori ini sekaligus paling kuat saat membawa beban penuh di rute luar kota. Innova Zenix adalah generasi terbarunya dengan basis monokok, kabinnya lebih senyap dan bantingannya lebih halus di jalan kota, tersedia dalam versi bensin maupun hybrid. Innova Venturer berada di antara keduanya: masih bermesin diesel seperti Reborn, tapi dengan trim eksterior dan interior yang lebih berkelas. Ketiganya sama-sama tujuh penumpang, jadi keputusannya lebih ke karakter mesin dan bujet, bukan kapasitas."
       },
       {
         judul: "Diesel atau Hybrid untuk Rute Anda",
@@ -39,8 +39,8 @@ export const PROSA_KATEGORI = {
     ],
     faq: [
       {
-        tanya: "MPV mana yang paling murah?",
-        jawab: "Innova Reborn, Rp799.000 per hari untuk Type-V maupun Type-G. Keduanya diesel, matic, tujuh penumpang, keluaran 2024, dan kami patok di harga yang sama."
+        tanya: "MPV mana yang tarifnya paling rendah?",
+        jawab: "Innova Reborn, baik Type-V maupun Type-G. Keduanya diesel, matic, tujuh penumpang, keluaran 2024, dan kami patok di harga yang sama — angkanya tertera di tabel perbandingan di atas, selalu mengikuti katalog."
       },
       {
         tanya: "Apakah MPV muat 7 orang sekaligus koper?",
@@ -78,7 +78,7 @@ export const PROSA_KATEGORI = {
     ],
     faq: [
       {
-        tanya: "SUV mana yang paling murah?",
+        tanya: "SUV mana yang tarifnya paling rendah?",
         jawab: "Mitsubishi Destinator, Pajero Sport Dakar, dan Toyota Fortuner 2.8 GR sama-sama Rp1.399.000 per hari. Ketiganya matic dan berkapasitas tujuh penumpang."
       },
       {
@@ -104,7 +104,7 @@ export const PROSA_KATEGORI = {
     bagian: [
       {
         judul: "Gen 3, Gen 4, dan Versi Hybrid",
-        isi: "Alphard Type-G Gen 3 keluaran 2022 adalah pintu masuk termurah ke kelas ini dan masih sangat layak untuk acara formal — desainnya yang ikonik justru masih paling dikenali orang. Type-G Gen 4 keluaran 2024 membawa desain terbaru dengan kabin yang lebih senyap dan fitur kenyamanan yang lebih lengkap. Alphard Gen 4 HEV adalah varian tertinggi kami, bermesin hybrid sehingga akselerasinya lebih halus dan kabinnya nyaris tanpa getaran mesin saat berjalan pelan — perbedaan yang paling terasa justru saat mobil merayap di kemacetan menuju lokasi acara."
+        isi: "Alphard Type-G Gen 3 keluaran 2022 adalah pintu masuk ke kelas ini dan masih sangat layak untuk acara formal — desainnya yang ikonik justru masih paling dikenali orang. Type-G Gen 4 keluaran 2024 membawa desain terbaru dengan kabin yang lebih senyap dan fitur kenyamanan yang lebih lengkap. Alphard Gen 4 HEV adalah varian tertinggi kami, bermesin hybrid sehingga akselerasinya lebih halus dan kabinnya nyaris tanpa getaran mesin saat berjalan pelan — perbedaan yang paling terasa justru saat mobil merayap di kemacetan menuju lokasi acara."
       },
       {
         judul: "Paling Sering Disewa untuk Apa",
@@ -158,8 +158,8 @@ export const PROSA_KATEGORI = {
     ],
     faq: [
       {
-        tanya: "Berapa harga sewa mobil mewah termurah di sini?",
-        jawab: "Rp3.499.000 per hari untuk Mercedes-Benz C300 maupun E300. BMW 330i M-Sport Pro di Rp5.499.000, dan BMW M4 Competition Cabriolet di Rp11.999.000 per hari."
+        tanya: "Mulai berapa harga sewa mobil mewah di sini?",
+        jawab: "Tarif awal kategori ini ada di Mercedes-Benz C300 dan E300, disusul BMW 330i M-Sport Pro, lalu BMW M4 Competition Cabriolet di posisi tertinggi. Angka per harinya tertera di tabel perbandingan di atas dan selalu mengikuti katalog."
       },
       {
         tanya: "Apakah bisa lepas kunci?",
@@ -245,7 +245,7 @@ export const PROSA_KATEGORI = {
       },
       {
         tanya: "Apakah biaya listriknya ditanggung penyewa?",
-        jawab: "Ya, sama seperti bahan bakar pada unit lain. Bedanya, biaya pengisian daya per kilometer jauh lebih rendah dibanding bensin, dan itu yang membuat total biaya perjalanan sering lebih hemat meskipun tarif hariannya tidak paling murah."
+        jawab: "Ya, sama seperti bahan bakar pada unit lain. Bedanya, biaya pengisian daya per kilometer jauh lebih rendah dibanding bensin, dan itu yang membuat total biaya perjalanan sering lebih hemat meskipun tarif hariannya bukan yang paling rendah."
       },
       {
         tanya: "Ioniq 5 boleh dibawa ke luar kota?",
@@ -297,7 +297,7 @@ export const PROSA_KATEGORI = {
     ]
   },
   "sewa-hatchback-tangerang": {
-    intro: "Kalau kebutuhan Anda adalah mobil untuk berpindah-pindah di dalam kota Tangerang dan Jakarta tanpa membawa rombongan besar, kategori ini yang paling masuk akal secara biaya. Honda HR-V SE adalah crossover kompak dengan bentuk bodi hatchback: bagasi belakangnya menyatu dengan kabin sehingga bisa diperluas dengan melipat kursi, sementara dimensinya tetap ringkas sehingga jauh lebih mudah diselipkan ke celah parkir yang sempit. Di tarif Rp899.000 per hari, ini unit termurah kedua di armada kami setelah Innova Reborn.",
+    intro: "Kalau kebutuhan Anda adalah mobil untuk berpindah-pindah di dalam kota Tangerang dan Jakarta tanpa membawa rombongan besar, kategori ini yang paling masuk akal secara biaya. Honda HR-V SE adalah crossover kompak dengan bentuk bodi hatchback: bagasi belakangnya menyatu dengan kabin sehingga bisa diperluas dengan melipat kursi, sementara dimensinya tetap ringkas sehingga jauh lebih mudah diselipkan ke celah parkir yang sempit.",
     bagian: [
       {
         judul: "Ringkas di Luar, Fleksibel di Dalam",
@@ -305,7 +305,7 @@ export const PROSA_KATEGORI = {
       },
       {
         judul: "Paling Hemat untuk Pemakaian Panjang",
-        isi: "Dua hal membuat unit ini paling murah dioperasikan di armada kami. Pertama, tarif hariannya termasuk yang terendah. Kedua, mesin bensinnya berkapasitas kecil sehingga konsumsi bahan bakarnya jauh lebih ringan daripada MPV dan SUV. Untuk sewa bulanan sebagai kendaraan operasional harian atau kendaraan pengganti selama mobil pribadi Anda di bengkel, selisih total biayanya dibanding menyewa MPV bisa cukup besar dalam sebulan. Sebutkan durasi saat chat supaya kami bisa memberi tarif bulanannya langsung."
+        isi: "Dua hal membuat unit ini paling efisien dioperasikan di armada kami. Pertama, tarif hariannya termasuk yang terendah. Kedua, mesin bensinnya berkapasitas kecil sehingga konsumsi bahan bakarnya jauh lebih ringan daripada MPV dan SUV. Untuk sewa bulanan sebagai kendaraan operasional harian atau kendaraan pengganti selama mobil pribadi Anda di bengkel, selisih total biayanya dibanding menyewa MPV bisa cukup besar dalam sebulan. Sebutkan durasi saat chat supaya kami bisa memberi tarif bulanannya langsung."
       },
       {
         judul: "Kapan Sebaiknya Naik Kelas",
@@ -323,11 +323,11 @@ export const PROSA_KATEGORI = {
       },
       {
         tanya: "Cocok untuk sewa bulanan?",
-        jawab: "Sangat cocok, dan ini salah satu penggunaan tersering unit ini. Kombinasi tarif rendah dan konsumsi bahan bakar yang irit membuat total biaya bulanannya paling ringan di armada kami."
+        jawab: "Sangat cocok, dan ini salah satu penggunaan tersering unit ini. Kombinasi tarif rendah dan konsumsi bahan bakar yang irit membuat total biaya bulanannya termasuk yang paling ringan di armada kami."
       },
       {
-        tanya: "Ini unit termurah yang Anda punya?",
-        jawab: "Ya, HR-V SE adalah tarif harian paling ringan di armada kami. Konsumsi bahan bakarnya juga yang paling hemat, jadi biaya totalnya — bukan hanya tarif sewanya — memang yang terendah. Kalau kebutuhan Anda lima penumpang atau kurang dan rutenya di dalam kota, tidak ada alasan kuat untuk naik kelas."
+        tanya: "Apa bedanya HR-V dengan Innova Reborn untuk dalam kota?",
+        jawab: "Innova Reborn tarif hariannya sedikit di bawah HR-V, tapi ia MPV diesel tujuh penumpang yang bodinya jauh lebih besar. HR-V lebih ringkas, lebih mudah diparkir, dan mesin bensinnya irit untuk rute berhenti-jalan. Kalau penumpangnya lima orang atau kurang dan rutenya di dalam kota, HR-V biasanya lebih praktis; kalau lebih dari itu atau ke luar kota, Reborn lebih nyaman."
       },
       {
         tanya: "Bisa diantar ke Karawaci atau Cipondoh?",
