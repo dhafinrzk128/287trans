@@ -268,12 +268,16 @@ export default function Home() {
           <Reveal className="space-y-3 leading-relaxed text-slate-600">
             <h3 className="text-base font-bold text-slate-900">Lepas kunci atau plus sopir?</h3>
             <p>
-              Seluruh unit kami tersedia untuk keduanya. Untuk{" "}
+              {/* Teks di sekitar tautan sengaja satu string per sisi. Teks JSX
+                  biasa + {" "} jadi dua node teks bersebelahan, sedangkan HTML
+                  hasil prerender (potret DOM, tanpa penanda <!-- --> seperti SSR
+                  sungguhan) menggabungkannya jadi satu — hidrasi beranda gagal
+                  dengan error #418 dan seluruh halaman dirender ulang. */}
+              {"Seluruh unit kami tersedia untuk keduanya. Untuk "}
               <Link to="/sewa-mobil-lepas-kunci-tangerang" className="font-semibold text-blue-600 hover:underline">
                 sewa mobil lepas kunci
               </Link>
-              , syaratnya cukup KTP yang masih berlaku — tanpa kartu kredit, tanpa jaminan BPKB, dan
-              tanpa perlu membuat akun.
+              {", syaratnya cukup KTP yang masih berlaku — tanpa kartu kredit, tanpa jaminan BPKB, dan tanpa perlu membuat akun."}
             </p>
             <p>
               Sewa dengan sopir banyak dipilih untuk agenda kerja yang berpindah lokasi seharian dan
