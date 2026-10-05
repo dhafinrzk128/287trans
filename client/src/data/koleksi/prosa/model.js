@@ -180,5 +180,193 @@ export const PROSA_MODEL = {
         jawab: "Kalender di halaman unit menandai merah tanggal yang sudah dipesan pelanggan lain, jadi Anda bisa memeriksanya sendiri lebih dulu. Untuk libur panjang dan musim mudik, unit diesel tujuh penumpang seperti ini termasuk yang paling cepat penuh — mengunci tanggal lebih awal jauh lebih aman daripada menunggu."
       }
     ]
+  },
+
+  // --- Sedan mewah -------------------------------------------------------
+  // Aturan yang sama dengan detailMobil.js: klaim layanan hanya yang sudah
+  // berlaku di situs (kelas mewah punya ketentuan sewa tersendiri yang
+  // dijelaskan di awal), tanpa angka spesifikasi atau angka harga.
+
+  "sewa-mercy-e300-tangerang": {
+    intro: "Mercy E300 — Mercedes-Benz E-Class, kelas sedan eksekutif yang sejak lama jadi pilihan direksi dan tamu kehormatan — adalah unit yang paling sering kami siapkan untuk penumpang yang duduk di kursi belakang. Unit E300 kami keluaran 2024, bensin, matic, dan berkapasitas lima penumpang. Dibanding C300, bodinya lebih panjang dan ruang kaki baris keduanya terasa jauh lebih lega, sehingga tamu bisa duduk santai sepanjang perjalanan dari bandara, hotel, atau lokasi acara di Tangerang dan Jakarta.",
+    bagian: [
+      {
+        judul: "Paling Pas untuk Penumpang di Kursi Belakang",
+        isi: "Sedan eksekutif dirancang dari sudut pandang penumpang belakang: kabin yang senyap, bantingan yang tenang, dan ruang yang cukup untuk bekerja atau beristirahat. Karena itu E300 paling sering disewa dengan sopir — untuk menjemput relasi bisnis, mengantar direksi di antara beberapa agenda dalam sehari, atau menyambut tamu dari luar kota. Sopir yang mengurus rute dan parkir, Anda dan tamu tinggal fokus pada pertemuan.",
+        tautan: { to: "/artikel/sewa-mobil-antar-jemput-bandara-soekarno-hatta", label: "Panduan antar jemput Bandara Soekarno-Hatta" }
+      },
+      {
+        judul: "Mercy untuk Pernikahan",
+        isi: "Sedan Mercedes-Benz hitam sudah lama jadi gambaran mobil pengantin yang elegan, dan E300 menambah kenyamanan untuk pengantin yang memakai gaun atau kain panjang karena pintu dan kabin belakangnya lega. Untuk hari H, tanggal pernikahan populer biasanya menumpuk di akhir pekan yang sama, jadi sebaiknya unit dikonfirmasi begitu tanggal acara pasti. Sampaikan juga rencana dekorasi bunga atau pita supaya bisa dipastikan lebih dulu.",
+        tautan: { to: "/artikel/sewa-mobil-pengantin-tangerang", label: "Panduan memilih mobil pengantin di Tangerang" }
+      },
+      {
+        judul: "E300 atau C300",
+        isi: "Keduanya kami patok di tarif yang sama, jadi pilihannya soal ukuran dan siapa yang duduk di mana. Kalau penumpang utamanya duduk di belakang dengan sopir, E300 lebih tepat. Kalau Anda menyetir sendiri dan banyak keluar-masuk basement gedung di pusat kota, C300 yang lebih ringkas biasanya lebih praktis.",
+        tautan: { to: "/sewa-mercy-c300-tangerang", label: "Lihat Mercy C300" }
+      },
+      {
+        judul: "Ketentuan Sewa Kelas Mewah",
+        isi: "Karena nilai unitnya di atas rata-rata armada, kami mengonfirmasi lebih rinci di awal: tujuan pemakaian, rute, dan apakah memakai sopir kami. Biaya sopir dan biaya antar (kalau unit diminta datang ke alamat Anda) disebutkan sebelum pemesanan dikunci. Mengambil unit sendiri di kantor kami di Ciledug tidak dikenakan biaya."
+      }
+    ],
+    faq: [
+      {
+        tanya: "Mercy E300 ini keluaran tahun berapa?",
+        jawab: "Keluaran 2024, bensin, matic, lima penumpang. Tahun dan foto unit tercantum di kartu unit di atas, dan halaman unitnya memuat kalender ketersediaan."
+      },
+      {
+        tanya: "Apakah bisa sewa Mercy E300 dengan sopir?",
+        jawab: "Bisa, dan untuk E300 justru paling sering dengan sopir. Biaya sopir dihitung terpisah dari tarif unit dan kami sebutkan di awal."
+      },
+      {
+        tanya: "Bisa disewa untuk penjemputan tamu dari Jakarta?",
+        jawab: "Bisa. Jakarta termasuk area layanan kami. Sebutkan titik penjemputan dan jadwalnya saat chat supaya biaya antar dan waktu serah terimanya bisa langsung dihitung."
+      },
+      {
+        tanya: "Bisa sewa bulanan untuk kendaraan direksi?",
+        jawab: "Bisa. Durasi sewa tersedia dari harian sampai bulanan; skema dan ketentuannya dijelaskan tim sesuai kebutuhan perusahaan."
+      }
+    ]
+  },
+
+  "sewa-mercy-c300-tangerang": {
+    intro: "Mercy C300 adalah sedan Mercedes-Benz C-Class, dan di armada kami ini sedan mewah yang paling lincah. Unit C300 kami keluaran 2025, bensin, matic, lima penumpang. Dimensinya lebih ringkas dari E300 sehingga lebih mudah bermanuver di jalan padat Tangerang dan Jakarta serta keluar-masuk basement gedung, tanpa kehilangan kesenyapan kabin dan kesan elegan yang membuat orang mencari Mercy sejak awal.",
+    bagian: [
+      {
+        judul: "Sedan Mewah untuk Agenda di Pusat Kota",
+        isi: "C300 paling sering dipakai untuk agenda kerja yang berpindah-pindah di dalam kota: rapat di beberapa gedung, menjemput relasi bisnis, atau menghadiri acara yang butuh kesan profesional. Ukurannya membuat parkir di area perkantoran dan pusat perbelanjaan jauh lebih mudah dibanding sedan eksekutif yang lebih panjang, dan unit ini tetap nyaman disetir sendiri."
+      },
+      {
+        judul: "C300 atau BMW 330i",
+        isi: "Keduanya sedan mewah seukuran, tapi karakternya berbeda. C300 lebih menonjolkan kesenyapan dan kenyamanan kabin, sedangkan BMW 330i M-Sport lebih terasa sporty saat dikemudikan sendiri. Kalau kesan tenang dan elegan yang dicari, C300 biasanya lebih pas; kalau Anda menikmati menyetir, 330i patut dibandingkan.",
+        tautan: { to: "/sewa-bmw-330i-tangerang", label: "Lihat BMW 330i" }
+      },
+      {
+        judul: "C300 atau E300",
+        isi: "Tarif keduanya sama di armada kami. Pilih E300 kalau penumpang utama duduk di belakang dengan sopir dan butuh ruang kaki yang lebih lega, misalnya untuk tamu VIP atau penjemputan dari bandara. Pilih C300 kalau Anda sendiri yang menyetir dan rutenya banyak di dalam kota.",
+        tautan: { to: "/sewa-mercy-e300-tangerang", label: "Lihat Mercy E300" }
+      },
+      {
+        judul: "Untuk Acara dan Pernikahan",
+        isi: "Sedan Mercy tetap jadi pilihan klasik untuk mobil pengantin dan tamu keluarga. Karena unit kelas mewah jumlahnya terbatas dan tanggal populer cepat terisi, konfirmasikan unitnya begitu tanggal acara sudah pasti. Kelas ini punya ketentuan sewa tersendiri yang kami jelaskan di awal, termasuk biaya sopir dan biaya antar bila dipilih.",
+        tautan: { to: "/sewa-mobil-mewah-tangerang", label: "Lihat semua sedan mewah" }
+      }
+    ],
+    faq: [
+      {
+        tanya: "Mercy C300 ini keluaran tahun berapa?",
+        jawab: "Keluaran 2025, bensin, matic, lima penumpang. Foto dan kalender ketersediaannya ada di halaman unit."
+      },
+      {
+        tanya: "Bisa disewa lepas kunci?",
+        jawab: "Bisa, dengan ketentuan kelas mewah yang dijelaskan sebelum pemesanan dikunci. Kalau tidak ingin menyetir sendiri, unit ini juga tersedia plus sopir."
+      },
+      {
+        tanya: "Apakah tarifnya sudah termasuk sopir?",
+        jawab: "Belum. Tarif yang tertera adalah sewa unit. Kalau butuh sopir, sebutkan saat menghubungi kami dan tim akan memberi hitungannya di awal."
+      },
+      {
+        tanya: "Bisa diantar ke alamat saya?",
+        jawab: "Bisa. Biaya antar dihitung dari jarak kantor kami di Ciledug dan disebutkan sebelum pemesanan dikunci. Mengambil sendiri di kantor tidak dikenakan biaya."
+      },
+      {
+        tanya: "Bisa sewa Mercy C300 bulanan?",
+        jawab: "Bisa. Durasi sewa tersedia dari harian sampai bulanan, dengan tarif per hari yang lebih rendah untuk pemakaian panjang. Sebutkan lama sewa saat chat supaya kami bisa langsung memberi angkanya."
+      }
+    ]
+  },
+
+  "sewa-bmw-m4-competition-tangerang": {
+    intro: "BMW M4 Competition Cabriolet adalah unit paling istimewa di armada 287 Trans: sport coupe dari divisi M BMW dengan atap kain yang bisa dibuka, keluaran 2024, bensin, matic, dan berkapasitas dua penumpang. Penyewanya hampir selalu datang dengan satu tujuan yang jelas — momen yang ingin diingat, difoto, atau direkam.",
+    bagian: [
+      {
+        judul: "Untuk Pengantin dan Prewedding",
+        isi: "Dengan atap terbuka, M4 Cabriolet memberi bingkai foto yang tidak bisa diberikan sedan biasa: pasangan terlihat jelas dari luar mobil, dan latar langit ikut masuk ke foto. Karena itu unit ini paling sering diminta untuk sesi prewedding dan foto pasangan setelah akad. Untuk rombongan keluarga, pasangkan dengan unit kedua seperti Alphard atau sedan Mercy dari armada kami.",
+        tautan: { to: "/artikel/sewa-mobil-pengantin-tangerang", label: "Panduan memilih mobil pengantin di Tangerang" }
+      },
+      {
+        judul: "Konten, Peluncuran Produk, dan Acara Brand",
+        isi: "M4 Competition juga sering dipakai sebagai pusat perhatian: pembuatan konten video, peluncuran produk, atau acara brand yang butuh mobil yang langsung dikenali. Sebutkan durasi, lokasi pengambilan gambar, dan apakah unit akan banyak dikendarai atau lebih banyak diam di lokasi, supaya penawaran yang kami berikan sesuai kebutuhan produksi Anda."
+      },
+      {
+        judul: "Yang Perlu Diketahui Sebelum Menyewa",
+        isi: "Kapasitasnya dua penumpang, jadi unit ini bukan untuk membawa rombongan. Saat atap dibuka, ruang bagasi berkurang karena atap tersimpan di bagian belakang. Unit ini termasuk kelas mewah dengan ketentuan sewa tersendiri yang dijelaskan di awal, dan karena unitnya terbatas, tanggal akhir pekan dan musim pernikahan sebaiknya dikunci jauh hari.",
+        tautan: { to: "/sewa-mobil-mewah-tangerang", label: "Bandingkan dengan sedan mewah lain" }
+      },
+      {
+        judul: "Mengatur Jadwal di Hari H",
+        isi: "Untuk pernikahan, jadwal M4 biasanya dibagi antara sesi foto pasangan dan perjalanan pendek antarlokasi, sementara keluarga diangkut unit lain. Sebutkan urutan acara, jam mulai dan selesai, serta lokasi akad, resepsi, dan titik penjemputan saat chat. Dengan sopir kami, Anda tidak perlu memikirkan parkir dan waktu tempuh di sela acara; kalau lebih suka menyetir sendiri untuk sesi foto yang santai, opsi lepas kunci bisa dibahas sesuai ketentuan kelas mewah."
+      }
+    ],
+    faq: [
+      {
+        tanya: "BMW M4 Competition ini tipe apa?",
+        jawab: "BMW M4 Competition Cabriolet keluaran 2024: atap kain yang bisa dibuka, bensin, matic, dua penumpang. Foto dan kalender ketersediaannya ada di halaman unit."
+      },
+      {
+        tanya: "Bisa untuk mobil pengantin?",
+        jawab: "Bisa, dan itu salah satu pemakaian yang paling sering. Sebutkan tanggal, lokasi akad atau resepsi, dan apakah butuh sopir, supaya tim bisa mengatur jadwal serah terimanya."
+      },
+      {
+        tanya: "Bisa disewa lepas kunci?",
+        jawab: "Bisa, dengan ketentuan kelas mewah yang dijelaskan sebelum pemesanan dikunci. Kalau tidak ingin menyetir sendiri, unit ini juga tersedia plus sopir."
+      },
+      {
+        tanya: "Kenapa tarifnya paling tinggi di armada?",
+        jawab: "Karena nilai unitnya memang paling tinggi: sport coupe divisi M dengan atap yang bisa dibuka, dan unitnya terbatas. Tarif per harinya tertera di kartu unit di atas, selalu mengikuti katalog."
+      },
+      {
+        tanya: "Bisa disewa beberapa jam untuk sesi foto?",
+        jawab: "Sampaikan durasi dan lokasi sesi fotonya saat chat. Tarif dasarnya per hari, dan tim akan menjelaskan opsi yang tersedia untuk kebutuhan Anda sebelum pemesanan dikunci."
+      }
+    ]
+  },
+
+  "sewa-bmw-330i-tangerang": {
+    intro: "BMW 330i G20 M-Sport Pro adalah sedan mewah untuk orang yang menikmati menyetir. Unit kami keluaran 2025, bensin, matic, lima penumpang, dengan paket M-Sport Pro yang membuat tampilannya lebih tegas dan karakter kemudinya terasa lebih sporty dibanding sedan mewah pada umumnya. Tetap nyaman untuk harian, tapi terasa berbeda begitu Anda sendiri yang memegang setir.",
+    bagian: [
+      {
+        judul: "Untuk yang Menyetir Sendiri",
+        isi: "330i paling sering dipilih untuk agenda bisnis yang dikemudikan sendiri dan perjalanan tol antarkota, misalnya Jabodetabek ke Bandung, oleh pengemudi yang ingin perjalanannya terasa menyenangkan, bukan sekadar sampai. Unit ini juga pilihan yang wajar kalau tamu atau relasi Anda terbiasa dengan BMW.",
+        tautan: { to: "/sewa-mobil-lepas-kunci-tangerang", label: "Ketentuan sewa mobil lepas kunci" }
+      },
+      {
+        judul: "330i atau Mercy C300",
+        isi: "Keduanya sedan mewah seukuran. 330i M-Sport lebih terasa sporty saat dikemudikan, C300 lebih menonjolkan kesenyapan dan kenyamanan kabin. Kalau Anda lebih sering duduk di belakang dengan sopir, C300 atau E300 biasanya lebih pas; kalau Anda sendiri yang menyetir, 330i yang paling menyenangkan.",
+        tautan: { to: "/sewa-mercy-c300-tangerang", label: "Lihat Mercy C300" }
+      },
+      {
+        judul: "Ketentuan Sewa Kelas Mewah",
+        isi: "Unit ini termasuk kelas mewah dengan ketentuan sewa tersendiri yang dijelaskan sebelum pemesanan dikunci. Boleh dibawa ke luar kota asal kota tujuannya disebutkan saat memesan. Biaya sopir dan biaya antar, kalau dipilih, disebutkan di awal; mengambil unit sendiri di kantor kami di Ciledug tidak dikenakan biaya.",
+        tautan: { to: "/sewa-bmw-m4-competition-tangerang", label: "Lihat BMW M4 Competition" }
+      },
+      {
+        judul: "Untuk Acara dan Pernikahan",
+        isi: "Selain disetir sendiri, 330i juga tampil pas di acara formal dan pernikahan bagi yang menginginkan sedan BMW dengan kesan lebih muda dan dinamis dibanding sedan eksekutif klasik. Untuk hari H, kebanyakan penyewa memilih plus sopir supaya pengantin dan keluarga bisa fokus pada acara. Karena tanggal populer cepat terisi, konfirmasikan unitnya begitu tanggal acara pasti, beserta rencana dekorasi di mobil bila ada."
+      }
+    ],
+    faq: [
+      {
+        tanya: "BMW 330i ini keluaran tahun berapa?",
+        jawab: "Keluaran 2025, varian G20 M-Sport Pro, bensin, matic, lima penumpang. Foto dan kalender ketersediaannya ada di halaman unit."
+      },
+      {
+        tanya: "Bisa disewa lepas kunci?",
+        jawab: "Bisa, dengan ketentuan kelas mewah yang dijelaskan sebelum pemesanan dikunci. Unit ini juga tersedia plus sopir."
+      },
+      {
+        tanya: "Boleh dibawa ke luar kota?",
+        jawab: "Boleh. Sebutkan kota tujuan saat pemesanan supaya tim bisa menyiapkan unit dan menjelaskan ketentuannya."
+      },
+      {
+        tanya: "Apakah bensin dan tol termasuk tarif?",
+        jawab: "Belum. Tarif yang tertera adalah sewa unit per hari; bahan bakar dan tol selama pemakaian ditanggung penyewa."
+      },
+      {
+        tanya: "Melayani penyewa di Jakarta Selatan dan BSD?",
+        jawab: "Melayani. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari kantor kami di Ciledug, atau diambil sendiri di kantor tanpa biaya tambahan."
+      }
+    ]
   }
 };

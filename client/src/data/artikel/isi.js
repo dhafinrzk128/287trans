@@ -91,6 +91,7 @@ export const ISI_ARTIKEL = {
           "Untuk hari H, kebanyakan pasangan memilih plus sopir. Pengantin dan keluarga bisa fokus pada acara, sementara sopir mengurus rute, parkir, dan waktu tempuh antar lokasi. Seluruh unit bisa disewa dengan sopir, dan biayanya disebutkan di awal.",
           "Untuk sesi foto yang lebih santai, lepas kunci juga bisa dipilih kalau salah satu dari Anda nyaman menyetir unitnya.",
         ],
+        tautan: { to: "/sewa-bmw-m4-competition-tangerang", label: "Lihat BMW M4 Competition untuk sesi foto" },
       },
       {
         judul: "Yang perlu disampaikan saat chat",

@@ -132,6 +132,10 @@ const KNOWN_SPA_ROUTES = [
   /^\/sewa-innova-reborn-tangerang\/?$/,
   /^\/sewa-fortuner-tangerang\/?$/,
   /^\/sewa-pajero-sport-tangerang\/?$/,
+  /^\/sewa-mercy-e300-tangerang\/?$/,
+  /^\/sewa-mercy-c300-tangerang\/?$/,
+  /^\/sewa-bmw-m4-competition-tangerang\/?$/,
+  /^\/sewa-bmw-330i-tangerang\/?$/,
   // Halaman layanan (lokasi & cara sewa) — client/src/data/koleksi/layanan.js.
   /^\/rental-mobil-ciledug\/?$/,
   /^\/sewa-mobil-lepas-kunci-tangerang\/?$/,

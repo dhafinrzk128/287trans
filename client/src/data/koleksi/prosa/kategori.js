@@ -145,15 +145,23 @@ export const PROSA_KATEGORI = {
     ]
   },
   "sewa-mobil-mewah-tangerang": {
-    intro: "Kategori ini berisi sedan Eropa premium, dan penyewanya biasanya datang dengan kebutuhan yang tidak bisa diselesaikan MPV atau SUV mana pun: kesan yang terbangun sejak mobil berhenti di depan pintu. Kami menyediakan Mercedes-Benz C300 dan E300 untuk kebutuhan formal yang elegan, BMW 330i M-Sport Pro untuk karakter berkendara yang lebih sporty, serta BMW M4 Competition Cabriolet sebagai unit paling istimewa di armada kami. Seluruh tipe di kategori ini keluaran 2024 ke atas dan foto yang ditampilkan adalah foto unit sebenarnya.",
+    intro: "Kategori ini berisi sedan Eropa premium, dan penyewanya biasanya datang dengan kebutuhan yang tidak bisa diselesaikan MPV atau SUV mana pun: kesan yang terbangun sejak mobil berhenti di depan pintu. Kami menyediakan Mercedes-Benz — yang lebih akrab disebut Mercy — C300 dan E300 untuk kebutuhan formal yang elegan, BMW 330i M-Sport Pro untuk karakter berkendara yang lebih sporty, serta BMW M4 Competition Cabriolet sebagai unit paling istimewa di armada kami. Seluruh tipe di kategori ini keluaran 2024 ke atas dan foto yang ditampilkan adalah foto unit sebenarnya.",
     bagian: [
       {
         judul: "Mercedes-Benz C300 dan E300",
-        isi: "Keduanya kami patok di tarif yang sama, jadi pilihannya murni soal ukuran dan kesan. C300 lebih ringkas sehingga lebih mudah bermanuver dan parkir di kawasan padat, cocok untuk agenda kerja di dalam kota. E300 satu kelas di atasnya dengan ruang kaki baris kedua yang jauh lebih lega — pilihan yang lebih tepat kalau penumpang di belakang adalah tamu yang perlu dijamu, atau kalau perjalanannya berlangsung lama. Keduanya bermesin bensin, matic, dan berkapasitas lima penumpang."
+        isi: "Keduanya kami patok di tarif yang sama, jadi pilihannya murni soal ukuran dan kesan. C300 lebih ringkas sehingga lebih mudah bermanuver dan parkir di kawasan padat, cocok untuk agenda kerja di dalam kota. E300 satu kelas di atasnya dengan ruang kaki baris kedua yang jauh lebih lega — pilihan yang lebih tepat kalau penumpang di belakang adalah tamu yang perlu dijamu, atau kalau perjalanannya berlangsung lama. Keduanya bermesin bensin, matic, dan berkapasitas lima penumpang.",
+        tautan: [
+          { to: "/sewa-mercy-c300-tangerang", label: "Sewa Mercy C300" },
+          { to: "/sewa-mercy-e300-tangerang", label: "Sewa Mercy E300" },
+        ],
       },
       {
         judul: "BMW 330i dan M4 Competition Cabriolet",
-        isi: "BMW 330i G20 M-Sport Pro adalah sedan sport yang tetap nyaman dipakai harian, dengan karakter kemudi yang jauh lebih terasa dibanding sedan mewah pada umumnya. BMW M4 Competition Cabriolet berada di kelas yang berbeda sama sekali: mobil atap terbuka berkapasitas dua penumpang, dan ini unit paling mahal sekaligus paling jarang tersedia di armada kami. Unit seperti ini biasanya disewa untuk sesi foto, video, acara khusus, atau hadiah — bukan untuk perjalanan sehari-hari."
+        isi: "BMW 330i G20 M-Sport Pro adalah sedan sport yang tetap nyaman dipakai harian, dengan karakter kemudi yang jauh lebih terasa dibanding sedan mewah pada umumnya. BMW M4 Competition Cabriolet berada di kelas yang berbeda sama sekali: mobil atap terbuka berkapasitas dua penumpang, dan ini unit paling mahal sekaligus paling jarang tersedia di armada kami. Unit seperti ini biasanya disewa untuk sesi foto, video, acara khusus, atau hadiah — bukan untuk perjalanan sehari-hari.",
+        tautan: [
+          { to: "/sewa-bmw-330i-tangerang", label: "Sewa BMW 330i" },
+          { to: "/sewa-bmw-m4-competition-tangerang", label: "Sewa BMW M4 Competition" },
+        ],
       },
       {
         judul: "Ketentuan Khusus Kategori Ini",
@@ -184,7 +192,7 @@ export const PROSA_KATEGORI = {
     ]
   },
   "sewa-suv-mewah-tangerang": {
-    intro: "SUV mewah menempati posisi yang tidak bisa diisi kategori lain: Anda mendapat posisi duduk tinggi dan ground clearance sebuah SUV, tapi dengan kualitas kabin, peredaman, dan material yang setara sedan premium. Untuk agenda yang berpindah antara kawasan bisnis dan lokasi yang jalannya belum tentu mulus, kombinasi ini sangat masuk akal. Mercedes-Benz GLC300 keluaran 2025 adalah satu-satunya unit kami di kategori ini, dan tarifnya kami samakan dengan sedan mewah C300 dan E300.",
+    intro: "SUV mewah menempati posisi yang tidak bisa diisi kategori lain: Anda mendapat posisi duduk tinggi dan ground clearance sebuah SUV, tapi dengan kualitas kabin, peredaman, dan material yang setara sedan premium. Untuk agenda yang berpindah antara kawasan bisnis dan lokasi yang jalannya belum tentu mulus, kombinasi ini sangat masuk akal. Mercedes-Benz GLC300 (Mercy GLC) keluaran 2025 adalah satu-satunya unit kami di kategori ini, dan tarifnya kami samakan dengan sedan mewah C300 dan E300.",
     bagian: [
       {
         judul: "Kapan GLC300 Lebih Tepat daripada Sedan Mewah",

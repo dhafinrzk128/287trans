@@ -459,14 +459,21 @@ export default function KoleksiArmada({ slug }) {
                   ))}
                 </ol>
               )}
+              {/* Satu tautan, atau daftar tautan kalau satu bagian membahas
+                  beberapa unit yang masing-masing punya halaman sendiri. */}
               {b.tautan && (
-                <Link
-                  to={b.tautan.to}
-                  className="group mt-3 inline-flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-700"
-                >
-                  {b.tautan.label}
-                  <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
+                <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+                  {[].concat(b.tautan).map((t) => (
+                    <Link
+                      key={t.to}
+                      to={t.to}
+                      className="group inline-flex items-center gap-1 font-semibold text-blue-600 hover:text-blue-700"
+                    >
+                      {t.label}
+                      <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </Link>
+                  ))}
+                </div>
               )}
             </Reveal>
           ))}
