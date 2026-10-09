@@ -29,12 +29,12 @@ export const KOLEKSI_LAYANAN = [
     label: "Rental Mobil Ciledug",
     semua: true,
     tampilanUnit: "kategori",
-    judul: "Rental Mobil Ciledug - Lepas Kunci & Premium",
+    judul: "Rental Mobil Ciledug Lepas Kunci | 287 Trans",
     deskripsi: (frasa) =>
-      `Rental mobil Ciledug lepas kunci atau plus sopir${frasa ? `, ${frasa}` : ""}. Armada premium terawat, ambil di kantor kami atau diantar ke Larangan & Cipondoh.`,
-    h1: "Rental Mobil Ciledug",
+      `Rental mobil Ciledug lepas kunci atau dengan supir${frasa ? `, ${frasa}` : ""}. Garasi kami di Ciledug: lihat unit dulu, ambil sendiri, atau diantar.`,
+    h1: "Rental Mobil Ciledug — Garasi Kami Ada di Sini",
     subjudul:
-      "287 Trans adalah rental mobil Ciledug dengan unit premium keluaran terbaru — lepas kunci atau plus sopir, diambil langsung di kantor kami atau diantar ke alamat Anda.",
+      "Rental mobil Ciledug dari garasi yang memang ada di Ciledug. Datang lihat unitnya langsung sebelum sewa, ambil sendiri tanpa ongkos antar, atau minta kami antar ke rumah Anda — lepas kunci maupun dengan supir.",
     judulUnit: "Pilihan Armada dari Ciledug",
     pengantarUnit:
       "Seluruh kategori di bawah ini berangkat dari kantor yang sama di Ciledug. Klik salah satu untuk melihat unit dan harganya.",
