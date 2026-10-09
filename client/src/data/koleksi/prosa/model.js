@@ -220,8 +220,8 @@ export const PROSA_MODEL = {
         jawab: "Bisa, dan untuk E300 justru paling sering dengan sopir. Biaya sopir dihitung terpisah dari tarif unit dan kami sebutkan di awal."
       },
       {
-        tanya: "Bisa disewa untuk penjemputan tamu dari Jakarta?",
-        jawab: "Bisa. Jakarta termasuk area layanan kami. Sebutkan titik penjemputan dan jadwalnya saat chat supaya biaya antar dan waktu serah terimanya bisa langsung dihitung."
+        tanya: "Bisa sewa Mercy E300 untuk tamu di Jakarta?",
+        jawab: "Bisa. Jakarta termasuk area layanan kami, bukan hanya Tangerang — garasi kami di Ciledug berbatasan langsung dengan Jakarta Selatan dan Jakarta Barat, jadi unit bisa menjemput tamu di hotel, kantor, atau bandara. Sebutkan titik penjemputan dan jadwalnya saat chat supaya biaya antar dan waktu serah terimanya bisa langsung dihitung."
       },
       {
         tanya: "Bisa sewa bulanan untuk kendaraan direksi?",
@@ -267,8 +267,8 @@ export const PROSA_MODEL = {
         jawab: "Belum. Tarif yang tertera adalah sewa unit. Kalau butuh sopir, sebutkan saat menghubungi kami dan tim akan memberi hitungannya di awal."
       },
       {
-        tanya: "Bisa diantar ke alamat saya?",
-        jawab: "Bisa. Biaya antar dihitung dari jarak kantor kami di Ciledug dan disebutkan sebelum pemesanan dikunci. Mengambil sendiri di kantor tidak dikenakan biaya."
+        tanya: "Bisa sewa Mercy C300 di Jakarta, diantar ke alamat saya?",
+        jawab: "Bisa, ke alamat di Jakarta maupun Tangerang. Biaya antar dihitung dari jarak kantor kami di Ciledug — yang berbatasan langsung dengan Jakarta Selatan — dan disebutkan sebelum pemesanan dikunci. Mengambil sendiri di kantor tidak dikenakan biaya."
       },
       {
         tanya: "Bisa sewa Mercy C300 bulanan?",
@@ -300,6 +300,10 @@ export const PROSA_MODEL = {
       }
     ],
     faq: [
+      {
+        tanya: "Bisa sewa BMW M4 Competition untuk acara di Jakarta?",
+        jawab: "Bisa. Jakarta dan Tangerang sama-sama area layanan kami. Unit diantar ke lokasi acara atau sesi foto Anda dengan biaya antar sesuai jarak dari garasi kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan. Sebutkan lokasi dan jamnya saat chat supaya jadwal serah terimanya bisa diatur."
+      },
       {
         tanya: "BMW M4 Competition ini tipe apa?",
         jawab: "BMW M4 Competition Cabriolet keluaran 2024: atap kain yang bisa dibuka, bensin, matic, dua penumpang. Foto dan kalender ketersediaannya ada di halaman unit."
@@ -364,8 +368,8 @@ export const PROSA_MODEL = {
         jawab: "Belum. Tarif yang tertera adalah sewa unit per hari; bahan bakar dan tol selama pemakaian ditanggung penyewa."
       },
       {
-        tanya: "Melayani penyewa di Jakarta Selatan dan BSD?",
-        jawab: "Melayani. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari kantor kami di Ciledug, atau diambil sendiri di kantor tanpa biaya tambahan."
+        tanya: "Melayani sewa BMW 330i di Jakarta?",
+        jawab: "Melayani — Jakarta, Tangerang, sampai BSD. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari kantor kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan, atau diambil sendiri di kantor tanpa biaya tambahan."
       }
     ]
   }

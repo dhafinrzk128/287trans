@@ -45,33 +45,33 @@ export const KOLEKSI_KATEGORI = [
     grup: "kategori",
     label: "Luxury MPV (Alphard)",
     tipe: "Luxury MPV",
-    judul: "Sewa Alphard Tangerang - Gen 3, Gen 4 & Hybrid",
+    judul: "Sewa Alphard Jakarta & Tangerang - Gen 4 & Hybrid",
     deskripsi: (frasa) =>
-      `Sewa Alphard Tangerang${frasa ? ` ${frasa}` : ""}. Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, 6 penumpang, dengan atau tanpa sopir.`,
-    h1: "Sewa Alphard Tangerang",
-    subjudul: "Tiga generasi Alphard dalam satu armada — pilihan standar untuk penjemputan tamu penting, pernikahan, dan agenda perusahaan."
+      `Sewa Alphard Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}. Type-G Gen 3, Gen 4, dan Alphard HEV hybrid. Kursi kapten, dengan atau tanpa sopir.`,
+    h1: "Sewa Alphard Jakarta & Tangerang",
+    subjudul: "Tiga generasi Alphard dalam satu armada — pilihan standar untuk penjemputan tamu penting, pernikahan, dan agenda perusahaan di Jakarta maupun Tangerang."
   },
   {
     slug: "sewa-mobil-mewah-tangerang",
     grup: "kategori",
     label: "Luxury Sedan",
     tipe: "Luxury Sedan",
-    judul: "Sewa Mobil Mewah Tangerang - Mercedes-Benz & BMW",
+    judul: "Sewa Mobil Mewah Jakarta & Tangerang - Mercy & BMW",
     deskripsi: (frasa) =>
-      `Sewa mobil mewah Tangerang${frasa ? ` ${frasa}` : ""}: Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Dengan atau tanpa sopir.`,
-    h1: "Sewa Mobil Mewah Tangerang",
-    subjudul: "Empat sedan premium Mercedes-Benz dan BMW keluaran 2024 sampai 2025, untuk acara dan agenda yang menuntut kesan berbeda."
+      `Sewa mobil mewah Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}: Mercedes-Benz C300 dan E300, BMW 330i M-Sport, BMW M4 Competition Cabriolet. Bisa plus sopir.`,
+    h1: "Sewa Mobil Mewah Jakarta & Tangerang",
+    subjudul: "Empat sedan premium Mercedes-Benz dan BMW keluaran 2024 sampai 2025, untuk acara dan agenda di Jakarta maupun Tangerang yang menuntut kesan berbeda."
   },
   {
     slug: "sewa-suv-mewah-tangerang",
     grup: "kategori",
     label: "Luxury SUV",
     tipe: "Luxury SUV",
-    judul: "Sewa SUV Mewah Tangerang - Mercedes-Benz GLC300",
+    judul: "Sewa Mercy GLC300 Jakarta & Tangerang - SUV Mewah",
     deskripsi: (frasa) =>
-      `Sewa Mercedes-Benz GLC300 di Tangerang${frasa ? ` ${frasa}` : ""}. SUV premium keluaran 2025, matic, 5 penumpang. Untuk acara formal dan agenda perusahaan.`,
-    h1: "Sewa SUV Mewah Tangerang",
-    subjudul: "Mercedes-Benz GLC300 keluaran 2025 — perpaduan postur SUV dengan kabin dan material sekelas sedan premium."
+      `Sewa Mercedes-Benz GLC300 Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}. SUV premium 2025, matic, 5 penumpang. Untuk acara formal dan agenda perusahaan.`,
+    h1: "Sewa SUV Mewah Jakarta & Tangerang",
+    subjudul: "Mercedes-Benz GLC300 keluaran 2025 — perpaduan postur SUV dengan kabin sekelas sedan premium, siap diantar ke alamat Anda di Jakarta maupun Tangerang."
   },
   {
     slug: "sewa-mobil-listrik-tangerang",

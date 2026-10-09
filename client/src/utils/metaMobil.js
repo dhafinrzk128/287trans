@@ -29,11 +29,11 @@ const DESKRIPSI_PER_TIPE = {
   SUV: (m, nama, harga) =>
     `Rental ${nama} Tangerang ${harga}/hari. SUV ${bahanBakar(m)} ${m.kapasitas} kursi, unit ${m.tahun}, tangguh untuk luar kota. Lepas kunci atau dengan sopir.`,
   "Luxury MPV": (m, nama, harga) =>
-    `${nama} untuk pernikahan, tamu VIP, dan agenda kantor di Tangerang. ${m.kapasitas} penumpang, unit ${m.tahun}, ${harga}/hari, dengan atau tanpa sopir.`,
+    `${nama} untuk pernikahan, tamu VIP, dan agenda kantor di Jakarta & Tangerang. ${m.kapasitas} penumpang, unit ${m.tahun}, ${harga}/hari, bisa dengan sopir.`,
   "Luxury Sedan": (m, nama, harga) =>
-    `Sewa ${nama} di Tangerang untuk acara formal dan pengantin. Unit ${m.tahun}, ${m.kapasitas} penumpang, ${harga}/hari, tersedia plus sopir.`,
+    `Sewa ${nama} Jakarta & Tangerang untuk acara formal dan pengantin. Unit ${m.tahun}, ${m.kapasitas} penumpang, ${harga}/hari, tersedia plus sopir.`,
   "Luxury SUV": (m, nama, harga) =>
-    `Sewa ${nama} di Tangerang ${harga}/hari. SUV premium ${m.tahun}, ${m.kapasitas} penumpang, untuk acara formal dan agenda perusahaan. Dengan atau tanpa sopir.`,
+    `Sewa ${nama} Jakarta & Tangerang ${harga}/hari. SUV premium ${m.tahun}, ${m.kapasitas} penumpang, untuk acara formal dan agenda perusahaan. Bisa plus sopir.`,
   Electric: (m, nama, harga) =>
     `Sewa mobil listrik ${nama} di Tangerang ${harga}/hari. Tanpa biaya bensin, ${m.kapasitas} penumpang, unit ${m.tahun}. Lepas kunci atau dengan sopir.`,
   Sedan: (m, nama, harga) =>
@@ -52,9 +52,15 @@ export function namaUnit(mobil) {
   return (mobil.namaMobil || "").trim();
 }
 
+// Kelas mewah menyebut Jakarta juga: pencari unit seperti Mercy C300 atau
+// BMW 330i banyak dari Jakarta, dan title yang hanya menyebut Tangerang
+// membuat mereka (dan ringkasan AI Google) mengira kami hanya melayani
+// Tangerang. Kelas lain tetap "Tangerang" — di sana memang pasarnya.
+const TIPE_JAKARTA = new Set(["Luxury MPV", "Luxury Sedan", "Luxury SUV"]);
+
 // Komponen Seo menambahkan " | 287 Trans" sendiri.
 export function judulMobil(mobil) {
-  return `Sewa ${namaUnit(mobil)} Tangerang`;
+  return `Sewa ${namaUnit(mobil)} ${TIPE_JAKARTA.has(mobil.tipe) ? "Jakarta & Tangerang" : "Tangerang"}`;
 }
 
 export function deskripsiMobil(mobil) {
