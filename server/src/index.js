@@ -140,6 +140,11 @@ const KNOWN_SPA_ROUTES = [
   /^\/rental-mobil-ciledug\/?$/,
   /^\/sewa-mobil-lepas-kunci-tangerang\/?$/,
   /^\/harga-sewa-mobil-tangerang\/?$/,
+  // Halaman daerah — client/src/data/koleksi/daerah.js.
+  /^\/sewa-mobil-bintaro\/?$/,
+  /^\/sewa-mobil-bsd-serpong\/?$/,
+  /^\/rental-mobil-cipondoh\/?$/,
+  /^\/rental-mobil-tangerang-selatan\/?$/,
   /^\/admin\/login\/?$/,
   /^\/admin\/dashboard\/?$/,
   /^\/admin\/mobil\/?$/,

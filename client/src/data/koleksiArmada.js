@@ -17,14 +17,16 @@
 import { KOLEKSI_MODEL } from "./koleksi/model.js";
 import { KOLEKSI_KATEGORI } from "./koleksi/kategori.js";
 import { KOLEKSI_LAYANAN } from "./koleksi/layanan.js";
+import { KOLEKSI_DAERAH } from "./koleksi/daerah.js";
 
 // Kategori dan model: halaman yang memuat sebagian armada. Inilah yang tampil
 // di menu "Pilihan Armada" dan yang ditautkan dari halaman detail mobil.
 export const KOLEKSI_ARMADA = [...KOLEKSI_KATEGORI, ...KOLEKSI_MODEL];
 
 // Seluruh halaman bertemplate KoleksiArmada, termasuk halaman layanan
-// (lokasi dan cara sewa) — sumber route, prerender, dan sitemap.
-export const KOLEKSI = [...KOLEKSI_ARMADA, ...KOLEKSI_LAYANAN];
+// (lokasi dan cara sewa) dan halaman daerah — sumber route, prerender, dan
+// sitemap.
+export const KOLEKSI = [...KOLEKSI_ARMADA, ...KOLEKSI_LAYANAN, ...KOLEKSI_DAERAH];
 
 export const KOLEKSI_PATHS = KOLEKSI.map((k) => `/${k.slug}`);
 
