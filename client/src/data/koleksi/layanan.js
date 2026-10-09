@@ -29,17 +29,20 @@ export const KOLEKSI_LAYANAN = [
     label: "Rental Mobil Ciledug",
     semua: true,
     tampilanUnit: "kategori",
-    judul: "Rental Mobil Ciledug Lepas Kunci | 287 Trans",
+    // Teks halaman ini mengikuti ad group "Rental Mobil Ciledug" (lihat
+    // komentar di koleksi/daerah.js): terdekat, lepas kunci, Karang Tengah,
+    // garasi di Ciledug, lihat unit dulu, harian/mingguan/bulanan.
+    judul: "Rental Mobil Ciledug Terdekat, Lepas Kunci | 287 Trans",
     deskripsi: (frasa) =>
-      `Rental mobil Ciledug lepas kunci atau dengan supir${frasa ? `, ${frasa}` : ""}. Garasi kami di Ciledug: lihat unit dulu, ambil sendiri, atau diantar.`,
-    h1: "Rental Mobil Ciledug — Garasi Kami Ada di Sini",
+      `Rental mobil Ciledug terdekat${frasa ? `, ${frasa}` : ""}. Sewa mobil Ciledug lepas kunci atau dengan supir. Garasi di Ciledug, lihat unit dulu.`,
+    h1: "Rental Mobil Ciledug Terdekat — Garasi Kami Ada di Sini",
     subjudul:
-      "Rental mobil Ciledug dari garasi yang memang ada di Ciledug. Datang lihat unitnya langsung sebelum sewa, ambil sendiri tanpa ongkos antar, atau minta kami antar ke rumah Anda — lepas kunci maupun dengan supir.",
-    judulUnit: "Pilihan Armada dari Ciledug",
+      "Rental mobil Ciledug dari garasi yang memang ada di Ciledug. Mau lihat unitnya dulu? Tinggal mampir. Sewa mobil Ciledug lepas kunci atau dengan supir — ambil sendiri di garasi, atau pilih unitnya dan kami antar.",
+    judulUnit: "Pilihan Unit Rental Mobil Ciledug",
     pengantarUnit:
-      "Seluruh kategori di bawah ini berangkat dari kantor yang sama di Ciledug. Klik salah satu untuk melihat unit dan harganya.",
-    judulFaq: "Pertanyaan Seputar Rental Mobil di Ciledug",
-    judulCta: "Cek Unit Kosong untuk Tanggal Anda",
+      "Seluruh kategori di bawah ini keluar dari garasi yang sama di Ciledug. Klik salah satu untuk melihat unit yang ready dan harganya.",
+    judulFaq: "Tanya Jawab Rental Mobil Ciledug",
+    judulCta: "Mau Lihat Unitnya Dulu? Cek yang Ready",
     sapaanWa: "Halo, saya mau sewa mobil di Ciledug.",
   },
   {

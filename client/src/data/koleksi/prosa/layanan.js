@@ -11,35 +11,40 @@
 // jumlah pelanggan, rating, atau tahun berdiri.
 
 export const PROSA_LAYANAN = {
-  // Halaman paling "lokal": garasi kami memang di Ciledug. Angle-nya
-  // kedekatan — lihat unit dulu, ambil sendiri, antar gratis kalau dekat.
-  // Jangkauan antar gratis sengaja tidak disebut angkanya; penyewa diminta
-  // mengirim alamat supaya tim yang memastikan.
+  // Halaman paling "lokal": garasi kami memang di Ciledug. H2 mengikuti
+  // kata kunci dan judul iklan ad group "Rental Mobil Ciledug" (terdekat,
+  // lepas kunci, harian/mingguan/bulanan, Karang Tengah, "Dari Ciledug ke
+  // Mana Saja"). Jangkauan antar gratis sengaja tidak disebut angkanya;
+  // penyewa diminta mengirim alamat supaya tim yang memastikan.
   "rental-mobil-ciledug": {
     intro:
-      "Saat mencari sewa mobil Ciledug, wajar kalau Anda ingin unitnya benar-benar dekat. Garasi dan kantor 287 Trans ada di Jl. Lembang Baru II, Ciledug, dan dari sinilah seluruh armada kami berangkat. Untuk Anda yang tinggal di Ciledug, Karang Tengah, atau Larangan, kami tetangga sendiri: Anda bisa mampir melihat kondisi unit sebelum memutuskan, dan serah terima tidak perlu menunggu mobil menembus macet dari kota lain.",
+      "Rental mobil Ciledug terdekat adalah yang garasinya memang di Ciledug. Garasi dan kantor 287 Trans ada di Jl. Lembang Baru II, Ciledug, dan dari sinilah seluruh armada kami berangkat. Untuk Anda yang mencari sewa mobil Ciledug — juga di Karang Tengah dan Larangan — kami tetangga sendiri: mau lihat unitnya dulu, tinggal mampir; mau langsung pakai, unit tinggal ambil atau kami antar tanpa menunggu mobil menembus macet dari kota lain.",
     bagian: [
       {
-        judul: "Kenapa Rental Mobil Ciledug di 287 Trans",
+        judul: "Rental Mobil Ciledug Terdekat: Garasi Kami di Ciledug",
         isi: "Kedekatan bukan sekadar soal jarak di peta. Untuk penyewa di Ciledug, kedekatan mengubah cara Anda menyewa.",
         poin: [
-          "Lihat dulu, baru sewa. Datang ke garasi, periksa kabin dan kondisi unit dengan mata sendiri, lalu putuskan. Kabari kami lewat WhatsApp sebelum datang supaya unitnya sudah disiapkan.",
-          "Ambil sendiri tanpa ongkos. Mengambil dan mengembalikan unit di garasi tidak dikenakan biaya antar sama sekali.",
-          "Diantar pun bisa gratis. Alamat yang dekat dengan garasi — banyak di antaranya di Ciledug sendiri dan wilayah yang bersebelahan — diantar tanpa ongkos kirim. Kirim alamat Anda, kami pastikan sebelum Anda memesan.",
-          "Kebutuhan mendadak lebih mudah dilayani. Karena unit tidak perlu didatangkan dari jauh, permintaan di hari yang sama umumnya bisa disiapkan selama tanggalnya masih kosong.",
+          "Cek unit langsung di garasi. Datang, periksa kabin dan kondisi unit dengan mata sendiri, lalu putuskan. Kabari kami lewat WhatsApp sebelum datang supaya unitnya sudah disiapkan.",
+          "Mobil siap tinggal ambil. Mengambil dan mengembalikan unit di garasi tidak dikenakan biaya antar sama sekali.",
+          "Pilih unit, kami antar. Alamat yang dekat dengan garasi — banyak di antaranya di Ciledug sendiri dan wilayah yang bersebelahan — diantar tanpa ongkos kirim. Kirim alamat Anda, kami pastikan sebelum Anda memesan.",
+          "Tetangga sendiri, harga jujur. Harga di halaman ini diambil dari katalog, dan biaya di luar tarif unit selalu kami sebutkan di awal.",
         ],
       },
       {
-        judul: "Sewa Mobil Lepas Kunci Ciledug atau Dengan Supir",
+        judul: "Sewa Mobil Ciledug Lepas Kunci atau Dengan Supir",
         isi: "Sewa mobil lepas kunci Ciledug cukup dengan KTP yang masih berlaku dan SIM aktif — tanpa kartu kredit, tanpa jaminan BPKB, tanpa membuat akun. Pilihan ini paling pas untuk mudik, liburan keluarga, atau keperluan harian yang jadwalnya berubah-ubah. Kalau Anda butuh mobil untuk hajatan, menjemput keluarga dari bandara, atau agenda kerja ke Jakarta, unit yang sama bisa disewa dengan supir; biaya supir dihitung terpisah dari tarif unit dan disebutkan sejak awal.",
         tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca syarat lengkap sewa lepas kunci" },
+      },
+      {
+        judul: "Sewa Mobil Ciledug Harian, Mingguan, dan Bulanan",
+        isi: "Sewa mobil Ciledug harian dihitung 24 jam dari waktu pengambilan, cocok untuk kondangan, antar-jemput keluarga, atau perjalanan sehari ke luar kota. Untuk liburan panjang, ambil skema mingguan. Rental mobil Ciledug bulanan tersedia untuk kendaraan kerja, mobil pengganti selama kendaraan Anda di bengkel, atau kebutuhan keluarga yang lebih panjang — tarif per harinya lebih hemat dibanding sewa harian. Karena unitnya berangkat dari garasi di Ciledug, kebutuhan mendadak di hari yang sama umumnya bisa disiapkan selama tanggalnya masih kosong.",
       },
       {
         judul: "Dari Ciledug ke Mana Saja",
         isi: "Ciledug berbatasan langsung dengan Jakarta Selatan, jadi rute ke Petukangan, Kebayoran, dan pusat kota terasa dekat, sementara arah Tangerang dan Tangerang Selatan juga mudah dijangkau. Karena itu mobil sewaan dari Ciledug dipakai untuk banyak keperluan: MPV tujuh penumpang seperti Innova Reborn dan Innova Zenix untuk mudik dan liburan, SUV seperti Fortuner untuk perjalanan luar kota, serta Alphard dan sedan Mercedes-Benz atau BMW untuk pernikahan dan acara keluarga. Semua kategori itu keluar dari garasi yang sama, dan harganya tercantum di halaman ini.",
       },
       {
-        judul: "Area Layanan di Sekitar Ciledug",
+        judul: "Rental Mobil Karang Tengah, Larangan, dan Sekitar Ciledug",
         isi: "Selain Kecamatan Ciledug sendiri, kami melayani rental mobil Karang Tengah Ciledug, Larangan, dan Pondok Aren yang bersebelahan dengan garasi. Petukangan di sisi Jakarta Selatan juga dekat, begitu pula kawasan CBD Ciledug yang mudah dicari sebagai titik temu serah terima. Tamu dari luar kota yang mencari Ciledug rent car pun bisa kami antarkan unitnya ke penginapan. Untuk alamat di luar jangkauan antar gratis, ongkos antar dihitung sesuai jarak dan disebutkan di awal, jadi tidak ada tambahan yang baru muncul saat unit tiba.",
       },
       {
@@ -56,11 +61,11 @@ export const PROSA_LAYANAN = {
     ],
     faq: [
       {
-        tanya: "Di mana alamat garasi 287 Trans di Ciledug?",
+        tanya: "Di mana alamat garasi rental mobil Ciledug 287 Trans?",
         jawab: "Garasi dan kantor kami ada di Jl. Lembang Baru II, RT003/RW009, Ciledug, Kota Tangerang. Kabari kami lewat WhatsApp sebelum datang supaya unit yang ingin Anda lihat sudah disiapkan.",
       },
       {
-        tanya: "Boleh melihat unit langsung sebelum menyewa?",
+        tanya: "Boleh melihat unit langsung sebelum sewa mobil di Ciledug?",
         jawab: "Boleh, dan justru itu keuntungan menyewa dari rental yang garasinya ada di Ciledug. Sebutkan unit yang ingin dilihat saat chat, lalu datang ke garasi untuk memeriksanya sendiri sebelum memesan.",
       },
       {
@@ -72,8 +77,8 @@ export const PROSA_LAYANAN = {
         jawab: "Cukup KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, tidak ada jaminan BPKB, dan tidak perlu membuat akun.",
       },
       {
-        tanya: "Berapa lama minimal sewa?",
-        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan. Untuk pemakaian lebih panjang tersedia skema mingguan, bulanan, sampai tahunan — sebutkan lama sewa Anda saat chat supaya kami bisa langsung memberi angkanya.",
+        tanya: "Ada rental mobil Ciledug harian, mingguan, dan bulanan?",
+        jawab: "Ada. Sewa mulai dari satu hari (24 jam dari waktu pengambilan), dengan skema mingguan, bulanan, sampai tahunan untuk pemakaian lebih panjang. Sebutkan lama sewa Anda saat chat supaya kami bisa langsung memberi angkanya.",
       },
       {
         tanya: "Apakah unit dari Ciledug boleh dibawa ke luar kota?",
@@ -186,46 +191,48 @@ export const PROSA_LAYANAN = {
     ],
   },
   // --- Halaman daerah (lihat ../daerah.js) ---------------------------------
-  // Tiap halaman ditulis dari sudut kebutuhan daerahnya sendiri, bukan satu
-  // teks yang diganti nama tempatnya — itu justru yang membuat halaman
-  // tujuan iklan dinilai tidak relevan. Ongkos antar gratis hanya berlaku
-  // untuk alamat yang dekat dengan garasi; jangkauannya sengaja tidak disebut
-  // angkanya, penyewa diminta mengirim alamat supaya tim yang memastikan.
+  // Judul bagian (H2) sengaja memakai frasa kata kunci dan judul iklan ad
+  // group masing-masing, dan kalimat pertama intro dibuka dengan kata kunci
+  // utamanya. Isinya tetap ditulis per daerah, bukan satu teks yang diganti
+  // nama tempatnya. Ongkos antar gratis hanya berlaku untuk alamat yang
+  // dekat dengan garasi; jangkauannya sengaja tidak disebut angkanya.
 
-  // Bintaro: hunian mapan, profesional dan ekspatriat. Angle: unit rapi,
-  // proses cepat, serah terima di sektor mana pun.
-  "rental-mobil-bintaro": {
+  "sewa-mobil-bintaro": {
     intro:
-      "Bintaro adalah kawasan hunian yang tertata, dan penghuninya terbiasa dengan layanan yang tertata pula. Penyewa kami di sini beragam: profesional yang butuh mobil untuk agenda kantor, keluarga yang menyambut kerabat dari luar kota, sampai ekspatriat dan tamu perusahaan yang lebih nyaman diantar supir. Kebutuhan mereka mirip — sewa mobil Bintaro yang unitnya bersih, harganya jelas sejak awal, dan prosesnya tidak memakan setengah hari.",
+      "Sewa mobil Bintaro di 287 Trans bisa lepas kunci atau dengan supir, dengan unit yang kami antar sampai ke rumah Anda. Bintaro adalah kawasan hunian yang tertata, dan penyewanya terbiasa dengan layanan yang tertata pula: profesional yang butuh mobil untuk agenda kantor, keluarga yang berangkat liburan atau pulang kampung, sampai tamu perusahaan yang lebih nyaman diantar supir. Kebutuhan mereka mirip — unit bersih, harga jelas dari awal, dan proses yang tidak memakan setengah hari.",
     bagian: [
       {
-        judul: "Kenapa Memilih 287 Trans untuk Rental Mobil Bintaro",
+        judul: "Kenapa Sewa Mobil di Bintaro Lewat 287 Trans",
         isi: "Beberapa hal yang membuat sewa mobil di Bintaro lewat kami terasa ringkas, dan semuanya bisa Anda cek sendiri sebelum memesan.",
         poin: [
-          "Garasi kami di Ciledug tidak jauh dari Bintaro, jadi unit tidak perlu menempuh perjalanan panjang sebelum sampai ke rumah Anda — dan Anda juga bisa datang melihat unitnya lebih dulu.",
-          "Unit premium keluaran terbaru, seluruhnya matic, dibersihkan dan diperiksa sebelum diserahkan. Kabin yang rapi penting kalau mobilnya dipakai menjemput tamu atau rekan kerja.",
-          "Rental mobil Bintaro lepas kunci cukup dengan KTP yang masih berlaku dan SIM aktif — tanpa kartu kredit, tanpa jaminan BPKB, tanpa membuat akun.",
-          "Harga di halaman ini ditarik langsung dari katalog, jadi angka yang Anda baca sama dengan yang disebutkan tim kami di WhatsApp.",
+          "Unit kami antar ke sektor Bintaro mana pun. Garasi kami di Ciledug tidak jauh dari Bintaro, jadi unit tidak perlu menempuh perjalanan panjang sebelum sampai ke rumah Anda.",
+          "Unit premium keluaran terbaru, seluruhnya matic, dibersihkan dan diperiksa sebelum diserahkan.",
+          "Syarat mudah: rental mobil Bintaro lepas kunci cukup dengan KTP yang masih berlaku dan SIM aktif — tanpa kartu kredit, tanpa jaminan BPKB, tanpa membuat akun.",
+          "Harga jelas dari awal. Angka di halaman ini ditarik langsung dari katalog, sama dengan yang disebutkan tim kami di WhatsApp.",
         ],
       },
       {
-        judul: "Sewa Mobil Lepas Kunci Bintaro atau Dengan Supir",
+        judul: "Sewa Mobil Bintaro Lepas Kunci atau Dengan Supir",
         isi: "Sewa mobil lepas kunci Bintaro paling cocok kalau Anda terbiasa menyetir sendiri dan jadwalnya berubah-ubah: mengantar anak sekolah pagi, rapat di Sudirman siang, lalu makan malam di Bintaro Jaya Xchange. Kalau agenda Anda padat dengan pertemuan di beberapa lokasi, atau Anda menyambut tamu yang belum mengenal jalanan Jakarta, opsi dengan supir biasanya lebih menenangkan. Keduanya tersedia untuk unit yang sama. Biaya supir dihitung terpisah dari tarif unit dan disebutkan sejak awal, sedangkan bahan bakar dan tol selama pemakaian ditanggung penyewa.",
         tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca syarat lengkap sewa lepas kunci" },
       },
       {
-        judul: "Rental Mobil Bulanan Bintaro",
-        isi: "Untuk kebutuhan yang lebih panjang — mobil pengganti selama kendaraan Anda di bengkel, kendaraan untuk karyawan yang baru ditempatkan, atau tamu yang menetap beberapa bulan — tersedia rental mobil bulanan Bintaro dengan tarif per hari yang lebih hemat dibanding sewa harian. Skema mingguan dan tahunan juga ada. Sebutkan unit dan lama sewa saat chat, dan tim kami langsung memberi angkanya.",
+        judul: "Mobil Keluarga 7 Kursi untuk Liburan dan Mudik",
+        isi: "Untuk liburan keluarga atau pulang kampung dari Bintaro, MPV tujuh kursi seperti Innova Reborn dan Innova Zenix jadi pilihan paling aman: kabin lega, bagasi luas untuk koper, dan AC yang tetap dingin sampai baris belakang. Kalau rutenya menanjak atau barang bawaan lebih banyak, Fortuner dan Pajero Sport memberi posisi duduk lebih tinggi. Akhir pekan dan musim liburan adalah tanggal yang paling cepat penuh, jadi sebaiknya pesan untuk weekend lebih awal.",
       },
       {
-        judul: "Area Layanan di Bintaro",
-        isi: "Kami melayani rent car Bintaro untuk seluruh sektor, dari Bintaro Sektor 1 sampai Sektor 9. Rental mobil Bintaro sektor 9 dan klaster-klaster di sekitarnya kami layani sama seperti sektor lain, begitu pula rental mobil Graha Raya Bintaro, Pondok Aren, dan kawasan Emerald. Unit bisa diserahkan di rumah, di lobi kantor, atau di titik yang mudah dijangkau seperti Bintaro Jaya Xchange. Ongkos antar mengikuti jarak dari garasi kami, alamat yang dekat bahkan gratis, dan angkanya disebutkan sebelum pemesanan dikunci.",
+        judul: "Sewa Mobil Bintaro Harian, Mingguan, dan Bulanan",
+        isi: "Sewa mobil Bintaro harian dihitung 24 jam dari waktu pengambilan. Untuk liburan panjang ada skema mingguan, dan untuk kebutuhan yang lebih lama — mobil pengganti selama kendaraan Anda di bengkel, kendaraan untuk karyawan yang baru ditempatkan, atau tamu yang menetap beberapa bulan — tersedia sewa mobil bulanan Bintaro dengan tarif per hari yang lebih hemat dibanding harian. Sebutkan unit dan lama sewa saat chat, dan tim kami langsung memberi angkanya.",
+      },
+      {
+        judul: "Sewa Mobil Bintaro Sektor 9, Graha Raya, dan Sektor Lainnya",
+        isi: "Kami melayani sewa mobil di Bintaro untuk seluruh sektor, dari Bintaro Sektor 1 sampai Sektor 9, termasuk klaster-klaster di sekitarnya. Rental mobil Graha Raya Bintaro, Pondok Aren, dan kawasan Emerald juga termasuk area antar kami. Unit bisa diserahkan di rumah, di lobi kantor, atau di titik yang mudah dijangkau seperti Bintaro Jaya Xchange — jadi untuk sewa mobil daerah Bintaro mana pun, Anda tidak perlu keluar rumah untuk mengambilnya. Ongkos antar mengikuti jarak dari garasi kami, alamat yang dekat bahkan gratis, dan angkanya disebutkan sebelum pemesanan dikunci. Tamu yang mencari rent car Bintaro untuk beberapa hari pun bisa kami antar langsung ke penginapannya.",
       },
       {
         judul: "Cara Sewa Mobil di Bintaro",
         isi: "Seluruh prosesnya bisa diselesaikan lewat WhatsApp.",
         poin: [
-          "Lihat kategori dan harga di halaman ini, lalu pilih unit sesuai jumlah penumpang dan keperluan Anda.",
+          "Cek unit yang ready di halaman ini, lalu pilih sesuai jumlah penumpang dan keperluan Anda.",
           "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa, serta lepas kunci atau dengan supir.",
           "Kirim alamat serah terima di Bintaro, atau beri tahu kami kalau Anda ingin mengambil sendiri di garasi Ciledug.",
           "Tim kami mengonfirmasi ketersediaan dan total biaya — termasuk ongkos antar kalau ada — sebelum tanggal Anda dikunci.",
@@ -234,24 +241,24 @@ export const PROSA_LAYANAN = {
     ],
     faq: [
       {
-        tanya: "Apakah unit bisa diantar ke Bintaro Sektor 9 atau Graha Raya?",
-        jawab: "Bisa. Seluruh sektor Bintaro, Graha Raya, dan Pondok Aren termasuk area layanan kami. Ongkos antar mengikuti jarak dari garasi di Ciledug dan kami sebutkan sebelum pemesanan dikunci; kalau ingin tanpa ongkos, unit bisa diambil sendiri di garasi.",
+        tanya: "Apakah sewa mobil Bintaro bisa diantar ke Sektor 9 atau Graha Raya?",
+        jawab: "Bisa. Seluruh sektor Bintaro, Graha Raya, dan Pondok Aren termasuk area antar kami. Ongkos antar mengikuti jarak dari garasi di Ciledug dan kami sebutkan sebelum pemesanan dikunci; kalau ingin tanpa ongkos, unit bisa diambil sendiri di garasi.",
       },
       {
-        tanya: "Apa syarat rental mobil Bintaro lepas kunci?",
+        tanya: "Apa syarat sewa mobil Bintaro lepas kunci?",
         jawab: "KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, jaminan BPKB, maupun pendaftaran akun.",
       },
       {
-        tanya: "Bisa sewa mobil dengan supir untuk menjemput tamu di Bintaro?",
-        jawab: "Bisa. Seluruh unit tersedia dengan supir, termasuk Alphard dan sedan Mercedes-Benz atau BMW yang sering dipilih untuk tamu penting. Sebutkan jam jemput dan rutenya saat chat; biaya supir disebutkan terpisah dari tarif unit.",
+        tanya: "Mobil keluarga 7 kursi apa saja yang bisa disewa di Bintaro?",
+        jawab: "Innova Reborn dan Innova Zenix untuk keluarga sampai tujuh orang, serta Fortuner dan Pajero Sport kalau Anda butuh SUV. Harga dan ketersediaannya bisa dicek di kategori MPV dan SUV pada halaman ini.",
       },
       {
         tanya: "Apakah ada sewa mobil bulanan di Bintaro?",
         jawab: "Ada. Sewa bulanan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian, lepas kunci maupun dengan supir. Skema mingguan dan tahunan juga bisa.",
       },
       {
-        tanya: "Berapa lama minimal sewa?",
-        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan sampai pengembalian.",
+        tanya: "Bisa sewa mobil dengan supir di Bintaro?",
+        jawab: "Bisa. Seluruh unit tersedia dengan supir, termasuk Alphard dan sedan Mercedes-Benz atau BMW untuk tamu penting. Sebutkan jam jemput dan rutenya saat chat; biaya supir disebutkan terpisah dari tarif unit.",
       },
       {
         tanya: "Apakah bensin dan tol sudah termasuk?",
@@ -260,70 +267,68 @@ export const PROSA_LAYANAN = {
     ],
   },
 
-  // BSD & Gading Serpong: kantor, mal, keluarga muda. Angle: harian untuk
-  // tamu kantor, bulanan untuk karyawan.
-  "rental-mobil-bsd-serpong": {
+  "sewa-mobil-bsd-serpong": {
     intro:
-      "Serpong punya ritme sendiri. Di jam kerja, perkantoran BSD City dan Alam Sutera dipenuhi rapat dan tamu dari luar kota; di akhir pekan, keluarga muda memadati The Breeze, AEON, dan Summarecon Serpong. Kebutuhan mobilnya pun berbeda-beda — ada yang hanya perlu sehari untuk menjemput klien, ada yang butuh kendaraan sebulan penuh untuk karyawan yang baru pindah tugas. Karena itu sewa mobil BSD di 287 Trans tersedia harian, mingguan, sampai bulanan, semuanya dari armada yang sama.",
+      "Sewa mobil BSD di 287 Trans bisa lepas kunci atau dengan supir, dan unitnya kami antar sampai depan cluster Anda. Serpong punya ritme sendiri: di jam kerja, perkantoran BSD City dan Alam Sutera dipenuhi meeting dan tamu dari luar kota; di akhir pekan, keluarga muda memadati The Breeze, AEON, dan Summarecon Serpong. Kebutuhan mobilnya pun berbeda-beda — ada yang hanya perlu sehari untuk menjemput klien, ada yang butuh kendaraan sebulan penuh untuk karyawan yang baru pindah tugas.",
     bagian: [
       {
         judul: "Kenapa Sewa Mobil BSD di 287 Trans",
-        isi: "Yang biasanya dicari penyewa di BSD dan Gading Serpong adalah kepastian: unitnya sesuai, harganya jelas, dan serah terimanya tepat waktu.",
+        isi: "Yang biasanya dicari penyewa di BSD dan Serpong adalah kepastian: unitnya sesuai, harganya jelas, dan serah terimanya tepat waktu.",
         poin: [
-          "Satu armada untuk dua kebutuhan: sedan Mercedes-Benz atau Alphard untuk menjemput tamu kantor, MPV tujuh penumpang untuk keluarga.",
+          "Antar ke cluster Anda. Unit diserahkan di depan rumah, lobi kantor, atau lokasi acara, jadi Anda tidak perlu menyisihkan waktu untuk mengambilnya.",
+          "Unit bersih, siap pakai. Seluruh unit matic keluaran terbaru, dibersihkan dan diperiksa sebelum diserahkan.",
+          "Syarat mudah: rental mobil BSD lepas kunci cukup dengan KTP dan SIM aktif, tanpa kartu kredit dan tanpa jaminan BPKB.",
           "Harga per hari tercantum di halaman ini dan diambil dari katalog — angkanya tidak berubah setelah Anda chat.",
-          "Rental mobil BSD lepas kunci cukup dengan KTP dan SIM aktif, tanpa kartu kredit dan tanpa jaminan BPKB.",
-          "Unit bisa diantar ke lobi kantor, rumah, atau mal, jadi Anda tidak perlu menyisihkan waktu untuk mengambilnya.",
         ],
       },
       {
-        judul: "Sewa Mobil Harian BSD untuk Tamu dan Agenda Kantor",
-        isi: "Sewa mobil harian BSD banyak dipakai untuk menjemput tamu dari bandara, mengantar klien antargedung, atau agenda perusahaan yang berpindah lokasi seharian. Untuk kebutuhan seperti ini, opsi dengan supir biasanya lebih praktis: Anda fokus pada tamu, sementara rute dan parkir menjadi urusan supir. Satu hari dihitung 24 jam dari waktu pengambilan, dan biaya supir disebutkan terpisah dari tarif unit sejak awal.",
+        judul: "Sewa Mobil Harian BSD untuk Tamu Kantor dan Meeting",
+        isi: "Sewa mobil harian BSD banyak dipakai untuk menjemput tamu dari bandara, mengantar klien antargedung, atau agenda perusahaan yang berpindah lokasi seharian. Untuk kebutuhan seperti ini, sedan Mercedes-Benz atau Alphard dengan supir biasanya paling praktis: Anda fokus pada tamu, sementara rute dan parkir menjadi urusan supir. Satu hari dihitung 24 jam dari waktu pengambilan, dan biaya supir disebutkan terpisah dari tarif unit sejak awal. Untuk acara di BSD — pernikahan, gathering, atau peluncuran produk — unit bisa kami antar langsung ke lokasi acara.",
       },
       {
-        judul: "Sewa Bulanan untuk Karyawan",
-        isi: "Perusahaan di BSD dan Alam Sutera kadang butuh kendaraan untuk karyawan yang baru ditempatkan, tim proyek dengan kontrak beberapa bulan, atau pengganti mobil operasional yang sedang diperbaiki. Untuk itu tersedia skema bulanan dengan tarif per hari yang lebih hemat dibanding harian, lepas kunci maupun dengan supir. Kebutuhan beberapa unit sekaligus juga bisa dibicarakan lewat WhatsApp supaya penawarannya disusun sesuai kebutuhan Anda.",
-      },
-      {
-        judul: "Lepas Kunci untuk Akhir Pekan Keluarga",
-        isi: "Sewa mobil lepas kunci Serpong cocok untuk akhir pekan: belanja di AEON, makan di The Breeze, lalu lanjut ke luar kota tanpa memikirkan jam istirahat supir. Pilih MPV seperti Innova Reborn atau Innova Zenix kalau rombongan Anda sampai tujuh orang, atau SUV seperti Fortuner dan Pajero Sport untuk perjalanan dengan barang bawaan lebih banyak. Bahan bakar dan tol ditanggung penyewa, jadi biayanya mengikuti rute Anda sendiri.",
+        judul: "Sewa Mobil BSD Lepas Kunci, Antar ke Cluster Anda",
+        isi: "Sewa mobil lepas kunci BSD cocok untuk Anda yang ingin menyetir sendiri: belanja di AEON, makan di The Breeze, lalu lanjut ke luar kota tanpa memikirkan jam istirahat supir. Pilih MPV seperti Innova Reborn atau Innova Zenix kalau rombongan Anda sampai tujuh orang, atau SUV seperti Fortuner dan Pajero Sport untuk perjalanan dengan barang bawaan lebih banyak. Unit kami antar ke cluster Anda dan dijemput lagi di akhir masa sewa. Bahan bakar dan tol ditanggung penyewa, jadi biayanya mengikuti rute Anda sendiri.",
         tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca syarat lengkap sewa lepas kunci" },
       },
       {
-        judul: "Area Layanan BSD, Gading Serpong, dan Sekitarnya",
-        isi: "Kami melayani rental mobil di BSD City, dari kawasan perumahan sampai perkantorannya, rental mobil Gading Serpong termasuk sekitar Summarecon Serpong, serta sewa mobil Alam Sutera. Wilayah Serpong lainnya juga termasuk, jadi rental mobil Serpong untuk alamat di luar ketiga kawasan itu tetap bisa kami layani. Unit bisa diserahkan di rumah, di kantor, atau di titik yang mudah dijangkau seperti The Breeze dan AEON. Ongkos antar dihitung dari jarak garasi kami di Ciledug dan disebutkan sebelum pemesanan dikunci.",
+        judul: "Sewa Mobil BSD Mingguan dan Bulanan",
+        isi: "Perusahaan di BSD dan Alam Sutera kadang butuh kendaraan untuk karyawan yang baru ditempatkan, tim proyek dengan kontrak beberapa bulan, atau pengganti mobil operasional yang sedang diperbaiki. Untuk itu tersedia sewa mobil BSD mingguan dan rental mobil BSD bulanan dengan tarif per hari yang lebih hemat dibanding harian, lepas kunci maupun dengan supir. Kebutuhan beberapa unit sekaligus juga bisa dibicarakan lewat WhatsApp supaya penawarannya disusun sesuai kebutuhan Anda.",
       },
       {
-        judul: "Cara Sewa Mobil di BSD dan Serpong",
-        isi: "Sewa mobil Serpong cukup lewat WhatsApp, tanpa perlu datang ke kantor kami.",
+        judul: "Rental Mobil di BSD, Serpong, Gading Serpong, dan Alam Sutera",
+        isi: "Kami melayani rental mobil di BSD City, dari kawasan perumahan sampai perkantorannya, rental mobil Gading Serpong termasuk sekitar Summarecon Serpong, serta sewa mobil Alam Sutera. Wilayah Serpong lainnya juga termasuk, jadi sewa mobil Serpong harian maupun rental mobil Serpong jangka panjang untuk alamat di luar ketiga kawasan itu tetap bisa kami layani. Unit bisa diserahkan di rumah, di kantor, atau di titik yang mudah dijangkau seperti The Breeze dan AEON. Ongkos antar dihitung dari jarak garasi kami di Ciledug dan disebutkan sebelum pemesanan dikunci.",
+      },
+      {
+        judul: "Cara Sewa Mobil di BSD",
+        isi: "Pilih unit di katalog, tentukan tanggal, sisanya kami urus — semuanya lewat WhatsApp.",
         poin: [
-          "Pilih kategori di halaman ini sesuai jumlah penumpang dan keperluan — tamu kantor, keluarga, atau operasional.",
+          "Cek unit BSD yang ready di halaman ini, sesuai jumlah penumpang dan keperluan — tamu kantor, keluarga, atau operasional.",
           "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa (harian, mingguan, atau bulanan), serta lepas kunci atau dengan supir.",
-          "Kirim alamat serah terima di BSD, Gading Serpong, atau Alam Sutera.",
+          "Kirim alamat serah terima di BSD, Serpong, Gading Serpong, atau Alam Sutera.",
           "Kami konfirmasi ketersediaan dan total biayanya sebelum tanggal Anda dikunci.",
         ],
       },
     ],
     faq: [
       {
-        tanya: "Apakah unit bisa diantar ke kantor saya di BSD atau Alam Sutera?",
-        jawab: "Bisa. Unit diantar ke lobi kantor, rumah, atau titik temu yang Anda pilih di BSD, Gading Serpong, maupun Alam Sutera. Ongkos antar dihitung dari jarak garasi kami di Ciledug dan disebutkan sebelum pemesanan dikunci.",
-      },
-      {
-        tanya: "Ada sewa mobil bulanan untuk karyawan di BSD?",
-        jawab: "Ada. Skema bulanan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian. Untuk beberapa unit sekaligus atau kontrak lebih panjang, hubungi kami lewat WhatsApp agar penawarannya disusun sesuai kebutuhan.",
+        tanya: "Apakah sewa mobil BSD bisa diantar ke cluster atau kantor saya?",
+        jawab: "Bisa. Unit diantar ke depan cluster, lobi kantor, atau lokasi acara Anda di BSD, Serpong, Gading Serpong, maupun Alam Sutera. Ongkos antar dihitung dari jarak garasi kami di Ciledug dan disebutkan sebelum pemesanan dikunci.",
       },
       {
         tanya: "Apa syarat sewa mobil BSD lepas kunci?",
         jawab: "KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, jaminan BPKB, atau pendaftaran akun.",
       },
       {
-        tanya: "Bisa sewa dengan supir untuk menjemput tamu kantor?",
-        jawab: "Bisa. Seluruh unit tersedia dengan supir. Sebutkan jam jemput, lokasi, dan rencana rutenya saat chat; biaya supir disebutkan terpisah dari tarif unit.",
+        tanya: "Mobil apa yang cocok untuk tamu kantor dan meeting di BSD?",
+        jawab: "Sedan Mercedes-Benz dan BMW, atau Alphard untuk rombongan, biasanya dipilih untuk tamu penting. Semuanya bisa disewa dengan supir; sebutkan jam jemput, lokasi, dan rencana rutenya saat chat.",
       },
       {
-        tanya: "Berapa lama minimal sewa?",
-        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan. Untuk kebutuhan lebih panjang ada skema mingguan, bulanan, dan tahunan.",
+        tanya: "Ada sewa mobil BSD mingguan dan bulanan?",
+        jawab: "Ada. Skema mingguan dan bulanan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian. Untuk beberapa unit sekaligus atau kontrak lebih panjang, hubungi kami lewat WhatsApp agar penawarannya disusun sesuai kebutuhan.",
+      },
+      {
+        tanya: "Berapa lama minimal sewa mobil harian di BSD?",
+        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan.",
       },
       {
         tanya: "Boleh dibawa ke luar kota dari Serpong?",
@@ -332,20 +337,18 @@ export const PROSA_LAYANAN = {
     ],
   },
 
-  // Cipondoh: dekat dari garasi Ciledug. Angle: antar gratis untuk alamat
-  // terdekat dan proses yang tidak ribet.
   "rental-mobil-cipondoh": {
     intro:
-      "Cipondoh dan Ciledug sama-sama berada di Kota Tangerang dan letaknya berdekatan, dan jarak sedekat itu terasa saat Anda menyewa mobil. Unit yang Anda pesan berangkat dari garasi kami di Ciledug, bukan dari pusat kota, sehingga serah terima di Cipondoh tidak bergantung pada perjalanan panjang. Syaratnya pun ringkas, dan sebagian besar urusannya selesai lewat chat — tanpa formulir panjang, dan tanpa harus datang ke kantor kalau Anda tidak mau.",
+      "Rental mobil Cipondoh terdekat dari 287 Trans berangkat dari garasi kami di Ciledug — gak perlu jauh, kami dekat. Cipondoh dan Ciledug sama-sama berada di Kota Tangerang dan letaknya berdekatan, sehingga unit yang Anda pesan cepat sampai ke lokasi Anda, bukan didatangkan dari pusat kota. Syaratnya ringkas, dan sebagian besar urusannya selesai lewat chat — tanpa formulir panjang, dan tanpa harus datang ke kantor kalau Anda tidak mau. Singkatnya: rental mobil Tangerang, Cipondoh dan sekitarnya, dari garasi yang dekat — termasuk rental mobil Tangerang lepas kunci, Cipondoh pun kami antar.",
     bagian: [
       {
-        judul: "Kenapa Rental Mobil di Cipondoh Lewat 287 Trans",
+        judul: "Rental Mobil Cipondoh Terdekat dari Garasi Ciledug",
         isi: "Untuk penyewa di Cipondoh, keuntungannya ada pada jarak dan prosesnya.",
         poin: [
           "Antar gratis untuk alamat terdekat. Alamat yang dekat dengan garasi kami bebas ongkos antar, dan sebagian alamat di Cipondoh — terutama yang lebih dekat ke arah Ciledug — masuk hitungan itu. Kirim alamat atau share location, kami pastikan sebelum Anda memesan.",
-          "Proses tidak ribet. Pilih unit, chat WhatsApp, kirim alamat; tim kami yang mengonfirmasi ketersediaan dan total biayanya.",
+          "Proses tidak ribet. Pilih unit, chat admin lewat WhatsApp, kirim alamat; tim kami yang mengonfirmasi ketersediaan dan total biayanya.",
           "Syarat lepas kunci ringkas: KTP yang masih berlaku dan SIM aktif, tanpa kartu kredit dan tanpa jaminan BPKB.",
-          "Armada premium matic, diperiksa sebelum diserahkan, dengan harga di halaman ini yang sama dengan yang disebutkan tim kami.",
+          "Harga jelas dari awal. Angka di halaman ini sama dengan yang disebutkan tim kami saat chat.",
         ],
       },
       {
@@ -354,19 +357,19 @@ export const PROSA_LAYANAN = {
         tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca syarat lengkap sewa lepas kunci" },
       },
       {
-        judul: "Memilih Unit untuk Kebutuhan Anda",
-        isi: "Untuk rombongan keluarga sampai tujuh orang, MPV seperti Innova Reborn dan Innova Zenix paling mudah dikendalikan sekaligus lega. SUV seperti Fortuner dan Pajero Sport memberi posisi duduk lebih tinggi untuk perjalanan jauh. Untuk pernikahan atau tamu penting, tersedia Alphard serta sedan Mercedes-Benz dan BMW. Klik kategori di atas untuk melihat unit beserta harga per harinya.",
+        judul: "Sewa Mobil Cipondoh Harian, Mingguan, dan Bulanan",
+        isi: "Sewa mobil Cipondoh harian cocok untuk kebutuhan mendadak: karena unit berangkat dari garasi yang dekat, pesanan di pagi hari umumnya bisa siap dipakai di hari yang sama, selama unitnya masih kosong. Untuk liburan beberapa hari ada skema mingguan, dan rental mobil Cipondoh bulanan tersedia untuk kendaraan kerja atau kebutuhan keluarga yang lebih panjang, dengan tarif per hari yang lebih hemat. Untuk rombongan sampai tujuh orang, Innova Reborn dan Innova Zenix paling mudah dikendalikan sekaligus lega; Fortuner dan Pajero Sport untuk perjalanan jauh; Alphard serta sedan Mercedes-Benz dan BMW untuk pernikahan atau tamu penting.",
       },
       {
-        judul: "Area Layanan Rental Mobil di Cipondoh",
-        isi: "Kami melayani rental mobil di Cipondoh untuk seluruh kelurahannya, termasuk Petir, Gondrong, Kenanga, kawasan Poris, dan permukiman di sekitar Situ Cipondoh. Siapa pun yang mencari rental mobil daerah Cipondoh Tangerang — dari kompleks perumahan sampai alamat di pinggir jalan raya — bisa memilih ambil sendiri di garasi Ciledug atau diantar. Untuk alamat yang lebih jauh dari garasi, ongkos antar dihitung sesuai jarak dan disebutkan sebelum pemesanan dikunci.",
+        judul: "Rental Mobil di Cipondoh: Poris, Petir, Situ Cipondoh, dan Sekitarnya",
+        isi: "Kami melayani rental mobil di Cipondoh untuk seluruh kelurahannya, termasuk sewa mobil Poris Cipondoh, Petir, Gondrong, Kenanga, dan permukiman di sekitar Situ Cipondoh. Siapa pun yang mencari rental mobil daerah Cipondoh Tangerang — dari kompleks perumahan sampai alamat di pinggir jalan raya — bisa memilih ambil sendiri di garasi Ciledug atau diantar. Untuk alamat yang lebih jauh dari garasi, ongkos antar dihitung sesuai jarak dan disebutkan sebelum pemesanan dikunci.",
       },
       {
         judul: "Cara Sewa Mobil Cipondoh Tangerang",
         isi: "Rental mobil Tangerang di Cipondoh lewat kami cukup empat langkah, semuanya bisa lewat WhatsApp.",
         poin: [
-          "Pilih kategori di halaman ini dan cek harganya.",
-          "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa, serta lepas kunci atau dengan supir.",
+          "Cek unit yang ready di halaman ini beserta harganya.",
+          "Chat admin di WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa, serta lepas kunci atau dengan supir.",
           "Kirim alamat Anda di Cipondoh atau share location, supaya kami bisa memastikan ongkos antarnya — gratis atau tidak.",
           "Setelah ketersediaan dan total biaya dikonfirmasi, tanggal Anda kami kunci dan unit diantar sesuai jadwal.",
         ],
@@ -374,11 +377,15 @@ export const PROSA_LAYANAN = {
     ],
     faq: [
       {
-        tanya: "Apakah antar unit ke Cipondoh gratis?",
+        tanya: "Apakah antar unit rental mobil ke Cipondoh gratis?",
         jawab: "Gratis untuk alamat yang dekat dengan garasi kami di Ciledug, dan sebagian alamat di Cipondoh masuk hitungan itu. Untuk alamat yang lebih jauh, ongkos antar dihitung sesuai jarak. Kirim alamat lengkap atau share location lewat WhatsApp, dan kami pastikan sebelum Anda memesan.",
       },
       {
-        tanya: "Apa syarat rental mobil Cipondoh lepas kunci?",
+        tanya: "Butuh mobil hari ini di Cipondoh, bisa?",
+        jawab: "Umumnya bisa, selama unit yang Anda pilih masih kosong di tanggal itu. Karena garasi kami dekat, unit tidak perlu didatangkan dari jauh. Chat admin lewat WhatsApp untuk cek unit yang ready sekarang.",
+      },
+      {
+        tanya: "Apa syarat sewa mobil lepas kunci Cipondoh?",
         jawab: "KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, jaminan BPKB, atau pendaftaran akun.",
       },
       {
@@ -386,90 +393,95 @@ export const PROSA_LAYANAN = {
         jawab: "Boleh, tanpa biaya antar. Garasi kami ada di Jl. Lembang Baru II, Ciledug. Kabari kami lewat WhatsApp sebelum datang supaya unitnya sudah disiapkan.",
       },
       {
+        tanya: "Ada sewa mobil Cipondoh mingguan atau bulanan?",
+        jawab: "Ada, untuk seluruh unit, dengan tarif per hari yang lebih hemat dibanding harian. Sebutkan lama sewa Anda saat chat supaya kami bisa langsung memberi angkanya.",
+      },
+      {
         tanya: "Bisa sewa mobil dengan supir dari Cipondoh?",
         jawab: "Bisa. Seluruh unit tersedia dengan supir untuk hajatan, penjemputan bandara, maupun agenda seharian. Biaya supir dihitung terpisah dari tarif unit dan disebutkan sejak awal.",
-      },
-      {
-        tanya: "Berapa lama minimal sewa?",
-        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan.",
-      },
-      {
-        tanya: "Ada sewa mingguan atau bulanan?",
-        jawab: "Ada, untuk seluruh unit, dengan tarif per hari yang lebih hemat dibanding harian. Sebutkan lama sewa Anda saat chat supaya kami bisa langsung memberi angkanya.",
       },
     ],
   },
 
-  // Tangerang Selatan: halaman payung. Menaut ke halaman Bintaro dan BSD
-  // supaya ketiganya tidak saling berebut kata kunci. Ciputat dan Pamulang
-  // sengaja tidak disebut: area itu tidak dilayani.
+  // Halaman payung Tangsel. Menaut ke halaman Bintaro dan BSD supaya
+  // ketiganya tidak saling berebut kata kunci. Ciputat dan Pamulang sengaja
+  // tidak disebut: area itu tidak dilayani.
   "rental-mobil-tangerang-selatan": {
     intro:
-      "Tangerang Selatan bukan satu kawasan, melainkan beberapa kota kecil dengan karakter masing-masing: perkantoran dan perumahan besar di Serpong dan BSD, permukiman mapan di Bintaro dan Pondok Aren, sampai Setu dan Serpong Utara yang terus tumbuh. Ciledug, tempat garasi kami, berbatasan langsung dengan Pondok Aren, sehingga sewa mobil Tangerang Selatan bisa dilayani tanpa unit harus didatangkan dari jauh. Halaman ini merangkum layanan kami untuk seluruh Tangsel; dua kawasan dengan kebutuhan paling khas punya halamannya sendiri.",
+      "Rental mobil Tangerang Selatan di 287 Trans tersedia harian, mingguan, sampai bulanan — lepas kunci atau dengan supir. Tangsel bukan satu kawasan, melainkan beberapa kota kecil dengan karakter masing-masing: perkantoran dan perumahan besar di Serpong dan BSD, permukiman mapan di Bintaro dan Pondok Aren, sampai Setu dan Serpong Utara yang terus tumbuh. Ciledug, tempat garasi kami, berbatasan langsung dengan Pondok Aren, sehingga sewa mobil Tangerang Selatan bisa dilayani tanpa unit harus didatangkan dari jauh.",
     bagian: [
       {
         judul: "Kenapa Rental Mobil Tangsel di 287 Trans",
         isi: "Empat hal yang membuat sewa mobil Tangsel lewat kami lebih praktis.",
         poin: [
           "Dekat dengan Tangsel. Garasi kami di Ciledug bersebelahan dengan Pondok Aren, jadi serah terima di Tangsel tidak menunggu unit menempuh perjalanan panjang.",
-          "Rental mobil Tangsel lepas kunci dengan syarat ringkas — KTP dan SIM aktif, tanpa kartu kredit dan tanpa jaminan BPKB — atau dengan supir untuk agenda yang padat.",
+          "Unit rapi, interior bersih. Seluruh unit matic keluaran terbaru, dirawat dan diservis rutin, dan diperiksa sebelum diserahkan.",
           "Harian, mingguan, sampai bulanan dari armada yang sama, jadi Anda tidak perlu mencari penyedia lain saat kebutuhan berubah.",
-          "Harga tiap kategori di halaman ini diambil dari katalog, sama dengan angka yang disebutkan tim kami.",
+          "Harga jelas dari awal. Minta penawaran dulu; angka yang kami sebutkan mengikuti katalog di halaman ini.",
         ],
       },
       {
-        judul: "Bintaro dan Pondok Aren",
-        isi: "Bintaro adalah kawasan hunian mapan tempat banyak profesional dan keluarga yang menginginkan unit rapi dan proses cepat. Pondok Aren, yang mengelilinginya, termasuk wilayah Tangsel yang paling dekat dengan garasi kami. Rental mobil Pondok Aren dan seluruh sektor Bintaro kami bahas lebih rinci — termasuk titik serah terima dan sewa bulanannya — di halaman khusus Bintaro.",
-        tautan: { to: "/rental-mobil-bintaro", label: "Rental mobil Bintaro lepas kunci & dengan supir" },
+        judul: "Sewa Mobil Tangsel Bulanan untuk Operasional Kantor",
+        isi: "Butuh mobil sebulan? Sewa mobil bulanan Tangerang Selatan tersedia untuk seluruh unit, dengan tarif per hari yang lebih hemat dibanding harian. Skema ini paling banyak dipakai untuk mobil operasional kantor, kendaraan karyawan yang ditempatkan beberapa bulan, atau mobil pengganti selama kendaraan Anda diperbaiki. Sewa jangka panjang sampai tahunan juga bisa, lepas kunci maupun dengan supir. Untuk beberapa unit sekaligus, minta penawaran lewat WhatsApp supaya angkanya disusun sesuai kebutuhan perusahaan Anda.",
       },
       {
-        judul: "BSD, Gading Serpong, dan Alam Sutera",
-        isi: "Di kawasan BSD, kebutuhan sewa banyak datang dari tamu kantor, keluarga muda, dan karyawan yang butuh mobil untuk beberapa bulan. Untuk BSD City, Gading Serpong, dan Alam Sutera kami menyiapkan halaman tersendiri yang membahas sewa harian untuk tamu, sewa bulanan untuk karyawan, serta serah terima di sekitar mal dan perkantoran.",
-        tautan: { to: "/rental-mobil-bsd-serpong", label: "Rental mobil BSD & Gading Serpong" },
+        judul: "Rental Mobil Tangsel Harian dan Mingguan",
+        isi: "Rental mobil Tangsel harian dihitung 24 jam dari waktu pengambilan — cocok untuk menjemput tamu, kondangan, atau perjalanan sehari ke luar kota. Sewa mobil Tangsel mingguan pas untuk liburan keluarga atau proyek singkat, dan sewa mobil lepas kunci Tangsel secara mingguan juga bisa. Untuk bawa klien, pilih sedan Mercedes-Benz, BMW, atau Alphard yang interiornya bersih dan rapi, jadi Anda tidak perlu khawatir soal kesan pertama. Untuk keluarga, MPV tujuh penumpang seperti Innova Reborn dan Innova Zenix paling sering dipilih.",
       },
       {
-        judul: "Sewa Mobil Bulanan Tangerang Selatan",
-        isi: "Untuk pemakaian jangka panjang — kendaraan operasional, mobil pengganti selama kendaraan Anda diperbaiki, atau karyawan yang ditempatkan beberapa bulan — sewa mobil bulanan Tangerang Selatan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian. Pilih sewa mobil Tangerang Selatan lepas kunci kalau Anda ingin menyetir sendiri setiap hari, atau dengan supir untuk kebutuhan kantor. Sebutkan lama sewa saat chat supaya kami bisa langsung memberi angkanya.",
+        judul: "Sewa Mobil Tangsel Lepas Kunci atau Dengan Supir",
+        isi: "Rental mobil Tangsel lepas kunci cukup dengan KTP yang masih berlaku dan SIM aktif — tanpa kartu kredit dan tanpa jaminan BPKB, jadi syaratnya jelas sejak awal. Pilih sewa mobil Tangerang Selatan lepas kunci kalau Anda ingin menyetir sendiri setiap hari, atau dengan supir untuk agenda kantor yang berpindah lokasi. Biaya supir dihitung terpisah dari tarif unit, sedangkan bahan bakar dan tol ditanggung penyewa.",
+        tautan: { to: "/artikel/syarat-sewa-mobil-lepas-kunci-tangerang", label: "Baca syarat lengkap sewa lepas kunci" },
       },
       {
-        judul: "Area Layanan di Tangerang Selatan",
+        judul: "Rental Mobil Pondok Aren dan Bintaro",
+        isi: "Pondok Aren termasuk wilayah Tangsel yang paling dekat dengan garasi kami, dan Bintaro adalah kawasan hunian mapan tempat banyak profesional dan keluarga yang menginginkan unit rapi dan proses cepat. Rental mobil Pondok Aren dan sewa mobil di seluruh sektor Bintaro kami bahas lebih rinci — termasuk antar ke Sektor 9 dan Graha Raya — di halaman khusus Bintaro.",
+        tautan: { to: "/sewa-mobil-bintaro", label: "Sewa mobil Bintaro lepas kunci" },
+      },
+      {
+        judul: "Sewa Mobil BSD, Serpong, dan Alam Sutera",
+        isi: "Di kawasan BSD, kebutuhan sewa banyak datang dari tamu kantor, meeting, keluarga muda, dan karyawan yang butuh mobil untuk beberapa bulan. Untuk BSD City, Gading Serpong, dan Alam Sutera kami menyiapkan halaman tersendiri yang membahas sewa harian untuk tamu kantor, sewa bulanan untuk karyawan, serta antar sampai depan cluster.",
+        tautan: { to: "/sewa-mobil-bsd-serpong", label: "Sewa mobil BSD lepas kunci" },
+      },
+      {
+        judul: "Area Rental Mobil di Tangsel",
         isi: "Kami melayani rental mobil di Tangsel untuk Serpong, Serpong Utara, Setu, Pondok Aren, Bintaro, dan BSD, beserta permukiman di sekitarnya. Untuk sewa mobil di Tangsel, unit bisa diantar ke rumah, kantor, atau titik temu yang Anda pilih, atau diambil sendiri di garasi Ciledug tanpa biaya antar. Ongkos antar mengikuti jarak dari garasi, alamat yang dekat bahkan gratis, dan selalu disebutkan sebelum pemesanan dikunci.",
       },
       {
-        judul: "Cara Sewa Mobil di Tangsel",
-        isi: "Semua langkahnya bisa lewat WhatsApp.",
+        judul: "Cara Sewa Mobil di Tangerang Selatan",
+        isi: "Minta penawaran sekarang, semua langkahnya lewat WhatsApp.",
         poin: [
-          "Pilih kategori dan cek harganya di halaman ini.",
-          "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa, serta lepas kunci atau dengan supir.",
+          "Cek kategori dan harganya di halaman ini.",
+          "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa (harian, mingguan, atau bulanan), serta lepas kunci atau dengan supir.",
           "Kirim alamat serah terima di Tangerang Selatan, atau pilih ambil sendiri di garasi Ciledug.",
-          "Kami konfirmasi ketersediaan dan total biayanya sebelum tanggal Anda dikunci.",
+          "Kami kirim penawaran dan konfirmasi ketersediaan sebelum tanggal Anda dikunci.",
         ],
       },
     ],
     faq: [
       {
-        tanya: "Wilayah Tangerang Selatan mana saja yang dilayani?",
+        tanya: "Wilayah mana saja yang dilayani rental mobil Tangerang Selatan 287 Trans?",
         jawab: "Serpong, Serpong Utara, Setu, Pondok Aren, Bintaro, dan BSD, beserta permukiman di sekitarnya. Kalau alamat Anda tidak disebut di sini, kirim lokasinya lewat WhatsApp dan tim kami akan memastikannya.",
       },
       {
-        tanya: "Apa syarat rental mobil Tangsel lepas kunci?",
+        tanya: "Ada sewa mobil bulanan di Tangerang Selatan untuk operasional kantor?",
+        jawab: "Ada. Sewa bulanan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian, lepas kunci maupun dengan supir. Untuk beberapa unit atau kontrak jangka panjang, minta penawaran lewat WhatsApp.",
+      },
+      {
+        tanya: "Apa syarat sewa mobil lepas kunci Tangerang Selatan?",
         jawab: "KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, jaminan BPKB, atau pendaftaran akun.",
       },
       {
-        tanya: "Apakah ada sewa mobil bulanan di Tangerang Selatan?",
-        jawab: "Ada. Sewa bulanan tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian, lepas kunci maupun dengan supir.",
+        tanya: "Bisa sewa mobil Tangsel harian atau mingguan?",
+        jawab: "Bisa. Sewa harian dihitung 24 jam dari waktu pengambilan, dan skema mingguan tersedia untuk liburan atau proyek singkat.",
       },
       {
-        tanya: "Bisa sewa dengan supir di Tangsel?",
-        jawab: "Bisa. Seluruh unit tersedia dengan supir, baik untuk agenda kantor seharian, penjemputan bandara, maupun acara keluarga. Biaya supir disebutkan terpisah dari tarif unit sejak awal.",
+        tanya: "Bisa sewa mobil dengan supir di Tangsel?",
+        jawab: "Bisa. Seluruh unit tersedia dengan supir, baik untuk agenda kantor seharian, bawa klien, penjemputan bandara, maupun acara keluarga. Biaya supir disebutkan terpisah dari tarif unit sejak awal.",
       },
       {
         tanya: "Apakah bensin dan tol sudah termasuk harga sewa?",
         jawab: "Belum. Bahan bakar dan tol selama pemakaian ditanggung penyewa. Biaya di luar tarif unit — supir dan ongkos antar kalau ada — selalu kami sebutkan di awal.",
-      },
-      {
-        tanya: "Berapa lama minimal sewa?",
-        jawab: "Mulai dari satu hari, dihitung 24 jam dari waktu pengambilan sampai pengembalian.",
       },
     ],
   },
