@@ -123,6 +123,10 @@ export const PROSA_KATEGORI = {
     ],
     faq: [
       {
+        tanya: "Bisa sewa Alphard di Jakarta?",
+        jawab: "Bisa. Selain Tangerang, Jakarta juga area layanan kami — garasi kami di Ciledug berbatasan langsung dengan Jakarta Selatan. Alphard bisa menjemput tamu di hotel, kantor, atau lokasi acara Anda di Jakarta, dengan biaya antar sesuai jarak yang disebutkan sebelum pemesanan dikunci."
+      },
+      {
         tanya: "Alphard muat berapa orang?",
         jawab: "Enam penumpang, dengan kursi kapten di baris kedua. Konfigurasi ini yang membuat baris kedua terasa lapang dan nyaman, dan itulah alasan utama orang menyewa Alphard."
       },
@@ -186,8 +190,8 @@ export const PROSA_KATEGORI = {
         jawab: "Untuk sedan mewah tersedia Mercedes-Benz C300 dan E300, BMW 330i G20 M-Sport Pro, serta BMW M4 Competition Cabriolet yang beratap terbuka. Kalau Anda butuh posisi duduk tinggi, ada Mercedes-Benz GLC300 di kategori SUV mewah. Seluruhnya matic dan berkapasitas lima penumpang, kecuali M4 Cabriolet yang memang bukan untuk membawa rombongan."
       },
       {
-        tanya: "Melayani penyewa di Jakarta Selatan seperti Kebayoran dan Pondok Indah?",
-        jawab: "Melayani, dan permintaan kategori mewah dari kawasan itu memang cukup rutin. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari Ciledug, atau diambil sendiri di kantor kami. Kategori ini punya ketentuan sewa tersendiri yang kami jelaskan lebih dulu, sebelum Anda memutuskan."
+        tanya: "Melayani sewa mobil mewah di Jakarta?",
+        jawab: "Melayani, bukan hanya Tangerang. Permintaan kategori mewah dari Jakarta — terutama Jakarta Selatan seperti Kebayoran dan Pondok Indah — memang cukup rutin. Unit bisa diantar ke alamat Anda dengan biaya sesuai jarak dari Ciledug, atau diambil sendiri di kantor kami. Kategori ini punya ketentuan sewa tersendiri yang kami jelaskan lebih dulu, sebelum Anda memutuskan."
       }
     ]
   },
@@ -208,6 +212,10 @@ export const PROSA_KATEGORI = {
       }
     ],
     faq: [
+      {
+        tanya: "Bisa sewa Mercy GLC300 di Jakarta?",
+        jawab: "Bisa. Jakarta dan Tangerang sama-sama area layanan kami. GLC300 diantar ke alamat Anda dengan biaya sesuai jarak dari garasi kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan, atau diambil sendiri di garasi tanpa biaya antar."
+      },
       {
         tanya: "GLC300 muat berapa orang?",
         jawab: "Lima penumpang, dengan ruang bagasi yang jauh lebih lapang dibanding sedan di tarif yang sama. Untuk rombongan lebih besar, kami sarankan Alphard atau menambah unit pengiring."
