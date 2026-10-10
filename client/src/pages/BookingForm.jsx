@@ -11,7 +11,7 @@ import Select from "../components/ui/Select";
 import Textarea from "../components/ui/Textarea";
 import Button from "../components/ui/Button";
 import SmartImage from "../components/SmartImage";
-import { formatTanggal, formatRupiah, buildWaLink } from "../utils/format";
+import { formatTanggal, formatRupiah, buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick, trackBookingSubmit } from "../utils/tracking";
 import { getUtmParams } from "../utils/utm";
 import { isValidHp } from "../utils/validators";
@@ -113,8 +113,7 @@ export default function BookingForm() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const waMessage = `Halo, saya ingin menanyakan ketersediaan mobil ${mobil.namaMobil} untuk disewa.`;
-  const waLink = profile?.whatsapp ? buildWaLink(profile.whatsapp, waMessage) : null;
+  const waLink = profile?.whatsapp ? buildWaLink(profile.whatsapp, PESAN_WA) : null;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 lg:px-8">

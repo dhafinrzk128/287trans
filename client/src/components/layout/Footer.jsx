@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import SmartImage from "../SmartImage";
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink } from "../../utils/format";
+import { buildWaLink, PESAN_WA } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 import { KOLEKSI_KATEGORI } from "../../data/koleksi/kategori";
 import { KOLEKSI_MODEL } from "../../data/koleksi/model";
@@ -127,7 +127,7 @@ export default function Footer() {
           </p>
           {profile?.whatsapp && (
             <a
-              href={buildWaLink(profile.whatsapp)}
+              href={buildWaLink(profile.whatsapp, PESAN_WA)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("footer")}

@@ -11,7 +11,7 @@ import Seo from "../components/Seo";
 import Spinner from "../components/ui/Spinner";
 import { breadcrumbSchema, faqPageSchema, productSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
+import { formatRupiah, buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 import { cariKoleksi, unitKoleksi, hargaTermurah, muatProsa, kunciProsa } from "../data/koleksiArmada";
@@ -145,13 +145,6 @@ export default function KoleksiArmada({ slug }) {
       : null;
   const deskripsi = koleksi.deskripsi(frasaHarga);
 
-  const pesanWa = pesanSewa(koleksi.sapaanWa ?? `Halo, saya mau sewa ${koleksi.label} di Tangerang.`, [
-    "Tanggal mulai",
-    "Lama sewa",
-    "Unit yang diminati",
-    "Dengan supir / lepas kunci",
-  ]);
-
   // Halaman model membidik satu keluarga mobil, jadi car_name-nya bermakna
   // dan bisa dipakai membandingkan model mana yang paling banyak memicu chat.
   // Halaman kategori memuat banyak model sekaligus — diisi di sana, angkanya
@@ -224,7 +217,7 @@ export default function KoleksiArmada({ slug }) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               {profile?.whatsapp && (
                 <a
-                  href={buildWaLink(profile.whatsapp, pesanWa)}
+                  href={buildWaLink(profile.whatsapp, PESAN_WA)}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}`, namaMobilTracking)}
@@ -545,7 +538,7 @@ export default function KoleksiArmada({ slug }) {
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
             {profile?.whatsapp && (
               <a
-                href={buildWaLink(profile.whatsapp, pesanWa)}
+                href={buildWaLink(profile.whatsapp, PESAN_WA)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackWhatsAppClick(`koleksi_${koleksi.slug}_bawah`, namaMobilTracking)}

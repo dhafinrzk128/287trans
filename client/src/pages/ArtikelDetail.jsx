@@ -6,7 +6,7 @@ import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { articleSchema, breadcrumbSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { buildWaLink, pesanSewa } from "../utils/format";
+import { buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 import { ARTIKEL, cariArtikel, muatIsiArtikel, kunciIsiArtikel } from "../data/artikel";
@@ -55,7 +55,6 @@ export default function ArtikelDetail({ slug }) {
 
   const teks = isi.slug === slug ? isi.data : null;
   const lainnya = ARTIKEL.filter((a) => a.slug !== slug);
-  const pesanWa = pesanSewa("Halo, saya baca panduan di website 287 Trans dan mau tanya soal sewa mobil.");
 
   return (
     <div>
@@ -138,7 +137,7 @@ export default function ArtikelDetail({ slug }) {
           </p>
           {profile?.whatsapp && (
             <a
-              href={buildWaLink(profile.whatsapp, pesanWa)}
+              href={buildWaLink(profile.whatsapp, PESAN_WA)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick(`artikel_${artikel.slug}`)}

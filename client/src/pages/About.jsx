@@ -6,7 +6,7 @@ import { breadcrumbSchema } from "../utils/schema";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import SmartImage from "../components/SmartImage";
-import { buildWaLink } from "../utils/format";
+import { buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import useReveal from "../hooks/useReveal";
 
@@ -184,7 +184,7 @@ export default function About() {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                     <MessageCircle size={18} />
                   </span>
-                  <a href={buildWaLink(profile.whatsapp)} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsAppClick("about_page")} className="font-medium text-blue-600 hover:underline">
+                  <a href={buildWaLink(profile.whatsapp, PESAN_WA)} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsAppClick("about_page")} className="font-medium text-blue-600 hover:underline">
                     Chat via WhatsApp
                   </a>
                 </li>
