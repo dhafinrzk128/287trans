@@ -11,7 +11,7 @@ import SmartImage from "../components/SmartImage";
 import Reveal from "../components/Reveal";
 import Spinner from "../components/ui/Spinner";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { formatRupiah, buildWaLink, pesanSewa } from "../utils/format";
+import { formatRupiah, buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { getPrerenderedData, setPrerenderedData } from "../utils/prerenderData";
 
@@ -147,7 +147,7 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               {profile?.whatsapp && (
                 <a
-                  href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil di 287 Trans."))}
+                  href={buildWaLink(profile.whatsapp, PESAN_WA)}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppClick("hero_button")}

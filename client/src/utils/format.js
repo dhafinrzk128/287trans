@@ -53,23 +53,21 @@ export function buildWaLink(number, text) {
   return `https://wa.me/${digits}${query}`;
 }
 
-const KOLOM_BAKU = ["Tanggal mulai", "Lama sewa", "Dengan supir / lepas kunci"];
-
-// Menyusun pesan siap-kirim untuk calon penyewa.
+// Pesan siap-kirim di semua tombol WhatsApp untuk calon penyewa.
 //
-// Versi sebelumnya berbunyi "saya ingin tanya-tanya soal ..." — tidak membawa
-// satu pun keterangan yang dibutuhkan untuk menjawabnya. Balasan pertama tim
-// karena itu selalu jadi pertanyaan balik (tanggal? berapa hari? unit apa?),
-// dan setiap putaran tanya-jawab tambahan adalah kesempatan calon penyewa
-// berhenti membalas. Dengan kolomnya sudah disiapkan, balasan pertama bisa
-// langsung berupa harga.
+// Sengaja satu kalimat yang sama di seluruh situs, atas permintaan pemilik
+// (Okt 2026). Versi sebelumnya (pesanSewa) membawa pembuka yang berbeda per
+// halaman ditambah kolom kosong — "Tanggal mulai:", "Lama sewa:", dan
+// seterusnya — supaya balasan pertama admin bisa langsung berupa harga.
+// Kolom itu kini ditanyakan admin di chat.
 //
-// Kolomnya dibiarkan kosong, bukan diisi contoh: contoh yang terlanjur
-// terkirim apa adanya akan terbaca sebagai permintaan sungguhan. Mengirim
-// tanpa mengisi pun tetap boleh — hasilnya tidak lebih buruk dari pesan lama.
-export function pesanSewa(pembuka, kolom = KOLOM_BAKU) {
-  return [pembuka, "", ...kolom.map((label) => `${label}: `)].join("\n");
-}
+// Yang tetap berbeda: pesan soal pesanan yang sudah ada (lupa kode booking,
+// menanyakan status booking) di BookingLookup dan BookingStatus. Itu bukan
+// permintaan sewa, jadi tidak memakai konstanta ini.
+//
+// Baris "Kode: 287-XXXXXX" untuk pengunjung iklan tetap ditambahkan saat klik
+// oleh src/utils/kodeRefWa.js.
+export const PESAN_WA = "Halo 287Trans, saya ingin sewa mobil.";
 
 // Same-name .webp sibling for a local image path (server generates one
 // alongside every mobil/profile upload — see server/src/utils/webp.js —

@@ -43,7 +43,6 @@ export const KOLEKSI_LAYANAN = [
       "Seluruh kategori di bawah ini keluar dari garasi yang sama di Ciledug. Klik salah satu untuk melihat unit yang ready dan harganya.",
     judulFaq: "Tanya Jawab Rental Mobil Ciledug",
     judulCta: "Mau Lihat Unitnya Dulu? Cek yang Ready",
-    sapaanWa: "Halo, saya mau sewa mobil di Ciledug.",
   },
   {
     slug: "sewa-mobil-lepas-kunci-tangerang",
@@ -62,7 +61,6 @@ export const KOLEKSI_LAYANAN = [
       "Seluruh unit di katalog bisa disewa lepas kunci. Harga di bawah ini tarif unit per hari, mengikuti katalog.",
     judulFaq: "Pertanyaan Seputar Sewa Lepas Kunci",
     judulCta: "Cek Unit Lepas Kunci untuk Tanggal Anda",
-    sapaanWa: "Halo, saya mau sewa mobil lepas kunci.",
   },
   {
     slug: "harga-sewa-mobil-tangerang",
@@ -80,6 +78,5 @@ export const KOLEKSI_LAYANAN = [
     pengantarUnit: "Tarif unit per hari (24 jam). Klik nama unit untuk melihat foto, spesifikasi, dan kalender ketersediaannya.",
     judulFaq: "Pertanyaan Seputar Harga Sewa",
     judulCta: "Minta Total Biaya untuk Tanggal Anda",
-    sapaanWa: "Halo, saya mau tanya harga sewa mobil.",
   },
 ];

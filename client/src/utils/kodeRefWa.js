@@ -1,4 +1,5 @@
 import { getKodeRef } from "./utm";
+import { PESAN_WA } from "./format";
 
 // Menambahkan kode referensi ke pesan WA pengunjung iklan, tepat saat
 // tautannya diklik.
@@ -32,7 +33,7 @@ function tambahkanKode(tautan) {
   if (url.hostname !== "wa.me" && url.hostname !== "api.whatsapp.com") return;
 
   const baris = `Kode: ${AWALAN_KODE}${kode}`;
-  const teks = url.searchParams.get("text") || "Halo, saya mau sewa mobil di 287 Trans.";
+  const teks = url.searchParams.get("text") || PESAN_WA;
   if (teks.includes(kode)) return;
   // Disusun manual dengan encodeURIComponent, bukan searchParams.set:
   // URLSearchParams menulis spasi sebagai "+", dan pesan harus tetap sama

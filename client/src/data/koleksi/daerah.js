@@ -44,7 +44,6 @@ export const KOLEKSI_DAERAH = [
       "Innova Reborn, Innova Zenix, Fortuner, Pajero Sport, sampai Alphard — semua bisa disewa lepas kunci maupun dengan supir. Klik kategori untuk melihat unit dan harga per harinya.",
     judulFaq: "Tanya Jawab Sewa Mobil Bintaro",
     judulCta: "Cek Unit Sewa Mobil Bintaro yang Ready",
-    sapaanWa: "Halo, saya mau sewa mobil di Bintaro.",
   },
   {
     // Ad group "Rental Mobil BSD": inti kata kuncinya "sewa mobil bsd" dan
@@ -66,7 +65,6 @@ export const KOLEKSI_DAERAH = [
       "Dari sedan Mercedes-Benz dan Alphard untuk tamu kantor sampai MPV tujuh penumpang untuk keluarga. Klik kategori untuk melihat unit yang ready beserta harganya.",
     judulFaq: "Tanya Jawab Sewa Mobil BSD",
     judulCta: "Cek Unit BSD yang Ready",
-    sapaanWa: "Halo, saya mau sewa mobil di BSD / Serpong.",
   },
   {
     // Ad group "Rental Mobil Cipondoh": seluruh kata kuncinya memuat
@@ -88,7 +86,6 @@ export const KOLEKSI_DAERAH = [
       "Semua kategori di bawah ini berangkat dari garasi yang sama di Ciledug. Klik salah satu untuk melihat unit yang ready dan harganya.",
     judulFaq: "Tanya Jawab Rental Mobil Cipondoh",
     judulCta: "Butuh Mobil Hari Ini? Cek Unit Cipondoh",
-    sapaanWa: "Halo, saya mau sewa mobil di Cipondoh.",
   },
   {
     // Ad group "Rental Mobil Tangsel": kata kuncinya terbagi antara "rental
@@ -111,6 +108,5 @@ export const KOLEKSI_DAERAH = [
       "Harga tiap kategori di bawah ini mengikuti katalog. Klik salah satu untuk melihat unit, foto, dan kalender ketersediaannya.",
     judulFaq: "Tanya Jawab Sewa Mobil Tangerang Selatan",
     judulCta: "Butuh Mobil Sebulan? Minta Penawaran Sekarang",
-    sapaanWa: "Halo, saya mau sewa mobil di Tangerang Selatan.",
   },
 ];

@@ -1,5 +1,5 @@
 import { useCompanyProfile } from "../../context/CompanyProfileContext";
-import { buildWaLink, pesanSewa } from "../../utils/format";
+import { buildWaLink, PESAN_WA } from "../../utils/format";
 import { trackWhatsAppClick } from "../../utils/tracking";
 
 export default function FloatingWhatsApp() {
@@ -16,7 +16,7 @@ export default function FloatingWhatsApp() {
     // bouncing. Below md the label never renders, so the mobile button stays
     // exactly the same circle it was.
     <a
-      href={buildWaLink(profile.whatsapp, pesanSewa("Halo, saya mau sewa mobil di 287 Trans."))}
+      href={buildWaLink(profile.whatsapp, PESAN_WA)}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackWhatsAppClick("floating_button")}

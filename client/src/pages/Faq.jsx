@@ -5,7 +5,7 @@ import Reveal from "../components/Reveal";
 import Seo from "../components/Seo";
 import { breadcrumbSchema, faqPageSchema } from "../utils/schema";
 import { useCompanyProfile } from "../context/CompanyProfileContext";
-import { buildWaLink } from "../utils/format";
+import { buildWaLink, PESAN_WA } from "../utils/format";
 import { trackWhatsAppClick } from "../utils/tracking";
 import { FAQ_UMUM } from "../data/faqUmum";
 
@@ -75,7 +75,7 @@ export default function Faq() {
           </p>
           {profile?.whatsapp && (
             <a
-              href={buildWaLink(profile.whatsapp, "Halo, saya ada pertanyaan seputar rental mobil di 287 Trans.")}
+              href={buildWaLink(profile.whatsapp, PESAN_WA)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppClick("faq_page")}
