@@ -239,11 +239,11 @@ export const PROSA_KATEGORI = {
     ]
   },
   "sewa-mobil-listrik-tangerang": {
-    intro: "Sewa mobil listrik di 287 Trans sekarang punya dua pilihan Hyundai: Ioniq 5 dan Kona Electric N-Line. Keduanya matic, lima penumpang, dan bisa disewa lepas kunci maupun dengan sopir di Jakarta dan Tangerang. Mobil listrik mengubah hitungan biaya sewa dengan cara yang tidak langsung terlihat dari tarif hariannya: pada unit bensin Anda membayar tarif sewa ditambah bahan bakar, sedangkan di sini komponen itu berganti menjadi biaya pengisian daya yang jauh lebih rendah per kilometernya. Untuk pemakaian dalam kota Jabodetabek yang jaraknya panjang tapi kecepatannya rendah, selisih ini terasa nyata — dan itu justru kondisi di mana mobil listrik bekerja paling efisien.",
+    intro: "Sewa mobil listrik di 287 Trans sekarang punya tiga pilihan: Hyundai Ioniq 5, Hyundai Kona Electric N-Line, dan Chery Omoda E5. Ketiganya matic, lima penumpang, dan bisa disewa lepas kunci maupun dengan sopir di Jakarta dan Tangerang. Mobil listrik mengubah hitungan biaya sewa dengan cara yang tidak langsung terlihat dari tarif hariannya: pada unit bensin Anda membayar tarif sewa ditambah bahan bakar, sedangkan di sini komponen itu berganti menjadi biaya pengisian daya yang jauh lebih rendah per kilometernya. Untuk pemakaian dalam kota Jabodetabek yang jaraknya panjang tapi kecepatannya rendah, selisih ini terasa nyata — dan itu justru kondisi di mana mobil listrik bekerja paling efisien.",
     bagian: [
       {
-        judul: "Ioniq 5 atau Kona N-Line: Pilih yang Mana",
-        isi: "Hyundai Kona Electric N-Line keluaran 2026 adalah SUV listrik ringkas dengan tampilan sporty: bumper hitam yang tegas di luar, aksen dan jahitan merah di kabin. Baterainya 66 kWh dengan jarak tempuh yang diklaim hingga 549 km (NEDC) sekali isi, dan sudah dibekali paket bantuan berkendara Hyundai SmartSense. Dimensinya yang lebih ringkas membuatnya lebih mudah diparkir dan dibawa di jalan sempit, dan tarif hariannya yang lebih rendah menjadikannya pintu masuk paling masuk akal untuk mencoba mobil listrik. Hyundai Ioniq 5 keluaran 2024 lebih besar dan lebih lapang: jarak antar-rodanya panjang dan lantainya rata, sehingga ruang kaki penumpang belakang terasa lega. Pilih Kona kalau Anda lebih sering berkendara sendiri atau berdua dan mengutamakan jarak tempuh; pilih Ioniq 5 kalau kursi belakang sering terisi atau Anda menjemput tamu."
+        judul: "Ioniq 5, Kona N-Line, atau Omoda E5: Pilih yang Mana",
+        isi: "Hyundai Kona Electric N-Line keluaran 2026 adalah SUV listrik ringkas dengan tampilan sporty: bumper hitam yang tegas di luar, aksen dan jahitan merah di kabin. Baterainya 66 kWh dengan jarak tempuh yang diklaim hingga 549 km (NEDC) sekali isi, dan sudah dibekali paket bantuan berkendara Hyundai SmartSense. Dimensinya yang ringkas membuatnya mudah diparkir dan dibawa di jalan sempit. Chery Omoda E5 adalah SUV listrik berdesain futuristik dengan tarif harian paling rendah di antara ketiganya, jadi pintu masuk paling masuk akal untuk mencoba mobil listrik. Baterainya 61 kWh dengan jarak tempuh yang diklaim hingga 430 km (WLTP), pengisian cepat dari 30% ke 80% sekitar setengah jam, ground clearance 190 mm, dan kamera 360 derajat yang memudahkan parkir. Hyundai Ioniq 5 keluaran 2024 adalah yang paling besar dan paling lapang: jarak antar-rodanya panjang dan lantainya rata, sehingga ruang kaki penumpang belakang terasa lega. Singkatnya: pilih Omoda E5 kalau Anda ingin biaya sewa paling ringan, Kona kalau Anda suka tampilan sporty dan lebih sering berkendara sendiri atau berdua, dan Ioniq 5 kalau kursi belakang sering terisi atau Anda menjemput tamu."
       },
       {
         judul: "Yang Perlu Anda Tahu Sebelum Sewa Mobil Listrik",
@@ -259,7 +259,7 @@ export const PROSA_KATEGORI = {
       },
       {
         judul: "Kenapa Mobil Listrik Terasa Berbeda di Jalan",
-        isi: "Dua hal yang paling langsung terasa, baik di Ioniq 5 maupun Kona. Pertama, kabinnya senyap total saat berjalan pelan karena tidak ada mesin yang bekerja — perbedaan yang paling terasa justru di kemacetan, kondisi yang biasanya paling melelahkan. Kedua, tenaganya keluar seketika tanpa jeda perpindahan gigi, sehingga menyalip dan masuk ke jalur tol terasa jauh lebih ringan. Di Ioniq 5, ruang kabinnya juga lebih lapang dari yang diduga orang dari luar, karena tidak ada terowongan transmisi yang memakan ruang kaki di tengah."
+        isi: "Dua hal yang paling langsung terasa di ketiga unit. Pertama, kabinnya senyap total saat berjalan pelan karena tidak ada mesin yang bekerja — perbedaan yang paling terasa justru di kemacetan, kondisi yang biasanya paling melelahkan. Kedua, tenaganya keluar seketika tanpa jeda perpindahan gigi, sehingga menyalip dan masuk ke jalur tol terasa jauh lebih ringan. Di Ioniq 5, ruang kabinnya juga lebih lapang dari yang diduga orang dari luar, karena tidak ada terowongan transmisi yang memakan ruang kaki di tengah."
       },
       {
         judul: "Sewa Mobil Listrik Harian, Mingguan, dan Bulanan",
@@ -273,7 +273,7 @@ export const PROSA_KATEGORI = {
     faq: [
       {
         tanya: "Mobil listrik apa saja yang bisa disewa di 287 Trans?",
-        jawab: "Dua unit Hyundai: Ioniq 5 keluaran 2024 dan Kona Electric N-Line keluaran 2026. Keduanya matic, lima penumpang, dan tersedia lepas kunci maupun dengan sopir. Harga dan kalender ketersediaannya ada di daftar unit pada halaman ini."
+        jawab: "Tiga unit: Hyundai Ioniq 5, Hyundai Kona Electric N-Line, dan Chery Omoda E5. Ketiganya matic, lima penumpang, dan tersedia lepas kunci maupun dengan sopir. Harga dan kalender ketersediaannya ada di daftar unit pada halaman ini."
       },
       {
         tanya: "Bisa sewa mobil listrik di Jakarta?",
@@ -285,7 +285,7 @@ export const PROSA_KATEGORI = {
       },
       {
         tanya: "Berapa jarak tempuh sekali pengisian penuh?",
-        jawab: "Kona Electric N-Line diklaim pabrikan hingga 549 km (NEDC) dengan baterai 66 kWh. Untuk kedua unit, pada pemakaian dalam kota satu kali pengisian penuh umumnya cukup untuk kebutuhan sehari penuh dengan margin yang aman. Jarak sebenarnya dipengaruhi gaya berkendara, beban, dan penggunaan AC — kami akan menjelaskan perkiraannya sesuai rencana rute Anda."
+        jawab: "Kona Electric N-Line diklaim pabrikan hingga 549 km (NEDC) dengan baterai 66 kWh, dan Omoda E5 hingga 430 km (WLTP) dengan baterai 61 kWh. Kedua angka itu memakai standar uji yang berbeda, jadi tidak bisa dibandingkan langsung. Untuk ketiga unit, pada pemakaian dalam kota satu kali pengisian penuh umumnya cukup untuk kebutuhan sehari penuh dengan margin yang aman. Jarak sebenarnya dipengaruhi gaya berkendara, beban, dan penggunaan AC — kami akan menjelaskan perkiraannya sesuai rencana rute Anda."
       },
       {
         tanya: "Apakah biaya listriknya ditanggung penyewa?",
