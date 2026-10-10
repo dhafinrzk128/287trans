@@ -485,4 +485,80 @@ export const PROSA_LAYANAN = {
       },
     ],
   },
+
+  // Tujuan iklan ad group "Tangerang Kota" dan penerus beranda untuk kata
+  // kunci "rental mobil tangerang" (lihat komentar entrinya di ../daerah.js).
+  // Menaut ke halaman Ciledug dan Cipondoh, dua kecamatan Kota Tangerang
+  // yang punya halaman sendiri, supaya tidak saling berebut kata kunci.
+  "rental-mobil-tangerang": {
+    intro: "Rental mobil Tangerang di 287 Trans berangkat dari garasi kami sendiri di Ciledug, Kota Tangerang — bukan unit titipan yang didatangkan dari kota lain. Armadanya premium dan terawat: MPV keluarga seperti Innova Reborn dan Innova Zenix, SUV seperti Fortuner dan Pajero Sport, sampai Alphard dan sedan Mercedes-Benz untuk acara penting. Semua bertransmisi matic, bisa disewa lepas kunci atau dengan supir, dan harganya tercantum di halaman ini supaya Anda tidak perlu menebak sebelum bertanya.",
+    bagian: [
+      {
+        judul: "Kenapa Rental Mobil di Tangerang Lewat 287 Trans",
+        isi: "Empat hal yang paling sering jadi alasan penyewa di Tangerang memilih kami.",
+        poin: [
+          "Garasi di Kota Tangerang. Unit berangkat dari Ciledug, jadi serah terima di Tangerang tidak menunggu mobil menembus macet dari kota lain, dan Anda bisa datang melihat unitnya lebih dulu.",
+          "Unit terawat, interior bersih. Seluruh armada dirawat rutin dan diperiksa sebelum diserahkan, siap jalan begitu kunci diterima.",
+          "Syarat lepas kunci ringkas: KTP yang masih berlaku dan SIM aktif, tanpa kartu kredit, tanpa jaminan BPKB, tanpa membuat akun.",
+          "Harga jelas dari awal. Angka di halaman ini diambil dari katalog, dan biaya di luar tarif unit selalu disebutkan sebelum pemesanan dikunci.",
+        ],
+      },
+      {
+        judul: "Sewa Mobil Tangerang Lepas Kunci atau Dengan Supir",
+        isi: "Sewa mobil Tangerang lepas kunci cocok kalau Anda terbiasa menyetir sendiri dan jadwalnya berubah-ubah: liburan keluarga, mudik, atau keperluan harian selama beberapa hari. Sewa mobil Tangerang dengan supir lebih pas untuk menjemput tamu, acara keluarga, atau agenda kerja yang berpindah lokasi seharian — Anda tinggal duduk, rute dan parkir jadi urusan supir. Keduanya tersedia untuk unit yang sama. Biaya supir dihitung terpisah dari tarif unit dan disebutkan sejak awal, sedangkan bahan bakar dan tol selama pemakaian ditanggung penyewa.",
+        tautan: { to: "/sewa-mobil-lepas-kunci-tangerang", label: "Sewa mobil lepas kunci Tangerang" },
+      },
+      {
+        judul: "Sewa Mobil Harian dan Bulanan di Tangerang",
+        isi: "Sewa mobil harian Tangerang dihitung 24 jam dari waktu pengambilan, tanpa minimum hari. Untuk liburan panjang ada skema mingguan. Sewa mobil bulanan Tangerang tersedia untuk seluruh unit dengan tarif per hari yang lebih hemat dibanding harian, dan paling banyak diambil untuk kendaraan operasional perusahaan, mobil pengganti selama kendaraan Anda di bengkel, atau pemakaian pribadi jangka panjang. Sebutkan unit dan lama sewa saat chat supaya kami bisa langsung memberi angkanya.",
+        tautan: { to: "/artikel/sewa-mobil-bulanan-tangerang", label: "Panduan sewa mobil bulanan Tangerang" },
+      },
+      {
+        judul: "Pilihan Armada: dari Innova sampai Alphard",
+        isi: "Untuk keluarga dan perjalanan luar kota, MPV tujuh penumpang seperti Innova Reborn diesel dan Innova Zenix hybrid jadi pilihan pertama. Fortuner dan Pajero Sport dipilih untuk rute yang menuntut postur lebih tinggi. Untuk pernikahan, tamu perusahaan, dan acara formal ada Alphard serta sedan Mercedes-Benz dan BMW, dan untuk yang ingin mencoba mobil listrik tersedia beberapa pilihan. Daftar lengkap beserta tarif per harinya ada di halaman harga.",
+        tautan: { to: "/harga-sewa-mobil-tangerang", label: "Daftar harga sewa mobil Tangerang" },
+      },
+      {
+        judul: "Rental Mobil Kota Tangerang: Area yang Kami Layani",
+        isi: "Kami melayani rental mobil Kota Tangerang di seluruh kecamatannya: Ciledug, Karang Tengah, dan Larangan yang paling dekat dengan garasi, lalu Cipondoh, Pinang, Karawaci, Cikokol, dan kecamatan lainnya. Sewa mobil Tangerang Kota untuk penjemputan dan pengantaran ke Bandara Soekarno-Hatta juga rutin kami tangani. Unit bisa diantar ke rumah, kantor, atau hotel Anda, atau diambil sendiri di garasi Ciledug tanpa biaya antar. Alamat yang dekat dengan garasi diantar tanpa ongkos kirim; untuk alamat yang lebih jauh, ongkos antar dihitung sesuai jarak dan disebutkan sebelum pemesanan dikunci.",
+        tautan: [{ to: "/rental-mobil-ciledug", label: "Rental mobil Ciledug" }, { to: "/rental-mobil-cipondoh", label: "Rental mobil Cipondoh" }],
+      },
+      {
+        judul: "Cara Sewa Mobil di Tangerang",
+        isi: "Empat langkah, semuanya bisa lewat WhatsApp.",
+        poin: [
+          "Lihat kategori dan harga di halaman ini, lalu pilih unit sesuai jumlah penumpang dan keperluan Anda.",
+          "Chat WhatsApp dengan menyebutkan unit, tanggal mulai, lama sewa, serta lepas kunci atau dengan supir.",
+          "Kirim alamat serah terima di Tangerang, atau beri tahu kami kalau Anda ingin mengambil sendiri di garasi Ciledug.",
+          "Tim kami mengonfirmasi ketersediaan dan total biayanya sebelum tanggal Anda dikunci.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        tanya: "Di mana lokasi rental mobil Tangerang 287 Trans?",
+        jawab: "Garasi dan kantor kami ada di Jl. Lembang Baru II, Ciledug, Kota Tangerang. Unit bisa diambil di sana tanpa biaya antar, atau diantar ke alamat Anda. Kabari kami lewat WhatsApp sebelum datang supaya unitnya sudah disiapkan.",
+      },
+      {
+        tanya: "Apa syarat sewa mobil di Tangerang lepas kunci?",
+        jawab: "KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan. Tidak ada syarat kartu kredit, jaminan BPKB, atau pendaftaran akun.",
+      },
+      {
+        tanya: "Bisa rental mobil di Tangerang dengan supir?",
+        jawab: "Bisa. Seluruh unit tersedia dengan supir, untuk agenda kerja seharian, penjemputan tamu, maupun acara keluarga. Biaya supir dihitung terpisah dari tarif unit dan disebutkan sejak awal.",
+      },
+      {
+        tanya: "Ada sewa mobil bulanan di Tangerang?",
+        jawab: "Ada, untuk seluruh unit, dengan tarif per hari yang lebih hemat dibanding sewa harian. Skema mingguan dan tahunan juga tersedia. Sebutkan unit dan lama sewa saat chat supaya kami bisa langsung memberi angkanya.",
+      },
+      {
+        tanya: "Bisa jemput atau antar ke Bandara Soekarno-Hatta?",
+        jawab: "Bisa, lepas kunci maupun dengan supir. Untuk penjemputan, sebutkan nomor penerbangan dan jam tiba saat memesan supaya penyesuaian bisa dilakukan kalau jadwalnya berubah.",
+      },
+      {
+        tanya: "Apakah antar unit di Tangerang gratis?",
+        jawab: "Gratis untuk alamat yang dekat dengan garasi kami di Ciledug. Untuk alamat yang lebih jauh, ongkos antar dihitung sesuai jarak. Kirim alamat lengkap atau share location lewat WhatsApp, dan kami pastikan sebelum Anda memesan.",
+      },
+    ],
+  },
 };

@@ -79,8 +79,8 @@ export default function Home() {
   return (
     <div>
       <Seo
-        title="Rental Mobil Tangerang - Lepas Kunci & Driver"
-        description="Rental mobil Tangerang & Jabodetabek. Armada terawat, lepas kunci atau plus driver, harian sampai bulanan. Booking cepat via WA 0811-144-287."
+        title="Rental Mobil Jakarta & Tangerang - Lepas Kunci & Driver"
+        description="Rental mobil Jakarta & Tangerang. Armada terawat, lepas kunci atau plus driver, harian sampai bulanan. Booking cepat via WA 0811-144-287."
         path="/"
         // Tanpa FAQPage, walau tanya-jawabnya tampil di bawah. Skema itu
         // sudah disandang /faq (lihat Faq.jsx), dan Google hanya memilih satu
@@ -114,7 +114,7 @@ export default function Home() {
               Rental Mobil Premium dan Terpercaya
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
-              Rental Mobil Tangerang, <span className="text-accent-400">Perjalanan Mudah dan Nyaman</span>
+              Rental Mobil Jakarta &amp; Tangerang, <span className="text-accent-400">Perjalanan Mudah dan Nyaman</span>
             </h1>
             {/* "seluruhnya" sengaja menempel pada terawat, bukan pada
                 terbaru: 20 dari 24 unit keluaran 2024 ke atas, tapi Alphard
@@ -125,7 +125,7 @@ export default function Home() {
             <p className="mt-5 max-w-xl text-lg text-blue-100">
               Ajukan langsung lewat WhatsApp, tanpa perlu membuat akun. Armada premium hingga luxury
               dengan unit-unit keluaran terbaru — seluruhnya terawat dan diperiksa sebelum diserahkan,
-              berangkat dari kantor kami di Ciledug ke seluruh Tangerang dan Jabodetabek.
+              berangkat dari kantor kami di Ciledug ke seluruh Jakarta, Tangerang, dan Jabodetabek.
             </p>
             {/* Harga diletakkan sebelum tombol, bukan di bagian terpisah jauh
                 di bawah. Halaman ini tujuan iklan berbayar untuk kata kunci
@@ -176,7 +176,7 @@ export default function Home() {
                 minLebar={1024}
                 ukuran="(min-width: 1280px) 600px, 46vw"
                 src={profile?.heroFotoUrl || "https://picsum.photos/seed/hero-rental/900/700"}
-                alt="Mobil rental 287 Trans di Tangerang"
+                alt="Mobil rental 287 Trans di Jakarta dan Tangerang"
                 className="h-full w-full object-cover"
                 fetchPriority="high"
               />
@@ -218,18 +218,28 @@ export default function Home() {
       {/* Keunggulan */}
       <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          {/* H2 membidik "sewa mobil premium tangerang"; pertanyaan lamanya
-              tetap ada sebagai pengantar kecil di atasnya. Anchor ke /katalog
-              sengaja bukan "rental mobil Tangerang": keyword itu milik halaman
-              ini sendiri, bukan katalog. */}
+          {/* H2 membidik "sewa mobil premium" Jakarta & Tangerang; pertanyaan
+              lamanya tetap ada sebagai pengantar kecil di atasnya.
+
+              Beranda dulu membidik "rental mobil Tangerang". Sejak Okt 2026
+              kata kunci itu milik /rental-mobil-tangerang (tujuan iklan ad
+              group Tangerang), dan beranda membidik Jakarta & Tangerang
+              supaya pencari dari Jakarta tidak mengira kami hanya melayani
+              Tangerang. Tautan di bawah sengaja memakai anchor "rental mobil
+              Tangerang" untuk mengoper sinyal kata kunci itu ke halaman
+              barunya. */}
           <p className="text-sm font-semibold uppercase tracking-wide text-accent-700">Kenapa Pilih 287 Trans?</p>
-          <h2 className="mt-2 text-3xl font-bold text-slate-900">Sewa Mobil Premium Tangerang</h2>
+          <h2 className="mt-2 text-3xl font-bold text-slate-900">Sewa Mobil Premium Jakarta &amp; Tangerang</h2>
           <p className="mt-3 text-slate-600">
             {"Unit keluaran terbaru yang terawat, layanan yang personal, dan respon cepat dari tim kami. Lihat seluruh pilihannya di "}
             <Link to="/katalog" className="font-semibold text-blue-600 hover:underline">
               katalog armada
             </Link>
-            {" kami."}
+            {" kami, atau khusus area Tangerang di halaman "}
+            <Link to="/rental-mobil-tangerang" className="font-semibold text-blue-600 hover:underline">
+              rental mobil Tangerang
+            </Link>
+            {"."}
           </p>
         </Reveal>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -262,7 +272,7 @@ export default function Home() {
           saling menggerus. */}
       <section className="render-saat-terlihat mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <Reveal as="h2" className="text-2xl font-bold text-slate-900">
-          Sebelum Menyewa di Tangerang, Tiga Hal Ini Biasanya Ditanyakan
+          Sebelum Menyewa di Jakarta &amp; Tangerang, Tiga Hal Ini Biasanya Ditanyakan
         </Reveal>
         <div className="mt-6 grid gap-8 lg:grid-cols-3">
           <Reveal className="space-y-3 leading-relaxed text-slate-600">
@@ -318,7 +328,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900">Mobil Populer di Tangerang</h2>
+              <h2 className="text-3xl font-bold text-slate-900">Mobil Populer di Jakarta &amp; Tangerang</h2>
               <p className="mt-2 text-slate-600">Pilihan armada terbaik yang paling banyak disewa pelanggan kami.</p>
             </div>
             <Link to="/katalog" className="group flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-700">

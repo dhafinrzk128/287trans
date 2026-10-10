@@ -141,6 +141,7 @@ const KNOWN_SPA_ROUTES = [
   /^\/sewa-mobil-lepas-kunci-tangerang\/?$/,
   /^\/harga-sewa-mobil-tangerang\/?$/,
   // Halaman daerah — client/src/data/koleksi/daerah.js.
+  /^\/rental-mobil-tangerang\/?$/,
   /^\/sewa-mobil-bintaro\/?$/,
   /^\/sewa-mobil-bsd-serpong\/?$/,
   /^\/rental-mobil-cipondoh\/?$/,
@@ -180,8 +181,11 @@ const KNOWN_SPA_ROUTES = [
 // (client/src/data/koleksi/layanan.js): redirect di sini didaftarkan sebelum
 // penangan prerender, jadi selama barisnya ada halaman itu tidak akan pernah
 // tersaji. Jangan didaftarkan lagi.
+//
+// Hal yang sama untuk /rental-mobil-tangerang: sejak Okt 2026 ia halaman
+// daerah sungguhan (client/src/data/koleksi/daerah.js), tujuan iklan ad
+// group Tangerang. Jangan didaftarkan lagi.
 const REDIRECT_PERMANEN = {
-  "/rental-mobil-tangerang": "/",
   "/rental-mobil-plus-driver": "/",
   "/rental-mobil-bulanan-tangerang": "/",
   "/sewa-mobil-bandara-soekarno-hatta": "/",

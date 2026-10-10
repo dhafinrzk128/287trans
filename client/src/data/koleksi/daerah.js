@@ -1,4 +1,4 @@
-// Halaman daerah — tujuan iklan per ad group lokasi (Bintaro, BSD, Cipondoh,
+// Halaman daerah — tujuan iklan per ad group lokasi (Tangerang, Bintaro, BSD, Cipondoh,
 // Tangerang Selatan). Halaman Ciledug juga bagian dari kelompok iklan ini,
 // tapi entrinya tetap di layanan.js karena sudah live dan sudah tertaut dari
 // footer.
@@ -7,8 +7,9 @@
 // armada, prosa di prosa/layanan.js), jadi template, prerender, dan sitemap
 // tidak perlu disentuh. Bedanya hanya satu: daftar ini SENGAJA tidak dibaca
 // Footer.jsx, supaya menambah halaman daerah tidak mengubah footer di
-// seluruh situs. Tautan masuknya dari sitemap, iklan, dan halaman Tangerang
-// Selatan (yang menaut ke Bintaro dan BSD).
+// seluruh situs. Tautan masuknya dari sitemap, iklan, beranda (ke halaman
+// Tangerang), dan halaman Tangerang Selatan (yang menaut ke Bintaro dan
+// BSD).
 //
 // Slug, title, H1, dan H2 (di prosa) mengikuti kata kunci dan judul iklan
 // ad group-nya, bukan sebaliknya: halaman ini dinilai Google dari seberapa
@@ -24,6 +25,32 @@
 // Judul sudah memuat "287 Trans", jadi Seo.jsx tidak menambah akhiran lagi.
 
 export const KOLEKSI_DAERAH = [
+  {
+    // Ad group "Tangerang Kota": "rental mobil tangerang", "sewa mobil
+    // tangerang", "... kota tangerang", "... dengan supir", harian, bulanan.
+    // Sampai Okt 2026 ad group ini mendarat di beranda; halaman ini
+    // menggantikannya sejak beranda dialihkan ke "Jakarta & Tangerang".
+    // Title sengaja sama dengan title beranda yang lama, supaya iklan dan
+    // peringkat organik untuk "rental mobil tangerang" punya penerus yang
+    // serupa. URL ini dulu di-301 ke beranda (lihat REDIRECT_PERMANEN di
+    // server/src/index.js) dan sudah dilepas dari sana.
+    slug: "rental-mobil-tangerang",
+    grup: "layanan",
+    label: "Rental Mobil Tangerang",
+    semua: true,
+    tampilanUnit: "kategori",
+    judul: "Rental Mobil Tangerang - Lepas Kunci & Driver | 287 Trans",
+    deskripsi: (frasa) =>
+      `Rental mobil Tangerang lepas kunci atau plus driver${frasa ? `, ${frasa}` : ""}. Armada terawat, harian sampai bulanan. Booking cepat via WA 0811-144-287.`,
+    h1: "Rental Mobil Tangerang Lepas Kunci & Dengan Supir",
+    subjudul:
+      "Rental mobil Tangerang dengan armada premium yang terawat, dari Innova Reborn dan Zenix sampai Fortuner dan Alphard. Sewa mobil Tangerang lepas kunci atau dengan supir, harian sampai bulanan, berangkat dari garasi kami di Ciledug.",
+    judulUnit: "Pilihan Unit Rental Mobil Tangerang",
+    pengantarUnit:
+      "Seluruh kategori di bawah ini berangkat dari garasi kami di Kota Tangerang. Klik salah satu untuk melihat unit yang ready dan harganya.",
+    judulFaq: "Tanya Jawab Rental Mobil Tangerang",
+    judulCta: "Cek Unit Rental Mobil Tangerang yang Ready",
+  },
   {
     // Ad group "Rental Mobil Bintaro": 7 dari 8 kata kunci berawal "sewa
     // mobil ... bintaro". Judul iklan: Sektor 9, Graha Raya, mobil keluarga
