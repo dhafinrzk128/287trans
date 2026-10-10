@@ -243,7 +243,7 @@ export const PROSA_KATEGORI = {
     bagian: [
       {
         judul: "Ioniq 5, Kona N-Line, atau Omoda E5: Pilih yang Mana",
-        isi: "Hyundai Kona Electric N-Line keluaran 2026 adalah SUV listrik ringkas dengan tampilan sporty: bumper hitam yang tegas di luar, aksen dan jahitan merah di kabin. Baterainya 66 kWh dengan jarak tempuh yang diklaim hingga 549 km (NEDC) sekali isi, dan sudah dibekali paket bantuan berkendara Hyundai SmartSense. Dimensinya yang ringkas membuatnya mudah diparkir dan dibawa di jalan sempit. Chery Omoda E5 adalah SUV listrik berdesain futuristik dengan tarif harian paling rendah di antara ketiganya, jadi pintu masuk paling masuk akal untuk mencoba mobil listrik. Baterainya 61 kWh dengan jarak tempuh yang diklaim hingga 430 km (WLTP), pengisian cepat dari 30% ke 80% sekitar setengah jam, ground clearance 190 mm, dan kamera 360 derajat yang memudahkan parkir. Hyundai Ioniq 5 keluaran 2024 adalah yang paling besar dan paling lapang: jarak antar-rodanya panjang dan lantainya rata, sehingga ruang kaki penumpang belakang terasa lega. Singkatnya: pilih Omoda E5 kalau Anda ingin biaya sewa paling ringan, Kona kalau Anda suka tampilan sporty dan lebih sering berkendara sendiri atau berdua, dan Ioniq 5 kalau kursi belakang sering terisi atau Anda menjemput tamu."
+        isi: "Hyundai Kona Electric N-Line keluaran 2026 adalah SUV listrik ringkas dengan tampilan sporty: bumper hitam yang tegas di luar, aksen dan jahitan merah di kabin. Baterainya 66 kWh dengan jarak tempuh yang diklaim hingga 549 km (NEDC) sekali isi, dan sudah dibekali paket bantuan berkendara Hyundai SmartSense. Dimensinya yang ringkas membuatnya mudah diparkir dan dibawa di jalan sempit. Chery Omoda E5 keluaran 2025 adalah SUV listrik berdesain futuristik dengan tarif harian paling rendah di antara ketiganya, jadi pintu masuk paling masuk akal untuk mencoba mobil listrik. Baterainya 61 kWh dengan jarak tempuh yang diklaim hingga 430 km (WLTP), pengisian cepat dari 30% ke 80% sekitar setengah jam, ground clearance 190 mm, dan kamera 360 derajat yang memudahkan parkir. Hyundai Ioniq 5 keluaran 2024 adalah yang paling besar dan paling lapang: jarak antar-rodanya panjang dan lantainya rata, sehingga ruang kaki penumpang belakang terasa lega. Singkatnya: pilih Omoda E5 kalau Anda ingin biaya sewa paling ringan, Kona kalau Anda suka tampilan sporty dan lebih sering berkendara sendiri atau berdua, dan Ioniq 5 kalau kursi belakang sering terisi atau Anda menjemput tamu."
       },
       {
         judul: "Yang Perlu Anda Tahu Sebelum Sewa Mobil Listrik",
@@ -262,8 +262,12 @@ export const PROSA_KATEGORI = {
         isi: "Dua hal yang paling langsung terasa di ketiga unit. Pertama, kabinnya senyap total saat berjalan pelan karena tidak ada mesin yang bekerja — perbedaan yang paling terasa justru di kemacetan, kondisi yang biasanya paling melelahkan. Kedua, tenaganya keluar seketika tanpa jeda perpindahan gigi, sehingga menyalip dan masuk ke jalur tol terasa jauh lebih ringan. Di Ioniq 5, ruang kabinnya juga lebih lapang dari yang diduga orang dari luar, karena tidak ada terowongan transmisi yang memakan ruang kaki di tengah."
       },
       {
-        judul: "Sewa Mobil Listrik Harian, Mingguan, dan Bulanan",
-        isi: "Sewa harian dihitung 24 jam dari waktu pengambilan, cocok untuk acara, agenda kerja, atau sekadar ingin merasakan mobil listrik. Skema mingguan pas untuk mencoba hidup dengan mobil listrik sebelum memutuskan membeli. Rental mobil listrik bulanan paling masuk akal secara hitungan: selisih biaya per kilometer menumpuk dari hari ke hari, dan perusahaan yang ingin menampilkan komitmen terhadap kendaraan rendah emisi bisa memakainya sebagai kendaraan operasional. Syaratnya satu — Anda punya akses pengisian yang rutin, di rumah, di kantor, atau di SPKLU dekat Anda."
+        judul: "Sewa Mobil Listrik Bulanan",
+        isi: "Sewa mobil listrik bulanan adalah skema yang hitungannya paling masuk akal. Tarif per harinya lebih hemat dibanding sewa harian, dan selisih biaya per kilometer terhadap mobil bensin menumpuk dari hari ke hari — semakin sering mobilnya dipakai, semakin terasa. Skema ini cocok untuk kendaraan operasional kantor, perusahaan yang ingin tampil dengan armada rendah emisi, pengganti mobil pribadi yang sedang diperbaiki, atau Anda yang ingin benar-benar hidup dengan mobil listrik selama sebulan sebelum memutuskan membeli. Rental mobil listrik bulanan tersedia untuk ketiga unit, lepas kunci maupun dengan sopir. Syaratnya satu: Anda punya akses pengisian yang rutin, di rumah, di kantor, atau di SPKLU dekat Anda. Sebutkan unit dan lama sewa saat chat supaya kami bisa langsung memberi angkanya."
+      },
+      {
+        judul: "Sewa Mobil Listrik Harian dan Mingguan",
+        isi: "Sewa mobil listrik harian dihitung 24 jam dari waktu pengambilan, cocok untuk acara, agenda kerja, atau sekadar ingin merasakan mobil listrik untuk pertama kali. Skema mingguan pas untuk liburan dalam kota, tamu yang menginap beberapa hari, atau mencoba mobil listrik lebih lama daripada test drive di dealer."
       },
       {
         judul: "Cocok untuk Siapa",
@@ -277,7 +281,7 @@ export const PROSA_KATEGORI = {
       },
       {
         tanya: "Bisa sewa mobil listrik di Jakarta?",
-        jawab: "Bisa. Jakarta dan Tangerang sama-sama area layanan kami. Unit diantar ke alamat Anda dengan biaya sesuai jarak dari garasi kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan, atau diambil sendiri di garasi tanpa biaya antar."
+        jawab: "Bisa. Kami melayani rental mobil listrik Jakarta dan Tangerang. Unit diantar ke alamat Anda dengan biaya sesuai jarak dari garasi kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan, atau diambil sendiri di garasi tanpa biaya antar."
       },
       {
         tanya: "Bagaimana cara mengisi dayanya selama masa sewa?",
@@ -300,8 +304,8 @@ export const PROSA_KATEGORI = {
         jawab: "Boleh, hanya saja perjalanannya perlu direncanakan berbeda dari mobil bensin: titik pengisian di rute Anda sebaiknya dipastikan sebelum berangkat. Untuk rute tol utama di Jawa hal ini sudah jauh lebih mudah dibanding beberapa tahun lalu. Sebutkan kota tujuan saat memesan — kalau rutenya kami nilai menyulitkan, kami akan terus terang menyarankan unit lain."
       },
       {
-        tanya: "Mobil listrik cocok untuk sewa jangka panjang?",
-        jawab: "Cocok, dan justru di situ hitungannya paling masuk akal. Biaya per kilometer mobil listrik jauh lebih rendah daripada mobil bensin, sehingga pada pemakaian bulanan selisihnya menumpuk dan bisa menutup tarif hariannya yang terlihat lebih tinggi. Syaratnya satu: Anda punya akses pengisian yang rutin, entah di rumah atau di stasiun pengisian umum dekat Anda."
+        tanya: "Ada sewa mobil listrik bulanan?",
+        jawab: "Ada, untuk ketiga unit, dan justru di situ hitungannya paling masuk akal. Biaya per kilometer mobil listrik jauh lebih rendah daripada mobil bensin, sehingga pada pemakaian bulanan selisihnya menumpuk dan bisa menutup tarif hariannya yang terlihat lebih tinggi. Syaratnya satu: Anda punya akses pengisian yang rutin, entah di rumah atau di stasiun pengisian umum dekat Anda."
       }
     ]
   },

@@ -73,14 +73,21 @@ export const KOLEKSI_KATEGORI = [
     h1: "Sewa SUV Mewah Jakarta & Tangerang",
     subjudul: "Mercedes-Benz GLC300 keluaran 2025 — perpaduan postur SUV dengan kabin sekelas sedan premium, siap diantar ke alamat Anda di Jakarta maupun Tangerang."
   },
+  // Mobil listrik. Title dan H1 menyebut Jakarta dan menonjolkan sewa
+  // bulanan karena di situlah volumenya (Keyword Planner, Okt 2026, per
+  // bulan): "sewa mobil listrik" 880, "... jakarta" 720, "rental mobil
+  // listrik" 320, "... bulanan" 260, sedangkan "... tangerang" hanya 90 dan
+  // "... lepas kunci" 40. Nama model tidak ditaruh di title: pencarian per
+  // model ("sewa ioniq 5" 30) kecil dan sudah ditangani halaman detail unit,
+  // dan title tetap benar saat armada listrik bertambah.
   {
     slug: "sewa-mobil-listrik-tangerang",
     grup: "kategori",
     label: "Mobil Listrik",
     tipe: "Electric",
-    judul: "Sewa Mobil Listrik Jakarta & Tangerang - Lepas Kunci",
+    judul: "Sewa Mobil Listrik Jakarta & Tangerang - Harian & Bulanan",
     deskripsi: (frasa) =>
-      `Sewa mobil listrik Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}: Hyundai Ioniq 5, Kona Electric, Chery Omoda E5. Tanpa bensin, lepas kunci atau plus sopir.`,
+      `Sewa mobil listrik Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}: Hyundai Ioniq 5, Kona Electric, Chery Omoda E5. Harian sampai bulanan, bisa lepas kunci.`,
     h1: "Sewa Mobil Listrik Jakarta & Tangerang",
     subjudul: "Hyundai Ioniq 5, Kona Electric N-Line, dan Chery Omoda E5 — kabin senyap total, akselerasi halus, dan tanpa satu rupiah pun biaya bensin selama masa sewa."
   },
