@@ -239,36 +239,64 @@ export const PROSA_KATEGORI = {
     ]
   },
   "sewa-mobil-listrik-tangerang": {
-    intro: "Mobil listrik mengubah hitungan biaya sewa dengan cara yang tidak langsung terlihat dari tarif hariannya. Pada unit berbahan bakar bensin, biaya yang Anda keluarkan adalah tarif sewa ditambah pengisian bahan bakar yang untuk pemakaian padat bisa cukup besar. Pada Hyundai Ioniq 5, komponen itu berganti menjadi biaya pengisian daya yang jauh lebih rendah per kilometernya. Untuk pemakaian dalam kota Tangerang dan Jabodetabek yang jaraknya panjang tapi kecepatannya rendah, selisih ini terasa nyata — dan itu justru kondisi di mana mobil listrik bekerja paling efisien.",
+    intro: "Sewa mobil listrik di 287 Trans sekarang punya dua pilihan Hyundai: Ioniq 5 dan Kona Electric N-Line. Keduanya matic, lima penumpang, dan bisa disewa lepas kunci maupun dengan sopir di Jakarta dan Tangerang. Mobil listrik mengubah hitungan biaya sewa dengan cara yang tidak langsung terlihat dari tarif hariannya: pada unit bensin Anda membayar tarif sewa ditambah bahan bakar, sedangkan di sini komponen itu berganti menjadi biaya pengisian daya yang jauh lebih rendah per kilometernya. Untuk pemakaian dalam kota Jabodetabek yang jaraknya panjang tapi kecepatannya rendah, selisih ini terasa nyata — dan itu justru kondisi di mana mobil listrik bekerja paling efisien.",
     bagian: [
       {
-        judul: "Yang Perlu Anda Tahu Sebelum Menyewa Mobil Listrik",
+        judul: "Ioniq 5 atau Kona N-Line: Pilih yang Mana",
+        isi: "Hyundai Kona Electric N-Line keluaran 2026 adalah SUV listrik ringkas dengan tampilan sporty: bumper hitam yang tegas di luar, aksen dan jahitan merah di kabin. Baterainya 66 kWh dengan jarak tempuh yang diklaim hingga 549 km (NEDC) sekali isi, dan sudah dibekali paket bantuan berkendara Hyundai SmartSense. Dimensinya yang lebih ringkas membuatnya lebih mudah diparkir dan dibawa di jalan sempit, dan tarif hariannya yang lebih rendah menjadikannya pintu masuk paling masuk akal untuk mencoba mobil listrik. Hyundai Ioniq 5 keluaran 2024 lebih besar dan lebih lapang: jarak antar-rodanya panjang dan lantainya rata, sehingga ruang kaki penumpang belakang terasa lega. Pilih Kona kalau Anda lebih sering berkendara sendiri atau berdua dan mengutamakan jarak tempuh; pilih Ioniq 5 kalau kursi belakang sering terisi atau Anda menjemput tamu."
+      },
+      {
+        judul: "Yang Perlu Anda Tahu Sebelum Sewa Mobil Listrik",
         isi: "Ada satu hal yang jujur perlu Anda pertimbangkan: pengisian daya butuh perencanaan yang tidak diperlukan pada mobil bensin. Untuk pemakaian harian dalam kota, pengisian semalam sudah lebih dari cukup untuk kebutuhan sehari penuh. Untuk perjalanan luar kota jarak jauh, Anda perlu merencanakan titik pengisian cepat di sepanjang rute. Kami akan menjelaskan kondisi daya unit saat serah terima dan menunjukkan lokasi pengisian terdekat dari tempat Anda. Kalau rencana perjalanan Anda padat dan lintas kota tanpa jeda, tim kami akan terus terang menyarankan unit berbahan bakar bensin atau diesel."
       },
       {
-        judul: "Kenapa Ioniq 5 Terasa Berbeda di Jalan",
-        isi: "Dua hal yang paling langsung terasa. Pertama, kabinnya senyap total saat berjalan pelan karena tidak ada mesin yang bekerja — perbedaan yang paling terasa justru di kemacetan, kondisi yang biasanya paling melelahkan. Kedua, tenaganya keluar seketika tanpa jeda perpindahan gigi, sehingga menyalip dan masuk ke jalur tol terasa jauh lebih ringan. Ruang kabinnya juga lebih lapang dari yang diduga orang dari luar, karena tidak ada terowongan transmisi yang memakan ruang kaki di tengah."
+        judul: "Cara Mengisi Daya Selama Masa Sewa",
+        isi: "Ada dua cara yang paling umum dipakai penyewa. Yang pertama stasiun pengisian kendaraan listrik umum (SPKLU), yang sekarang sudah banyak tersebar di Jabodetabek — di pusat perbelanjaan, rest area tol, dan beberapa kantor PLN. Yang kedua pengisian di rumah atau kantor, kalau Anda punya akses daya yang memadai. Sebelum berangkat, sebutkan rute dan lama sewa Anda saat chat: tim kami akan memberi tahu kondisi daya unit saat diserahkan, perlengkapan pengisian yang ikut, dan titik pengisian yang paling masuk akal untuk rute itu."
+      },
+      {
+        judul: "Hitungan Biaya: Mobil Listrik vs Mobil Bensin",
+        isi: "Tarif harian mobil listrik bukan yang paling rendah di katalog, tapi tarif harian baru separuh cerita. Biaya pengisian daya per kilometer jauh di bawah biaya bensin untuk jarak yang sama, dan mobil listrik tidak membuang energi saat merayap di kemacetan seperti mesin bensin. Semakin banyak kilometer yang Anda tempuh selama masa sewa, semakin besar selisihnya. Itu sebabnya untuk pemakaian padat dalam kota — antar-jemput harian, operasional kantor, keliling Jakarta seharian — total biaya perjalanannya sering lebih hemat daripada yang terlihat dari tarifnya."
+      },
+      {
+        judul: "Kenapa Mobil Listrik Terasa Berbeda di Jalan",
+        isi: "Dua hal yang paling langsung terasa, baik di Ioniq 5 maupun Kona. Pertama, kabinnya senyap total saat berjalan pelan karena tidak ada mesin yang bekerja — perbedaan yang paling terasa justru di kemacetan, kondisi yang biasanya paling melelahkan. Kedua, tenaganya keluar seketika tanpa jeda perpindahan gigi, sehingga menyalip dan masuk ke jalur tol terasa jauh lebih ringan. Di Ioniq 5, ruang kabinnya juga lebih lapang dari yang diduga orang dari luar, karena tidak ada terowongan transmisi yang memakan ruang kaki di tengah."
+      },
+      {
+        judul: "Sewa Mobil Listrik Harian, Mingguan, dan Bulanan",
+        isi: "Sewa harian dihitung 24 jam dari waktu pengambilan, cocok untuk acara, agenda kerja, atau sekadar ingin merasakan mobil listrik. Skema mingguan pas untuk mencoba hidup dengan mobil listrik sebelum memutuskan membeli. Rental mobil listrik bulanan paling masuk akal secara hitungan: selisih biaya per kilometer menumpuk dari hari ke hari, dan perusahaan yang ingin menampilkan komitmen terhadap kendaraan rendah emisi bisa memakainya sebagai kendaraan operasional. Syaratnya satu — Anda punya akses pengisian yang rutin, di rumah, di kantor, atau di SPKLU dekat Anda."
       },
       {
         judul: "Cocok untuk Siapa",
-        isi: "Ioniq 5 paling masuk akal untuk tiga hal: pemakaian harian dalam kota selama beberapa hari sampai beberapa minggu, keperluan perusahaan yang ingin menampilkan komitmen terhadap kendaraan rendah emisi, dan orang yang ingin mencoba mobil listrik lebih dulu sebelum benar-benar membelinya. Cukup banyak penyewa kami datang dengan alasan ketiga, dan kami menganggap itu penggunaan yang sangat wajar — beberapa hari berkendara sungguhan jauh lebih menjelaskan daripada test drive setengah jam."
+        isi: "Mobil listrik paling masuk akal untuk tiga hal: pemakaian harian dalam kota selama beberapa hari sampai beberapa minggu, keperluan perusahaan yang ingin tampil dengan kendaraan rendah emisi, dan orang yang ingin mencoba mobil listrik lebih dulu sebelum benar-benar membelinya. Cukup banyak penyewa kami datang dengan alasan ketiga, dan kami menganggap itu penggunaan yang sangat wajar — beberapa hari berkendara sungguhan jauh lebih menjelaskan daripada test drive setengah jam."
       }
     ],
     faq: [
       {
+        tanya: "Mobil listrik apa saja yang bisa disewa di 287 Trans?",
+        jawab: "Dua unit Hyundai: Ioniq 5 keluaran 2024 dan Kona Electric N-Line keluaran 2026. Keduanya matic, lima penumpang, dan tersedia lepas kunci maupun dengan sopir. Harga dan kalender ketersediaannya ada di daftar unit pada halaman ini."
+      },
+      {
+        tanya: "Bisa sewa mobil listrik di Jakarta?",
+        jawab: "Bisa. Jakarta dan Tangerang sama-sama area layanan kami. Unit diantar ke alamat Anda dengan biaya sesuai jarak dari garasi kami di Ciledug, yang berbatasan langsung dengan Jakarta Selatan, atau diambil sendiri di garasi tanpa biaya antar."
+      },
+      {
         tanya: "Bagaimana cara mengisi dayanya selama masa sewa?",
-        jawab: "Bisa lewat stasiun pengisian umum yang jumlahnya sudah banyak di Jabodetabek, atau pengisian di rumah kalau Anda punya akses daya yang memadai. Kami jelaskan kondisi daya dan lokasi pengisian terdekat saat serah terima."
+        jawab: "Bisa lewat stasiun pengisian umum (SPKLU) yang jumlahnya sudah banyak di Jabodetabek, atau pengisian di rumah kalau Anda punya akses daya yang memadai. Kami jelaskan kondisi daya dan lokasi pengisian terdekat saat serah terima."
       },
       {
         tanya: "Berapa jarak tempuh sekali pengisian penuh?",
-        jawab: "Untuk pemakaian dalam kota, satu kali pengisian penuh umumnya cukup untuk kebutuhan sehari penuh dengan margin yang aman. Jarak sebenarnya dipengaruhi gaya berkendara, beban, dan penggunaan AC — kami akan menjelaskan perkiraannya sesuai rencana rute Anda."
+        jawab: "Kona Electric N-Line diklaim pabrikan hingga 549 km (NEDC) dengan baterai 66 kWh. Untuk kedua unit, pada pemakaian dalam kota satu kali pengisian penuh umumnya cukup untuk kebutuhan sehari penuh dengan margin yang aman. Jarak sebenarnya dipengaruhi gaya berkendara, beban, dan penggunaan AC — kami akan menjelaskan perkiraannya sesuai rencana rute Anda."
       },
       {
         tanya: "Apakah biaya listriknya ditanggung penyewa?",
         jawab: "Ya, sama seperti bahan bakar pada unit lain. Bedanya, biaya pengisian daya per kilometer jauh lebih rendah dibanding bensin, dan itu yang membuat total biaya perjalanan sering lebih hemat meskipun tarif hariannya bukan yang paling rendah."
       },
       {
-        tanya: "Ioniq 5 boleh dibawa ke luar kota?",
+        tanya: "Apa syarat sewa mobil listrik lepas kunci?",
+        jawab: "Sama dengan unit lain: KTP yang masih berlaku dan SIM aktif sesuai golongan kendaraan, tanpa kartu kredit dan tanpa jaminan BPKB. Kalau ini pertama kalinya Anda menyetir mobil listrik, tim kami menjelaskan cara pakai dan pengisian dayanya saat serah terima."
+      },
+      {
+        tanya: "Mobil listrik boleh dibawa ke luar kota?",
         jawab: "Boleh, hanya saja perjalanannya perlu direncanakan berbeda dari mobil bensin: titik pengisian di rute Anda sebaiknya dipastikan sebelum berangkat. Untuk rute tol utama di Jawa hal ini sudah jauh lebih mudah dibanding beberapa tahun lalu. Sebutkan kota tujuan saat memesan — kalau rutenya kami nilai menyulitkan, kami akan terus terang menyarankan unit lain."
       },
       {

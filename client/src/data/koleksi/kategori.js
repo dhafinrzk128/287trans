@@ -78,11 +78,11 @@ export const KOLEKSI_KATEGORI = [
     grup: "kategori",
     label: "Mobil Listrik",
     tipe: "Electric",
-    judul: "Sewa Mobil Listrik Tangerang - Hyundai Ioniq 5",
+    judul: "Sewa Mobil Listrik Jakarta & Tangerang - Ioniq 5 & Kona",
     deskripsi: (frasa) =>
-      `Sewa Hyundai Ioniq 5 di Tangerang${frasa ? ` ${frasa}` : ""}. Mobil listrik matic 5 penumpang keluaran 2024, tanpa biaya bensin. Lepas kunci atau dengan sopir.`,
-    h1: "Sewa Mobil Listrik Tangerang",
-    subjudul: "Hyundai Ioniq 5 keluaran 2024 — kabin senyap total, akselerasi halus, dan tanpa satu rupiah pun biaya bensin selama masa sewa."
+      `Sewa mobil listrik Jakarta & Tangerang${frasa ? ` ${frasa}` : ""}: Hyundai Ioniq 5 dan Kona Electric N-Line. Tanpa biaya bensin, lepas kunci atau plus sopir.`,
+    h1: "Sewa Mobil Listrik Jakarta & Tangerang",
+    subjudul: "Dua mobil listrik Hyundai, Ioniq 5 dan Kona Electric N-Line — kabin senyap total, akselerasi halus, dan tanpa satu rupiah pun biaya bensin selama masa sewa."
   },
   {
     slug: "sewa-sedan-tangerang",

@@ -35,7 +35,7 @@ const DESKRIPSI_PER_TIPE = {
   "Luxury SUV": (m, nama, harga) =>
     `Sewa ${nama} Jakarta & Tangerang ${harga}/hari. SUV premium ${m.tahun}, ${m.kapasitas} penumpang, untuk acara formal dan agenda perusahaan. Bisa plus sopir.`,
   Electric: (m, nama, harga) =>
-    `Sewa mobil listrik ${nama} di Tangerang ${harga}/hari. Tanpa biaya bensin, ${m.kapasitas} penumpang, unit ${m.tahun}. Lepas kunci atau dengan sopir.`,
+    `Sewa mobil listrik ${nama} Jakarta & Tangerang ${harga}/hari. Tanpa biaya bensin, ${m.kapasitas} penumpang, unit ${m.tahun}. Lepas kunci atau dengan sopir.`,
   Sedan: (m, nama, harga) =>
     `Sewa sedan ${nama} di Tangerang ${harga}/hari. Unit ${m.tahun}, ${m.kapasitas} penumpang, nyaman untuk agenda kerja dan jemput tamu.`,
   Hatchback: (m, nama, harga) =>
@@ -55,8 +55,10 @@ export function namaUnit(mobil) {
 // Kelas mewah menyebut Jakarta juga: pencari unit seperti Mercy C300 atau
 // BMW 330i banyak dari Jakarta, dan title yang hanya menyebut Tangerang
 // membuat mereka (dan ringkasan AI Google) mengira kami hanya melayani
-// Tangerang. Kelas lain tetap "Tangerang" — di sana memang pasarnya.
-const TIPE_JAKARTA = new Set(["Luxury MPV", "Luxury Sedan", "Luxury SUV"]);
+// Tangerang. Mobil listrik ikut: penyedianya masih sedikit, jadi pencarinya
+// datang dari seluruh Jakarta. Kelas lain tetap "Tangerang" — di sana memang
+// pasarnya.
+const TIPE_JAKARTA = new Set(["Luxury MPV", "Luxury Sedan", "Luxury SUV", "Electric"]);
 
 // Komponen Seo menambahkan " | 287 Trans" sendiri.
 export function judulMobil(mobil) {
